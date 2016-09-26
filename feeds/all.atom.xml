@@ -3,16 +3,16 @@
 However, at some point products have to be shiped. You can't just keep
  pushing deadlines back further and further. Instead I utilize the tips below
  to provide functional code that is also clean.&lt;/p&gt;
-&lt;h2&gt;The DRY Principle.&lt;/h2&gt;
+&lt;h3&gt;The DRY Principle.&lt;/h3&gt;
 &lt;p&gt;DRY stands for "don't repeat yourself" and you shouldn't. If you do, STOP! 
 Repeating yourself will never be a good pratice. 
 The programming gods invented functions for a reason. Start now by splitting up
 your big &lt;code&gt;main()&lt;/code&gt; funciton.&lt;/p&gt;
-&lt;h2&gt;Design Patterns&lt;/h2&gt;
+&lt;h3&gt;Design Patterns&lt;/h3&gt;
 &lt;p&gt;What you might not of know is that there are three major categories of
 design patterns; creational, structural, and behavioral. Each category having a
 plethra of tools to help solve everyday software problems. &lt;/p&gt;
-&lt;h2&gt;Understand The Computer&lt;/h2&gt;
+&lt;h3&gt;Understand The Computer&lt;/h3&gt;
 &lt;p&gt;Knowing that the windows registry exists and how to edit it is not "understanding"
 the inner workings of a computer. Understanding a computer means having knowledge 
 about things such as the datapath on the CPU and different levels of cache.&lt;/p&gt;
@@ -21,7 +21,7 @@ as multiplication down at a binary level, how are you suppose to think in terms
 of preformance? When your application is eating up precious cycles for useless 
 tasks, being able to optimize the program and utilizing your compilers internals
 to elevate things to a kernel level commands can become of utmost importance.&lt;/p&gt;
-&lt;h2&gt;Tools&lt;/h2&gt;
+&lt;h3&gt;Tools&lt;/h3&gt;
 &lt;p&gt;This one is really just based on how much experience a person has with the utilities
 of their trade. Currently I use VS Code + a Vim Shortcut plugins. I then utilize
 flake8 to keep my code style up to par and pylint to ensure no bugs exist in my
@@ -30,15 +30,15 @@ code.&lt;/p&gt;
 Ask yourself, are there any menu's or options you haven't explored before? Mess
 around with them until you figure out. Can you use a tool in a way it wasn't meant to?
 Try it. Don't settle, expand it and put it into your pipeline.&lt;/p&gt;
-&lt;h2&gt;Readability&lt;/h2&gt;
+&lt;h3&gt;Readability&lt;/h3&gt;
 &lt;p&gt;This one is very important. Instead of writing a list comprehension that goes way past 
 the end of the 79 character PEP8 line length, use multiple lines. Name variables
 approprately and keep packages clean. All things that you should be actively striving for
 when writing code or refactoring.&lt;/p&gt;
-&lt;h2&gt;Code Reviews&lt;/h2&gt;
+&lt;h3&gt;Code Reviews&lt;/h3&gt;
 &lt;p&gt;Open source or not you should strive to get someone to review your code. This helps
 promote a more open enviroment and prevents bugs from making it into production code.&lt;/p&gt;
-&lt;h2&gt;Testing&lt;/h2&gt;
+&lt;h3&gt;Testing&lt;/h3&gt;
 &lt;p&gt;I could talk for hours on this one. Testing is essential. 
 Start out with unittests and verify small components of the system. Once
 you get a hold of how to do that, start adding integration tests for business 
@@ -47,7 +47,7 @@ essential parts of your application.&lt;/p&gt;
 smoke tests. Smoke tests are very light weight scripts that verify the conditions
 of your system. A good example of smoke tests is ensuring your FTP server is 
 online and that the user can login.&lt;/p&gt;
-&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;h3&gt;Conclusion&lt;/h3&gt;
 &lt;p&gt;Wrapping things up, you should always strive for clean and readable code. I hope
 that some of the items I've listed above can enable you and your team to create
  amazing and beautiful products for people all over the world.&lt;/p&gt;
