@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,11 +40,15 @@
         <img src="https://s.gravatar.com/avatar/3f9df5012e11231e7c9ce7e8ef42135e?s=120" alt="Taylor Brazelton" title="Taylor Brazelton">
       </a>
       <h1><a href="https://taylorbrazelton.com">Taylor Brazelton</a></h1>
-<p>loaded with information</p>      <nav>
+
+<p>loaded with information</p>
+      <nav>
         <ul class="list">
           <li><a href="https://taylorbrazelton.com/pages/about-me.html#about-me">About Me</a></li>
+
         </ul>
       </nav>
+
       <ul class="social">
         <li><a class="sc-linkedin" href="https://www.linkedin.com/in/ryanb58" target="_blank"><i class="fa fa-linkedin"></i></a></li>
         <li><a class="sc-github" href="http://github.com/ryanb58" target="_blank"><i class="fa fa-github"></i></a></li>
@@ -53,20 +58,98 @@
   </aside>
   <main>
     <nav>
-      <a href="https://taylorbrazelton.com">Home</a>
+      <a href="https://taylorbrazelton.com">    Home
+</a>
+
       <a href="/archives.html">Archives</a>
       <a href="/categories.html">Categories</a>
       <a href="/tags.html">Tags</a>
-      <a href="https://taylorbrazelton.com/feeds/all.atom.xml">Atom</a>
+
+      <a href="https://taylorbrazelton.com/feeds/all.atom.xml">    Atom
+</a>
+
     </nav>
 
 <article>
   <header>
+    <h2><a href="https://taylorbrazelton.com/2016/Sep/15/writing-better-code/#writing-better-code">Writing Better Code</a></h2>
+    <p>
+          Posted on Thu 15 September 2016 in <a href="https://taylorbrazelton.com/category/python.html">python</a>
+
+
+          &#8226;     Tagged with
+
+              <a href="https://taylorbrazelton.com/tag/writing.html">writing</a>,              <a href="https://taylorbrazelton.com/tag/better.html">better</a>,              <a href="https://taylorbrazelton.com/tag/code.html">code</a>,              <a href="https://taylorbrazelton.com/tag/refactoring.html">refactoring</a>,              <a href="https://taylorbrazelton.com/tag/python.html">python</a>,              <a href="https://taylorbrazelton.com/tag/tips.html">tips</a>
+    </p>
+  </header>
+  <div>
+      <p>As a software engineer/artist I could spend copious amounts of time refactoring. 
+However, at some point products have to be shiped. You can't just keep
+ pushing deadlines back further and further. Instead I utilize the tips below
+ to provide functional code that is also clean.</p>
+<h2>The DRY Principle.</h2>
+<p>DRY stands for "don't repeat yourself" and you shouldn't. If you do, STOP! 
+Repeating yourself will never be a good pratice. 
+The programming gods invented functions for a reason. Start now by splitting up
+your big <code>main()</code> funciton.</p>
+<h2>Design Patterns</h2>
+<p>What you might not of know is that there are three major categories of
+design patterns; creational, structural, and behavioral. Each category having a
+plethra of tools to help solve everyday software problems. </p>
+<h2>Understand The Computer</h2>
+<p>Knowing that the windows registry exists and how to edit it is not "understanding"
+the inner workings of a computer. Understanding a computer means having knowledge 
+about things such as the datapath on the CPU and different levels of cache.</p>
+<p>If you don't understand how a CPU does computations such 
+as multiplication down at a binary level, how are you suppose to think in terms
+of preformance? When your application is eating up precious cycles for useless 
+tasks, being able to optimize the program and utilizing your compilers internals
+to elevate things to a kernel level commands can become of utmost importance.</p>
+<h2>Tools</h2>
+<p>This one is really just based on how much experience a person has with the utilities
+of their trade. Currently I use VS Code + a Vim Shortcut plugins. I then utilize
+flake8 to keep my code style up to par and pylint to ensure no bugs exist in my
+code.</p>
+<p>I'm not saying switch to my tools, I'm saying start diving deep into how they work. 
+Ask yourself, are there any menu's or options you haven't explored before? Mess
+around with them until you figure out. Can you use a tool in a way it wasn't meant to?
+Try it. Don't settle, expand it and put it into your pipeline.</p>
+<h2>Readability</h2>
+<p>This one is very important. Instead of writing a list comprehension that goes way past 
+the end of the 79 character PEP8 line length, use multiple lines. Name variables
+approprately and keep packages clean. All things that you should be actively striving for
+when writing code or refactoring.</p>
+<h2>Code Reviews</h2>
+<p>Open source or not you should strive to get someone to review your code. This helps
+promote a more open enviroment and prevents bugs from making it into production code.</p>
+<h2>Testing</h2>
+<p>I could talk for hours on this one. Testing is essential. 
+Start out with unittests and verify small components of the system. Once
+you get a hold of how to do that, start adding integration tests for business 
+essential parts of your application.</p>
+<p>Have a ton of services? Test the main functionality of these programs by running
+smoke tests. Smoke tests are very light weight scripts that verify the conditions
+of your system. A good example of smoke tests is ensuring your FTP server is 
+online and that the user can login.</p>
+<h2>Conclusion</h2>
+<p>Wrapping things up, you should always strive for clean and readable code. I hope
+that some of the items I've listed above can enable you and your team to create
+ amazing and beautiful products for people all over the world.</p>
+<p>Please feel free to share this post and comment anything I left out or might be
+able to improve on for my own sake.</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://taylorbrazelton.com/2016/Jul/28/raspberry-pi-arcade-eumlator-price-out/#raspberry-pi-arcade-eumlator-price-out">Raspberry Pi Arcade Eumlator Price Out</a></h2>
     <p>
-      Posted on Thu 28 July 2016 in <a href="https://taylorbrazelton.com/category/general.html">general</a>
-      &#8226; Tagged with
-      <a href="https://taylorbrazelton.com/tag/raspberry.html">raspberry</a>,      <a href="https://taylorbrazelton.com/tag/pi.html">pi</a>,      <a href="https://taylorbrazelton.com/tag/arcade.html">arcade</a>,      <a href="https://taylorbrazelton.com/tag/emulator.html">emulator</a>,      <a href="https://taylorbrazelton.com/tag/price.html">price</a>,      <a href="https://taylorbrazelton.com/tag/out.html">out</a>      &#8226; <a href="https://taylorbrazelton.com/2016/Jul/28/raspberry-pi-arcade-eumlator-price-out/#disqus_thread">Leave a comment</a>
+          Posted on Thu 28 July 2016 in <a href="https://taylorbrazelton.com/category/general.html">general</a>
+
+
+          &#8226;     Tagged with
+
+              <a href="https://taylorbrazelton.com/tag/raspberry.html">raspberry</a>,              <a href="https://taylorbrazelton.com/tag/pi.html">pi</a>,              <a href="https://taylorbrazelton.com/tag/arcade.html">arcade</a>,              <a href="https://taylorbrazelton.com/tag/emulator.html">emulator</a>,              <a href="https://taylorbrazelton.com/tag/price.html">price</a>,              <a href="https://taylorbrazelton.com/tag/out.html">out</a>
     </p>
   </header>
   <div>
@@ -101,9 +184,12 @@
   <header>
     <h2><a href="https://taylorbrazelton.com/2016/Jul/22/easiest-way-to-install-docker-on-linux/#easiest-way-to-install-docker-on-linux">Easiest Way To Install Docker On Linux</a></h2>
     <p>
-      Posted on Fri 22 July 2016 in <a href="https://taylorbrazelton.com/category/general.html">general</a>
-      &#8226; Tagged with
-      <a href="https://taylorbrazelton.com/tag/docker.html">docker</a>,      <a href="https://taylorbrazelton.com/tag/install.html">install</a>,      <a href="https://taylorbrazelton.com/tag/linux.html">linux</a>,      <a href="https://taylorbrazelton.com/tag/easiest.html">easiest</a>      &#8226; <a href="https://taylorbrazelton.com/2016/Jul/22/easiest-way-to-install-docker-on-linux/#disqus_thread">Leave a comment</a>
+          Posted on Fri 22 July 2016 in <a href="https://taylorbrazelton.com/category/general.html">general</a>
+
+
+          &#8226;     Tagged with
+
+              <a href="https://taylorbrazelton.com/tag/docker.html">docker</a>,              <a href="https://taylorbrazelton.com/tag/install.html">install</a>,              <a href="https://taylorbrazelton.com/tag/linux.html">linux</a>,              <a href="https://taylorbrazelton.com/tag/easiest.html">easiest</a>
     </p>
   </header>
   <div>
@@ -120,9 +206,12 @@
   <header>
     <h2><a href="https://taylorbrazelton.com/2016/Jun/27/getting-started-with-pelican/#getting-started-with-pelican">Getting Started with Pelican</a></h2>
     <p>
-      Posted on Mon 27 June 2016 in <a href="https://taylorbrazelton.com/category/how-to.html">How To</a>
-      &#8226; Tagged with
-      <a href="https://taylorbrazelton.com/tag/using.html">using</a>,      <a href="https://taylorbrazelton.com/tag/pelican.html">pelican</a>,      <a href="https://taylorbrazelton.com/tag/python.html">python</a>,      <a href="https://taylorbrazelton.com/tag/virtualenv.html">virtualenv</a>,      <a href="https://taylorbrazelton.com/tag/getting.html">getting</a>,      <a href="https://taylorbrazelton.com/tag/started.html">started</a>      &#8226; <a href="https://taylorbrazelton.com/2016/Jun/27/getting-started-with-pelican/#disqus_thread">Leave a comment</a>
+          Posted on Mon 27 June 2016 in <a href="https://taylorbrazelton.com/category/how-to.html">How To</a>
+
+
+          &#8226;     Tagged with
+
+              <a href="https://taylorbrazelton.com/tag/using.html">using</a>,              <a href="https://taylorbrazelton.com/tag/pelican.html">pelican</a>,              <a href="https://taylorbrazelton.com/tag/python.html">python</a>,              <a href="https://taylorbrazelton.com/tag/virtualenv.html">virtualenv</a>,              <a href="https://taylorbrazelton.com/tag/getting.html">getting</a>,              <a href="https://taylorbrazelton.com/tag/started.html">started</a>
     </p>
   </header>
   <div>
@@ -162,9 +251,12 @@
   <header>
     <h2><a href="https://taylorbrazelton.com/2016/Jun/23/github-blogging/#github-blogging">Github Blogging</a></h2>
     <p>
-      Posted on Thu 23 June 2016 in <a href="https://taylorbrazelton.com/category/general.html">general</a>
-      &#8226; Tagged with
-      <a href="https://taylorbrazelton.com/tag/blog.html">blog</a>,      <a href="https://taylorbrazelton.com/tag/github.html">github</a>,      <a href="https://taylorbrazelton.com/tag/blogging.html">blogging</a>,      <a href="https://taylorbrazelton.com/tag/tech-fyi.html">tech-fyi</a>,      <a href="https://taylorbrazelton.com/tag/new.html">new</a>,      <a href="https://taylorbrazelton.com/tag/first.html">first</a>,      <a href="https://taylorbrazelton.com/tag/post.html">post</a>      &#8226; <a href="https://taylorbrazelton.com/2016/Jun/23/github-blogging/#disqus_thread">Leave a comment</a>
+          Posted on Thu 23 June 2016 in <a href="https://taylorbrazelton.com/category/general.html">general</a>
+
+
+          &#8226;     Tagged with
+
+              <a href="https://taylorbrazelton.com/tag/blog.html">blog</a>,              <a href="https://taylorbrazelton.com/tag/github.html">github</a>,              <a href="https://taylorbrazelton.com/tag/blogging.html">blogging</a>,              <a href="https://taylorbrazelton.com/tag/tech-fyi.html">tech-fyi</a>,              <a href="https://taylorbrazelton.com/tag/new.html">new</a>,              <a href="https://taylorbrazelton.com/tag/first.html">first</a>,              <a href="https://taylorbrazelton.com/tag/post.html">post</a>
     </p>
   </header>
   <div>
@@ -178,8 +270,9 @@
   </div>
 
     <footer>
-        <p>&copy; Taylor Brazelton </p>
-<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p>    </footer>
+<p>&copy; Taylor Brazelton </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
   </main>
 
 <!-- Google Analytics -->
@@ -205,15 +298,6 @@
   "image": "https://s.gravatar.com/avatar/3f9df5012e11231e7c9ce7e8ef42135e?s=120",
   "description": "Loaded with information, Taylor Brazelton seeks to share this information by distributing some to the world on this blog."
 }
-</script>
-<script type="text/javascript">
-    var disqus_shortname = 'loadedtaylor';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
 </script>
 </body>
 </html>
