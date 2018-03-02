@@ -1,5 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>TAYLOR BRAZELTON</title><link href="https://taylorbrazelton.com/" rel="alternate"></link><link href="https://taylorbrazelton.com/feeds/all.atom.xml" rel="self"></link><id>https://taylorbrazelton.com/</id><updated>2018-02-15T06:00:00-05:00</updated><entry><title>Strategy for Moving Away From Legacy Code</title><link href="https://taylorbrazelton.com/2018/Feb/15/strategy-for-moving-away-from-legacy-code/" rel="alternate"></link><published>2018-02-15T06:00:00-05:00</published><updated>2018-02-15T06:00:00-05:00</updated><author><name>Taylor Brazelton</name></author><id>tag:taylorbrazelton.com,2018-02-15:/2018/Feb/15/strategy-for-moving-away-from-legacy-code/</id><summary type="html">&lt;h5&gt;1) Chunk Your App Into Pieces&lt;/h5&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>TAYLOR BRAZELTON</title><link href="https://taylorbrazelton.com/" rel="alternate"></link><link href="https://taylorbrazelton.com/feeds/all.atom.xml" rel="self"></link><id>https://taylorbrazelton.com/</id><updated>2018-03-02T12:00:00-05:00</updated><entry><title>Django Migrations Downgrade in Docker Swarm</title><link href="https://taylorbrazelton.com/2018/Mar/02/django-migrations-downgrade-in-docker-swarm/" rel="alternate"></link><published>2018-03-02T12:00:00-05:00</published><updated>2018-03-02T08:00:00-05:00</updated><author><name>Taylor Brazelton</name></author><id>tag:taylorbrazelton.com,2018-03-02:/2018/Mar/02/django-migrations-downgrade-in-docker-swarm/</id><summary type="html">&lt;p&gt;Edge cases are a big problem in software engineering, one that I recently ran
+into while on a beta box was errors being thrown after a downgrade.&lt;/p&gt;
+&lt;p&gt;First a little background on the application. It is a django application running
+in a docker container via docker-swarm. Our application upgrade/downgrade
+process is to reduce the amount of containers running down to 0. Change the
+tag numbers in our .yml file and then scale them back up. This forces the
+containers to download the newly defined version. Note that our downgrade
+process is exactly the same we just update the a tag with an older version.&lt;/p&gt;
+&lt;p&gt;The process described above might sound correct to you, however, because we use migrations
+to structure our database the process is flawed. By replaceing the tag and
+just moving to older docker containers, the downgrade function inside our
+migrations never get ran. Instead the downgraded application has no idea
+about the migrations that existed in the newer version that does not in it's
+own. Thus resulting in an inconsistant database state with the version of
+application deployed.&lt;/p&gt;
+&lt;p&gt;My current solution to this issue is to run the migration downgrade for each
+app in our django project manually inside of the existing application container
+. To do this I start out with a diff of the code between the old version and
+the new version. I look for any added migrations and run the command below to
+have django south run through the downgrade methods until it reaches the
+latest migration in the old code. Then I perform the old migration method.&lt;/p&gt;
+&lt;p&gt;Here is a step by step list of the process.&lt;/p&gt;
+&lt;p&gt;1) Diff of code.&lt;/p&gt;
+&lt;p&gt;2) Write down oldest added migration number and app name&lt;/p&gt;
+&lt;p&gt;3) Exec into the application docker container.&lt;/p&gt;
+&lt;p&gt;4) Migrate backwards :&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;./manage.py migrate appname 0000
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;5) Exit out of container.&lt;/p&gt;
+&lt;p&gt;6) Scale the swarm down to 0 nodes.&lt;/p&gt;
+&lt;p&gt;7) Change tag number.&lt;/p&gt;
+&lt;p&gt;8) Scale the containers back up.&lt;/p&gt;
+&lt;p&gt;Do you have any suggestions or any improvements to this process? Comment below
+and link me to other articles you've read about this process. The more we know
+together the better our overall solutions can be.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Edge cases are a big problem in software engineering, one that I recently ran
+into while on a beta box was errors being thrown after a downgrade.&lt;/p&gt;
+&lt;p&gt;First a little background on the application. It is a django application running
+in a docker container via docker-swarm. Our application upgrade/downgrade
+process is to reduce the amount of containers running down to 0. Change the
+tag numbers in our .yml file and then scale them back up. This forces the
+containers to download the newly defined version. Note that our downgrade
+process is exactly the same we just update the a tag with an older version.&lt;/p&gt;
+&lt;p&gt;The process described above might sound correct to you, however, because we use migrations
+to structure our database the process is flawed. By replaceing the tag and
+just moving to older docker containers, the downgrade function inside our
+migrations never get ran. Instead the downgraded application has no idea
+about the migrations that existed in the newer version that does not in it's
+own. Thus resulting in an inconsistant database state with the version of
+application deployed.&lt;/p&gt;
+&lt;p&gt;My current solution to this issue is to run the migration downgrade for each
+app in our django project manually inside of the existing application container
+. To do this I start out with a diff of the code between the old version and
+the new version. I look for any added migrations and run the command below to
+have django south run through the downgrade methods until it reaches the
+latest migration in the old code. Then I perform the old migration method.&lt;/p&gt;
+&lt;p&gt;Here is a step by step list of the process.&lt;/p&gt;
+&lt;p&gt;1) Diff of code.&lt;/p&gt;
+&lt;p&gt;2) Write down oldest added migration number and app name&lt;/p&gt;
+&lt;p&gt;3) Exec into the application docker container.&lt;/p&gt;
+&lt;p&gt;4) Migrate backwards :&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;./manage.py migrate appname 0000
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;5) Exit out of container.&lt;/p&gt;
+&lt;p&gt;6) Scale the swarm down to 0 nodes.&lt;/p&gt;
+&lt;p&gt;7) Change tag number.&lt;/p&gt;
+&lt;p&gt;8) Scale the containers back up.&lt;/p&gt;
+&lt;p&gt;Do you have any suggestions or any improvements to this process? Comment below
+and link me to other articles you've read about this process. The more we know
+together the better our overall solutions can be.&lt;/p&gt;</content><category term="docker"></category><category term="django"></category><category term="python"></category><category term="downgrade"></category><category term="swarm"></category><category term="orchestration"></category></entry><entry><title>Strategy for Moving Away From Legacy Code</title><link href="https://taylorbrazelton.com/2018/Feb/15/strategy-for-moving-away-from-legacy-code/" rel="alternate"></link><published>2018-02-15T06:00:00-05:00</published><updated>2018-02-15T06:00:00-05:00</updated><author><name>Taylor Brazelton</name></author><id>tag:taylorbrazelton.com,2018-02-15:/2018/Feb/15/strategy-for-moving-away-from-legacy-code/</id><summary type="html">&lt;h5&gt;1) Chunk Your App Into Pieces&lt;/h5&gt;
 &lt;ul&gt;
 &lt;li&gt;Turn everything into a MICROservice.&lt;/li&gt;
 &lt;/ul&gt;
