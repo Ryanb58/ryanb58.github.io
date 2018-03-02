@@ -2,6 +2,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+
   <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
 
     <link rel="stylesheet" type="text/css" href="https://taylorbrazelton.com/theme/stylesheet/style.min.css">
@@ -14,19 +20,25 @@
 
 
 
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="index, follow" />
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
+  ga('create', 'UA-52478838-2', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
 
 <meta name="author" content="Taylor Brazelton" />
-<meta name="description" content="So you want to build an on-prem. Great! On-prems are cash rich enviroments that allow for sales into the entrerprise marketspace without much effort. Right? Well, from your engineers perspectives, no. Sadly on-prems add a lot of complexity that originally was avoided because of the "cloud". Let's dive into a few of these complexities in which your engineers will face. Physical Limits Software Updates Non-Reproduceable Bugs Can only be reproduced on the on-prem Security Billing Support Update System/Policy Guessing At What Your User Is Doing Logging Scaling Uptime/Avalability Lack of Features in the mean time. Tranfering of accounts between onprems and cloud. Clashing of usernames or user spaces. Virtual Deploys Automating Everything Protecting your IP/code. On-Prems are inherritently a security risk for your company, especially if you are using an interprated language. On-prems can easily be torn apart and your application copied/cloned. More Good Reading: https://www.gfi.com/whitepapers/Hybrid_Technology.pdf http://blog.lusis.org/blog/2016/05/15/so-you-wanna-go-onprem-do-ya/ https://blog.gurock.com/staged-releases-saas-on-premise-deployments/ http://www.cbronline.com/news/cloud/private/how-to-build-a-private-cloud-5-best-practices-to-move-on-premise-4773907" />
+<meta name="description" content="So you want to build an on-prem. Great! On-prems are cash rich enviroments that allow for sales into the entrerprise marketspace without much effort. Right? Well, from your engineers perspectives, no. Sadly on-prems add a lot of complexity that originally was avoided because of the &#34;cloud&#34;. Let&#39;s dive into a few of these complexities in which your engineers will face. Physical Limits Software Updates Non-Reproduceable Bugs Can only be reproduced on the on-prem Security Billing Support Update System/Policy Guessing At What Your User Is Doing Logging Scaling Uptime/Avalability Lack of Features in the mean time. Tranfering of accounts between onprems and cloud. Clashing of usernames or user spaces. Virtual Deploys Automating Everything Protecting your IP/code. On-Prems are inherritently a security risk for your company, especially if you are using an interprated language. On-prems can easily be torn apart and your application copied/cloned. More Good Reading: https://www.gfi.com/whitepapers/Hybrid_Technology.pdf http://blog.lusis.org/blog/2016/05/15/so-you-wanna-go-onprem-do-ya/ https://blog.gurock.com/staged-releases-saas-on-premise-deployments/ http://www.cbronline.com/news/cloud/private/how-to-build-a-private-cloud-5-best-practices-to-move-on-premise-4773907" />
 <meta name="keywords" content="on, prems, on-prems, developers, perspective, problems, faced">
+
 <meta property="og:site_name" content="TAYLOR BRAZELTON"/>
-<meta property="og:title" content="On-prems - The Engineer's Perspective"/>
-<meta property="og:description" content="So you want to build an on-prem. Great! On-prems are cash rich enviroments that allow for sales into the entrerprise marketspace without much effort. Right? Well, from your engineers perspectives, no. Sadly on-prems add a lot of complexity that originally was avoided because of the "cloud". Let's dive into a few of these complexities in which your engineers will face. Physical Limits Software Updates Non-Reproduceable Bugs Can only be reproduced on the on-prem Security Billing Support Update System/Policy Guessing At What Your User Is Doing Logging Scaling Uptime/Avalability Lack of Features in the mean time. Tranfering of accounts between onprems and cloud. Clashing of usernames or user spaces. Virtual Deploys Automating Everything Protecting your IP/code. On-Prems are inherritently a security risk for your company, especially if you are using an interprated language. On-prems can easily be torn apart and your application copied/cloned. More Good Reading: https://www.gfi.com/whitepapers/Hybrid_Technology.pdf http://blog.lusis.org/blog/2016/05/15/so-you-wanna-go-onprem-do-ya/ https://blog.gurock.com/staged-releases-saas-on-premise-deployments/ http://www.cbronline.com/news/cloud/private/how-to-build-a-private-cloud-5-best-practices-to-move-on-premise-4773907"/>
+<meta property="og:title" content="On-prems - The Engineer&#39;s Perspective"/>
+<meta property="og:description" content="So you want to build an on-prem. Great! On-prems are cash rich enviroments that allow for sales into the entrerprise marketspace without much effort. Right? Well, from your engineers perspectives, no. Sadly on-prems add a lot of complexity that originally was avoided because of the &#34;cloud&#34;. Let&#39;s dive into a few of these complexities in which your engineers will face. Physical Limits Software Updates Non-Reproduceable Bugs Can only be reproduced on the on-prem Security Billing Support Update System/Policy Guessing At What Your User Is Doing Logging Scaling Uptime/Avalability Lack of Features in the mean time. Tranfering of accounts between onprems and cloud. Clashing of usernames or user spaces. Virtual Deploys Automating Everything Protecting your IP/code. On-Prems are inherritently a security risk for your company, especially if you are using an interprated language. On-prems can easily be torn apart and your application copied/cloned. More Good Reading: https://www.gfi.com/whitepapers/Hybrid_Technology.pdf http://blog.lusis.org/blog/2016/05/15/so-you-wanna-go-onprem-do-ya/ https://blog.gurock.com/staged-releases-saas-on-premise-deployments/ http://www.cbronline.com/news/cloud/private/how-to-build-a-private-cloud-5-best-practices-to-move-on-premise-4773907"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:url" content="https://taylorbrazelton.com/drafts/on-prems-the-engineers-perspective.html"/>
 <meta property="og:type" content="article"/>
@@ -43,7 +55,7 @@
 <meta property="article:tag" content="faced"/>
 <meta property="og:image" content="https://s.gravatar.com/avatar/3f9df5012e11231e7c9ce7e8ef42135e?s=120">
 
-  <title>TAYLOR BRAZELTON &ndash; On-prems - The Engineer's Perspective</title>
+  <title>TAYLOR BRAZELTON &ndash; On-prems - The Engineer&#39;s Perspective</title>
 
 </head>
 <body>
@@ -63,7 +75,7 @@
       </nav>
 
       <ul class="social">
-        <li><a class="sc-linkedin" href="https://www.linkedin.com/in/ryanb58" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="sc-linkedin" href="https://www.linkedin.com/in/taylorbrazelton" target="_blank"><i class="fa fa-linkedin"></i></a></li>
         <li><a class="sc-github" href="http://github.com/ryanb58" target="_blank"><i class="fa fa-github"></i></a></li>
         <li><a class="sc-twitter" href="http://twitter.com/Ryanb58" target="_blank"><i class="fa fa-twitter"></i></a></li>
       </ul>
@@ -88,6 +100,7 @@
 
 <article class="single">
   <header>
+      
     <h1 id="on-prems-the-engineers-perspective">On-prems - The Engineer's Perspective</h1>
     <p>
           Posted on Wed 20 July 2016 in <a href="https://taylorbrazelton.com/category/how-to.html">How To</a>
@@ -144,7 +157,10 @@ http://www.cbronline.com/news/cloud/private/how-to-build-a-private-cloud-5-best-
 
 
 
+    <div class="addthis_relatedposts_inline">
 
+
+<!-- Disqus -->
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'taylorbrazelton';
@@ -158,25 +174,15 @@ http://www.cbronline.com/news/cloud/private/how-to-build-a-private-cloud-5-best-
         Please enable JavaScript to view comments.
 
 </noscript>
+<!-- End Disqus -->
 </article>
 
     <footer>
-<p>&copy; Taylor Brazelton </p>
+<p>&copy;  </p>
 <p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
 </p>    </footer>
   </main>
 
-<!-- Google Analytics -->
-<script type="text/javascript">
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-52478838-2', 'auto');
-  ga('send', 'pageview');
-</script>
-<!-- End Google Analytics -->
 
 
 
@@ -190,5 +196,6 @@ http://www.cbronline.com/news/cloud/private/how-to-build-a-private-cloud-5-best-
   "description": "Taylor Brazelton tries to make sense of computers and the internet. What could possibly go wrong?"
 }
 </script>
+
 </body>
 </html>

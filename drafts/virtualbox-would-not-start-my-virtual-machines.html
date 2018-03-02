@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="https://taylorbrazelton.com/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="https://taylorbrazelton.com/theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="https://taylorbrazelton.com/theme/font-awesome/css/font-awesome.min.css">
+
+
+    <link href="https://taylorbrazelton.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="TAYLOR BRAZELTON Atom">
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52478838-2', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+<meta name="author" content="Taylor Brazelton" />
+<meta name="description" content="Murph&#39;s Law - &#34;Anything that can go wrong will go wrong.&#34; Source - https://en.wikiquote.org/wiki/Murphy&#39;s_law Virtualbox Log: 00:00:00.387310 Audio: Initializing PulseAudio driver Virtualbox would be stuck trying to initalize my VM. Ran through everything possible. Uninstalled Virtualbox, Re-installed Virtualbox, Re-installed different versions of virtualbox, checked kernal modules. etc.. Ran the purge command: sudo apt-get remove virtualbox* --purge Ended up going into the settings of each virtual machine and disabling the pulse audio audio driver." />
+<meta name="keywords" content="virtual, box, vb, machine, won&#39;t, start, will, not, come, up, audio, pulse">
+
+<meta property="og:site_name" content="TAYLOR BRAZELTON"/>
+<meta property="og:title" content="VirtualBox Would Not Start My Virtual Machines."/>
+<meta property="og:description" content="Murph&#39;s Law - &#34;Anything that can go wrong will go wrong.&#34; Source - https://en.wikiquote.org/wiki/Murphy&#39;s_law Virtualbox Log: 00:00:00.387310 Audio: Initializing PulseAudio driver Virtualbox would be stuck trying to initalize my VM. Ran through everything possible. Uninstalled Virtualbox, Re-installed Virtualbox, Re-installed different versions of virtualbox, checked kernal modules. etc.. Ran the purge command: sudo apt-get remove virtualbox* --purge Ended up going into the settings of each virtual machine and disabling the pulse audio audio driver."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="https://taylorbrazelton.com/drafts/virtualbox-would-not-start-my-virtual-machines.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2017-01-20 21:06:00-05:00"/>
+<meta property="article:modified_time" content="2017-01-20 21:06:00-05:00"/>
+<meta property="article:author" content="https://taylorbrazelton.com/author/taylor-brazelton.html">
+<meta property="article:section" content="general"/>
+<meta property="article:tag" content="virtual"/>
+<meta property="article:tag" content="box"/>
+<meta property="article:tag" content="vb"/>
+<meta property="article:tag" content="machine"/>
+<meta property="article:tag" content="won&#39;t"/>
+<meta property="article:tag" content="start"/>
+<meta property="article:tag" content="will"/>
+<meta property="article:tag" content="not"/>
+<meta property="article:tag" content="come"/>
+<meta property="article:tag" content="up"/>
+<meta property="article:tag" content="audio"/>
+<meta property="article:tag" content="pulse"/>
+<meta property="og:image" content="https://s.gravatar.com/avatar/3f9df5012e11231e7c9ce7e8ef42135e?s=120">
+
+  <title>TAYLOR BRAZELTON &ndash; VirtualBox Would Not Start My Virtual Machines.</title>
+
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="https://taylorbrazelton.com">
+        <img src="https://s.gravatar.com/avatar/3f9df5012e11231e7c9ce7e8ef42135e?s=120" alt="Taylor Brazelton" title="Taylor Brazelton">
+      </a>
+      <h1><a href="https://taylorbrazelton.com">Taylor Brazelton</a></h1>
+
+<p>zeros and ones</p>
+      <nav>
+        <ul class="list">
+          <li><a href="https://taylorbrazelton.com/pages/about-me.html#about-me">About Me</a></li>
+
+        </ul>
+      </nav>
+
+      <ul class="social">
+        <li><a class="sc-linkedin" href="https://www.linkedin.com/in/taylorbrazelton" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="sc-github" href="http://github.com/ryanb58" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-twitter" href="http://twitter.com/Ryanb58" target="_blank"><i class="fa fa-twitter"></i></a></li>
+      </ul>
+    </div>
+
+
+  </aside>
+  <main>
+
+    <nav>
+      <a href="https://taylorbrazelton.com">    Home
+</a>
+
+      <a href="/archives.html">Archives</a>
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+
+      <a href="https://taylorbrazelton.com/feeds/all.atom.xml">    Atom
+</a>
+
+    </nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="virtualbox-would-not-start-my-virtual-machines">VirtualBox Would Not Start My Virtual Machines.</h1>
+    <p>
+          Posted on Fri 20 January 2017 in <a href="https://taylorbrazelton.com/category/general.html">general</a>
+
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>Murph's Law - "Anything that can go wrong will go wrong."
+Source - https://en.wikiquote.org/wiki/Murphy's_law</p>
+<p>Virtualbox Log:
+00:00:00.387310 Audio: Initializing PulseAudio driver</p>
+<p>Virtualbox would be stuck trying to initalize my VM.</p>
+<p>Ran through everything possible. Uninstalled Virtualbox, Re-installed Virtualbox, Re-installed different versions of virtualbox, checked kernal modules. etc..</p>
+<p>Ran the purge command:</p>
+<div class="highlight"><pre><span></span>sudo apt-get remove virtualbox* --purge
+</pre></div>
+
+
+<p>Ended up going into the settings of each virtual machine and disabling the pulse audio audio driver.</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://taylorbrazelton.com/tag/virtual.html">virtual</a>
+      <a href="https://taylorbrazelton.com/tag/box.html">box</a>
+      <a href="https://taylorbrazelton.com/tag/vb.html">vb</a>
+      <a href="https://taylorbrazelton.com/tag/machine.html">machine</a>
+      <a href="https://taylorbrazelton.com/tag/wont.html">won't</a>
+      <a href="https://taylorbrazelton.com/tag/start.html">start</a>
+      <a href="https://taylorbrazelton.com/tag/will.html">will</a>
+      <a href="https://taylorbrazelton.com/tag/not.html">not</a>
+      <a href="https://taylorbrazelton.com/tag/come.html">come</a>
+      <a href="https://taylorbrazelton.com/tag/up.html">up</a>
+      <a href="https://taylorbrazelton.com/tag/audio.html">audio</a>
+      <a href="https://taylorbrazelton.com/tag/pulse.html">pulse</a>
+    </p>
+  </div>
+
+
+
+    <div class="addthis_relatedposts_inline">
+
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'taylorbrazelton';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+        Please enable JavaScript to view comments.
+
+</noscript>
+<!-- End Disqus -->
+</article>
+
+    <footer>
+<p>&copy;  </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " TAYLOR BRAZELTON ",
+  "url" : "https://taylorbrazelton.com",
+  "image": "https://s.gravatar.com/avatar/3f9df5012e11231e7c9ce7e8ef42135e?s=120",
+  "description": "Taylor Brazelton tries to make sense of computers and the internet. What could possibly go wrong?"
+}
+</script>
+
+</body>
+</html>
