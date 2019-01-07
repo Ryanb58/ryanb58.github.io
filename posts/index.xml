@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Posts on Taylor Brazelton</title>
+		<link>http://taylorbrazelton.com/posts/</link>
+		<description>Recent content in Posts on Taylor Brazelton</description>
+		<generator>Hugo -- gohugo.io</generator>
+		<language>en-us</language>
+		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+		<lastBuildDate>Sun, 06 Jan 2019 23:49:57 -0500</lastBuildDate>
+		<atom:link href="http://taylorbrazelton.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Hello World</title>
+			<link>http://taylorbrazelton.com/posts/2019/01/hello-world/</link>
+			<pubDate>Sun, 06 Jan 2019 23:49:57 -0500</pubDate>
+			
+			<guid>http://taylorbrazelton.com/posts/2019/01/hello-world/</guid>
+			<description>Hello World.
+This year I am moving my blog from Pelican to Hugo.</description>
+			<content type="html"><![CDATA[<p>Hello World.</p>
+
+<p>This year I am moving my blog from Pelican to Hugo.</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>Django Migrations Downgrade in Docker Swarm</title>
+			<link>http://taylorbrazelton.com/posts/2018/docker-django-migration-downgrade/</link>
+			<pubDate>Fri, 02 Mar 2018 23:49:57 -0500</pubDate>
+			
+			<guid>http://taylorbrazelton.com/posts/2018/docker-django-migration-downgrade/</guid>
+			<description>Edge cases are a big problem in software engineering, one that I recently ran into while on a beta box was errors being thrown after a downgrade.
+First a little background on the application. It is a django application running in a docker container via docker-swarm. Our application upgrade/downgrade process is to reduce the amount of containers running down to 0. Change the tag numbers in our .yml file and then scale them back up.</description>
+			<content type="html"><![CDATA[<p>Edge cases are a big problem in software engineering, one that I recently ran
+into while on a beta box was errors being thrown after a downgrade.</p>
+
+<p>First a little background on the application. It is a django application running
+in a docker container via docker-swarm. Our application upgrade/downgrade
+process is to reduce the amount of containers running down to 0. Change the
+tag numbers in our .yml file and then scale them back up. This forces the
+containers to download the newly defined version. Note that our downgrade
+process is exactly the same we just update the a tag with an older version.</p>
+
+<p>The process described above might sound correct to you, however, because we use migrations
+to structure our database the process is flawed. By replaceing the tag and
+just moving to older docker containers, the downgrade function inside our
+migrations never get ran. Instead the downgraded application has no idea
+about the migrations that existed in the newer version that does not in it&rsquo;s
+own. Thus resulting in an inconsistant database state with the version of
+application deployed.</p>
+
+<p>My current solution to this issue is to run the migration downgrade for each
+app in our django project manually inside of the existing application container
+. To do this I start out with a diff of the code between the old version and
+the new version. I look for any added migrations and run the command below to
+have django south run through the downgrade methods until it reaches the
+latest migration in the old code. Then I perform the old migration method.</p>
+
+<p>Here is a step by step list of the process.</p>
+
+<p>1) Diff of code.</p>
+
+<p>2) Write down oldest added migration number and app name</p>
+
+<p>3) Exec into the application docker container.</p>
+
+<p>4) Migrate backwards :</p>
+
+<pre><code>./manage.py migrate appname 0000
+</code></pre>
+
+<p>5) Exit out of container.</p>
+
+<p>6) Scale the swarm down to 0 nodes.</p>
+
+<p>7) Change tag number.</p>
+
+<p>8) Scale the containers back up.</p>
+
+<p>Do you have any suggestions or any improvements to this process? Comment below
+and link me to other articles you&rsquo;ve read about this process. The more we know
+together the better our overall solutions can be.</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>Strategy for Moving Away From Legacy Code</title>
+			<link>http://taylorbrazelton.com/posts/2018/moving-away-from-legacy/</link>
+			<pubDate>Thu, 15 Feb 2018 23:49:57 -0500</pubDate>
+			
+			<guid>http://taylorbrazelton.com/posts/2018/moving-away-from-legacy/</guid>
+			<description>1) Chunk Your App Into Pieces  Turn everything into a MICROservice.  2) Modernize Access To Data  Implement Data Access via API&amp;rsquo;s or using a similar data store.
+ Developers should not care what it looks like on the backend. They should be able to easly access and manipulate the data in a secure way using their favorite languages.
+  3) Replace Decaying Code  Slowly replace chunks of your application one piece at a time.</description>
+			<content type="html"><![CDATA[
+
+<h5 id="1-chunk-your-app-into-pieces">1) Chunk Your App Into Pieces</h5>
+
+<ul>
+<li>Turn everything into a MICROservice.</li>
+</ul>
+
+<h5 id="2-modernize-access-to-data">2) Modernize Access To Data</h5>
+
+<ul>
+<li><p>Implement Data Access via API&rsquo;s or using a similar data store.</p></li>
+
+<li><p>Developers should not care what it looks like on the backend. They should be
+able to easly access and manipulate the data in a secure way using their
+favorite languages.</p></li>
+</ul>
+
+<h5 id="3-replace-decaying-code">3) Replace Decaying Code</h5>
+
+<ul>
+<li>Slowly replace chunks of your application one piece at a time.</li>
+</ul>
+
+<h4 id="benifits">Benifits:</h4>
+
+<ul>
+<li><p>Consolidation of Virtual Machines.</p></li>
+
+<li><p>Easier to move services around.</p></li>
+
+<li><p>Scaling services is easy.</p></li>
+
+<li><p>Chatops</p></li>
+
+<li><p>Use Open Source Technology</p></li>
+
+<li><p>Changes Culture as getting stuff done is very rewarding.</p></li>
+</ul>
+]]></content>
+		</item>
+		
+	</channel>
+</rss>

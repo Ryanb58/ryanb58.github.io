@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://taylorbrazelton.com/posts/2019/01/hello-world/</loc>
+    <lastmod>2019-01-06T23:49:57-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://taylorbrazelton.com/about/</loc>
+    <lastmod>2019-01-06T23:49:50-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://taylorbrazelton.com/posts/2018/docker-django-migration-downgrade/</loc>
+    <lastmod>2018-03-02T23:49:57-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://taylorbrazelton.com/posts/2018/moving-away-from-legacy/</loc>
+    <lastmod>2018-02-15T23:49:57-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://taylorbrazelton.com/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://taylorbrazelton.com/tags/away/</loc>
+    <lastmod>2018-02-15T23:49:57-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://taylorbrazelton.com/tags/code/</loc>
+    <lastmod>2018-02-15T23:49:57-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://taylorbrazelton.com/tags/django/</loc>
+    <lastmod>2018-03-02T23:49:57-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://taylorbrazelton.com/tags/docker/</loc>
+    <lastmod>2018-03-02T23:49:57-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://taylorbrazelton.com/tags/downgrade/</loc>
+    <lastmod>2018-03-02T23:49:57-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://taylorbrazelton.com/tags/first-post/</loc>
+    <lastmod>2019-01-06T23:49:57-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://taylorbrazelton.com/tags/from/</loc>
+    <lastmod>2018-02-15T23:49:57-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://taylorbrazelton.com/tags/legacy/</loc>
+    <lastmod>2018-02-15T23:49:57-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://taylorbrazelton.com/tags/moving/</loc>
+    <lastmod>2018-02-15T23:49:57-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://taylorbrazelton.com/tags/orchestration/</loc>
+    <lastmod>2018-03-02T23:49:57-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://taylorbrazelton.com/tags/phases/</loc>
+    <lastmod>2018-02-15T23:49:57-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://taylorbrazelton.com/tags/plan/</loc>
+    <lastmod>2018-02-15T23:49:57-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://taylorbrazelton.com/posts/</loc>
+    <lastmod>2019-01-06T23:49:57-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://taylorbrazelton.com/tags/python/</loc>
+    <lastmod>2018-03-02T23:49:57-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://taylorbrazelton.com/tags/strategy/</loc>
+    <lastmod>2018-02-15T23:49:57-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://taylorbrazelton.com/tags/swarm/</loc>
+    <lastmod>2018-03-02T23:49:57-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://taylorbrazelton.com/tags/</loc>
+    <lastmod>2018-02-15T23:49:57-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://taylorbrazelton.com/</loc>
+    <lastmod>2019-01-06T23:49:57-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>
