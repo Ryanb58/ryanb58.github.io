@@ -7,8 +7,56 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Sun, 06 Jan 2019 23:49:57 -0500</lastBuildDate>
+		<lastBuildDate>Mon, 07 Jan 2019 10:51:38 -0500</lastBuildDate>
 		<atom:link href="http://taylorbrazelton.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Replace a Table With View</title>
+			<link>http://taylorbrazelton.com/posts/2019/01/replace-table-with-view/</link>
+			<pubDate>Mon, 07 Jan 2019 10:51:38 -0500</pubDate>
+			
+			<guid>http://taylorbrazelton.com/posts/2019/01/replace-table-with-view/</guid>
+			<description>This weekend while on dev support, an issue came to our attention that customers were still able to see soft deleted data in some parts of the app. Instead of going through all the code and updating each query to return only existing data though, I went directly to the source and replaced the table with a view.
+Pros/Cons: Pros: - Easily revertible change. - Apply once, fixes all current queries.</description>
+			<content type="html"><![CDATA[
+
+<p>This weekend while on dev support, an issue came to our attention that
+customers were still able to see <code>soft deleted</code> data in some parts of the app.
+Instead of going through all the code and updating each query to return only
+existing data though, I went directly to the source and replaced the table with
+a view.</p>
+
+<h4 id="pros-cons">Pros/Cons:</h4>
+
+<p>Pros:
+ - Easily revertible change.
+ - Apply once, fixes all current queries.
+ - Views can still have INSERT, UPDATE, and DELETE statements run against them.
+ - Good practice from a database design standpoint.</p>
+
+<p>Cons:
+ - Someone has to have access to the prod db to do it.
+ - Can confuse other developers who are not familiar with views.
+ - Depend on the indexes of the table below. You can not put an index on a view.</p>
+
+<h4 id="this-is-how-i-did-it">This is how I did it:</h4>
+
+<p>1) Rename the table.</p>
+<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">RENAME</span> <span class="k">TABLE</span> <span class="n">chapters</span> <span class="k">TO</span> <span class="n">chapters_all</span><span class="p">;</span></code></pre></div>
+<p>2) Create a simple view that filters out deleted data.</p>
+<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="o">`</span><span class="n">chapters</span><span class="o">`</span> <span class="k">AS</span>
+    <span class="k">SELECT</span>
+        <span class="o">`</span><span class="n">chapters_all</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="k">AS</span> <span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">,</span>
+        <span class="o">`</span><span class="n">chapters_all</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">school</span><span class="o">`</span> <span class="k">AS</span> <span class="o">`</span><span class="n">school</span><span class="o">`</span><span class="p">,</span>
+        <span class="o">`</span><span class="n">chapters_all</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">removed</span><span class="o">`</span> <span class="k">AS</span> <span class="o">`</span><span class="n">removed</span><span class="o">`</span><span class="p">,</span>
+        <span class="n">etc</span><span class="p">...</span>
+    <span class="k">FROM</span>
+        <span class="o">`</span><span class="n">chapters_all</span><span class="o">`</span>
+    <span class="k">WHERE</span>
+        <span class="p">(</span><span class="o">`</span><span class="n">chapters_all</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">removed</span><span class="o">`</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span></code></pre></div>
+<p>Hope this helps!</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Hello World</title>

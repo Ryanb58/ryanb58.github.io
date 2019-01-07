@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sql on Taylor Brazelton</title>
+    <link>http://taylorbrazelton.com/tags/sql/</link>
+    <description>Recent content in Sql on Taylor Brazelton</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Mon, 07 Jan 2019 10:51:38 -0500</lastBuildDate>
+    
+	<atom:link href="http://taylorbrazelton.com/tags/sql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Replace a Table With View</title>
+      <link>http://taylorbrazelton.com/posts/2019/01/replace-table-with-view/</link>
+      <pubDate>Mon, 07 Jan 2019 10:51:38 -0500</pubDate>
+      
+      <guid>http://taylorbrazelton.com/posts/2019/01/replace-table-with-view/</guid>
+      <description>This weekend while on dev support, an issue came to our attention that customers were still able to see soft deleted data in some parts of the app. Instead of going through all the code and updating each query to return only existing data though, I went directly to the source and replaced the table with a view.
+Pros/Cons: Pros: - Easily revertible change. - Apply once, fixes all current queries.</description>
+    </item>
+    
+  </channel>
+</rss>
