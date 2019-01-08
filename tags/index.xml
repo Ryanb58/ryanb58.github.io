@@ -2,103 +2,103 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Taylor Brazelton</title>
-    <link>http://taylorbrazelton.com/tags/</link>
+    <link>https://taylorbrazelton.com/tags/</link>
     <description>Recent content in Tags on Taylor Brazelton</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
     <lastBuildDate>Thu, 15 Feb 2018 23:49:57 -0500</lastBuildDate>
     
-	<atom:link href="http://taylorbrazelton.com/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://taylorbrazelton.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Away</title>
-      <link>http://taylorbrazelton.com/tags/away/</link>
+      <link>https://taylorbrazelton.com/tags/away/</link>
       <pubDate>Thu, 15 Feb 2018 23:49:57 -0500</pubDate>
       
-      <guid>http://taylorbrazelton.com/tags/away/</guid>
+      <guid>https://taylorbrazelton.com/tags/away/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Code</title>
-      <link>http://taylorbrazelton.com/tags/code/</link>
+      <link>https://taylorbrazelton.com/tags/code/</link>
       <pubDate>Thu, 15 Feb 2018 23:49:57 -0500</pubDate>
       
-      <guid>http://taylorbrazelton.com/tags/code/</guid>
+      <guid>https://taylorbrazelton.com/tags/code/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Database</title>
-      <link>http://taylorbrazelton.com/tags/database/</link>
+      <link>https://taylorbrazelton.com/tags/database/</link>
       <pubDate>Mon, 07 Jan 2019 10:51:38 -0500</pubDate>
       
-      <guid>http://taylorbrazelton.com/tags/database/</guid>
+      <guid>https://taylorbrazelton.com/tags/database/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Django</title>
-      <link>http://taylorbrazelton.com/tags/django/</link>
+      <link>https://taylorbrazelton.com/tags/django/</link>
       <pubDate>Fri, 02 Mar 2018 23:49:57 -0500</pubDate>
       
-      <guid>http://taylorbrazelton.com/tags/django/</guid>
+      <guid>https://taylorbrazelton.com/tags/django/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Docker</title>
-      <link>http://taylorbrazelton.com/tags/docker/</link>
+      <link>https://taylorbrazelton.com/tags/docker/</link>
       <pubDate>Fri, 02 Mar 2018 23:49:57 -0500</pubDate>
       
-      <guid>http://taylorbrazelton.com/tags/docker/</guid>
+      <guid>https://taylorbrazelton.com/tags/docker/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Downgrade</title>
-      <link>http://taylorbrazelton.com/tags/downgrade/</link>
+      <link>https://taylorbrazelton.com/tags/downgrade/</link>
       <pubDate>Fri, 02 Mar 2018 23:49:57 -0500</pubDate>
       
-      <guid>http://taylorbrazelton.com/tags/downgrade/</guid>
+      <guid>https://taylorbrazelton.com/tags/downgrade/</guid>
       <description></description>
     </item>
     
     <item>
       <title>First Post</title>
-      <link>http://taylorbrazelton.com/tags/first-post/</link>
+      <link>https://taylorbrazelton.com/tags/first-post/</link>
       <pubDate>Sun, 06 Jan 2019 23:49:57 -0500</pubDate>
       
-      <guid>http://taylorbrazelton.com/tags/first-post/</guid>
+      <guid>https://taylorbrazelton.com/tags/first-post/</guid>
       <description></description>
     </item>
     
     <item>
       <title>From</title>
-      <link>http://taylorbrazelton.com/tags/from/</link>
+      <link>https://taylorbrazelton.com/tags/from/</link>
       <pubDate>Thu, 15 Feb 2018 23:49:57 -0500</pubDate>
       
-      <guid>http://taylorbrazelton.com/tags/from/</guid>
+      <guid>https://taylorbrazelton.com/tags/from/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Github</title>
+      <link>https://taylorbrazelton.com/tags/github/</link>
+      <pubDate>Tue, 08 Jan 2019 16:52:04 -0500</pubDate>
+      
+      <guid>https://taylorbrazelton.com/tags/github/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Legacy</title>
-      <link>http://taylorbrazelton.com/tags/legacy/</link>
+      <link>https://taylorbrazelton.com/tags/legacy/</link>
       <pubDate>Thu, 15 Feb 2018 23:49:57 -0500</pubDate>
       
-      <guid>http://taylorbrazelton.com/tags/legacy/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Moving</title>
-      <link>http://taylorbrazelton.com/tags/moving/</link>
-      <pubDate>Thu, 15 Feb 2018 23:49:57 -0500</pubDate>
-      
-      <guid>http://taylorbrazelton.com/tags/moving/</guid>
+      <guid>https://taylorbrazelton.com/tags/legacy/</guid>
       <description></description>
     </item>
     

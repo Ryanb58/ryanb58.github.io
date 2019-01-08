@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Legacy on Taylor Brazelton</title>
-    <link>http://taylorbrazelton.com/tags/legacy/</link>
+    <link>https://taylorbrazelton.com/tags/legacy/</link>
     <description>Recent content in Legacy on Taylor Brazelton</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
     <lastBuildDate>Thu, 15 Feb 2018 23:49:57 -0500</lastBuildDate>
     
-	<atom:link href="http://taylorbrazelton.com/tags/legacy/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://taylorbrazelton.com/tags/legacy/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Strategy for Moving Away From Legacy Code</title>
-      <link>http://taylorbrazelton.com/posts/2018/moving-away-from-legacy/</link>
+      <link>https://taylorbrazelton.com/posts/2018/moving-away-from-legacy/</link>
       <pubDate>Thu, 15 Feb 2018 23:49:57 -0500</pubDate>
       
-      <guid>http://taylorbrazelton.com/posts/2018/moving-away-from-legacy/</guid>
+      <guid>https://taylorbrazelton.com/posts/2018/moving-away-from-legacy/</guid>
       <description>1) Chunk Your App Into Pieces  Turn everything into a MICROservice.  2) Modernize Access To Data  Implement Data Access via API&amp;rsquo;s or using a similar data store.
  Developers should not care what it looks like on the backend. They should be able to easly access and manipulate the data in a secure way using their favorite languages.
   3) Replace Decaying Code  Slowly replace chunks of your application one piece at a time.</description>
