@@ -37,7 +37,7 @@ Pros/Cons: Pros: - Easily revertible change. - Apply once, fixes all current que
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Replace a Table With View</title>
-	<link rel="stylesheet" href="https://taylorbrazelton.com/css/style.min.9a30741782203507f3d35fe9cefabad487c72fc82dfbdf59121759fc2fa52f92.css" integrity="sha256-mjB0F4IgNQfz01/pzvq61IfHL8gt+99ZEhdZ/C+lL5I=">
+	<link rel="stylesheet" href="https://taylorbrazelton.com/css/style.min.bf17d429527cc9978ec99e8d5e3a5319fb29fb7f783e39f2fbe1260fabfbb57c.css" integrity="sha256-vxfUKVJ8yZeOyZ6NXjpTGfsp+394Pjny++EmD6v7tXw=">
 	
 </head>
 
@@ -82,7 +82,7 @@ Instead of going through all the code and updating each query to return only
 existing data though, I went directly to the source and replaced the table with
 a view.</p>
 
-<h4 id="pros-cons">Pros/Cons:</h4>
+<h4 id="pros-cons">Pros/Cons:<a href="#pros-cons" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 
 <p>Pros:
  - Easily revertible change.
@@ -95,7 +95,7 @@ a view.</p>
  - Can confuse other developers who are not familiar with views.
  - Depend on the indexes of the table below. You can not put an index on a view.</p>
 
-<h4 id="this-is-how-i-did-it">This is how I did it:</h4>
+<h4 id="this-is-how-i-did-it">This is how I did it:<a href="#this-is-how-i-did-it" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 
 <p>1) Rename the table.</p>
 <div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">RENAME</span> <span class="k">TABLE</span> <span class="n">chapters</span> <span class="k">TO</span> <span class="n">chapters_all</span><span class="p">;</span></code></pre></div>
