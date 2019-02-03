@@ -7,6 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c">
+
 <meta itemprop="name" content="Invalidate AWS CloudFront Cache">
 <meta itemprop="description" content="Today, I needed to invalidate a specific Distribution&rsquo;s cache on AWS Cloudfront. This resulted in me searching through the AWS cli tool&rsquo;s docs. Luckily I was able to uncover a command to accomplish such a task.
 aws cloudfront create-invalidation --distribution-id DISTRIBUTION_ID --paths /\*  Simply replace DISTRIBUTION_ID with the proper ID and you will be good to go.">
@@ -29,6 +30,7 @@ aws cloudfront create-invalidation --distribution-id DISTRIBUTION_ID --paths /\*
 <meta name="twitter:title" content="Invalidate AWS CloudFront Cache"/>
 <meta name="twitter:description" content="Today, I needed to invalidate a specific Distribution&rsquo;s cache on AWS Cloudfront. This resulted in me searching through the AWS cli tool&rsquo;s docs. Luckily I was able to uncover a command to accomplish such a task.
 aws cloudfront create-invalidation --distribution-id DISTRIBUTION_ID --paths /\*  Simply replace DISTRIBUTION_ID with the proper ID and you will be good to go."/>
+
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
