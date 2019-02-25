@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://taylorbrazelton.com/posts/2019/02/alembic-load-config-from-env-vars/</loc>
+    <lastmod>2019-02-25T09:18:52-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://taylorbrazelton.com/posts/2019/01/invalidate-aws-cloudfront-cache/</loc>
     <lastmod>2019-01-28T15:51:58-05:00</lastmod>
   </url>
@@ -39,6 +44,18 @@
   
   <url>
     <loc>https://taylorbrazelton.com/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://taylorbrazelton.com/tags/12factor/</loc>
+    <lastmod>2019-02-25T09:18:52-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://taylorbrazelton.com/tags/alembic/</loc>
+    <lastmod>2019-02-25T09:18:52-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -91,6 +108,12 @@
   </url>
   
   <url>
+    <loc>https://taylorbrazelton.com/tags/environmental/</loc>
+    <lastmod>2019-02-25T09:18:52-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://taylorbrazelton.com/tags/first-post/</loc>
     <lastmod>2019-01-06T23:49:57-05:00</lastmod>
     <priority>0</priority>
@@ -111,6 +134,12 @@
   <url>
     <loc>https://taylorbrazelton.com/tags/legacy/</loc>
     <lastmod>2018-02-15T23:49:57-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://taylorbrazelton.com/tags/micro-service/</loc>
+    <lastmod>2019-02-25T09:18:52-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -146,7 +175,7 @@
   
   <url>
     <loc>https://taylorbrazelton.com/posts/</loc>
-    <lastmod>2019-01-28T15:51:58-05:00</lastmod>
+    <lastmod>2019-02-25T09:18:52-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -176,13 +205,19 @@
   
   <url>
     <loc>https://taylorbrazelton.com/tags/</loc>
-    <lastmod>2018-02-15T23:49:57-05:00</lastmod>
+    <lastmod>2019-02-25T09:18:52-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://taylorbrazelton.com/</loc>
-    <lastmod>2019-01-28T15:51:58-05:00</lastmod>
+    <lastmod>2019-02-25T09:18:52-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://taylorbrazelton.com/tags/variables/</loc>
+    <lastmod>2019-02-25T09:18:52-05:00</lastmod>
     <priority>0</priority>
   </url>
   

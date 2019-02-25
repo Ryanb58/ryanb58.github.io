@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 15 Feb 2018 23:49:57 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 25 Feb 2019 09:18:52 -0500</lastBuildDate>
     
 	<atom:link href="https://taylorbrazelton.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>12factor</title>
+      <link>https://taylorbrazelton.com/tags/12factor/</link>
+      <pubDate>Mon, 25 Feb 2019 09:18:52 -0500</pubDate>
+      
+      <guid>https://taylorbrazelton.com/tags/12factor/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Alembic</title>
+      <link>https://taylorbrazelton.com/tags/alembic/</link>
+      <pubDate>Mon, 25 Feb 2019 09:18:52 -0500</pubDate>
+      
+      <guid>https://taylorbrazelton.com/tags/alembic/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Away</title>
@@ -81,24 +99,6 @@
       <pubDate>Fri, 02 Mar 2018 23:49:57 -0500</pubDate>
       
       <guid>https://taylorbrazelton.com/tags/downgrade/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>First Post</title>
-      <link>https://taylorbrazelton.com/tags/first-post/</link>
-      <pubDate>Sun, 06 Jan 2019 23:49:57 -0500</pubDate>
-      
-      <guid>https://taylorbrazelton.com/tags/first-post/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>From</title>
-      <link>https://taylorbrazelton.com/tags/from/</link>
-      <pubDate>Thu, 15 Feb 2018 23:49:57 -0500</pubDate>
-      
-      <guid>https://taylorbrazelton.com/tags/from/</guid>
       <description></description>
     </item>
     

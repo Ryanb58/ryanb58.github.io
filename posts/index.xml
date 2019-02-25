@@ -7,8 +7,42 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Mon, 28 Jan 2019 15:51:58 -0500</lastBuildDate>
+		<lastBuildDate>Mon, 25 Feb 2019 09:18:52 -0500</lastBuildDate>
 		<atom:link href="https://taylorbrazelton.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Alembic Load Config From Env Vars</title>
+			<link>https://taylorbrazelton.com/posts/2019/02/alembic-load-config-from-env-vars/</link>
+			<pubDate>Mon, 25 Feb 2019 09:18:52 -0500</pubDate>
+			
+			<guid>https://taylorbrazelton.com/posts/2019/02/alembic-load-config-from-env-vars/</guid>
+			<description>Today, while trying to integrate the python library [Alembic]() into a micro-service I ran into an issue where I needed to load the DB connection string from an environmental variable. Needless to say I went ahead and did some googling and found this solution:
+def get_url(): &amp;#34;&amp;#34;&amp;#34;Custom method to get config from the environmental variables. Based on: http://allan-simon.github.io/blog/posts/python-alembic-with-environment-variables/ &amp;#34;&amp;#34;&amp;#34; return &amp;#34;postgres://{}:{}@{}/{}&amp;#34;.format( os.getenv(&amp;#34;DB_USER&amp;#34;, &amp;#34;username&amp;#34;), os.getenv(&amp;#34;DB_PASSWORD&amp;#34;, &amp;#34;password&amp;#34;), os.getenv(&amp;#34;DB_HOST&amp;#34;, &amp;#34;database_host&amp;#34;), os.getenv(&amp;#34;DB_NAME&amp;#34;, &amp;#34;database_name&amp;#34;), ) Then inside the run_migrations_offline method I swapped out:</description>
+			<content type="html"><![CDATA[<p>Today, while trying to integrate the python library [Alembic]() into a micro-service I ran into an issue where I needed to load the DB connection string from an environmental variable. Needless to say I went ahead and did some googling and found this solution:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">get_url</span><span class="p">():</span>
+    <span class="s2">&#34;&#34;&#34;Custom method to get config from the environmental variables.
+</span><span class="s2">
+</span><span class="s2">    Based on: http://allan-simon.github.io/blog/posts/python-alembic-with-environment-variables/
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="k">return</span> <span class="s2">&#34;postgres://{}:{}@{}/{}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&#34;DB_USER&#34;</span><span class="p">,</span> <span class="s2">&#34;username&#34;</span><span class="p">),</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&#34;DB_PASSWORD&#34;</span><span class="p">,</span> <span class="s2">&#34;password&#34;</span><span class="p">),</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&#34;DB_HOST&#34;</span><span class="p">,</span> <span class="s2">&#34;database_host&#34;</span><span class="p">),</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&#34;DB_NAME&#34;</span><span class="p">,</span> <span class="s2">&#34;database_name&#34;</span><span class="p">),</span>
+    <span class="p">)</span></code></pre></div>
+<p>Then inside the <code>run_migrations_offline</code> method I swapped out:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">url</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_main_option</span><span class="p">(</span><span class="s2">&#34;sqlalchemy.url&#34;</span><span class="p">)</span></code></pre></div>
+<p>for</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">url</span> <span class="o">=</span> <span class="n">get_url</span><span class="p">()</span></code></pre></div>
+<p>&amp;</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"> <span class="c1"># connectable = engine_from_config(</span>
+    <span class="c1">#     config.get_section(config.config_ini_section),</span>
+    <span class="c1">#     prefix=&#34;sqlalchemy.&#34;,</span>
+    <span class="c1">#     poolclass=pool.NullPool,</span>
+    <span class="c1"># )</span></code></pre></div>
+<p>for</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">connectable</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="n">get_url</span><span class="p">())</span></code></pre></div>]]></content>
+		</item>
 		
 		<item>
 			<title>Invalidate AWS CloudFront Cache</title>
