@@ -16,9 +16,9 @@
 			<pubDate>Mon, 25 Feb 2019 09:18:52 -0500</pubDate>
 			
 			<guid>https://taylorbrazelton.com/posts/2019/02/alembic-load-config-from-env-vars/</guid>
-			<description>Today, while trying to integrate the python library [Alembic]() into a micro-service I ran into an issue where I needed to load the DB connection string from an environmental variable. Needless to say I went ahead and did some googling and found this solution:
+			<description>Today, while trying to integrate the python library Alembic into a micro-service, I ran into the issue of needing to load the database connection string from a few environmental variables. Needless to say I went ahead and did some googling and compiled this solution:
 def get_url(): &amp;#34;&amp;#34;&amp;#34;Custom method to get config from the environmental variables. Based on: http://allan-simon.github.io/blog/posts/python-alembic-with-environment-variables/ &amp;#34;&amp;#34;&amp;#34; return &amp;#34;postgres://{}:{}@{}/{}&amp;#34;.format( os.getenv(&amp;#34;DB_USER&amp;#34;, &amp;#34;username&amp;#34;), os.getenv(&amp;#34;DB_PASSWORD&amp;#34;, &amp;#34;password&amp;#34;), os.getenv(&amp;#34;DB_HOST&amp;#34;, &amp;#34;database_host&amp;#34;), os.getenv(&amp;#34;DB_NAME&amp;#34;, &amp;#34;database_name&amp;#34;), ) Then inside the run_migrations_offline method I swapped out:</description>
-			<content type="html"><![CDATA[<p>Today, while trying to integrate the python library [Alembic]() into a micro-service I ran into an issue where I needed to load the DB connection string from an environmental variable. Needless to say I went ahead and did some googling and found this solution:</p>
+			<content type="html"><![CDATA[<p>Today, while trying to integrate the python library <a href="https://pypi.org/project/alembic/" target="_blank">Alembic</a> into a micro-service, I ran into the issue of needing to load the database connection string from a few environmental variables. Needless to say I went ahead and did some googling and compiled this solution:</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">get_url</span><span class="p">():</span>
     <span class="s2">&#34;&#34;&#34;Custom method to get config from the environmental variables.
 </span><span class="s2">
@@ -34,14 +34,18 @@ def get_url(): &amp;#34;&amp;#34;&amp;#34;Custom method to get config from the e
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">url</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_main_option</span><span class="p">(</span><span class="s2">&#34;sqlalchemy.url&#34;</span><span class="p">)</span></code></pre></div>
 <p>for</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">url</span> <span class="o">=</span> <span class="n">get_url</span><span class="p">()</span></code></pre></div>
-<p>&amp;</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"> <span class="c1"># connectable = engine_from_config(</span>
-    <span class="c1">#     config.get_section(config.config_ini_section),</span>
-    <span class="c1">#     prefix=&#34;sqlalchemy.&#34;,</span>
-    <span class="c1">#     poolclass=pool.NullPool,</span>
-    <span class="c1"># )</span></code></pre></div>
+<p>and</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">connectable</span> <span class="o">=</span> <span class="n">engine_from_config</span><span class="p">(</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">get_section</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">config_ini_section</span><span class="p">),</span>
+    <span class="n">prefix</span><span class="o">=</span><span class="s2">&#34;sqlalchemy.&#34;</span><span class="p">,</span>
+    <span class="n">poolclass</span><span class="o">=</span><span class="n">pool</span><span class="o">.</span><span class="n">NullPool</span><span class="p">,</span>
+<span class="p">)</span></code></pre></div>
 <p>for</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">connectable</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="n">get_url</span><span class="p">())</span></code></pre></div>]]></content>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">connectable</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="n">get_url</span><span class="p">())</span></code></pre></div>
+<p>Don&rsquo;t forget the import:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span></code></pre></div>
+<p>Enjoy!</p>
+]]></content>
 		</item>
 		
 		<item>
