@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 25 Feb 2019 09:18:52 -0500</lastBuildDate>
+    <lastBuildDate>Wed, 13 Mar 2019 13:08:51 -0400</lastBuildDate>
     
 	<atom:link href="https://taylorbrazelton.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Offset vs Seek/Keyset Pagination</title>
+      <link>https://taylorbrazelton.com/posts/2019/03/offset-vs-seek-pagination/</link>
+      <pubDate>Wed, 13 Mar 2019 13:08:51 -0400</pubDate>
+      
+      <guid>https://taylorbrazelton.com/posts/2019/03/offset-vs-seek-pagination/</guid>
+      <description>First off, what do I mean by offset pagination?
+What is Offset Pagination? Perhaps you have seen SQL Query similar to this before:
+SELECT id, firstname, lastname, created, updated FROM contacts ORDER BY id LIMIT 0, 10 The query above grabs the first 10 records. As for requirements, all you need to do is specify where to start and end. That is what offset pagination looks like, simple enough.</description>
+    </item>
     
     <item>
       <title>Alembic Load Config From Env Vars</title>

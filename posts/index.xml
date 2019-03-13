@@ -7,8 +7,136 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Mon, 25 Feb 2019 09:18:52 -0500</lastBuildDate>
+		<lastBuildDate>Wed, 13 Mar 2019 13:08:51 -0400</lastBuildDate>
 		<atom:link href="https://taylorbrazelton.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Offset vs Seek/Keyset Pagination</title>
+			<link>https://taylorbrazelton.com/posts/2019/03/offset-vs-seek-pagination/</link>
+			<pubDate>Wed, 13 Mar 2019 13:08:51 -0400</pubDate>
+			
+			<guid>https://taylorbrazelton.com/posts/2019/03/offset-vs-seek-pagination/</guid>
+			<description>First off, what do I mean by offset pagination?
+What is Offset Pagination? Perhaps you have seen SQL Query similar to this before:
+SELECT id, firstname, lastname, created, updated FROM contacts ORDER BY id LIMIT 0, 10 The query above grabs the first 10 records. As for requirements, all you need to do is specify where to start and end. That is what offset pagination looks like, simple enough.</description>
+			<content type="html"><![CDATA[
+
+<p>First off, what do I mean by offset pagination?</p>
+
+<h2 id="what-is-offset-pagination">What is Offset Pagination?</h2>
+
+<p>Perhaps you have seen SQL Query similar to this before:</p>
+<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span> <span class="n">id</span><span class="p">,</span> <span class="n">firstname</span><span class="p">,</span> <span class="n">lastname</span><span class="p">,</span> <span class="n">created</span><span class="p">,</span> <span class="n">updated</span>
+<span class="k">FROM</span> <span class="n">contacts</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">id</span>
+<span class="k">LIMIT</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span></code></pre></div>
+<p>The query above grabs the first 10 records. As for requirements, all you need to do is specify where to start and end. That is what offset pagination looks like, simple enough.</p>
+
+<h2 id="context">Context:</h2>
+
+<p>Today I was working on defining the standard for pagination on a new product. Without much thought I mentioned to my coworker an idea I had put very little thought into.</p>
+
+<blockquote>
+<p>Any list of items I return from the API will be in this format:</p>
+<div class="highlight"><pre class="chroma"><code class="language-Javascript" data-lang="Javascript"><span class="p">{</span>
+  <span class="nx">results</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="nx">next</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The only thing that would identify the result as a part of pagination.. would be the value of the “next” key. If it is <code>null</code> then there would be NO more items beyond the ones I have already returned. IFF there are more items.. I would return something like.. next: 2 Thus identifying that there is a page=2 of items more for the client. And depending on page=2&rsquo;s results… it’s next field would identify if there is a page=3 more of results.. etc..</p>
+
+<p>What do you think? I feel like I am at a point that making these pagination standards will be critical for the future of other api endpoints..</p>
+</blockquote>
+
+<p>This sparked my coworker to respond:</p>
+
+<blockquote>
+<p>I really like the standard of using <code>total</code>, <code>limit</code>, and <code>skip</code>.
+With only using <code>next</code> you don’t know how many items or pages there are.
+Using total, limit, and skip really lends itself to handling pagination on the client — where the user can pick how many results to display per page.</p>
+</blockquote>
+
+<p>Talk about some good points. I wasn&rsquo;t even thinking about
+the client facing side of this problem.</p>
+
+<p>One thing you may of already noticed is the similarities between our designs.
+If I was to go implement these, they both would end up using an offset. Wether that offset was stored on the server or pushed to the backend from the frontend is the real difference.
+Therefore, both of these ideas are simply implementation preferences on how the offsets should be handled and NOT differences in the underlying concept on how we would get the data.</p>
+
+<p>So I did some more research and found these problems with our designs:</p>
+
+<h2 id="problems-with-offset-pagination">Problems with Offset Pagination:</h2>
+
+<ul>
+<li><p>The higher the offset the <a href="https://stackoverflow.com/a/4502426" target="_blank">slower the query</a>. <a href="https://explainextended.com/2009/10/23/mysql-order-by-limit-performance-late-row-lookups/" target="_blank">Source 2</a></p></li>
+
+<li><p>One must calculate the amount of pages based off the total amount of records.</p></li>
+
+<li><p>Must scan an index to count the number of rows.</p></li>
+
+<li><p><a href="http://www.4guysfromrolla.com/webtech/042606-1.shtml" target="_blank">Complicated solutions to speed up results on pages farther back.</a></p></li>
+</ul>
+
+<p>There MUST be a better way! And there is. Introducing seek pagination.</p>
+
+<h2 id="seek-keyset-pagination">Seek/Keyset Pagination</h2>
+
+<p>Note: Your data must be sortable to use this solution.</p>
+
+<p>From my understanding, the seek method says that instead of skipping to an offset number, it will instead skip to the last item fetched previously.</p>
+
+<p>So as for our REST Responses in JSON, they would appear simply as such:</p>
+<div class="highlight"><pre class="chroma"><code class="language-Javascript" data-lang="Javascript"><span class="p">{</span>
+  <span class="s2">&#34;results&#34;</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="p">...</span> <span class="p">},</span>
+    <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span> <span class="p">...</span> <span class="p">}</span>
+    <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span> <span class="p">...</span> <span class="p">}</span>
+    <span class="p">...</span>
+    <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span> <span class="p">...</span> <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>And when the user wanted to get the next page of items, they simply:</p>
+
+<pre><code>GET /api/contacts?last_id=10
+</code></pre>
+
+<p>Which would return:</p>
+<div class="highlight"><pre class="chroma"><code class="language-Javascript" data-lang="Javascript"><span class="p">{</span>
+  <span class="s2">&#34;results&#34;</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="mi">11</span><span class="p">,</span> <span class="p">...</span> <span class="p">},</span>
+    <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span> <span class="p">...</span> <span class="p">}</span>
+    <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="mi">13</span><span class="p">,</span> <span class="p">...</span> <span class="p">}</span>
+    <span class="p">...</span>
+    <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span> <span class="p">...</span> <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The way it is able to do this is by having the total unique column(<code>id</code> in our case) and skipping directly to the record that was posted instead of using SQL&rsquo;s <code>LIMIT</code> statement to scan to the result and get you the next iteration of records.</p>
+
+<p>Similar, the SQL for this query would look like so:</p>
+<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span> <span class="n">id</span><span class="p">,</span> <span class="n">firstname</span><span class="p">,</span> <span class="n">lastname</span>
+<span class="k">FROM</span> <span class="n">contacts</span>
+<span class="k">WHERE</span> <span class="n">id</span> <span class="o">&lt;</span> <span class="mi">10</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">id</span> <span class="k">DESC</span>
+<span class="k">LIMIT</span> <span class="mi">10</span><span class="p">;</span></code></pre></div>
+<p>For more information about seek/keyset please visit the following sources.</p>
+
+<p>Sources:</p>
+
+<p><a href="https://blog.jooq.org/2013/10/26/faster-sql-paging-with-jooq-using-the-seek-method/" target="_blank">https://blog.jooq.org/2013/10/26/faster-sql-paging-with-jooq-using-the-seek-method/</a></p>
+
+<p><a href="https://use-the-index-luke.com/sql/partial-results/fetch-next-page" target="_blank">https://use-the-index-luke.com/sql/partial-results/fetch-next-page</a></p>
+
+<p><a href="https://stackoverflow.com/a/3215973" target="_blank">https://stackoverflow.com/a/3215973</a></p>
+
+<p><a href="https://stackoverflow.com/a/4502426" target="_blank">https://stackoverflow.com/a/4502426</a></p>
+
+<p><a href="https://www.citusdata.com/blog/2016/03/30/five-ways-to-paginate/" target="_blank">https://www.citusdata.com/blog/2016/03/30/five-ways-to-paginate/</a></p>
+
+<p><a href="https://blog.jooq.org/2016/08/10/why-most-programmers-get-pagination-wrong/" target="_blank">https://blog.jooq.org/2016/08/10/why-most-programmers-get-pagination-wrong/</a></p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Alembic Load Config From Env Vars</title>

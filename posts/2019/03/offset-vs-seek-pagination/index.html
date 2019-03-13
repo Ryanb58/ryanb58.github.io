@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+
+<meta itemprop="name" content="Offset vs Seek/Keyset Pagination">
+<meta itemprop="description" content="First off, what do I mean by offset pagination?
+What is Offset Pagination? Perhaps you have seen SQL Query similar to this before:
+SELECT id, firstname, lastname, created, updated FROM contacts ORDER BY id LIMIT 0, 10 The query above grabs the first 10 records. As for requirements, all you need to do is specify where to start and end. That is what offset pagination looks like, simple enough.">
+
+
+<meta itemprop="datePublished" content="2019-03-13T13:08:51-04:00" />
+<meta itemprop="dateModified" content="2019-03-13T13:08:51-04:00" />
+<meta itemprop="wordCount" content="660">
+
+
+
+<meta itemprop="keywords" content="sql,pagination," />
+<meta property="og:title" content="Offset vs Seek/Keyset Pagination" />
+<meta property="og:description" content="First off, what do I mean by offset pagination?
+What is Offset Pagination? Perhaps you have seen SQL Query similar to this before:
+SELECT id, firstname, lastname, created, updated FROM contacts ORDER BY id LIMIT 0, 10 The query above grabs the first 10 records. As for requirements, all you need to do is specify where to start and end. That is what offset pagination looks like, simple enough." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://taylorbrazelton.com/posts/2019/03/offset-vs-seek-pagination/" />
+<meta property="article:published_time" content="2019-03-13T13:08:51-04:00"/>
+<meta property="article:modified_time" content="2019-03-13T13:08:51-04:00"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Offset vs Seek/Keyset Pagination"/>
+<meta name="twitter:description" content="First off, what do I mean by offset pagination?
+What is Offset Pagination? Perhaps you have seen SQL Query similar to this before:
+SELECT id, firstname, lastname, created, updated FROM contacts ORDER BY id LIMIT 0, 10 The query above grabs the first 10 records. As for requirements, all you need to do is specify where to start and end. That is what offset pagination looks like, simple enough."/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Offset vs Seek/Keyset Pagination</title>
+	<link rel="stylesheet" href="https://taylorbrazelton.com/css/style.min.bf17d429527cc9978ec99e8d5e3a5319fb29fb7f783e39f2fbe1260fabfbb57c.css" integrity="sha256-vxfUKVJ8yZeOyZ6NXjpTGfsp+394Pjny++EmD6v7tXw=">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://taylorbrazelton.com/">Taylor Brazelton</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					<a href="https://taylorbrazelton.com/posts/">Writing</a>
+					<a href="https://taylorbrazelton.com/about/">About</a>
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://www.linkedin.com/in/taylorbrazelton" target="_blank" rel="noopener" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://github.com/ryanb58" target="_blank" rel="noopener" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://taylorbrazelton.com/posts/">Writing</a></li>
+			<li><a href="https://taylorbrazelton.com/about/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Mar 13, 2019</span></div>
+				<h1>Offset vs Seek/Keyset Pagination</h1>
+			</header>
+			<div class="content">
+				
+
+<p>First off, what do I mean by offset pagination?</p>
+
+<h2 id="what-is-offset-pagination">What is Offset Pagination?<a href="#what-is-offset-pagination" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>Perhaps you have seen SQL Query similar to this before:</p>
+<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span> <span class="n">id</span><span class="p">,</span> <span class="n">firstname</span><span class="p">,</span> <span class="n">lastname</span><span class="p">,</span> <span class="n">created</span><span class="p">,</span> <span class="n">updated</span>
+<span class="k">FROM</span> <span class="n">contacts</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">id</span>
+<span class="k">LIMIT</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span></code></pre></div>
+<p>The query above grabs the first 10 records. As for requirements, all you need to do is specify where to start and end. That is what offset pagination looks like, simple enough.</p>
+
+<h2 id="context">Context:<a href="#context" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>Today I was working on defining the standard for pagination on a new product. Without much thought I mentioned to my coworker an idea I had put very little thought into.</p>
+
+<blockquote>
+<p>Any list of items I return from the API will be in this format:</p>
+<div class="highlight"><pre class="chroma"><code class="language-Javascript" data-lang="Javascript"><span class="p">{</span>
+  <span class="nx">results</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="nx">next</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The only thing that would identify the result as a part of pagination.. would be the value of the “next” key. If it is <code>null</code> then there would be NO more items beyond the ones I have already returned. IFF there are more items.. I would return something like.. next: 2 Thus identifying that there is a page=2 of items more for the client. And depending on page=2&rsquo;s results… it’s next field would identify if there is a page=3 more of results.. etc..</p>
+
+<p>What do you think? I feel like I am at a point that making these pagination standards will be critical for the future of other api endpoints..</p>
+</blockquote>
+
+<p>This sparked my coworker to respond:</p>
+
+<blockquote>
+<p>I really like the standard of using <code>total</code>, <code>limit</code>, and <code>skip</code>.
+With only using <code>next</code> you don’t know how many items or pages there are.
+Using total, limit, and skip really lends itself to handling pagination on the client — where the user can pick how many results to display per page.</p>
+</blockquote>
+
+<p>Talk about some good points. I wasn&rsquo;t even thinking about
+the client facing side of this problem.</p>
+
+<p>One thing you may of already noticed is the similarities between our designs.
+If I was to go implement these, they both would end up using an offset. Wether that offset was stored on the server or pushed to the backend from the frontend is the real difference.
+Therefore, both of these ideas are simply implementation preferences on how the offsets should be handled and NOT differences in the underlying concept on how we would get the data.</p>
+
+<p>So I did some more research and found these problems with our designs:</p>
+
+<h2 id="problems-with-offset-pagination">Problems with Offset Pagination:<a href="#problems-with-offset-pagination" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<ul>
+<li><p>The higher the offset the <a href="https://stackoverflow.com/a/4502426" target="_blank">slower the query</a>. <a href="https://explainextended.com/2009/10/23/mysql-order-by-limit-performance-late-row-lookups/" target="_blank">Source 2</a></p></li>
+
+<li><p>One must calculate the amount of pages based off the total amount of records.</p></li>
+
+<li><p>Must scan an index to count the number of rows.</p></li>
+
+<li><p><a href="http://www.4guysfromrolla.com/webtech/042606-1.shtml" target="_blank">Complicated solutions to speed up results on pages farther back.</a></p></li>
+</ul>
+
+<p>There MUST be a better way! And there is. Introducing seek pagination.</p>
+
+<h2 id="seek-keyset-pagination">Seek/Keyset Pagination<a href="#seek-keyset-pagination" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>Note: Your data must be sortable to use this solution.</p>
+
+<p>From my understanding, the seek method says that instead of skipping to an offset number, it will instead skip to the last item fetched previously.</p>
+
+<p>So as for our REST Responses in JSON, they would appear simply as such:</p>
+<div class="highlight"><pre class="chroma"><code class="language-Javascript" data-lang="Javascript"><span class="p">{</span>
+  <span class="s2">&#34;results&#34;</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="p">...</span> <span class="p">},</span>
+    <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span> <span class="p">...</span> <span class="p">}</span>
+    <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span> <span class="p">...</span> <span class="p">}</span>
+    <span class="p">...</span>
+    <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span> <span class="p">...</span> <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>And when the user wanted to get the next page of items, they simply:</p>
+
+<pre><code>GET /api/contacts?last_id=10
+</code></pre>
+
+<p>Which would return:</p>
+<div class="highlight"><pre class="chroma"><code class="language-Javascript" data-lang="Javascript"><span class="p">{</span>
+  <span class="s2">&#34;results&#34;</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="mi">11</span><span class="p">,</span> <span class="p">...</span> <span class="p">},</span>
+    <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span> <span class="p">...</span> <span class="p">}</span>
+    <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="mi">13</span><span class="p">,</span> <span class="p">...</span> <span class="p">}</span>
+    <span class="p">...</span>
+    <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span> <span class="p">...</span> <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The way it is able to do this is by having the total unique column(<code>id</code> in our case) and skipping directly to the record that was posted instead of using SQL&rsquo;s <code>LIMIT</code> statement to scan to the result and get you the next iteration of records.</p>
+
+<p>Similar, the SQL for this query would look like so:</p>
+<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span> <span class="n">id</span><span class="p">,</span> <span class="n">firstname</span><span class="p">,</span> <span class="n">lastname</span>
+<span class="k">FROM</span> <span class="n">contacts</span>
+<span class="k">WHERE</span> <span class="n">id</span> <span class="o">&lt;</span> <span class="mi">10</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">id</span> <span class="k">DESC</span>
+<span class="k">LIMIT</span> <span class="mi">10</span><span class="p">;</span></code></pre></div>
+<p>For more information about seek/keyset please visit the following sources.</p>
+
+<p>Sources:</p>
+
+<p><a href="https://blog.jooq.org/2013/10/26/faster-sql-paging-with-jooq-using-the-seek-method/" target="_blank">https://blog.jooq.org/2013/10/26/faster-sql-paging-with-jooq-using-the-seek-method/</a></p>
+
+<p><a href="https://use-the-index-luke.com/sql/partial-results/fetch-next-page" target="_blank">https://use-the-index-luke.com/sql/partial-results/fetch-next-page</a></p>
+
+<p><a href="https://stackoverflow.com/a/3215973" target="_blank">https://stackoverflow.com/a/3215973</a></p>
+
+<p><a href="https://stackoverflow.com/a/4502426" target="_blank">https://stackoverflow.com/a/4502426</a></p>
+
+<p><a href="https://www.citusdata.com/blog/2016/03/30/five-ways-to-paginate/" target="_blank">https://www.citusdata.com/blog/2016/03/30/five-ways-to-paginate/</a></p>
+
+<p><a href="https://blog.jooq.org/2016/08/10/why-most-programmers-get-pagination-wrong/" target="_blank">https://blog.jooq.org/2016/08/10/why-most-programmers-get-pagination-wrong/</a></p>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://taylorbrazelton.com/tags/sql">sql</a></span><span class="tag"><a href="https://taylorbrazelton.com/tags/pagination">pagination</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>660 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-03-13 13:08 -0400</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://taylorbrazelton.com/posts/2019/02/alembic-load-config-from-env-vars/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Alembic Load Config From Env Vars</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="https://taylorbrazelton.com/">Taylor Brazelton</a>&#183;</p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://taylorbrazelton.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+	<script src="https://taylorbrazelton.com/js/main.min.8f39f24808e9d0a9b02da58c2d2838da859dc0b7bdfadbdb1883aae8b6adacfe.js" integrity="sha256-jznySAjp0KmwLaWMLSg42oWdwLe9+tvbGIOq6LatrP4="></script>
+
+</body>
+
+</html>
