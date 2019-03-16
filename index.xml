@@ -18,9 +18,9 @@
       <pubDate>Wed, 13 Mar 2019 13:08:51 -0400</pubDate>
       
       <guid>https://taylorbrazelton.com/posts/2019/03/offset-vs-seek-pagination/</guid>
-      <description>First off, what do I mean by offset pagination?
-What is Offset Pagination? Perhaps you have seen SQL Query similar to this before:
-SELECT id, firstname, lastname, created, updated FROM contacts ORDER BY id LIMIT 0, 10 The query above grabs the first 10 records. As for requirements, all you need to do is specify where to start and end. That is what offset pagination looks like, simple enough.</description>
+      <description>Today I was focused on defining the standards for pagination on a new product and decided to dialog with a coworker. Below is the idea I threw out:
+ Any list of items I return from the API will be in this format:
+{ results: [], next: null, }  The only thing that would identify the result as a part of pagination.. would be the value of the “next” key.</description>
     </item>
     
     <item>

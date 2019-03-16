@@ -16,25 +16,12 @@
 			<pubDate>Wed, 13 Mar 2019 13:08:51 -0400</pubDate>
 			
 			<guid>https://taylorbrazelton.com/posts/2019/03/offset-vs-seek-pagination/</guid>
-			<description>First off, what do I mean by offset pagination?
-What is Offset Pagination? Perhaps you have seen SQL Query similar to this before:
-SELECT id, firstname, lastname, created, updated FROM contacts ORDER BY id LIMIT 0, 10 The query above grabs the first 10 records. As for requirements, all you need to do is specify where to start and end. That is what offset pagination looks like, simple enough.</description>
+			<description>Today I was focused on defining the standards for pagination on a new product and decided to dialog with a coworker. Below is the idea I threw out:
+ Any list of items I return from the API will be in this format:
+{ results: [], next: null, }  The only thing that would identify the result as a part of pagination.. would be the value of the “next” key.</description>
 			<content type="html"><![CDATA[
 
-<p>First off, what do I mean by offset pagination?</p>
-
-<h2 id="what-is-offset-pagination">What is Offset Pagination?</h2>
-
-<p>Perhaps you have seen SQL Query similar to this before:</p>
-<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span> <span class="n">id</span><span class="p">,</span> <span class="n">firstname</span><span class="p">,</span> <span class="n">lastname</span><span class="p">,</span> <span class="n">created</span><span class="p">,</span> <span class="n">updated</span>
-<span class="k">FROM</span> <span class="n">contacts</span>
-<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">id</span>
-<span class="k">LIMIT</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span></code></pre></div>
-<p>The query above grabs the first 10 records. As for requirements, all you need to do is specify where to start and end. That is what offset pagination looks like, simple enough.</p>
-
-<h2 id="context">Context:</h2>
-
-<p>Today I was working on defining the standard for pagination on a new product. Without much thought I mentioned to my coworker an idea I had put very little thought into.</p>
+<p>Today I was focused on defining the standards for pagination on a new product and decided to dialog with a coworker. Below is the idea I threw out:</p>
 
 <blockquote>
 <p>Any list of items I return from the API will be in this format:</p>
@@ -56,15 +43,26 @@ With only using <code>next</code> you don’t know how many items or pages there
 Using total, limit, and skip really lends itself to handling pagination on the client — where the user can pick how many results to display per page.</p>
 </blockquote>
 
-<p>Talk about some good points. I wasn&rsquo;t even thinking about
-the client facing side of this problem.</p>
+<p>Talk about good points. However, their exists similarities between our designs.
+If I was to go implement either of these, they would both end up being an implementation of the offset method. Whether the offsets where to be statically stored on the server or defined by the frontend was the only difference.
+Therefore, both of these ideas are implementation preferences defining how the offsets should be handled and NOT differences in the underlying concept of how we would load the data.</p>
 
-<p>One thing you may of already noticed is the similarities between our designs.
-If I was to go implement these, they both would end up using an offset. Wether that offset was stored on the server or pushed to the backend from the frontend is the real difference.
-Therefore, both of these ideas are simply implementation preferences on how the offsets should be handled and NOT differences in the underlying concept on how we would get the data.</p>
+<p>This flipped a switch in my brain that reminded me of an issue I faced at an previous job. One day we had customers start to call-in and complain about the time it took to load files(listings) beyond the 10th page. The offset method was used to display the metadata to the user and this ended up being a side effect.</p>
 
-<p>So I did some more research and found these problems with our designs:</p>
+<p>Taking all this into account I thought there had to be a better way.</p>
 
+<h2 id="what-is-offset-pagination">What is Offset Pagination?</h2>
+
+<p>Perhaps you have seen SQL Query similar to this before:</p>
+<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span> <span class="n">id</span><span class="p">,</span> <span class="n">firstname</span><span class="p">,</span> <span class="n">lastname</span><span class="p">,</span> <span class="n">created</span><span class="p">,</span> <span class="n">updated</span>
+<span class="k">FROM</span> <span class="n">contacts</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">id</span>
+<span class="k">LIMIT</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span></code></pre></div>
+<p>The query above grabs the first 10 records. Similarly, to get the 10 records on page 4 we would execute the following:</p>
+<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span> <span class="n">id</span><span class="p">,</span> <span class="n">firstname</span><span class="p">,</span> <span class="n">lastname</span><span class="p">,</span> <span class="n">created</span><span class="p">,</span> <span class="n">updated</span>
+<span class="k">FROM</span> <span class="n">contacts</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">id</span>
+<span class="k">LIMIT</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">10</span></code></pre></div>
 <h2 id="problems-with-offset-pagination">Problems with Offset Pagination:</h2>
 
 <ul>
@@ -75,17 +73,25 @@ Therefore, both of these ideas are simply implementation preferences on how the 
 <li><p>Must scan an index to count the number of rows.</p></li>
 
 <li><p><a href="http://www.4guysfromrolla.com/webtech/042606-1.shtml" target="_blank">Complicated solutions to speed up results on pages farther back.</a></p></li>
+
+<li><p>Even with an index, we scan the index, to a sort on the data, then select the items we want to return. The first two steps are obviously a waste as we will be manipulating data that is not relevant to the results we want to return.</p></li>
 </ul>
 
 <p>There MUST be a better way! And there is. Introducing seek pagination.</p>
 
 <h2 id="seek-keyset-pagination">Seek/Keyset Pagination</h2>
 
-<p>Note: Your data must be sortable to use this solution.</p>
+<p>The seek method is based on filtering out the data from the previous pages. We do this by having the client send the ID of the last record listed. We take that ID and place it in the WHERE clause providing us with only relevant data. Obviously this implementation requires your data to be <a href="http://www.unicode.org/notes/tn9/tn9-1.html" target="_blank">deterministically sortable</a>.</p>
 
-<p>From my understanding, the seek method says that instead of skipping to an offset number, it will instead skip to the last item fetched previously.</p>
+<p>&ldquo;Don&rsquo;t touch what you don&rsquo;t need&rdquo; - <a href="https://youtu.be/GzMaN-IX7wQ?t=655" target="_blank">Youtube</a></p>
 
-<p>So as for our REST Responses in JSON, they would appear simply as such:</p>
+<p>An example SQL statement follows:</p>
+<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span> <span class="n">id</span><span class="p">,</span> <span class="n">firstname</span><span class="p">,</span> <span class="n">lastname</span>
+<span class="k">FROM</span> <span class="n">contacts</span>
+<span class="k">WHERE</span> <span class="n">id</span> <span class="o">&lt;</span> <span class="mi">10</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">id</span> <span class="k">DESC</span>
+<span class="k">LIMIT</span> <span class="mi">10</span><span class="p">;</span></code></pre></div>
+<p>Therefore from a REST perspective the results would appear as so:</p>
 <div class="highlight"><pre class="chroma"><code class="language-Javascript" data-lang="Javascript"><span class="p">{</span>
   <span class="s2">&#34;results&#34;</span><span class="o">:</span> <span class="p">[</span>
     <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="p">...</span> <span class="p">},</span>
@@ -96,12 +102,12 @@ Therefore, both of these ideas are simply implementation preferences on how the 
   <span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>And when the user wanted to get the next page of items, they simply:</p>
+<p>And when the user wanted to get the next page of items, they simply tack on the <code>last_id</code> from the previous pagination result.</p>
 
 <pre><code>GET /api/contacts?last_id=10
 </code></pre>
 
-<p>Which would return:</p>
+<p>Resulting:</p>
 <div class="highlight"><pre class="chroma"><code class="language-Javascript" data-lang="Javascript"><span class="p">{</span>
   <span class="s2">&#34;results&#34;</span><span class="o">:</span> <span class="p">[</span>
     <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="mi">11</span><span class="p">,</span> <span class="p">...</span> <span class="p">},</span>
@@ -112,14 +118,6 @@ Therefore, both of these ideas are simply implementation preferences on how the 
   <span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>The way it is able to do this is by having the total unique column(<code>id</code> in our case) and skipping directly to the record that was posted instead of using SQL&rsquo;s <code>LIMIT</code> statement to scan to the result and get you the next iteration of records.</p>
-
-<p>Similar, the SQL for this query would look like so:</p>
-<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span> <span class="n">id</span><span class="p">,</span> <span class="n">firstname</span><span class="p">,</span> <span class="n">lastname</span>
-<span class="k">FROM</span> <span class="n">contacts</span>
-<span class="k">WHERE</span> <span class="n">id</span> <span class="o">&lt;</span> <span class="mi">10</span>
-<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">id</span> <span class="k">DESC</span>
-<span class="k">LIMIT</span> <span class="mi">10</span><span class="p">;</span></code></pre></div>
 <p>For more information about seek/keyset please visit the following sources.</p>
 
 <p>Sources:</p>
@@ -135,6 +133,10 @@ Therefore, both of these ideas are simply implementation preferences on how the 
 <p><a href="https://www.citusdata.com/blog/2016/03/30/five-ways-to-paginate/" target="_blank">https://www.citusdata.com/blog/2016/03/30/five-ways-to-paginate/</a></p>
 
 <p><a href="https://blog.jooq.org/2016/08/10/why-most-programmers-get-pagination-wrong/" target="_blank">https://blog.jooq.org/2016/08/10/why-most-programmers-get-pagination-wrong/</a></p>
+
+<p><a href="https://www.youtube.com/watch?v=GzMaN-IX7wQ" target="_blank">https://www.youtube.com/watch?v=GzMaN-IX7wQ</a></p>
+
+<p><a href="http://www.unicode.org/notes/tn9/tn9-1.html" target="_blank">http://www.unicode.org/notes/tn9/tn9-1.html</a></p>
 ]]></content>
 		</item>
 		
