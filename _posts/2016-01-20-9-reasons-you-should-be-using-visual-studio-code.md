@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Hello World"
 date: 2016-01-20T23:49:57-05:00
 draft: true
