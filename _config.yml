@@ -6,6 +6,8 @@ about: I'm Programmer for Python & Django. I've made quite a few web apps, espec
 # disqus_shortname: taylorbrazelton
 google_analytics: UA-XXXXXXXX-Y
 
+permalink: /posts/:year/:month/:title/
+
 enableTags: true
 tagarray: []
 
