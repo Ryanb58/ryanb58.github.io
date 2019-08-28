@@ -11,11 +11,6 @@ permalink: /posts/:year/:month/:title/
 enableTags: true
 tagarray: []
 
-collections:
-  project:
-    output: true
-    permalink: /project/:path/
-
 social:
     - icon: fa-linkedin
       link: "https://www.linkedin.com/in/taylorbrazelton/"
@@ -29,10 +24,6 @@ social:
 urls:
     - text: About Me
       url: /about/
-    - text: My Projects
-      url: /projects/
-    - text: XML Feed
-      url: /feed.xml
 
 url: "https://ryanb58.github.io"
 baseurl: ""
