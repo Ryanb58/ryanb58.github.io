@@ -1,19 +1,6 @@
 ---
 title: "Performance Problems in your Node.JS App"
 date: 2018-11-19T23:49:57-05:00
-draft: true
-toc: false
-images:
-tags:
-  - node
-  - javascript
-  - js
-  - performance
-  - problem
-  - event
-  - loop
-  - blocking
-  - fast
 ---
 
 Recently, I have inherited a Node backend that was written with a lot of

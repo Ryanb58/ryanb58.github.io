@@ -1,23 +1,7 @@
 ---
-title: "Hello World"
-date: 2016-01-20T23:49:57-05:00
-draft: true
-toc: false
-images:
-tags:
-  - virtual
-  - machine
-  - start
-  - audio
-  - pulse
+title: "Top 2016 Python Tools And Packages"
+date: 2016-12-09T23:49:57-05:00
 ---
-
-Title: Top 2016 Python Tools And Packages
-Date: 2016-12-09 18:00
-Modified: 2016-12-09
-Category: python
-Tags: python, packages, favorite, top, 2016, end, of, the, year
-Status: published
 
 This isn't nessesarly a good representation of the best python tools or packages, but the top I have used over the past year.
 

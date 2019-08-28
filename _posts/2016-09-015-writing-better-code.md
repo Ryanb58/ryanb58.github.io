@@ -1,24 +1,7 @@
 ---
-title: "Hello World"
-date: 2016-01-20T23:49:57-05:00
-draft: true
-toc: false
-images:
-tags:
-  - virtual
-  - machine
-  - start
-  - audio
-  - pulse
+title: "Writing Better Code"
+date: 2016-09-015T23:49:57-05:00
 ---
-
-Title: Writing Better Code
-Date: 2016-09-015
-Modified: 2016-09-26
-Category: python
-Tags: writing, better, code, refactoring, python, tips
-Status: published
-
 
 As a software engineer/artist I could spend copious amounts of time refactoring.
 However, at some point products have to be shiped. You can't just keep

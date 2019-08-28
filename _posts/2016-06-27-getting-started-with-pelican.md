@@ -1,23 +1,8 @@
 ---
-title: "Hello World"
-date: 2016-01-20T23:49:57-05:00
-draft: true
+title: "Getting Started with Pelican"
+date: 2016-06-27T23:49:57-05:00
 toc: false
-images:
-tags:
-  - virtual
-  - machine
-  - start
-  - audio
-  - pulse
 ---
-
-Title: Getting Started with Pelican
-Date: 2016-06-27 20:00
-Modified: 2016-07-01 20:00
-Category: How To
-Tags: using, pelican, python, virtualenv, getting, started
-Status: published
 
 I am new to pelican, so in reality this is just the steps I used to setup my pelican blog. Feel free to experiment and do things differently.
 

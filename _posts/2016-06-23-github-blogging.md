@@ -1,22 +1,7 @@
 ---
 title: "Hello World"
-date: 2016-01-20T23:49:57-05:00
-draft: true
-toc: false
-images:
-tags:
-  - virtual
-  - machine
-  - start
-  - audio
-  - pulse
+date: 2016-06-23T23:49:57-05:00
 ---
-
-Title: Github Blogging
-Date: 2016-06-23 21:06
-Modified: 2016-06-23 21:06
-Category: general
-Tags: blog, github, blogging, tech-fyi, new, first, post
 
 Hello internet!
 

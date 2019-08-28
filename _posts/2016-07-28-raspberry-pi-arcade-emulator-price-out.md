@@ -1,23 +1,7 @@
 ---
-title: "Hello World"
-date: 2016-01-20T23:49:57-05:00
-draft: true
-toc: false
-images:
-tags:
-  - virtual
-  - machine
-  - start
-  - audio
-  - pulse
+title: "Raspberry Pi Arcade Eumlator Price Out"
+date: 2016-07-28T23:49:57-05:00
 ---
-
-Title: Raspberry Pi Arcade Eumlator Price Out
-Date: 2016-07-28 21:06
-Modified: 2016-08-10 21:00
-Category: general
-Tags: raspberry, pi, arcade, emulator, price, out
-Status: published
 
 ##Update #1:
 

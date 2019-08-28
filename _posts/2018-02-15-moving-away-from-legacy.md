@@ -1,17 +1,6 @@
 ---
 title: "Strategy for Moving Away From Legacy Code"
 date: 2018-02-15T23:49:57-05:00
-draft: false
-toc: false
-tags:
-  - moving
-  - away
-  - from
-  - legacy
-  - code
-  - phases
-  - plan
-  - strategy
 ---
 
 ##### 1) Chunk Your App Into Pieces

@@ -1,16 +1,6 @@
 ---
 title: "Django Migrations Downgrade in Docker Swarm"
 date: 2018-03-02T23:49:57-05:00
-draft: false
-toc: false
-images:
-tags:
-  - docker
-  - django
-  - python
-  - downgrade
-  - swarm
-  - orchestration
 ---
 
 Edge cases are a big problem in software engineering, one that I recently ran

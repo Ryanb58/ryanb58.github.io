@@ -1,15 +1,6 @@
 ---
 title: "VirtualBox Would Not Start My Virtual Machines."
 date: 2017-01-20T23:49:57-05:00
-draft: true
-toc: false
-images:
-tags:
-  - virtual
-  - machine
-  - start
-  - audio
-  - pulse
 ---
 
 Murph's Law - "Anything that can go wrong will go wrong."
