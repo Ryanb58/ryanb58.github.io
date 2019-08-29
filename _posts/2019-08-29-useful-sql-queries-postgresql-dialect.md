@@ -7,7 +7,7 @@ tags:
   - postgres
 ---
 
-Below is a recording of the commands I utilize to help me understand and navigate unknown databases designs.
+Below is a recording of the commands I utilize to help me understand and navigate unknown database designs.
 
 
 ## Connect to Postgres server via pgcli
