@@ -1,9 +1,7 @@
 ---
 title: "Offset vs Seek/Keyset Pagination"
 date: 2019-03-13T13:08:51-04:00
-draft: false
-toc: false
-images:
+last_modified_at: 2019-03-13T13:08:51-04:00
 tags:
   - sql
   - pagination

@@ -1,9 +1,6 @@
 ---
 title: "Alembic Load Config From Env Vars"
 date: 2019-02-25T09:18:52-05:00
-draft: false
-toc: false
-images:
 tags:
   - alembic
   - 12factor

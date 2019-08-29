@@ -1,9 +1,6 @@
 ---
 title: "Unlimited Private Repos on Github"
 date: 2019-01-08T16:52:04-05:00
-draft: false
-toc: false
-images:
 tags:
   - github
 ---

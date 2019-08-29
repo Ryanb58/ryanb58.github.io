@@ -1,9 +1,6 @@
 ---
 title: "Replace a Table With View"
 date: 2019-01-07T10:51:38-05:00
-draft: false
-toc: false
-images:
 tags:
   - sql
   - mysql

@@ -1,9 +1,6 @@
 ---
 title: "Invalidate AWS CloudFront Cache"
 date: 2019-01-28T15:51:58-05:00
-draft: false
-toc: false
-images:
 tags:
   - aws
   - cloudfront
