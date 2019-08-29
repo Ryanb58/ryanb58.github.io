@@ -1,5 +1,5 @@
 ---
-title: "Useful SQL Queries and Commands(PostgreSQL Dialect)"
+title: "Useful SQL Queries - PostgreSQL Dialect"
 date: 2019-03-13T13:08:51-04:00
 last_modified_at: 2019-03-13T13:08:51-04:00
 tags:
