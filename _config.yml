@@ -59,7 +59,7 @@ plugins:
 author:
   name   : "Taylor Brazelton"
   avatar : "/assets/images/ProfilePhoto.jpg"
-  bio    : "Software Engineer by Day... Entrepreneur by Night"
+  bio    : "Software Engineer by Day Entrepreneur by Night"
   links:
     - label: "Website"
       icon: "fas fa-fw fa-link"
