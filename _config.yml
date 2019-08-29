@@ -15,9 +15,9 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Taylor Brazelton
-description: My Personal Site
-email:
+# title: Taylor Brazelton
+# description: My Personal Site
+# email:
 twitter_username: Ryanb58
 github_username: Ryanb58
 minimal_mistakes_skin: default
@@ -58,7 +58,7 @@ plugins:
 
 author:
   name   : "Taylor Brazelton"
-  avatar : "/assets/images/bio-photo.jpg"
+  avatar : "/assets/images/ProfilePhoto.jpg"
   bio    : "Software Engineer by Day... Entrepreneur by Night"
   links:
     - label: "Website"
