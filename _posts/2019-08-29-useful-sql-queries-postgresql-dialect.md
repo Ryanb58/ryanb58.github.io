@@ -10,13 +10,13 @@ tags:
 Below is a recording of the commands I utilize to help me understand and navigate unknown databases designs.
 
 
-## Connect to Postgres server via pgcli(python)
+## Connect to Postgres server via pgcli
 
 ```
 >>> pgcli -h host -U username -d database
 ```
 
-## View databases on server
+## List Databases
 
 ```
 # \l
