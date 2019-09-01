@@ -94,8 +94,6 @@ As `count(*)` tells the db server to get all the columns before counting the res
 
 ## Do not use `LEFT JOIN ON null id`
 
-Found this tidbit when I saw a left join in a query and was like WTF?
-
 Instead of using 
 
 ```
