@@ -72,7 +72,7 @@ def render_site(config, content, environment, output_directory):
         file.write(index_template.render(config=config, content=content))
 
     # Static files
-    distutils.dir_util.copy_tree("themes/{}/static".format(config.get("theme")), {output_directory})
+    distutils.dir_util.copy_tree("themes/{}/static".format(config.get("theme")), output_directory)
 
 
 def main():
