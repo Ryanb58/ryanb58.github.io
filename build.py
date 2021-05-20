@@ -54,7 +54,7 @@ def render_site(config, content, environment, output_directory):
         # Post pages
         template = environment.get_template(f"{content_type}.html")
         for item in content[config[content_type]["plural"]]:
-            path = f"public/{item['url']}"
+            path = f"{output_directory}/{item['url']}"
             pathlib.Path(path).mkdir(parents=True, exist_ok=True)
             with open(path+"index.html", 'w') as file:
                 file.write(template.render(this=item, config=config, content=content))
@@ -72,13 +72,14 @@ def render_site(config, content, environment, output_directory):
         file.write(index_template.render(config=config, content=content))
 
     # Static files
-    distutils.dir_util.copy_tree("themes/{}/static".format(config.get("theme")), "public")
+    distutils.dir_util.copy_tree("themes/{}/static".format(config.get("theme")), {output_directory})
 
 
 def main():
     config = load_config("config.toml")
     content = load_content_items(config, "content")
     environment = load_templates("themes/{}".format(config.get("theme")))
-    render_site(config, content, environment, "public")
+    output_folder = config.get("outputFolder", "public")
+    render_site(config, content, environment, output_folder)
 
 main()

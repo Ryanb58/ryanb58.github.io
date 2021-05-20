@@ -1,6 +1,7 @@
 theme = "minimal-dark"
 title = "Taylor Brazelton"
 baseURL = "https://taylorbrazelton.com"
+outputFolder = "docs"
 
 types = ["post", "page"]
 
