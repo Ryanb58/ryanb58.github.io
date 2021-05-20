@@ -1,12 +1,19 @@
-import os, glob, pathlib, shutil, distutils.dir_util
+import distutils.dir_util
+import glob
+import os
+import pathlib
+import re
+import shutil
 
-import markdown, jinja2, toml, re
 import inflect
+import jinja2
+import markdown
+import toml
 
 
 def load_config(config_filename):
 
-    with open(config_filename, 'r') as config_file:
+    with open(config_filename, "r") as config_file:
         config = toml.loads(config_file.read())
 
     ie = inflect.engine()
@@ -15,64 +22,75 @@ def load_config(config_filename):
 
     return config
 
-def load_content_items(config, content_directory):
 
+def load_content_items(config, content_directory):
     def load_content_type(content_type):
         items = []
-        for fn in glob.glob(f"{content_directory}/{config[content_type]['plural']}/*.md"):
-            with open(fn, 'r') as file:
-                frontmatter, content = re.split("^\+\+\+\+\+$", file.read(), 1, re.MULTILINE)
+        for fn in glob.glob(
+            f"{content_directory}/{config[content_type]['plural']}/*.md"
+        ):
+            with open(fn, "r") as file:
+                frontmatter, content = re.split(
+                    "^\+\+\+\+\+$", file.read(), 1, re.MULTILINE
+                )
 
             item = toml.loads(frontmatter)
-            item['content'] = markdown.markdown(content)
-            item['slug'] = os.path.splitext(os.path.basename(file.name))[0]
+            item["content"] = markdown.markdown(content)
+            item["slug"] = os.path.splitext(os.path.basename(file.name))[0]
             if config[content_type]["dateInURL"]:
-                item['url'] = f"/{item['date'].year}/{item['date'].month:0>2}/{item['date'].day:0>2}/{item['slug']}/"
+                item[
+                    "url"
+                ] = f"/{item['date'].year}/{item['date'].month:0>2}/{item['date'].day:0>2}/{item['slug']}/"
             else:
-                item['url'] = f"/{item['slug']}/"
+                item["url"] = f"/{item['slug']}/"
             items.append(item)
 
         # sort according to config
-        items.sort(key=lambda x: x[config[content_type]["sortBy"]],
-               reverse=config[content_type]["sortReverse"])
+        items.sort(
+            key=lambda x: x[config[content_type]["sortBy"]],
+            reverse=config[content_type]["sortReverse"],
+        )
 
         return items
 
     content_types = {}
     for content_type in config["types"]:
-        content_types[config[content_type]['plural']] = load_content_type(content_type)
+        content_types[config[content_type]["plural"]] = load_content_type(content_type)
 
     return content_types
+
 
 def load_templates(template_directory):
     file_system_loader = jinja2.FileSystemLoader(template_directory)
     return jinja2.Environment(loader=file_system_loader)
 
-def render_site(config, content, environment, output_directory):
 
-    def render_type(content_type): # <-- new inner function
+def render_site(config, content, environment, output_directory):
+    def render_type(content_type):  # <-- new inner function
         # Post pages
         template = environment.get_template(f"{content_type}.html")
         for item in content[config[content_type]["plural"]]:
             path = f"{output_directory}/{item['url']}"
             pathlib.Path(path).mkdir(parents=True, exist_ok=True)
-            with open(path+"index.html", 'w') as file:
+            with open(path + "index.html", "w") as file:
                 file.write(template.render(this=item, config=config, content=content))
 
     if os.path.exists(output_directory):
         shutil.rmtree(output_directory)
     os.mkdir(output_directory)
 
-    for content_type in config["types"]: # <-- new for loop
+    for content_type in config["types"]:  # <-- new for loop
         render_type(content_type)
 
     # Homepage
     index_template = environment.get_template("index.html")
-    with open(f"{output_directory}/index.html", 'w') as file:
+    with open(f"{output_directory}/index.html", "w") as file:
         file.write(index_template.render(config=config, content=content))
 
     # Static files
-    distutils.dir_util.copy_tree("themes/{}/static".format(config.get("theme")), output_directory)
+    distutils.dir_util.copy_tree(
+        "themes/{}/static".format(config.get("theme")), output_directory
+    )
 
 
 def main():
@@ -81,5 +99,6 @@ def main():
     environment = load_templates("themes/{}".format(config.get("theme")))
     output_folder = config.get("outputFolder", "public")
     render_site(config, content, environment, output_folder)
+
 
 main()
