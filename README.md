@@ -10,12 +10,12 @@ Configuration options are located in the `config.yml` file.
 
 #### Requirements:
 
-- [ ] Write content in markdown
-- [ ] Control the URL structure for each post.
+- [X] Write content in markdown
+- [X] Control the URL structure for each post.
 - [ ] Configure main navigation via a file.
-- [ ] Generate a clickable list of blog posts.
+- [X] Generate a clickable list of blog posts.
 - [ ] Generate a list of posts that share a specific tag.
-- [ ] Theme able?
+- [X] Theme able?
 
 
 
