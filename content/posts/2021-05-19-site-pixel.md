@@ -11,7 +11,7 @@ For a few years now, I've wanted a tool that collects feedback from my users. I'
 
 The initial idea is simple.
 
-A user navigates to a web app. Then, a widget pops up somewhere on the screen with smiley and frowny faces on it. Giving the opportunity for the user to click one that best represents how they feel. That data is then recorded for later review.
+A user navigates to a web app. Then, a widget pops up somewhere on the screen with a few smiley and frowny faces on it. Giving the opportunity for the user to click one that best represents how they feel. That data is then recorded for later review.
 
 Using this data; marketers, stakeholders, and developers could correlate feature releases and redesigns with actual data provided by their customers. Giving them the opportunity to make more data backed decisions and prevent simple mistakes. Also focusing on the sentiment of their users while using the site. I mean most people want to use things they enjoy; right?
 
