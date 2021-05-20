@@ -1,6 +1,11 @@
-h1 {
-    font-family: sans-serif;
-    margin-top: 2em;
+html {
+    border-top: 5px solid #27A822;
+}
+
+nav ul
+{
+    list-style-type: none;
+    text-align: right;
 }
 
 body {
@@ -10,8 +15,7 @@ body {
     line-height: 1.2em;
 }
 
-nav ul
-{
-    list-style-type: none;
-    text-align: right;
+h1 {
+    font-family: sans-serif;
+    margin-top: 2em;
 }

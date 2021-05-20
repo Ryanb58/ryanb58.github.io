@@ -87,10 +87,16 @@ def render_site(config, content, environment, output_directory):
     with open(f"{output_directory}/index.html", "w") as file:
         file.write(index_template.render(config=config, content=content))
 
-    # Static files
+    # Static files from theme
     distutils.dir_util.copy_tree(
         "themes/{}/static".format(config.get("theme")), output_directory
     )
+
+    # Static files from content
+    if os.path.exists("content/static"):
+        distutils.dir_util.copy_tree(
+            "content/static".format(config.get("theme")), f"{output_directory}"
+        )
 
 
 def main():
