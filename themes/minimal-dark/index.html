@@ -2,8 +2,8 @@
 <html>
     {% import "macros.html" as macros %}
     {{ macros.head(config.title) }}
-    {{ macros.navigation(content.pages) }}
     <body>
+        {{ macros.navigation(content.pages) }}
         <h1>Posts</h1>
         <ul>
         {% for post in content.posts %}

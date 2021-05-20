@@ -2,8 +2,8 @@
 <html>
     {% import "macros.html" as macros %}
     {{ macros.head(this.title) }}
-    {{ macros.navigation(content.pages) }}
     <body>
+        {{ macros.navigation(content.pages) }}
         <h1>{{ this.title }}</h1>
         <p>Posted at {{ this.date }}</p>
         {{ this.content }}

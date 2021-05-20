@@ -13,7 +13,7 @@ The initial idea is simple.
 
 A user navigates to a web app. Then, a widget pops up somewhere on the screen with a few smiley and frowny faces on it. Giving the opportunity for the user to click one that best represents how they feel. That data is then recorded for later review.
 
-Using this data; marketers, stakeholders, and developers could correlate feature releases and redesigns with actual data provided by their customers. Giving them the opportunity to make more data backed decisions and prevent simple mistakes. Also focusing on the sentiment of their users while using the site. I mean most people want to use things they enjoy; right?
+Using this data; marketers, stakeholders, and developers could correlate feature releases and redesigns with actual data provided by their customers. Giving them the opportunity to make more data backed decisions and prevent simple mistakes. While gaining an understanding of the overall sentiment around their site. I mean most people want to use things they love, right?
 
-So far, I've been building this application and documenting my journey on [IndieHackers](https://www.indiehackers.com/product/site-pixel). I am going to continue posting standup content there, while keeping bigger overarching posts here on my new personal site/blog. I also plan on documenting other ideas, successes, and failures here as well. 
+So far, I've been building this application and documenting my journey on [IndieHackers](https://www.indiehackers.com/product/site-pixel). While I plan on continuing to post my standup content there, I'll put my bigger overarching content here on my newly redesigned personal site/blog.
 
