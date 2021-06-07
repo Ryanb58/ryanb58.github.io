@@ -9,7 +9,6 @@ tags = [
 published = true
 +++++
 
-Story:
 Recently I have noticed that the `Proceed to www...com (unsafe)` link in Chrome has stopped appearing on webpages with invalid certs. I use self sign certs for local development quite often so this is kind of a big issue.
 
 **Problem:**
