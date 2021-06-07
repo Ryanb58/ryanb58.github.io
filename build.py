@@ -43,7 +43,12 @@ def load_content_items(config, content_directory):
                 ] = f"/{item['date'].year}/{item['date'].month:0>2}/{item['date'].day:0>2}/{item['slug']}/"
             else:
                 item["url"] = f"/{item['slug']}/"
-            items.append(item)
+
+            # BY DEFAULT: ONLY LOAD PUBLISHED CONTENT
+            if item["published"]:
+                items.append(item)
+            else:
+                print("skipped draft: {}".format(item["slug"]))
 
         # sort according to config
         items.sort(

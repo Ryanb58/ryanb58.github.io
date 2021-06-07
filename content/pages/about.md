@@ -1,4 +1,5 @@
 title = "About"
+published = true
 +++++
 
 Hello, I'm Taylor. Just another Software Engineer and Entrepreneur floating around the web.

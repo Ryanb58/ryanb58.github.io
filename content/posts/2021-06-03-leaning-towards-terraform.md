@@ -9,6 +9,7 @@ tags = [
     "provision",
     "iac"
 ]
+published = false
 +++++
 
 As life progresses, I grow closer and closer to the machines that run my code. This leaves me with a sour taste though, because accountabilty in terms of infastructure changes can be lacking. In turn, I have been expected to know more about the interworkings of the cloud infastructures which we are using. In this post I'd like to analyze some reasons I might switch away from AWS CloudFormation and turn my attention towards Terraform.
