@@ -16,6 +16,7 @@
 
 {% macro navigation(pages) -%}
 <nav><ul>
+    <li><a href="/">Home</a></li>
     {% for page in pages %}
         <li><a href="{{ page.url }}">{{ page.title }}</a></li>
     {% endfor %}
