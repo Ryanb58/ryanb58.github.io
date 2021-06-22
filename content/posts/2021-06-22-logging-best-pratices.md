@@ -1,4 +1,4 @@
-title = "Logging Best Pratices for Developers"
+title = "Logging Best Pratices"
 date = 2021-06-22T00:00:00+02:00
 tags = [
     "logging",
