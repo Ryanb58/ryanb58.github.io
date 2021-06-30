@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+    <title>AWS Vault and MFA Setup on my Mac</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-LD3MQXQGQ2');
+    </script>
+</head>
+
+    <body>
+        <nav><ul>
+    <li><a href="/">Home</a></li>
+    
+        <li><a href="/about/">About</a></li>
+    
+</ul></nav>
+
+        <h1>AWS Vault and MFA Setup on my Mac</h1>
+        <p>Posted at 2020-07-21 17:47:00+02:00</p>
+        <p>Recently, I decided to secure my local machine by downloading and using AWS Vault. To my surprise, setting up MFA with Vault required a step or two more that I wasn't expecting. Here are my findings/steps. </p>
+<p>First, I used homebrew to install aws-vault.</p>
+<p><code>brew cask install aws-vault</code></p>
+<p>Then I added my profile and followed the instructions which had me provide my Access ID and Secret.</p>
+<p><code>aws-vault add taylor</code></p>
+<p>Then I tried to list out the S3 buckets via:</p>
+<p><code>aws-vault exec taylor -- aws s3 ls</code></p>
+<p>This resulted in the following error.</p>
+<p><code>An error occurred (AccessDenied) when calling the ListBuckets operation: Access Denied</code></p>
+<p>So I opened up my AWS config file in Visual Studio Code.</p>
+<p><code>code ~/.aws/config</code></p>
+<p>Doing so lead me to see that my profile didn't have a <code>mfa_serial</code> variable defined. I found my key in IAM under my own user's Security Credentials tab and added it to the file.</p>
+<p>Now, my config file had the following in it: 
+<code>[profile taylor]
+mfa_serial=arn:aws:iam::XXXXXXXXXX:mfa/taylor</code></p>
+<p>And when I performed my s3 listing again, it worked.</p>
+<p>Originally Posted on <a href="https://dev.to/mrbrazel/aws-vault-and-mfa-setup-on-my-mac-37dk">dev.to</a></p>
+        <hr />
+        <p><a href="https://taylorbrazelton.com">Return to the homepage &#10558;</a></p>
+    </body>
+</html>
