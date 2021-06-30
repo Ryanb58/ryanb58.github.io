@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+    <title>Invalidate AWS CloudFront Cache</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-LD3MQXQGQ2');
+    </script>
+</head>
+
+    <body>
+        <nav><ul>
+    <li><a href="/">Home</a></li>
+    
+        <li><a href="/about/">About</a></li>
+    
+</ul></nav>
+
+        <h1>Invalidate AWS CloudFront Cache</h1>
+        <p>Posted at 2019-01-28 17:47:00+02:00</p>
+        <p>Today, I needed to invalidate a specific Distribution's cache on AWS Cloudfront. This resulted in me searching through the AWS cli tool's docs. Luckily I was able to uncover a command to accomplish such a task.</p>
+<p><code>aws cloudfront create-invalidation --distribution-id DISTRIBUTION_ID --paths /\*</code></p>
+<p>Simply replace DISTRIBUTION_ID with the proper ID and you will be good to go.</p>
+        <hr />
+        <p><a href="https://taylorbrazelton.com">Return to the homepage &#10558;</a></p>
+    </body>
+</html>

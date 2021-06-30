@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+    <title>Replace a Table With View</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-LD3MQXQGQ2');
+    </script>
+</head>
+
+    <body>
+        <nav><ul>
+    <li><a href="/">Home</a></li>
+    
+        <li><a href="/about/">About</a></li>
+    
+</ul></nav>
+
+        <h1>Replace a Table With View</h1>
+        <p>Posted at 2019-01-07 17:47:00+02:00</p>
+        <p>This weekend while on dev support, an issue came to our attention that
+customers were still able to see <code>soft deleted</code> data in some parts of the app.
+Instead of going through all the code and updating each query to return only
+existing data though, I went directly to the source and replaced the table with
+a view.</p>
+<h4>Pros/Cons:</h4>
+<p>Pros:
+ - Easily revertible change.
+ - Apply once, fixes all current queries.
+ - Views can still have INSERT, UPDATE, and DELETE statements run against them.
+ - Good practice from a database design standpoint.</p>
+<p>Cons:
+ - Someone has to have access to the prod db to do it.
+ - Can confuse other developers who are not familiar with views.
+ - Depend on the indexes of the table below. You can not put an index on a view.</p>
+<h4>This is how I did it:</h4>
+<p>1) Rename the table.</p>
+<p><code>SQL
+RENAME TABLE chapters TO chapters_all;</code></p>
+<p>2) Create a simple view that filters out deleted data.</p>
+<p><code>SQL
+CREATE VIEW `chapters` AS
+    SELECT
+        `chapters_all`.`id` AS `id`,
+        `chapters_all`.`school` AS `school`,
+        `chapters_all`.`removed` AS `removed`,
+        etc...
+    FROM
+        `chapters_all`
+    WHERE
+        (`chapters_all`.`removed` = 0)</code></p>
+<p>Hope this helps!</p>
+        <hr />
+        <p><a href="https://taylorbrazelton.com">Return to the homepage &#10558;</a></p>
+    </body>
+</html>
