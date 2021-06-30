@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+    <title>Docker Image Size Reduction</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-LD3MQXQGQ2');
+    </script>
+</head>
+
+    <body>
+        <nav><ul>
+    <li><a href="/">Home</a></li>
+    
+        <li><a href="/about/">About</a></li>
+    
+</ul></nav>
+
+        <h1>Docker Image Size Reduction</h1>
+        <p>Posted at 2021-01-05 17:47:00+02:00</p>
+        <p>Recently I needed to dockerize an application for a virtual onprem. However, at the end of my project I ended up with a docker image that was 8.4 GB. This is HUGE in terms of size for a container. Thus, I went on a short journey to minimize the image using the following techniques.</p>
+<p>1) Prevent APT from installing recommended packages by adding the following parameter to every apt-get install command: <code>--no-install-recommends</code>.</p>
+<p>2) Added a <code>.dockerignore</code> file. This allows one to define a list of folders/file globs to ignore when building your Dockerfile.</p>
+<p>3) Reduced the amount of layers by merging related commands.</p>
+<p>4) Clean up apt cache via: <code>&amp;&amp; rm -rf /var/lib/apt/lists/*</code>.</p>
+<p>5) Used <a href="https://github.com/wagoodman/dive">dive</a> to inspect my image layers to analyze and remove extra unused packages/files.</p>
+<p>6) I stumbled across a tool <a href="https://github.com/docker-slim/docker-slim">docker-slim</a> that can supposedly reduce a container's size by up to 30x.</p>
+<p>7) Check your base image. Think about running an alpine version of the container if you haven't already.</p>
+<p>8) Use multistage builds.</p>
+<p>9) Use your layers wisely. Put commands that are more likely to change towards the bottom.</p>
+<p>10) Lint your dockerfile using <a href="https://www.fromlatest.io/">FromLatest</a></p>
+<h4>Sources:</h4>
+<ul>
+<li>https://ubuntu.com/blog/we-reduced-our-docker-images-by-60-with-no-install-recommends</li>
+<li>https://towardsdatascience.com/slimming-down-your-docker-images-275f0ca9337e</li>
+</ul>
+<p>Originally Posted on <a href="https://dev.to/mrbrazel/docker-image-size-reduction-220a">dev.to</a></p>
+        <hr />
+        <p><a href="https://taylorbrazelton.com">Return to the homepage &#10558;</a></p>
+    </body>
+</html>

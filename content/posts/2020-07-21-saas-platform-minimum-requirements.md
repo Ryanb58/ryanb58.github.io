@@ -27,4 +27,4 @@ Below is a list of minimum requirements I believe are vital to the success of a 
 
 Always try to think through these items before digging into the code. I have found that by doing so you significantly reduce the problems you will run into when trying to scale your product and team.
 
-Originally Posted on (dev.to)[https://dev.to/mrbrazel/minimum-requirements-for-a-saas-platform-102d]
+Originally Posted on [dev.to](https://dev.to/mrbrazel/minimum-requirements-for-a-saas-platform-102d)
