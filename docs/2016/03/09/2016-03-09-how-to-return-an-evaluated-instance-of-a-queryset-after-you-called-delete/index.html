@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+    <title>How To Return An Evaluated Instance Of A QuerySet After You Called Delete</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-LD3MQXQGQ2');
+    </script>
+</head>
+
+    <body>
+        <nav><ul>
+    <li><a href="/">Home</a></li>
+    
+        <li><a href="/about/">About</a></li>
+    
+</ul></nav>
+
+        <h1>How To Return An Evaluated Instance Of A QuerySet After You Called Delete</h1>
+        <p>Posted at 2016-03-09 17:47:00+02:00</p>
+        <h3>Problem:</h3>
+<p>We have a Django rest framework endpoint that lists out tasks that are being processed, each task includes its relative status. Say a task is in progress, it would report as &#8220;In Progress&#8221; then when it is completed by our back-end workers, the task reports as &#8220;Successful&#8221; and will continue to exist in our database, and there lies the problem. As more and more tasks are added to our system, we continue to have to increase our capacity for the table in our database that holds these task records.</p>
+<h3>Solution:</h3>
+<p>Load the QuerySet object, force Django to evaluate it into memory, then call the delete query on the actual database. Last but not least, return the data that was evaluated into memory.</p>
+<p>Code:</p>
+<pre class="lang:python decode:true"># List forces evaluation of query set so data is now in memory.
+        tasks = list(Task.objects.all())
+
+        # Have Django delete the successful tasks from the database,
+        # but not from memory.
+        Task.objects.all().filter(status="Successful").delete()
+
+        # Return the tasks in memory.
+        return tasks</pre>
+
+<p>Enjoy!</p>
+        <hr />
+        <p><a href="https://taylorbrazelton.com">Return to the homepage &#10558;</a></p>
+    </body>
+</html>
