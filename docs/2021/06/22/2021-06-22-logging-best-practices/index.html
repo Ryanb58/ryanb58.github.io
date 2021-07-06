@@ -27,7 +27,7 @@
 </ul></nav>
 
         <h1>Logging Best Practices</h1>
-        <p>Posted at 2021-06-22 00:00:00+02:00</p>
+        <p><i>Posted on 2021-06-22</i></p>
         <p>Here are just a few bullet points I've gathered over my career about logging.</p>
 <h4>Log to STDOUT/STDERR</h4>
 <p>Stop following all the online tutorials for your framework that configure your application to store logs directly in files. This is a rookie mistake and makes running your application so much more difficult than it needs to be. Instead, give your ops team better lives by sending your logs to <code>stdout/stderr</code>. This allows OPs to decide how to process and send off logs. They might choose to write them to disk, perform some cleanup data processing, or simply send logs to an external system. By logging directly to stdout/stderr you give them the choice.</p>

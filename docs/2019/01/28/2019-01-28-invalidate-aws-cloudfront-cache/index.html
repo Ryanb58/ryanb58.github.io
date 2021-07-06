@@ -27,7 +27,7 @@
 </ul></nav>
 
         <h1>Invalidate AWS CloudFront Cache</h1>
-        <p>Posted at 2019-01-28 17:47:00+02:00</p>
+        <p><i>Posted on 2019-01-28</i></p>
         <p>Today, I needed to invalidate a specific Distribution's cache on AWS Cloudfront. This resulted in me searching through the AWS cli tool's docs. Luckily I was able to uncover a command to accomplish such a task.</p>
 <p><code>aws cloudfront create-invalidation --distribution-id DISTRIBUTION_ID --paths /\*</code></p>
 <p>Simply replace DISTRIBUTION_ID with the proper ID and you will be good to go.</p>
