@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+    <title>Who Is using My Webcam?</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-LD3MQXQGQ2');
+    </script>
+</head>
+
+    <body>
+        <nav><ul>
+    <li><a href="/">Home</a></li>
+    
+        <li><a href="/about/">About</a></li>
+    
+</ul></nav>
+
+        <h1>Who Is using My Webcam?</h1>
+        <p><i>Posted on 2020-11-17</i></p>
+        <p>Recently I've noticed a green dot next to my webcam staying on beyond my Google Hangout/Zoom meetings. This is obviously a problem so I've set out to find the solution.</p>
+<p>Ends up it is pretty simple. All you need is lsof and grep.</p>
+<p>To find out if your built-in webcam is being used:</p>
+<p><code>lsof | grep Camera</code></p>
+<p>Although that doesn't catch all the cases. Some apps use something called VDC to access the webcam.</p>
+<p><code>lsof | grep VDC</code></p>
+<p>For me the VDC command was the on that finally worked. Example Output:</p>
+<p>```
+~/ » lsof | grep VDC                                                                                                                                       1 ↵ tbrazelton@drpepper</p>
+<p>Google      343 tbrazelton  txt       REG                1,5       424176 1152921500312556127 /System/Library/Frameworks/CoreMediaIO.framework/Versions/A/Resources/VDC.plugin/Contents/MacOS/VDC
+Slack       355 tbrazelton  txt       REG                1,5       424176 1152921500312556127 /System/Library/Frameworks/CoreMediaIO.framework/Versions/A/Resources/VDC.plugin/Contents/MacOS/VDC
+FaceTime  13975 tbrazelton  txt       REG                1,5       424176 1152921500312556127 /System/Library/Frameworks/CoreMediaIO.framework/Versions/A/Resources/VDC.plugin/Contents/MacOS/VDC
+avconfere 13977 tbrazelton  txt       REG                1,5       424176 1152921500312556127 /System/Library/Frameworks/CoreMediaIO.framework/Versions/A/Resources/VDC.plugin/Contents/MacOS/VDC
+```</p>
+<p>When I shut off FaceTime the green light went away and so did my sticky note.</p>
+<p>Originally Posted on: https://gist.github.com/Ryanb58/901f9a84088a828d8467f1cb66353939</p>
+        <hr />
+        <p><a href="https://taylorbrazelton.com">Return to the homepage &#10558;</a></p>
+    </body>
+</html>
