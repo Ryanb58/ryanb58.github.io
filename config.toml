@@ -1,4 +1,4 @@
-theme = "minimal-dark"
+theme = "custom1"
 title = "Taylor Brazelton"
 baseURL = "https://taylorbrazelton.com"
 outputFolder = "docs"

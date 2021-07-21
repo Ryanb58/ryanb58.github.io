@@ -62,6 +62,15 @@ def load_content_items(config, content_directory):
     for content_type in config["types"]:
         content_types[config[content_type]["plural"]] = load_content_type(content_type)
 
+    # Group posts by year, so we can display them easier on the FE.
+    from itertools import groupby
+    # sort posts by date descending first
+    # should be done with database query, but here's how otherwise
+    posts = content_types["posts"]
+    posts = sorted(posts, key=lambda post: post.get("date"), reverse=True)
+    posts_grouped_by_date = groupby(posts, key=lambda post: post.get("date").year)
+    content_types["posts_grouped_by_year"] = posts_grouped_by_date
+
     return content_types
 
 

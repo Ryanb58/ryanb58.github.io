@@ -13,3 +13,5 @@ On my own I struggle with `idea execution`. Building things is easy at work. Sur
 #### Social Media Links:
 
 [IndieHackers](https://www.indiehackers.com/ryanb58)
+
+[Linkedin](https://www.linkedin.com/in/taylorbrazelton/)
