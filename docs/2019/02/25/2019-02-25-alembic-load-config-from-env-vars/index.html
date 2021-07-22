@@ -29,8 +29,8 @@
         <h1>Alembic Load Config From Env Vars</h1>
         <p><i>Posted on 2019-02-25</i></p>
         <p>Today, while trying to integrate the python library <a href="https://pypi.org/project/alembic/">Alembic</a> into a micro-service, I ran into the issue of needing to load the database connection string from a few environmental variables. Needless to say I went ahead and did some googling and compiled this solution:</p>
-<p>```python
-def get_url():
+<p>```python<br />
+def get_url():<br />
     """Custom method to get config from the environmental variables.</p>
 <pre><code>Based on: http://allan-simon.github.io/blog/posts/python-alembic-with-environment-variables/
 """
@@ -42,7 +42,7 @@ return "postgres://{}:{}@{}/{}".format(
 )
 </code></pre>
 <p>```</p>
-<p>Then inside the <code>run_migrations_offline</code> method I swapped out:
+<p>Then inside the <code>run_migrations_offline</code> method I swapped out:<br />
 <code>python
 url = config.get_main_option("sqlalchemy.url")</code></p>
 <p>for</p>

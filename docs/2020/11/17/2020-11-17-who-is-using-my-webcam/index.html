@@ -35,12 +35,12 @@
 <p>Although that doesn't catch all the cases. Some apps use something called VDC to access the webcam.</p>
 <p><code>lsof | grep VDC</code></p>
 <p>For me the VDC command was the on that finally worked. Example Output:</p>
-<p>```
+<p>```<br />
 ~/ » lsof | grep VDC                                                                                                                                       1 ↵ tbrazelton@drpepper</p>
-<p>Google      343 tbrazelton  txt       REG                1,5       424176 1152921500312556127 /System/Library/Frameworks/CoreMediaIO.framework/Versions/A/Resources/VDC.plugin/Contents/MacOS/VDC
-Slack       355 tbrazelton  txt       REG                1,5       424176 1152921500312556127 /System/Library/Frameworks/CoreMediaIO.framework/Versions/A/Resources/VDC.plugin/Contents/MacOS/VDC
-FaceTime  13975 tbrazelton  txt       REG                1,5       424176 1152921500312556127 /System/Library/Frameworks/CoreMediaIO.framework/Versions/A/Resources/VDC.plugin/Contents/MacOS/VDC
-avconfere 13977 tbrazelton  txt       REG                1,5       424176 1152921500312556127 /System/Library/Frameworks/CoreMediaIO.framework/Versions/A/Resources/VDC.plugin/Contents/MacOS/VDC
+<p>Google      343 tbrazelton  txt       REG                1,5       424176 1152921500312556127 /System/Library/Frameworks/CoreMediaIO.framework/Versions/A/Resources/VDC.plugin/Contents/MacOS/VDC<br />
+Slack       355 tbrazelton  txt       REG                1,5       424176 1152921500312556127 /System/Library/Frameworks/CoreMediaIO.framework/Versions/A/Resources/VDC.plugin/Contents/MacOS/VDC<br />
+FaceTime  13975 tbrazelton  txt       REG                1,5       424176 1152921500312556127 /System/Library/Frameworks/CoreMediaIO.framework/Versions/A/Resources/VDC.plugin/Contents/MacOS/VDC<br />
+avconfere 13977 tbrazelton  txt       REG                1,5       424176 1152921500312556127 /System/Library/Frameworks/CoreMediaIO.framework/Versions/A/Resources/VDC.plugin/Contents/MacOS/VDC<br />
 ```</p>
 <p>When I shut off FaceTime the green light went away and so did my sticky note.</p>
 <p>Originally Posted on: https://gist.github.com/Ryanb58/901f9a84088a828d8467f1cb66353939</p>

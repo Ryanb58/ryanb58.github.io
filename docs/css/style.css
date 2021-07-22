@@ -60,3 +60,12 @@ nav li a:hover {
   margin-bottom: 0.8em;
   list-style: none;
 }
+
+/* TABLE STYLING */
+td, th {
+  border-bottom: 0.1rem solid #e1e1e1;
+  border-bottom-width: 0.1rem;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(225, 225, 225);
+  padding: 1.2rem 1.5rem;
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+    <title>A Simple Incident Report Template For Startups</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-LD3MQXQGQ2');
+    </script>
+</head>
+
+    <body>
+        <nav><ul>
+    <li><a href="/">Home</a></li>
+    
+        <li><a href="/about/">About</a></li>
+    
+</ul></nav>
+
+        <h1>A Simple Incident Report Template For Startups</h1>
+        <p><i>Posted on 2021-07-22</i></p>
+        <p>Everyone should have a way to log incidents and track customer experience flaws. Below is a template I have implemented at a few start ups. Enjoy!</p>
+<h2>Document:</h2>
+<h3>Customer:</h3>
+<p>This is where the customer name goes.</p>
+<h3>Environment:</h3>
+<p>Dev/QAS/Production</p>
+<h3>Severity Level:</h3>
+<p>SEV3/SEV2/SEV3</p>
+<table>
+<thead>
+<tr>
+<th align="center">Severity</th>
+<th align="center">Description</th>
+<th align="center">Examples</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">1</td>
+<td align="center">A critical incident with very high impact</td>
+<td align="center">A customer-facing service, like the app is down for ALL customers Confidentiality or privacy is breached Customer data loss</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">A major incident with significant impact</td>
+<td align="center">A customer-facing service is unavailable for a subset of customers Core functionality (e.g. sso, integration) is significantly impacted</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">A minor incident with low impact</td>
+<td align="center">A minor inconvenience to customers, workaround available Usable performance degradation</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>Event Time Frame:</h3>
+<p><strong>First Notified:</strong> YYYY-MM-DD HH:MM AM/PM EST - When was the first alert/notification from a user received.<br />
+<strong>Start:</strong> YYYY-MM-DD HH:MM AM/PM EST - When did the issue start occurring. To the best of your knowledge.<br />
+<strong>End:</strong> YYYY-MM-DD HH:MM AM/PM EST - Time till the issue was resolved from the customer's perspective.<br />
+<strong>Total Time:</strong> 1 Hour - Total amount of time. Difference between Start and End.</p>
+<h3>Describe Issue:</h3>
+<p>What problem is being faced?</p>
+<h3>Temporary Solution:</h3>
+<p>How did you fix the issue in the meantime?</p>
+<h3>People Involved:</h3>
+<p>List of all the people involved.</p>
+<h3>Investigation:</h3>
+<p>Details about the investigation. Story. Commands ran, servers looked at.. etc..</p>
+<h3>Root Cause:</h3>
+<p>What actually caused the issue?</p>
+<h3>Permanent Solution:</h3>
+<p>What fix/process are you going to put in place to prevent this type of issue again?</p>
+<h3>Other Notes:</h3>
+<p>Anything else you think is relevant to this incident.</p>
+<h2>How It's Used:</h2>
+<p>I usually create a shared folder named <code>Incident Reports</code> and place the template in a file named <code>_TEMPLATE----YYYY-MM-dd-CustomerName-SEV#-Total-Time</code>. This forces the template to the top of the sorted list of files. Then, when an incident occurs, we simple make a copy of the template and start filling it out with all the details, replacing all placeholders. </p>
+<h2>Sources:</h2>
+<p>https://www.atlassian.com/incident-management/kpis/severity-levels</p>
+        <hr />
+        <p><a href="https://taylorbrazelton.com">Return to the homepage &#10558;</a></p>
+    </body>
+</html>

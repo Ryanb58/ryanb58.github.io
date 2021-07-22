@@ -28,20 +28,20 @@
 
         <h1>Replace a Table With View</h1>
         <p><i>Posted on 2019-01-07</i></p>
-        <p>This weekend while on dev support, an issue came to our attention that
-customers were still able to see <code>soft deleted</code> data in some parts of the app.
-Instead of going through all the code and updating each query to return only
-existing data though, I went directly to the source and replaced the table with
+        <p>This weekend while on dev support, an issue came to our attention that<br />
+customers were still able to see <code>soft deleted</code> data in some parts of the app.<br />
+Instead of going through all the code and updating each query to return only<br />
+existing data though, I went directly to the source and replaced the table with<br />
 a view.</p>
 <h4>Pros/Cons:</h4>
-<p>Pros:
- - Easily revertible change.
- - Apply once, fixes all current queries.
- - Views can still have INSERT, UPDATE, and DELETE statements run against them.
+<p>Pros:<br />
+ - Easily revertible change.<br />
+ - Apply once, fixes all current queries.<br />
+ - Views can still have INSERT, UPDATE, and DELETE statements run against them.<br />
  - Good practice from a database design standpoint.</p>
-<p>Cons:
- - Someone has to have access to the prod db to do it.
- - Can confuse other developers who are not familiar with views.
+<p>Cons:<br />
+ - Someone has to have access to the prod db to do it.<br />
+ - Can confuse other developers who are not familiar with views.<br />
  - Depend on the indexes of the table below. You can not put an index on a view.</p>
 <h4>This is how I did it:</h4>
 <p>1) Rename the table.</p>

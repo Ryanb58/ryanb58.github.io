@@ -28,26 +28,26 @@
 
         <h1>Django Migrations Downgrade in Docker Swarm</h1>
         <p><i>Posted on 2018-03-02</i></p>
-        <p>Edge cases are a big problem in software engineering, one that I recently ran
+        <p>Edge cases are a big problem in software engineering, one that I recently ran<br />
 into while on a beta box was errors being thrown after a downgrade.</p>
-<p>First a little background on the application. It is a django application running
-in a docker container via docker-swarm. Our application upgrade/downgrade
-process is to reduce the amount of containers running down to 0. Change the
-tag numbers in our .yml file and then scale them back up. This forces the
-containers to download the newly defined version. Note that our downgrade
+<p>First a little background on the application. It is a django application running<br />
+in a docker container via docker-swarm. Our application upgrade/downgrade<br />
+process is to reduce the amount of containers running down to 0. Change the<br />
+tag numbers in our .yml file and then scale them back up. This forces the<br />
+containers to download the newly defined version. Note that our downgrade<br />
 process is exactly the same we just update the a tag with an older version.</p>
-<p>The process described above might sound correct to you, however, because we use migrations
-to structure our database the process is flawed. By replaceing the tag and
-just moving to older docker containers, the downgrade function inside our
-migrations never get ran. Instead the downgraded application has no idea
-about the migrations that existed in the newer version that does not in it's
-own. Thus resulting in an inconsistant database state with the version of
+<p>The process described above might sound correct to you, however, because we use migrations<br />
+to structure our database the process is flawed. By replaceing the tag and<br />
+just moving to older docker containers, the downgrade function inside our<br />
+migrations never get ran. Instead the downgraded application has no idea<br />
+about the migrations that existed in the newer version that does not in it's<br />
+own. Thus resulting in an inconsistant database state with the version of<br />
 application deployed.</p>
-<p>My current solution to this issue is to run the migration downgrade for each
-app in our django project manually inside of the existing application container
-. To do this I start out with a diff of the code between the old version and
-the new version. I look for any added migrations and run the command below to
-have django south run through the downgrade methods until it reaches the
+<p>My current solution to this issue is to run the migration downgrade for each<br />
+app in our django project manually inside of the existing application container<br />
+. To do this I start out with a diff of the code between the old version and<br />
+the new version. I look for any added migrations and run the command below to<br />
+have django south run through the downgrade methods until it reaches the<br />
 latest migration in the old code. Then I perform the old migration method.</p>
 <p>Here is a step by step list of the process.</p>
 <p>1) Diff of code.</p>
@@ -59,8 +59,8 @@ latest migration in the old code. Then I perform the old migration method.</p>
 <p>6) Scale the swarm down to 0 nodes.</p>
 <p>7) Change tag number.</p>
 <p>8) Scale the containers back up.</p>
-<p>Do you have any suggestions or any improvements to this process? Comment below
-and link me to other articles you've read about this process. The more we know
+<p>Do you have any suggestions or any improvements to this process? Comment below<br />
+and link me to other articles you've read about this process. The more we know<br />
 together the better our overall solutions can be.</p>
         <hr />
         <p><a href="https://taylorbrazelton.com">Return to the homepage &#10558;</a></p>
