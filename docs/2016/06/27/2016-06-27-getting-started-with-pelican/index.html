@@ -30,24 +30,27 @@
         <h1>Getting Started with Pelican</h1>
         <p><i>Posted on 2016-06-27</i></p>
         <p>I am new to pelican, so in reality this is just the steps I used to setup my pelican blog. Feel free to experiment and do things differently.</p>
-<h3>Create your virtual enviroment.</h3>
-<p>Anytime you are using python, you should always utilize a virtual enviroment. In this tutorial we will use virtualenv. This will prevent us from junking up our global install of python. </p>
-<p>For first timers I suggest visiting the hitchhiker's guide to python, as they have a very <a href="http://docs.python-guide.org/en/latest/dev/virtualenvs/">comprehensive tutorial</a> on getting started with virtual enviroments.</p>
+<h3>Create your virtual environment.</h3>
+<p>Anytime you are using python, you should always utilize a virtual environment. In this tutorial we will use virtualenv. This will prevent us from junking up our global install of python. </p>
+<p>For first timers I suggest visiting the hitchhiker's guide to python, as they have a very <a href="http://docs.python-guide.org/en/latest/dev/virtualenvs/">comprehensive tutorial</a> on getting started with virtual environments.</p>
 <h3>Install Pelican</h3>
-<p>Verify that your virtual enviroment is active so that we can start to install packages. Here we will install pelican and it's helper package Markdown.</p>
-<p><code>pip install pelican Markdown</code></p>
+<p>Verify that your virtual environment is active so that we can start to install packages. Here we will install pelican and it's helper package Markdown.</p>
+<pre><code>pip install pelican Markdown
+</code></pre>
 <h3>Pelican Quick Start</h3>
 <p>Now it's time to setup the site. Run the quick-start command and enter in details such as the site name and description.</p>
-<p><code>pelican-quickstart</code></p>
+<pre><code>pelican-quickstart
+</code></pre>
 <p><em>Note:</em> Make sure you decided on a catchy name!</p>
 <h3>Pick a Theme</h3>
 <p>Pelican comes with a default theme, which I personally dislike. It just doesn't capture my personality very well. Luckily there is a site called <a href="https://github.com/getpelican/pelican-themes">pelican themes</a> that will give us a good selection of 3rd party themes we can use on our site.</p>
-<p>I personally really like the flex theme. Clone the theme of your choice and prep for your first blog post. Make sure you setup your <code>pelicanconf.py</code> file as deamed via the README in the themes repo.</p>
+<p>I personally really like the flex theme. Clone the theme of your choice and prep for your first blog post. Make sure you setup your <code>pelicanconf.py</code> file as deemed via the README in the themes repo.</p>
 <h3>Create your first post</h3>
 <p>Write your first post in markdown and place it inside the <code>content</code> folder. </p>
 <h3>Compile your blog.</h3>
 <p>Time to have pelican generate your static HTML blog for you! Just run the command below. </p>
-<p><code>pelican</code></p>
+<pre><code>pelican
+</code></pre>
 <p>Simply upload your <code>output</code> folder and enjoy!</p>
         <hr />
         <p><a href="https://taylorbrazelton.com">Return to the homepage &#10558;</a></p>

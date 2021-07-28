@@ -19,14 +19,14 @@ This isn't nessesarly a good representation of the best python tools or packages
 
 [gmvault](https://github.com/gaubert/gmvault) - Not a library, but still written in python. It gives me the ability to backup and restore my emails from gmail, locally.
 
-[elasticsearch-dsl-py](https://github.com/elastic/elasticsearch-dsl-py) - Favorite high level library for elasticsearch manipulation. 
+[elasticsearch-dsl-py](https://github.com/elastic/elasticsearch-dsl-py) - Favorite high level library for ElasticSearch manipulation. 
 
 [2to3](https://docs.python.org/2/library/2to3.html) - Great tool for helping move from a python 2 codebase to a python 3 codebase.
 
 [httpie](https://github.com/jkbrzt/httpie) - A good tool for sending HTTP requests without the complexity that is CURL.
 
-[yapf](https://github.com/google/yapf) - Code formatting tool made by google. Very useful in a team enviroment to ensure all code looks as if it was written by a single developer.
+[yapf](https://github.com/google/yapf) - Code formatting tool made by google. Very useful in a team environment to ensure all code looks as if it was written by a single developer.
 
-[rauth](https://github.com/litl/rauth) - Helpful library for people utilizing the OAuth workflow ontop of requests.
+[rauth](https://github.com/litl/rauth) - Helpful library for people utilizing the OAuth workflow on top of requests.
 
 [ptpython](https://github.com/jonathanslenders/ptpython) - Best python REPL.

@@ -35,7 +35,7 @@ def load_content_items(config, content_directory):
                 )
 
             item = toml.loads(frontmatter)
-            item["content"] = markdown.markdown(content, extensions=['nl2br','tables'])
+            item["content"] = markdown.markdown(content, extensions=['nl2br','tables', 'fenced_code'])
             item["slug"] = os.path.splitext(os.path.basename(file.name))[0]
             if config[content_type]["dateInURL"]:
                 item[

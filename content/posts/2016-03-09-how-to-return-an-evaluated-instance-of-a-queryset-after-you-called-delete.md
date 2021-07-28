@@ -17,16 +17,18 @@ We have a Django rest framework endpoint that lists out tasks that are being pro
 
 Load the QuerySet object, force Django to evaluate it into memory, then call the delete query on the actual database. Last but not least, return the data that was evaluated into memory.
 
-Code:
+#### Code:
 
-<pre class="lang:python decode:true"># List forces evaluation of query set so data is now in memory.
-        tasks = list(Task.objects.all())
+```
+# List forces evaluation of query set so data is now in memory.
+tasks = list(Task.objects.all())
 
-        # Have Django delete the successful tasks from the database,
-        # but not from memory.
-        Task.objects.all().filter(status="Successful").delete()
+# Have Django delete the successful tasks from the database,
+# but not from memory.
+Task.objects.all().filter(status="Successful").delete()
 
-        # Return the tasks in memory.
-        return tasks</pre>
+# Return the tasks in memory.
+return tasks
+```
 
 Enjoy!

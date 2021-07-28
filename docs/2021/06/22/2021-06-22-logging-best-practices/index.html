@@ -34,14 +34,14 @@
 <p>Stop following all the online tutorials for your framework that configure your application to store logs directly in files. This is a rookie mistake and makes running your application so much more difficult than it needs to be. Instead, give your ops team better lives by sending your logs to <code>stdout/stderr</code>. This allows OPs to decide how to process and send off logs. They might choose to write them to disk, perform some cleanup data processing, or simply send logs to an external system. By logging directly to stdout/stderr you give them the choice.</p>
 <p>"A twelve-factor app never concerns itself with routing or storage of its output stream." - <a href="https://12factor.net/logs">12 Factor App</a></p>
 <h4>Format Your Logs</h4>
-<p>You don't know how important good, standard formatting can be until you have to sift through multiple log files across different machines. Define a standard formatter and enjoy. I personally like the idea of all logs being provided as JSON dicts. Doing so makes parsing so much easier by logstash. I also, don't have to worry as much about log format changes.</p>
-<h4>Centralize your logs(i.e. devops)</h4>
-<p>This can't be understated. As the software grows so do the sources of your logs. Moving around amonst EC2 instances that log directly to ephemeral storage is a pain. Especially if one of those instances is terminated by autoscaling, which you needed the logs from to help with a customer support ticket. You'll thank me for this tip one day.</p>
-<p>I recommend setting up an ELK stack for this action, or perhaps use a paid tool like datadog.</p>
+<p>You don't know how important good, standard formatting can be until you have to sift through multiple log files across different machines. Define a standard formatter and enjoy. I personally like the idea of all logs being provided as JSON dicts. Doing so makes parsing so much easier by LogStash. I also, don't have to worry as much about log format changes.</p>
+<h4>Centralize your logs(i.e. DevOps)</h4>
+<p>This can't be understated. As the software grows so do the sources of your logs. Moving around amongst EC2 instances that log directly to ephemeral storage is a pain. Especially if one of those instances is terminated by autoscaling, which you needed the logs from to help with a customer support ticket. You'll thank me for this tip one day.</p>
+<p>I recommend setting up an ELK stack for this action, or perhaps use a paid tool like DataDog.</p>
 <h4>Auto vs Programmer Generated Logs</h4>
 <p>The importance of having both auto generated logs and programmer logs can't be pushed enough. Auto-generated logs give you insights into everyday events such as GET and POST events to certain api endpoint, meanwhile programmer logs give you the insight into who did what when. The combination of these two types of logs are instrumental to addressing customer service needs. </p>
 <h4>Date-Time Formats</h4>
-<p>Spitting out datetime values as human-readable seems like a good idea, until you are tasked with parsing through the logs using a datetime range. Use the unambiguous format <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a>. You'll pat yourself on the back for doing this one, as it makes navigating your logs much easier.</p>
+<p>Spitting out date-time values as human-readable seems like a good idea, until you are tasked with parsing through the logs using a date-time range. Use the unambiguous format <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a>. You'll pat yourself on the back for doing this one, as it makes navigating your logs much easier.</p>
 <h4>Add Logging Context</h4>
 <p>It's difficult to navigate logs when they have no context. These are three must haves for any SAAS application.</p>
 <ul>

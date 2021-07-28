@@ -12,7 +12,7 @@ published = true
 
 Recently I've noticed a green dot next to my webcam staying on beyond my Google Hangout/Zoom meetings. This is obviously a problem so I've set out to find the solution.
 
-Ends up it is pretty simple. All you need is lsof and grep.
+Ends up it is pretty simple. All you need is `lsof` and `grep`.
 
 To find out if your built-in webcam is being used:
 

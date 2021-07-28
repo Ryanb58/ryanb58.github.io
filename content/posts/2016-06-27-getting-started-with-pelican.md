@@ -11,15 +11,15 @@ published = true
 
 I am new to pelican, so in reality this is just the steps I used to setup my pelican blog. Feel free to experiment and do things differently.
 
-### Create your virtual enviroment.
+### Create your virtual environment.
 
-Anytime you are using python, you should always utilize a virtual enviroment. In this tutorial we will use virtualenv. This will prevent us from junking up our global install of python. 
+Anytime you are using python, you should always utilize a virtual environment. In this tutorial we will use virtualenv. This will prevent us from junking up our global install of python. 
 
-For first timers I suggest visiting the hitchhiker's guide to python, as they have a very [comprehensive tutorial](http://docs.python-guide.org/en/latest/dev/virtualenvs/) on getting started with virtual enviroments.
+For first timers I suggest visiting the hitchhiker's guide to python, as they have a very [comprehensive tutorial](http://docs.python-guide.org/en/latest/dev/virtualenvs/) on getting started with virtual environments.
 
 ### Install Pelican
 
-Verify that your virtual enviroment is active so that we can start to install packages. Here we will install pelican and it's helper package Markdown.
+Verify that your virtual environment is active so that we can start to install packages. Here we will install pelican and it's helper package Markdown.
 
 ```
 pip install pelican Markdown
@@ -39,7 +39,7 @@ pelican-quickstart
 
 Pelican comes with a default theme, which I personally dislike. It just doesn't capture my personality very well. Luckily there is a site called [pelican themes](https://github.com/getpelican/pelican-themes) that will give us a good selection of 3rd party themes we can use on our site.
 
-I personally really like the flex theme. Clone the theme of your choice and prep for your first blog post. Make sure you setup your `pelicanconf.py` file as deamed via the README in the themes repo.
+I personally really like the flex theme. Clone the theme of your choice and prep for your first blog post. Make sure you setup your `pelicanconf.py` file as deemed via the README in the themes repo.
 
 ### Create your first post
 

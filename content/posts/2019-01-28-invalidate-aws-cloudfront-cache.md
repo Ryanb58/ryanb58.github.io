@@ -8,7 +8,7 @@ tags = [
 published = true
 +++++
 
-Today, I needed to invalidate a specific Distribution's cache on AWS Cloudfront. This resulted in me searching through the AWS cli tool's docs. Luckily I was able to uncover a command to accomplish such a task.
+Today, I needed to invalidate a specific Distribution's cache on AWS CloudFront. This resulted in me searching through the AWS cli tool's docs. Luckily I was able to uncover a command to accomplish such a task.
 
 ```
 aws cloudfront create-invalidation --distribution-id DISTRIBUTION_ID --paths /\*

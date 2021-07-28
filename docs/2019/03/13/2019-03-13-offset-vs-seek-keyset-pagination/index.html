@@ -31,12 +31,14 @@
         <p><i>Posted on 2019-03-13</i></p>
         <p>Today I was focused on defining the standards for pagination on a new product and decided to dialog with a coworker. Below is the idea I threw out:</p>
 <blockquote>
-<p>Any list of items I return from the API will be in this format:<br />
-<code>Javascript
-{
+<p>Any list of items I return from the API will be in this format:</p>
+</blockquote>
+<pre><code class="language-Javascript">{
   results: [],
   next: null,
-}</code></p>
+}
+</code></pre>
+<blockquote>
 <p>The only thing that would identify the result as a part of pagination.. would be the value of the “next” key. If it is <code>null</code> then there would be NO more items beyond the ones I have already returned. IFF there are more items.. I would return something like.. next: 2 Thus identifying that there is a page=2 of items more for the client. And depending on page=2's results… it’s next field would identify if there is a page=3 more of results.. etc..</p>
 <p>What do you think? I feel like I am at a point that making these pagination standards will be critical for the future of other api endpoints..</p>
 </blockquote>
@@ -53,17 +55,17 @@ Therefore, both of these ideas are implementation preferences defining how the o
 <p>Taking all this into account I thought there had to be a better way.</p>
 <h2>What is Offset Pagination?</h2>
 <p>Perhaps you have seen SQL Query similar to this before:</p>
-<p><code>SQL
-SELECT id, firstname, lastname, created, updated
+<pre><code class="language-SQL">SELECT id, firstname, lastname, created, updated
 FROM contacts
 ORDER BY id
-LIMIT 0, 10</code></p>
+LIMIT 0, 10
+</code></pre>
 <p>The query above grabs the first 10 records. Similarly, to get the 10 records on page 4 we would execute the following:</p>
-<p><code>SQL
-SELECT id, firstname, lastname, created, updated
+<pre><code class="language-SQL">SELECT id, firstname, lastname, created, updated
 FROM contacts
 ORDER BY id
-LIMIT 30, 10</code></p>
+LIMIT 30, 10
+</code></pre>
 <h2>Problems with Offset Pagination:</h2>
 <ul>
 <li>
@@ -87,36 +89,37 @@ LIMIT 30, 10</code></p>
 <p>The seek method is based on filtering out the data from the previous pages. We do this by having the client send the ID of the last record listed. We take that ID and place it in the WHERE clause providing us with only relevant data. Obviously this implementation requires your data to be <a href="http://www.unicode.org/notes/tn9/tn9-1.html">deterministically sortable</a>.</p>
 <p>"Don't touch what you don't need" - <a href="https://youtu.be/GzMaN-IX7wQ?t=655">Youtube</a></p>
 <p>An example SQL statement follows:</p>
-<p><code>SQL
-SELECT id, firstname, lastname
+<pre><code class="language-SQL">SELECT id, firstname, lastname
 FROM contacts
 WHERE id &lt; 10
 ORDER BY id DESC
-LIMIT 10;</code></p>
+LIMIT 10;
+</code></pre>
 <p>Therefore from a REST perspective the results would appear as so:</p>
-<p><code>Javascript
-{
-  "results": [
+<pre><code class="language-Javascript">{
+  &quot;results&quot;: [
     {id: 1, ... },
     {id: 2, ... }
     {id: 3, ... }
     ...
     {id: 10, ... }
   ]
-}</code></p>
+}
+</code></pre>
 <p>And when the user wanted to get the next page of items, they simply tack on the <code>last_id</code> from the previous pagination result.</p>
-<p><code>GET /api/contacts?last_id=10</code></p>
+<pre><code>GET /api/contacts?last_id=10
+</code></pre>
 <p>Resulting:</p>
-<p><code>Javascript
-{
-  "results": [
+<pre><code class="language-Javascript">{
+  &quot;results&quot;: [
     {id: 11, ... },
     {id: 12, ... }
     {id: 13, ... }
     ...
     {id: 20, ... }
   ]
-}</code></p>
+}
+</code></pre>
 <p>For more information about seek/keyset please visit the following sources.</p>
 <p>Sources:</p>
 <p>https://blog.jooq.org/2013/10/26/faster-sql-paging-with-jooq-using-the-seek-method/</p>

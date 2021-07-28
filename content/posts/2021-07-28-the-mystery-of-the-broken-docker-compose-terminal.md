@@ -10,7 +10,7 @@ tags = [
 published = true
 +++++
 
-I have been highly annoyed over the last few weeks with my docker containers terminal prompts. It would mess up everytime I'd try to use tab complete, up/down arrows, or copy/paste. The screne would display weird characters and sometimes just not respond.
+I have been highly annoyed over the last few weeks with my docker containers terminal prompts. It would mess up every time I'd try to use tab complete, up/down arrows, or copy/paste. The screen would display weird characters and sometimes just not respond.
 
 Command I use to get a shell inside of a new container:
 

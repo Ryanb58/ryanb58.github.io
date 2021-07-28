@@ -30,38 +30,37 @@
         <h1>Alembic Load Config From Env Vars</h1>
         <p><i>Posted on 2019-02-25</i></p>
         <p>Today, while trying to integrate the python library <a href="https://pypi.org/project/alembic/">Alembic</a> into a micro-service, I ran into the issue of needing to load the database connection string from a few environmental variables. Needless to say I went ahead and did some googling and compiled this solution:</p>
-<p>```python<br />
-def get_url():<br />
-    """Custom method to get config from the environmental variables.</p>
-<pre><code>Based on: http://allan-simon.github.io/blog/posts/python-alembic-with-environment-variables/
-"""
-return "postgres://{}:{}@{}/{}".format(
-    os.getenv("DB_USER", "username"),
-    os.getenv("DB_PASSWORD", "password"),
-    os.getenv("DB_HOST", "database_host"),
-    os.getenv("DB_NAME", "database_name"),
+<pre><code class="language-python">def get_url():
+    &quot;&quot;&quot;Custom method to get config from the environmental variables.
+
+    Based on: http://allan-simon.github.io/blog/posts/python-alembic-with-environment-variables/
+    &quot;&quot;&quot;
+    return &quot;postgres://{}:{}@{}/{}&quot;.format(
+        os.getenv(&quot;DB_USER&quot;, &quot;username&quot;),
+        os.getenv(&quot;DB_PASSWORD&quot;, &quot;password&quot;),
+        os.getenv(&quot;DB_HOST&quot;, &quot;database_host&quot;),
+        os.getenv(&quot;DB_NAME&quot;, &quot;database_name&quot;),
+    )
+</code></pre>
+<p>Then inside the <code>run_migrations_offline</code> method I swapped out:</p>
+<pre><code class="language-python">url = config.get_main_option(&quot;sqlalchemy.url&quot;)
+</code></pre>
+<p>for</p>
+<pre><code class="language-python">url = get_url()
+</code></pre>
+<p>and</p>
+<pre><code class="language-python">connectable = engine_from_config(
+    config.get_section(config.config_ini_section),
+    prefix=&quot;sqlalchemy.&quot;,
+    poolclass=pool.NullPool,
 )
 </code></pre>
-<p>```</p>
-<p>Then inside the <code>run_migrations_offline</code> method I swapped out:<br />
-<code>python
-url = config.get_main_option("sqlalchemy.url")</code></p>
 <p>for</p>
-<p><code>python
-url = get_url()</code></p>
-<p>and</p>
-<p><code>python
-connectable = engine_from_config(
-    config.get_section(config.config_ini_section),
-    prefix="sqlalchemy.",
-    poolclass=pool.NullPool,
-)</code></p>
-<p>for</p>
-<p><code>python
-connectable = create_engine(get_url())</code></p>
+<pre><code class="language-python">connectable = create_engine(get_url())
+</code></pre>
 <p>Don't forget the import:</p>
-<p><code>python
-from sqlalchemy import create_engine</code></p>
+<pre><code class="language-python">from sqlalchemy import create_engine
+</code></pre>
 <p>Enjoy!</p>
         <hr />
         <p><a href="https://taylorbrazelton.com">Return to the homepage &#10558;</a></p>

@@ -55,7 +55,8 @@ latest migration in the old code. Then I perform the old migration method.</p>
 <p>2) Write down oldest added migration number and app name</p>
 <p>3) Exec into the application docker container.</p>
 <p>4) Migrate backwards :</p>
-<p><code>./manage.py migrate appname 0000</code></p>
+<pre><code>./manage.py migrate appname 0000
+</code></pre>
 <p>5) Exit out of container.</p>
 <p>6) Scale the swarm down to 0 nodes.</p>
 <p>7) Change tag number.</p>

@@ -29,7 +29,7 @@ Recently I needed to dockerize an application for a virtual onprem. However, at 
 
 9) Use your layers wisely. Put commands that are more likely to change towards the bottom.
 
-10) Lint your dockerfile using [FromLatest](https://www.fromlatest.io/)
+10) Lint your Dockerfile using [FromLatest](https://www.fromlatest.io/)
 
 #### Sources:
 - https://ubuntu.com/blog/we-reduced-our-docker-images-by-60-with-no-install-recommends

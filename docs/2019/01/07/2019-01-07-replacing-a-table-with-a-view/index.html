@@ -46,11 +46,10 @@ a view.</p>
  - Depend on the indexes of the table below. You can not put an index on a view.</p>
 <h4>This is how I did it:</h4>
 <p>1) Rename the table.</p>
-<p><code>SQL
-RENAME TABLE chapters TO chapters_all;</code></p>
+<pre><code class="language-SQL">RENAME TABLE chapters TO chapters_all;
+</code></pre>
 <p>2) Create a simple view that filters out deleted data.</p>
-<p><code>SQL
-CREATE VIEW `chapters` AS
+<pre><code class="language-SQL">CREATE VIEW `chapters` AS
     SELECT
         `chapters_all`.`id` AS `id`,
         `chapters_all`.`school` AS `school`,
@@ -59,7 +58,8 @@ CREATE VIEW `chapters` AS
     FROM
         `chapters_all`
     WHERE
-        (`chapters_all`.`removed` = 0)</code></p>
+        (`chapters_all`.`removed` = 0)
+</code></pre>
 <p>Hope this helps!</p>
         <hr />
         <p><a href="https://taylorbrazelton.com">Return to the homepage &#10558;</a></p>

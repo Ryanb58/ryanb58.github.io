@@ -11,21 +11,21 @@ published = true
 
 ##### 1) Chunk Your App Into Pieces
 
- - Turn everything into a MICROservice.
+ - Turn everything into a MICRO service.
 
 ##### 2) Modernize Access To Data
 
  - Implement Data Access via API's or using a similar data store.
 
  - Developers should not care what it looks like on the backend. They should be
-  able to easly access and manipulate the data in a secure way using their
+  able to easily access and manipulate the data in a secure way using their
    favorite languages.
 
 ##### 3) Replace Decaying Code
 
  - Slowly replace chunks of your application one piece at a time.
 
-#### Benifits:
+#### Benefits:
 
  - Consolidation of Virtual Machines.
 
@@ -33,7 +33,7 @@ published = true
 
  - Scaling services is easy.
 
- - Chatops
+ - ChatOps
 
  - Use Open Source Technology
 
