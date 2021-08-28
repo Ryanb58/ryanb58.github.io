@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+    <title>How to Encrypt an Existing RDS Instance at REST</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
+    <script src="https://app.sitepixel.io/pixel/index.js" id="widgetjs" site_id="10" />
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-LD3MQXQGQ2');
+    </script>
+</head>
+
+    <body>
+        <nav><ul>
+    <li><a href="/">Home</a></li>
+    
+        <li><a href="/about/">About</a></li>
+    
+</ul></nav>
+
+        <h1>How to Encrypt an Existing RDS Instance at REST</h1>
+        <p><i>Posted on 2021-08-28</i></p>
+        <p>Make sure that anything connected to your database is using an DNS entry to connect. If they connect directly to the AWS Endpoint, then you will have to manually update your application to connect to a "new" endpoint after it is created.</p>
+<p>1) Create a snapshot of the database.<br />
+2) Clone the snapshot and enable "encryption".<br />
+3) Restore the snapshot to an instance of similar configuration. Make sure you check your VPC, subnets, security groups, Parameter group, and Option groups.<br />
+4) Update the DNS entry to point to the new instance.<br />
+5) Stop the unencrypted instance.<br />
+6) Verify the application still works.<br />
+7) Delete the stopped unencrypted instances.</p>
+<p>Enjoy!</p>
+        <hr />
+        <p><a href="https://taylorbrazelton.com">Return to the homepage &#10558;</a></p>
+    </body>
+</html>
