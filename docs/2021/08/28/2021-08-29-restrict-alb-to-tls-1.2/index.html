@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+    <title>How to Restrict an AWS Application Load Balancer to TLS 1.2</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
+    <script src="https://app.sitepixel.io/pixel/index.js" id="widgetjs" site_id="10" />
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-LD3MQXQGQ2');
+    </script>
+</head>
+
+    <body>
+        <nav><ul>
+    <li><a href="/">Home</a></li>
+    
+        <li><a href="/about/">About</a></li>
+    
+</ul></nav>
+
+        <h1>How to Restrict an AWS Application Load Balancer to TLS 1.2</h1>
+        <p><i>Posted on 2021-08-28</i></p>
+        <p>This weekend, I restricted the use of TLS to 1.2 and higher. Figure I'd document it a bit here.</p>
+<p>1) Navigate to the Load Balancers page(under VPCs)<br />
+2) Select the ALB you want to update.<br />
+3) Click on the <code>Listeners</code> tab.<br />
+4) Select the HTTPS listener.<br />
+5) Click edit.<br />
+6) Change the security policy to <code>ELBSecurityPolicy-FS-1-2-Res-2020-10</code> or something more up to date.<br />
+7) Click the <code>Update</code> button in the top right.</p>
+<p>Here is a list of the different types of security policies that you can enable via AWS.</p>
+<p><a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html">https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html</a></p>
+<p>Hopefully, you don't have to do these updates manually, but it still helps to know how. Use IaC, it helps a ton in the long run.</p>
+<p>Enjoy!</p>
+        <hr />
+        <p><a href="https://taylorbrazelton.com">Return to the homepage &#10558;</a></p>
+    </body>
+</html>
