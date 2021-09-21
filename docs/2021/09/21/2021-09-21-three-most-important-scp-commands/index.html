@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+    <title>Most Important SCP Commands</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
+    <script src="https://app.sitepixel.io/pixel/index.js" id="widgetjs" site_id="10" />
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-LD3MQXQGQ2');
+    </script>
+</head>
+
+    <body>
+        <nav><ul>
+    <li><a href="/">Home</a></li>
+    
+        <li><a href="/about/">About</a></li>
+    
+</ul></nav>
+
+        <h1>Most Important SCP Commands</h1>
+        <p><i>Posted on 2021-09-21</i></p>
+        <p>SCP is a command that allows you to copy files and directories securely between two hosts. </p>
+<h2>Upload a file from local to remote host.</h2>
+<pre><code>scp -i ~/.ssh/id_rsa client.rpm ubuntu@10.x.x.100:/remote/directory
+</code></pre>
+<h2>Upload a directory from local to remote host.</h2>
+<pre><code>scp -i ~/.ssh/id_rsa -r /home/user/documents ubuntu@10.x.x.100:/remote/directory
+</code></pre>
+<h2>Download a file from a remote machine.</h2>
+<pre><code>scp ubuntu@10.x.x.100:/remote/client.rpm /local/directory
+</code></pre>
+<p>Enjoy!</p>
+        <hr />
+        <p><a href="https://taylorbrazelton.com">Return to the homepage &#10558;</a></p>
+    </body>
+</html>
