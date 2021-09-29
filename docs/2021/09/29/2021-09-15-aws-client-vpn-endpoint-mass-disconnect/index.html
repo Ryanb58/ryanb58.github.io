@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+    <title>AWS Client VPN Endpoint Mass Disconnect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
+    <script src="https://app.sitepixel.io/pixel/index.js" id="widgetjs" site_id="10" />
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-LD3MQXQGQ2');
+    </script>
+</head>
+
+    <body>
+        <nav><ul>
+    <li><a href="/">Home</a></li>
+    
+        <li><a href="/about/">About</a></li>
+    
+</ul></nav>
+
+        <h1>AWS Client VPN Endpoint Mass Disconnect</h1>
+        <p><i>Posted on 2021-09-29</i></p>
+        <h3>Problem:</h3>
+<p>A scary thing happened recently. Everyone at work lost access to our companies VPN. All of our applications run within an internal network hosted on AWS and most of my coworkers need to connect in order to do their jobs. Sadly, this VPN was setup by a previous employee who didn't document anything.</p>
+<h3>Solving It:</h3>
+<p>Immediately I checked my own connection TunnelBlick and found the following exception:</p>
+<pre><code>2021-09-15 14:25:13.798239 VERIFY OK: depth=0, CN=aws-client-vpn-clear.clearui.com
+2021-09-15 14:26:13.435099 TLS Error: TLS key negotiation failed to occur within 60 seconds (check your network connectivity)
+2021-09-15 14:26:13.435885 TLS Error: TLS handshake failed
+2021-09-15 14:26:13.436066 SIGUSR1[soft,tls-error] received, process restarting
+</code></pre>
+<p>Looks like there was an issue with the handshake for our TLS encryption... or so I thought. Ends up this is a side effect of our Certificate Revocation List expiring!</p>
+<h3>What is a Certificate Revocation List(CRL)?</h3>
+<p>A CRL is a list of certificates that are revoked before their expiration date.</p>
+<p>For example, each individual employee at a company has a certificate that grants them access to the companies cloud servers. One day, a coworker decides to quit. If their certificate is still valid then they can continue to login to the companies servers and possibly abuse that access if their certificate has not yet expired. To address this, we add their certificate to a list that prevent them from accessing your companies servers anymore. Then when their cert expires, it will be removed from the CRL as it posses no more threat.</p>
+<h3>How to Issue a new CRL!</h3>
+<ol>
+<li>Clone the following tool: <a href="https://github.com/OpenVPN/easy-rsa/">Easy-RSA</a>.</li>
+<li>Navigate into the repo and into its <code>easyrsa3</code> sub folder.</li>
+<li>Generate a new CRL.</li>
+</ol>
+<pre><code>./easyrsa gen-crl
+</code></pre>
+<ol>
+<li>Navigate to VPC &gt; Client VPN Endpoint.</li>
+<li>Select the endpoint that stopped working.</li>
+<li>Choose Actions &gt; Import Client Certificate CRL.</li>
+<li>Copy over your CRL file you generated in step 3 and submit.</li>
+</ol>
+<p>Once the steps above are completed, you should be able to connect to your VPN Endpoint again.</p>
+<p>Enjoy!</p>
+<p>Update: Looks like AWS already has this process documented:<br />
+<a href="https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/cvpn-working-certificates.html">https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/cvpn-working-certificates.html</a></p>
+        <hr />
+        <p><a href="https://taylorbrazelton.com">Return to the homepage &#10558;</a></p>
+    </body>
+</html>
