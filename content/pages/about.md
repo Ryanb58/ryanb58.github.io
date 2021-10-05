@@ -2,16 +2,29 @@ title = "About"
 published = true
 +++++
 
-Hello, I'm Taylor. Just another Software Engineer and Entrepreneur floating around the web.
+Hello, I'm Taylor.
 
-Day to day, I carry around a tiny orange notebook where I write down loads of ideas. From products, to shower thoughts; I am always trying to push my creative thinking.
+I carry around a tiny orange notebook where I write down most of my ideas.
 
-I tend to ask a ton of questions which then leads me down rabbitholes on Youtube and Reddit. Most of the time, focused on a topic that is totally unrelated to my own life. For example: I do not need to do any actual home maintance because I live in an apartment, however, if you asked me to replace a sink, put up a LED strip, or attach a bidet; I would figure it out.
+**Current Life Goals:**
+ - Document more day-to-day Problems/Solutions
+ - Work towards building more useful tools
+ - Start my own SAAS
+ - Improve my Communication
 
-On my own I struggle with `idea execution`. Building things is easy at work. Surrounded by my peers, bouncing ideas off one another, discussing the next steps and business requirements. Simple. However, when I start to working on my own ideas I tend to fade. Thus, I am trying to build more things publicily to hold myself accountable.
+I would also like to own one of those really tall sky scrapers one day, but that's a totally different story. 
+
+**My Struggles:**
+ - Idea Execution
+ - Procrastination
+ - Making time for my side projects
+
+At work, building things feels easy. It's when I begin working on my own ideas at home that I tend to fade. Therefore, I am going to attempt this `build in public` mentality that seems to be sweeping the internet.
+
+If you'd like to talk, feel free to reach out over one of the links below.
 
 #### Social Media Links:
 
-[IndieHackers](https://www.indiehackers.com/ryanb58)
+[IndieHackers](https://www.indiehackers.com/mrbrazel)
 
 [Linkedin](https://www.linkedin.com/in/taylorbrazelton/)
