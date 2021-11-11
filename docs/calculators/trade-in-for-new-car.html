@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <script>
+      function calculate(e) {
+        e.preventDefault();
+        var currently_owed_on_car_loan = document.getElementById("currently_owed_on_car_loan").value;
+        var estimated_current_car_resell_value = document.getElementById("estimated_current_car_resell_value").value;
+        var cost_of_new_car = document.getElementById("cost_of_new_car").value;
+
+        // Retrieve new loan cost
+        // Figure out the cost of upgrading. How much more debit will you be in if you do...
+        
+        Formula: 
+        var new_car_credit = cost_of_new_car - estimated_current_car_resell_value;
+        var new_car_loan = cost_of_new_car - new_car_credit;
+        var amount_of_new_debit = new_car_loan - currently_owed_on_car_loan;
+        document.getElementById("result").innerHTML = "Amount Of Credit To Apply Towards New Car: $" + new_car_credit + "<br/>New Loan Total: $" + new_car_loan + "<br/>New debit aquired: $" + amount_of_new_debit
+      }
+    </script>
+  </head>
+  <body>
+    <form>
+      <h1>SIMPLE JAVASCRIPT CALCULATOR</h1>
+      <input id="currently_owed_on_car_loan" type="text" placeholder="Enter First Number" />
+      <input id="estimated_current_car_resell_value" type="text" placeholder="Enter Second Number" />
+      <input id="cost_of_new_car" type="text" placeholder="Enter Second Number" />
+      <input type="submit" onclick="calculate(event)" value="ADD" />
+      <p>Result:</p>
+      <p id="result"></p>
+    </form>
+  </body>
+</html>
