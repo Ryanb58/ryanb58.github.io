@@ -29,3 +29,6 @@ If you'd like to use the old shortcut in teams you can perform the following ste
 8. Set `cmd-shift-v` as shortcut
 
 Enjoy!
+
+Sources: 
+https://techcommunity.microsoft.com/t5/microsoft-teams/copy-formatted-text-and-paste-as-plain-text/m-p/2942254/highlight/true#M102505
