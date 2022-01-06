@@ -2,7 +2,7 @@
 <html>
     
     <head>
-    <title>Bitbucket to Github with Branches and Tags</title>
+    <title>Bitbucket to GitHub with Branches and Tags</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
@@ -28,10 +28,13 @@
     
 </ul></nav>
 
-        <h1>Bitbucket to Github with Branches and Tags</h1>
+        <h1>Bitbucket to GitHub with Branches and Tags</h1>
         <p><i>Posted on 2022-01-06</i></p>
-        <p>1) Create  a new folder where we will clone fresh copies of the remote repo.</p>
-<p>2) Clone the repo using the following</p>
+        <p>1) Create a new folder for the fresh repo clones. Navigate inside.</p>
+<pre><code>mkdir temp/
+cd temp/
+</code></pre>
+<p>2) Clone the repo using the following command.</p>
 <pre><code>git clone --mirror git@bitbucket.com:org/name.git
 </code></pre>
 <p>3) Navigate into the locally cloned repo.</p>

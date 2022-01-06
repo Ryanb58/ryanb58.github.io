@@ -1,4 +1,4 @@
-title = "Bitbucket to Github with Branches and Tags"
+title = "Bitbucket to GitHub with Branches and Tags"
 date = 2022-01-06T17:47:00+02:00
 tags = [
     "Github",
@@ -11,9 +11,14 @@ tags = [
 published = true
 +++++
 
-1) Create  a new folder where we will clone fresh copies of the remote repo.
+1) Create a new folder for the fresh repo clones. Navigate inside.
 
-2) Clone the repo using the following
+```
+mkdir temp/
+cd temp/
+```
+
+2) Clone the repo using the following command.
 ```
 git clone --mirror git@bitbucket.com:org/name.git
 ```
