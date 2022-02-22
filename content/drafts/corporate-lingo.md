@@ -4,7 +4,7 @@
 
 ## Unmanaged Certificates
 
-Self signed or imported certificates.
+Self signed or imported certificates. Certificates that are not "managed" and therefore will not be "auto renewed" upon expiration.
 
 ## Cert Hygiene
 
