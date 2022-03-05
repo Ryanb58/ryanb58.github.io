@@ -1,0 +1,54 @@
+body {
+    font-family: sans-serif;
+    padding: 0px;
+    margin: 0px;
+  }
+  
+  #app {
+    max-width: 960px;
+    margin: auto;
+    padding-top: 10px;
+  }
+  
+  #banner {
+    font-family: "GT Flexa Variable", "GT Flexa", sans-serif;
+    margin: 0px;
+    padding: 2px;
+    font-weight: bold;
+    text-align: center;
+    height: 3rem;
+    width: 100%;
+    background: linear-gradient(
+      107.56deg,
+      rgb(90, 76, 219) 0%,
+      rgb(173, 88, 219) 100%
+    );
+  }
+  
+  #banner-content {
+    margin: auto;
+    max-width: 960px;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 100%;
+    color: white;
+    font-variation-settings: "wght" 500;
+    font-size: 1rem;
+  }
+  
+  #banner-call-to-action {
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    font-weight: 700;
+    font-variation-settings: "wght" 400;
+    color: white;
+    cursor: pointer;
+    transition: opacity 200ms ease 0s;
+    margin-left: 1rem;
+    position: relative;
+  }
+  

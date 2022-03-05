@@ -1,3 +1,5 @@
+<html>
+  
 <script type="importmap">
   {
     "imports": {
@@ -6,7 +8,26 @@
   }
 </script>
 
-<div id="app">{{ message }}</div>
+<style>
+#banner {
+  border: solid 1px lightgrey;
+  width: 100%;
+  position: absolute;
+  display: block;
+  top: 0px;
+}
+</style>
+
+<body>
+  <div id="app">
+    <div id="banner">
+      <div id="banner-content">
+      This is your banner text, centered and fixed at 800px in width
+      </div>
+    </div>
+    {{ message }}
+  </div>
+</body>
 
 <script type="module">
   import { createApp } from "vue";
@@ -19,3 +40,5 @@
     },
   }).mount("#app");
 </script>
+
+</html>
