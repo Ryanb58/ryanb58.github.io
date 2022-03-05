@@ -1,44 +1,107 @@
 <html>
-  
-<script type="importmap">
-  {
-    "imports": {
-      "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
-    }
-  }
-</script>
-
-<style>
-#banner {
-  border: solid 1px lightgrey;
-  width: 100%;
-  position: absolute;
-  display: block;
-  top: 0px;
-}
-</style>
-
-<body>
-  <div id="app">
-    <div id="banner">
-      <div id="banner-content">
-      This is your banner text, centered and fixed at 800px in width
+  <header>
+    <title></title>
+    <script type="importmap">
+      {
+        "imports": {
+          "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="index.css">
+  </header>
+  <body>
+    <div id="app">
+      <div id="banner" :style="cssPropsBanner">
+        <div id="banner-content" :style="cssPropsBannerContent">
+          <p>{{ message }}</p>
+          <div id="banner-call-to-action" :style="cssPropsBannerCallToAction">
+            <a href="#">Read More</a>
+          </div>
+        </div>
+      </div>
+      <div id="content">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nisl
+        metus, aliquam porttitor pulvinar ullamcorper, molestie vitae quam.
+        Quisque bibendum et sapien in lacinia. Phasellus vestibulum et ante non
+        cursus. Nulla scelerisque odio sem. In hac habitasse platea dictumst.
+        Proin turpis sapien, maximus vel nulla in, sagittis molestie neque. Mauris
+        ac odio varius quam posuere rhoncus. Nunc turpis nunc, finibus sed
+        dignissim mattis, dapibus ut eros. Maecenas eu sapien sed arcu maximus
+        porttitor at a augue. Phasellus ut mauris tempor sapien accumsan auctor a
+        non leo. In maximus feugiat lectus, a volutpat diam. Ut pellentesque
+        tempor consectetur. Aliquam pulvinar non sapien a convallis. Cras vitae
+        ultrices mi. Etiam et purus ac ex dictum porta eget quis felis. Phasellus
+        non urna mauris.
+        <p />
       </div>
     </div>
-    {{ message }}
-  </div>
-</body>
+  </body>
 
-<script type="module">
-  import { createApp } from "vue";
+  <script type="module">
+    import { createApp } from "vue";
 
-  createApp({
-    data() {
-      return {
-        message: "Hello World!",
-      };
-    },
-  }).mount("#app");
-</script>
-
+    createApp({
+      data() {
+        return {
+          message: "Limited Time Offer: Use code VIP to get 15$ off any order!",
+          style: {
+            banner: "",
+            bannerContent: "",
+            body: "",
+          },
+        };
+      },
+      computed: {
+        cssPropsBanner() {
+          return {
+            // "--hover-font-size": this.baseFontSize * 2 + "em",
+            // "--bg-hover-color": this.bgHoverColor,
+            // "--hover-content": JSON.stringify(this.hoverContent),
+            "font-family": '"GT Flexa Variable", "GT Flexa", sans-serif',
+            "margin": "0px",
+            "padding": "2px",
+            "font-weight": "bold",
+            "text-align": "center",
+            "height": "3rem",
+            "width": "100%",
+            "background": `linear-gradient(
+              107.56deg,
+              rgb(90, 76, 219) 0%,
+              rgb(173, 88, 219) 100%
+            )`,
+          };
+        },
+        cssPropsBannerContent() {
+          return {
+            "margin": "auto",
+            "max-width": "960px",
+            "display": "flex",
+            "flex-direction": "row",
+            "-webkit-box-align": "center",
+            "align-items": "center",
+            "height": "100%",
+            "color": "white",
+            "font-variation-settings": '"wght" 500',
+            "font-size": "1rem",
+          };
+        },
+        cssPropsBannerCallToAction() {
+          return {
+            "display": "flex",
+            "flex-direction": "row",
+            "-webkit-box-align": "center",
+            "align-items": "center",
+            "font-weight": "700",
+            "font-variation-settings": '"wght" 400',
+            "color": "white",
+            "cursor": "pointer",
+            "transition": "opacity 200ms ease 0s",
+            "margin-left": "1rem",
+            "position": "relative",
+          };
+        },
+      },
+    }).mount("#app");
+  </script>
 </html>
