@@ -14,9 +14,9 @@
     <div id="app">
       <div id="banner" :style="cssPropsBanner">
         <div id="banner-content" :style="cssPropsBannerContent">
-          <p>{{ message }}</p>
+          <p>{{ banner_content }}</p>
           <div id="banner-call-to-action" :style="cssPropsBannerCallToAction">
-            <a href="#">Read More</a>
+            <a :href="banner_call_to_action_link" target="_blank">{{ banner_call_to_action }}</a>
           </div>
         </div>
       </div>
@@ -34,6 +34,24 @@
         ultrices mi. Etiam et purus ac ex dictum porta eget quis felis. Phasellus
         non urna mauris.
         <p />
+        <form>
+          <div>
+            <label for="banner_content">Text</label>
+            <input type="text" v-model="banner_content" name="banner_content">
+          </div>
+          <div>
+            <label for="banner_call_to_action">Call To Action(CTA) Text</label>
+            <input type="text" v-model="banner_call_to_action" name="banner_call_to_action">
+          </div>
+          <div>
+            <label for="banner_call_to_action_link">CTA Link</label>
+            <input type="text" v-model="banner_call_to_action_link" name="banner_call_to_action_link">
+          </div>
+          <div>
+            <label for="banner_content_max_width">Content Max Width</label>
+            <input type="text" v-model="style.bannerContent.maxWidth" name="banner_content_max_width">
+          </div>
+        </form>
       </div>
     </div>
   </body>
@@ -44,10 +62,14 @@
     createApp({
       data() {
         return {
-          message: "Limited Time Offer: Use code VIP to get 15$ off any order!",
+          banner_content: "Limited Time Offer: Use code VIP to get 15$ off any order!",
+          banner_call_to_action: "Read More",
+          banner_call_to_action_link: "#",
           style: {
             banner: "",
-            bannerContent: "",
+            bannerContent: {
+              maxWidth: "960px",
+            },
             body: "",
           },
         };
@@ -75,7 +97,7 @@
         cssPropsBannerContent() {
           return {
             "margin": "auto",
-            "max-width": "960px",
+            "max-width": this.style.bannerContent.maxWidth,
             "display": "flex",
             "flex-direction": "row",
             "-webkit-box-align": "center",
