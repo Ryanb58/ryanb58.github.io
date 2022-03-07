@@ -1,6 +1,15 @@
 <html>
   <header>
-    <title></title>
+    <title>Site Top Banner Generator</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-LD3MQXQGQ2');
+    </script>
     <script type="importmap">
       {
         "imports": {
@@ -21,19 +30,10 @@
         </div>
       </div>
       <div id="content">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nisl
-        metus, aliquam porttitor pulvinar ullamcorper, molestie vitae quam.
-        Quisque bibendum et sapien in lacinia. Phasellus vestibulum et ante non
-        cursus. Nulla scelerisque odio sem. In hac habitasse platea dictumst.
-        Proin turpis sapien, maximus vel nulla in, sagittis molestie neque. Mauris
-        ac odio varius quam posuere rhoncus. Nunc turpis nunc, finibus sed
-        dignissim mattis, dapibus ut eros. Maecenas eu sapien sed arcu maximus
-        porttitor at a augue. Phasellus ut mauris tempor sapien accumsan auctor a
-        non leo. In maximus feugiat lectus, a volutpat diam. Ut pellentesque
-        tempor consectetur. Aliquam pulvinar non sapien a convallis. Cras vitae
-        ultrices mi. Etiam et purus ac ex dictum porta eget quis felis. Phasellus
-        non urna mauris.
-        <p />
+        <p>
+          <h2>Motivation</h2>
+          The previous company I was working for was acquired. We needed to put a banner at the top of the page linking to the parent companies announcement blog post. With everything else going on we ended up hacking it into our wordpress template right before the deadline. I figure I was not the only one with this issue, so I made this simple generator. Enjoy!
+        </p>
         <form>
           <div>
             <label for="banner_content">Text</label>
@@ -51,6 +51,18 @@
             <label for="banner_content_max_width">Content Max Width</label>
             <input type="text" v-model="style.bannerContent.maxWidth" name="banner_content_max_width">
           </div>
+          <div>
+            <label for="job_description">Code Snippet</label>
+            <textarea
+              id="job_description"
+              name="job_description"
+              style="height:200px"
+              :value="codeSnippet"
+              readonly
+              v-on:focus="$event.target.select()" 
+              ref="clone"
+            ></textarea>
+          </div>
         </form>
       </div>
     </div>
@@ -62,7 +74,7 @@
     createApp({
       data() {
         return {
-          banner_content: "Limited Time Offer: Use code VIP to get 15$ off any order!",
+          banner_content: "Limited Time Offer: Use code VIP to get $15 off any order!",
           banner_call_to_action: "Read More",
           banner_call_to_action_link: "#",
           style: {
@@ -74,7 +86,32 @@
           },
         };
       },
+      methods: {
+        copy() {
+          this.$refs.clone.focus();
+          document.execCommand('copy');
+        },
+        getTextFromCSSDict(data) {
+          let output = '';
+          for (const [key, value] of Object.entries(data)) {
+            output += key + ": " + value + ";";
+          }
+          return output;
+        }
+      },
       computed: {
+        codeSnippet() {
+          var element = `
+          <div id="banner" style='${this.cssPropsBannerCSS}'>
+            <div id="banner-content" style='${this.cssPropsBannerContentCSS}'>
+              <p>${this.banner_content}</p>
+              <div id="banner-call-to-action" style='${this.cssPropsBannerCallToActionCSS}'>
+                <a href="${this.banner_call_to_action_link}" target="_blank">${this.banner_call_to_action}</a>
+              </div>
+            </div>
+          </div>`;
+          return element;
+        },
         cssPropsBanner() {
           return {
             // "--hover-font-size": this.baseFontSize * 2 + "em",
@@ -94,6 +131,9 @@
             )`,
           };
         },
+        cssPropsBannerCSS() {
+          return this.getTextFromCSSDict(this.cssPropsBanner);
+        },
         cssPropsBannerContent() {
           return {
             "margin": "auto",
@@ -107,6 +147,9 @@
             "font-variation-settings": '"wght" 500',
             "font-size": "1rem",
           };
+        },
+        cssPropsBannerContentCSS() {
+          return this.getTextFromCSSDict(this.cssPropsBannerContent);
         },
         cssPropsBannerCallToAction() {
           return {
@@ -122,6 +165,9 @@
             "margin-left": "1rem",
             "position": "relative",
           };
+        },
+        cssPropsBannerCallToActionCSS() {
+          return this.getTextFromCSSDict(this.cssPropsBannerCallToAction);
         },
       },
     }).mount("#app");
