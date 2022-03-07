@@ -21,14 +21,17 @@
   </header>
   <body>
     <div id="app">
-      <div id="banner" :style="cssPropsBanner">
+      <!-- <div id="banner" :style="cssPropsBanner">
         <div id="banner-content" :style="cssPropsBannerContent">
           <p>{{ banner_content }}</p>
           <div id="banner-call-to-action" :style="cssPropsBannerCallToAction">
-            <a :href="banner_call_to_action_link" target="_blank">{{ banner_call_to_action }}</a>
+            <a :href="banner_call_to_action_link" style="color:white;text-decoration: none;" target="_blank">{{ banner_call_to_action }}</a>
           </div>
         </div>
-      </div>
+      </div> -->
+      <span v-html="codeSnippet">
+        {{ codeSnippet }}
+      </span>
       <div id="content">
         <p>
           <h2>Motivation</h2>
@@ -74,8 +77,8 @@
     createApp({
       data() {
         return {
-          banner_content: "Limited Time Offer: Use code VIP to get $15 off any order!",
-          banner_call_to_action: "Read More",
+          banner_content: "Pied Piper is now part of Hooli.",
+          banner_call_to_action: "Click here to read more.",
           banner_call_to_action_link: "#",
           style: {
             banner: "",
@@ -106,7 +109,7 @@
             <div id="banner-content" style='${this.cssPropsBannerContentCSS}'>
               <p>${this.banner_content}</p>
               <div id="banner-call-to-action" style='${this.cssPropsBannerCallToActionCSS}'>
-                <a href="${this.banner_call_to_action_link}" target="_blank">${this.banner_call_to_action}</a>
+                <a href="${this.banner_call_to_action_link}" style="color:white;text-decoration: none;" target="_blank">${this.banner_call_to_action}</a>
               </div>
             </div>
           </div>`;
