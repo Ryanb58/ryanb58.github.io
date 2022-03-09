@@ -21,14 +21,6 @@
   </header>
   <body>
     <div id="app">
-      <!-- <div id="banner" :style="cssPropsBanner">
-        <div id="banner-content" :style="cssPropsBannerContent">
-          <p>{{ banner_content }}</p>
-          <div id="banner-call-to-action" :style="cssPropsBannerCallToAction">
-            <a :href="banner_call_to_action_link" style="color:white;text-decoration: none;" target="_blank">{{ banner_call_to_action }}</a>
-          </div>
-        </div>
-      </div> -->
       <span v-html="codeSnippet">
         {{ codeSnippet }}
       </span>
@@ -38,6 +30,11 @@
           The previous company I was working for was acquired. We needed to put a banner at the top of the page linking to the parent companies announcement blog post. With everything else going on we ended up hacking it into our wordpress template right before the deadline. I figure I was not the only one with this issue, so I made this simple generator. Enjoy!
         </p>
         <form>
+          <div>
+            <label for="banner_background_color">Background Color</label>
+            <br />
+            <input type="color" v-model="style.banner.background" name="banner_background_color">
+          </div>
           <div>
             <label for="banner_content">Text</label>
             <input type="text" v-model="banner_content" name="banner_content">
@@ -79,9 +76,11 @@
         return {
           banner_content: "Pied Piper is now part of Hooli.",
           banner_call_to_action: "Click here to read more.",
-          banner_call_to_action_link: "#",
+          banner_call_to_action_link: "https://google.com",
           style: {
-            banner: "",
+            banner: {
+              background: "#7550A6",
+            },
             bannerContent: {
               maxWidth: "960px",
             },
@@ -127,11 +126,12 @@
             "text-align": "center",
             "height": "3rem",
             "width": "100%",
-            "background": `linear-gradient(
-              107.56deg,
-              rgb(90, 76, 219) 0%,
-              rgb(173, 88, 219) 100%
-            )`,
+            // "background": `linear-gradient(
+            //   107.56deg,
+            //   rgb(90, 76, 219) 0%,
+            //   rgb(173, 88, 219) 100%
+            // )`,
+            "background": this.style.banner.background,
           };
         },
         cssPropsBannerCSS() {
