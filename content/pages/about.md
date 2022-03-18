@@ -29,3 +29,8 @@ At work, building things feels easy. It's when I begin working on my own ideas a
 #### Support Me & My Work:
 
 [Buy Me A Coffee](https://www.buymeacoffee.com/mrbrazel)
+
+
+#### Disclaimer
+
+My opinions are my own
