@@ -1,4 +1,4 @@
-title = "Postgres - Server Local Database Backup"
+title = "Quick Postgres Database Backup"
 date = 2022-01-06T17:47:00+02:00
 tags = [
     "aws",
@@ -13,7 +13,7 @@ published = true
 
 Sometimes when working with databases you need a backup. One you can switch to quickly in case things go wrong. I find this particularly helpful when testing out data migrations.
 
-Here are a few SQL commands to accomplish this.
+Here are a few SQL commands I use to accomplish this.
 
 ## Look at Database Size
 
