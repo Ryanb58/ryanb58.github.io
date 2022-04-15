@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+    <title>How To Prevent Mac From Auto Switching Desktops</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-LD3MQXQGQ2');
+    </script>
+</head>
+
+    <body>
+        <nav><ul>
+    <li><a href="/">Home</a></li>
+    
+        <li><a href="/about/">About</a></li>
+    
+        <li><a href="/tools/">Tools</a></li>
+    
+</ul></nav>
+
+        <h1>How To Prevent Mac From Auto Switching Desktops</h1>
+        <p><i>Posted on 2022-04-15</i></p>
+        <p>During my time using a mac, I have run into an annoying issue where the Desktop switcher seem to want me to organize things by application instead of by project. This would lead to frustrations such as when selecting a new desktop, it auto-switching back to the desktop I was previously on.</p>
+<p>Today, I decided to google it. Low and behold I came across <a href="https://discussions.apple.com/thread/4995042?answerId=21918357022#21918357022">jgl777</a> who had the answer.</p>
+<p>Open a terminal and perform the following commands:</p>
+<pre><code>defaults write com.apple.dock workspaces-auto-swoosh -bool NO
+killall Dock
+</code></pre>
+<p>Enjoy your working, NON auto switching mac. </p>
+<p>Sources:<br />
+https://discussions.apple.com/thread/4995042</p>
+        <hr />
+        <p><a href="https://taylorbrazelton.com">Return to the homepage &#10558;</a></p>
+    </body>
+</html>
