@@ -1,4 +1,4 @@
-theme = "custom1"
+theme = "my-custom-theme"
 title = "Taylor Brazelton"
 baseURL = "https://taylorbrazelton.com"
 outputFolder = "docs"
