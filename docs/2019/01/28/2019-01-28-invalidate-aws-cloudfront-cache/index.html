@@ -8,6 +8,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/typebase.css">
+
+    <link rel="stylesheet" href="/3rdparty/highlight/styles/dark.min.css">
+    <script src="/3rdparty/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
     <script>
@@ -30,12 +36,13 @@
 </ul></nav>
 
         <h1>Invalidate AWS CloudFront Cache</h1>
-        <p><i>Posted on 2019-01-28</i></p>
-        <p>Today, I needed to invalidate a specific Distribution's cache on AWS CloudFront. This resulted in me searching through the AWS cli tool's docs. Luckily I was able to uncover a command to accomplish such a task.</p>
+        <div class="post-body">
+            <p>Today, I needed to invalidate a specific Distribution's cache on AWS CloudFront. This resulted in me searching through the AWS cli tool's docs. Luckily I was able to uncover a command to accomplish such a task.</p>
 <pre><code>aws cloudfront create-invalidation --distribution-id DISTRIBUTION_ID --paths /\*
 </code></pre>
 <p>Simply replace DISTRIBUTION_ID with the proper ID and you will be good to go.</p>
+        </div>
         <hr />
-        <p><a href="https://taylorbrazelton.com">Return to the homepage &#10558;</a></p>
+        <p>Posted on 2019-01-28</p>
     </body>
 </html>

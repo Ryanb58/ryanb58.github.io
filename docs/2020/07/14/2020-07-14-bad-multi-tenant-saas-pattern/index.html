@@ -8,6 +8,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/typebase.css">
+
+    <link rel="stylesheet" href="/3rdparty/highlight/styles/dark.min.css">
+    <script src="/3rdparty/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
     <script>
@@ -30,8 +36,8 @@
 </ul></nav>
 
         <h1>The Bad Multi-Tenant SAAS Pattern</h1>
-        <p><i>Posted on 2020-07-14</i></p>
-        <p>Note: This article assumes PostgreSQL.</p>
+        <div class="post-body">
+            <p>Note: This article assumes PostgreSQL.</p>
 <p>Multi-tenant web apps are currently all the rage. Just take a look at the top tech stocks for July of 2020. Adobe, Salesforce, Microsoft... most if not all of them provide some sort of software as a service. SAAS has taken the web by storm, but there is one specific hidden pattern that is being taught that I MUST ADDRESS.</p>
 <p>The majority of data access strategies for multi-tenant applications are garbage. If you search the web, you'll find lots of articles giving multiple solutions to this problem. Let's go ahead and list the main ones below.</p>
 <ul>
@@ -69,7 +75,8 @@
 </li>
 </ul>
 <p>Originally Posted on <a href="https://dev.to/mrbrazel/the-bad-multi-tenant-saas-pattern-20b4">dev.to</a></p>
+        </div>
         <hr />
-        <p><a href="https://taylorbrazelton.com">Return to the homepage &#10558;</a></p>
+        <p>Posted on 2020-07-14</p>
     </body>
 </html>

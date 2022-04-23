@@ -8,6 +8,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/typebase.css">
+
+    <link rel="stylesheet" href="/3rdparty/highlight/styles/dark.min.css">
+    <script src="/3rdparty/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
     <script>
@@ -30,8 +36,8 @@
 </ul></nav>
 
         <h1>Disk Space Clean Up on Linux</h1>
-        <p><i>Posted on 2021-09-01</i></p>
-        <p>Every now and then one of my legacy sites goes down due to having a full disk. This kind of stinks and I should automate a solution. But until then, I figure I'd document all the ways I've gone about "cleaning" them up.</p>
+        <div class="post-body">
+            <p>Every now and then one of my legacy sites goes down due to having a full disk. This kind of stinks and I should automate a solution. But until then, I figure I'd document all the ways I've gone about "cleaning" them up.</p>
 <pre><code>Note: These suggestions are in no particular order.
 </code></pre>
 <p>First you should know how to check your total disk usage. The following command does just that. It gives you a birds eye view of your entire system in human readable form.</p>
@@ -55,7 +61,8 @@
 <pre><code>sudo apt-get clean
 </code></pre>
 <p>Enjoy!</p>
+        </div>
         <hr />
-        <p><a href="https://taylorbrazelton.com">Return to the homepage &#10558;</a></p>
+        <p>Posted on 2021-09-01</p>
     </body>
 </html>

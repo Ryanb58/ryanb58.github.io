@@ -4,8 +4,6 @@
     {{ macros.head(config.title) }}
     <body>
         {{ macros.navigation(content.pages) }}
-        <h1>Posts</h1>
-
         <div class="posts">
             {% for date, group in content.posts_grouped_by_year %}
             <h2>{{ date }}</h2>

@@ -10,7 +10,7 @@ published = true
 
 October 20th, 2021 was the official date the company I worked full time at was acquired by Microsoft. 
 
-### A Bit About The Company:
+## A Bit About The Company:
 
 Our mission at Clear Software is to simplify business software and make people more productive.
 
@@ -21,7 +21,7 @@ We do this by providing two software products that complement each other.
 
 The main business processes we focused on were Order to Cash, Procure to Pay, and Customer Service.
 
-### My Thoughts:
+## My Thoughts:
 
 When I joined, I could feel that the team was right on the cusp of finding it's product-market fit. They had 3 existing customers and had a small influx of cash. My current boss was just promoted to CTO, and he was looking to add a Senior Engineer to his dev team.
 
@@ -29,7 +29,7 @@ Over the last year, David and I have been hard at work putting that final coat o
 
 It has been very exciting to be a part of such a big accomplishment. The CEO and CTO have been nothing but good to me throughout this experience. They have both been focused on giving us the tools and time to perform our jobs. They speak to us 1 to 1, like humans, and ensure our focus is on reducing people's repetitive tasks and ensuring a clean user experience.
 
-### Press Articles:
+## Press Articles:
 
 [Microsoft Power Platform Blog](https://cloudblogs.microsoft.com/powerplatform/2021/10/22/microsoft-acquires-clear-software-to-enhance-connectivity-to-systems-of-record/)
 [Indianapolis Business Journal](https://www.ibj.com/articles/zionsville-based-clear-software-acquired-by-microsoft)

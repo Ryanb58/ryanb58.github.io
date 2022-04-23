@@ -8,6 +8,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/typebase.css">
+
+    <link rel="stylesheet" href="/3rdparty/highlight/styles/dark.min.css">
+    <script src="/3rdparty/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
     <script>
@@ -30,8 +36,8 @@
 </ul></nav>
 
         <h1>How to Restrict an AWS Application Load Balancer to TLS 1.2</h1>
-        <p><i>Posted on 2021-08-28</i></p>
-        <p>This weekend, I restricted the use of TLS to 1.2 and higher. Figure I'd document it a bit here.</p>
+        <div class="post-body">
+            <p>This weekend, I restricted the use of TLS to 1.2 and higher. Figure I'd document it a bit here.</p>
 <p>1) Navigate to the Load Balancers page(under VPCs)<br />
 2) Select the ALB you want to update.<br />
 3) Click on the <code>Listeners</code> tab.<br />
@@ -43,7 +49,8 @@
 <p><a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html">https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html</a></p>
 <p>Hopefully, you don't have to do these updates manually, but it still helps to know how. Use IaC, it helps a ton in the long run.</p>
 <p>Enjoy!</p>
+        </div>
         <hr />
-        <p><a href="https://taylorbrazelton.com">Return to the homepage &#10558;</a></p>
+        <p>Posted on 2021-08-28</p>
     </body>
 </html>

@@ -5,9 +5,10 @@
     <body>
         {{ macros.navigation(content.pages) }}
         <h1>{{ this.title }}</h1>
-        <p><i>Posted on {{ this.date.strftime('%Y-%m-%d') }}</i></p>
-        {{ this.content }}
+        <div class="post-body">
+            {{ this.content }}
+        </div>
         <hr />
-        <p><a href="{{ config.baseURL }}">Return to the homepage &#10558;</a></p>
+        <p>Posted on {{ this.date.strftime('%Y-%m-%d') }}</p>
     </body>
 </html>

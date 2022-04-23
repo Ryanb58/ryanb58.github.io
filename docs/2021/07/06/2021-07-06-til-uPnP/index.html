@@ -8,6 +8,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/typebase.css">
+
+    <link rel="stylesheet" href="/3rdparty/highlight/styles/dark.min.css">
+    <script src="/3rdparty/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
     <script>
@@ -30,8 +36,8 @@
 </ul></nav>
 
         <h1>TIL About uPnP</h1>
-        <p><i>Posted on 2021-07-06</i></p>
-        <p>Today I learned about uPnP.</p>
+        <div class="post-body">
+            <p>Today I learned about uPnP.</p>
 <p>I came across a blog post by <a href="https://kn100.me/turning-upnp-off/">Kevin Norman</a> who talks about how his NAS punched its way through the local consumer router, exposing itself to the world. This sparked my attention, as how could it even do such a thing without human input? From what I remember with my time sitting in a networking class, you had to manually forward ports to allow a locally hosted website to be accessible from the public web. Ends up this isn't the case anymore with a technology called uPnP. </p>
 <p>uPnP stands for Universal Plug and Play. It is a set of networking protocols built on top of TCP/IP stack. According to uPnP-hacks.com it was created back in the 1990s by Microsoft as a competing protocol to Sun's JINI. The main reason for it's development was to allow networking devices to attach themselves to networks in comparison to how a hot swappable hard drive can be added to your NAS box. </p>
 <p>Some interesting use cases:</p>
@@ -46,7 +52,8 @@
 <p>Sources:<br />
  - https://en.wikipedia.org/wiki/Universal_Plug_and_Play<br />
  - http://www.upnp-hacks.org/upnp.html</p>
+        </div>
         <hr />
-        <p><a href="https://taylorbrazelton.com">Return to the homepage &#10558;</a></p>
+        <p>Posted on 2021-07-06</p>
     </body>
 </html>

@@ -8,6 +8,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/typebase.css">
+
+    <link rel="stylesheet" href="/3rdparty/highlight/styles/dark.min.css">
+    <script src="/3rdparty/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
     <script>
@@ -30,8 +36,8 @@
 </ul></nav>
 
         <h1>AWS Client VPN Endpoint Mass Disconnect</h1>
-        <p><i>Posted on 2021-09-29</i></p>
-        <h3>Problem:</h3>
+        <div class="post-body">
+            <h3>Problem:</h3>
 <p>A scary thing happened recently. Everyone at work lost access to our companies VPN. All of our applications run within an internal network hosted on AWS and most of my coworkers need to connect in order to do their jobs. Sadly, this VPN was setup by a previous employee who didn't document anything.</p>
 <h3>Solving It:</h3>
 <p>Immediately I checked my own connection TunnelBlick and found the following exception:</p>
@@ -62,7 +68,8 @@
 <p>Enjoy!</p>
 <p>Update: Looks like AWS already has this process documented:<br />
 <a href="https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/cvpn-working-certificates.html">https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/cvpn-working-certificates.html</a></p>
+        </div>
         <hr />
-        <p><a href="https://taylorbrazelton.com">Return to the homepage &#10558;</a></p>
+        <p>Posted on 2021-09-29</p>
     </body>
 </html>

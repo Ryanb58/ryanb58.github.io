@@ -8,6 +8,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/typebase.css">
+
+    <link rel="stylesheet" href="/3rdparty/highlight/styles/dark.min.css">
+    <script src="/3rdparty/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
     <script>
@@ -30,8 +36,8 @@
 </ul></nav>
 
         <h1>Django Migrations Downgrade in Docker Swarm</h1>
-        <p><i>Posted on 2018-03-02</i></p>
-        <p>Edge cases are a big problem in software engineering, one that I recently ran<br />
+        <div class="post-body">
+            <p>Edge cases are a big problem in software engineering, one that I recently ran<br />
 into while on a beta box was errors being thrown after a downgrade.</p>
 <p>First a little background on the application. It is a django application running<br />
 in a docker container via docker-swarm. Our application upgrade/downgrade<br />
@@ -66,7 +72,8 @@ latest migration in the old code. Then I perform the old migration method.</p>
 <p>Do you have any suggestions or any improvements to this process? Comment below<br />
 and link me to other articles you've read about this process. The more we know<br />
 together the better our overall solutions can be.</p>
+        </div>
         <hr />
-        <p><a href="https://taylorbrazelton.com">Return to the homepage &#10558;</a></p>
+        <p>Posted on 2018-03-02</p>
     </body>
 </html>

@@ -8,6 +8,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/typebase.css">
+
+    <link rel="stylesheet" href="/3rdparty/highlight/styles/dark.min.css">
+    <script src="/3rdparty/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
     <script>
@@ -30,8 +36,8 @@
 </ul></nav>
 
         <h1>Logging Best Practices</h1>
-        <p><i>Posted on 2021-06-22</i></p>
-        <p>Here are just a few bullet points I've gathered over my career about logging.</p>
+        <div class="post-body">
+            <p>Here are just a few bullet points I've gathered over my career about logging.</p>
 <h4>Log to STDOUT/STDERR</h4>
 <p>Stop following all the online tutorials for your framework that configure your application to store logs directly in files. This is a rookie mistake and makes running your application so much more difficult than it needs to be. Instead, give your ops team better lives by sending your logs to <code>stdout/stderr</code>. This allows OPs to decide how to process and send off logs. They might choose to write them to disk, perform some cleanup data processing, or simply send logs to an external system. By logging directly to stdout/stderr you give them the choice.</p>
 <p>"A twelve-factor app never concerns itself with routing or storage of its output stream." - <a href="https://12factor.net/logs">12 Factor App</a></p>
@@ -53,7 +59,8 @@
 </ul>
 <h4>Conclusion</h4>
 <p>At the end of the day, I hope you take logging a bit more seriously. Your customers and users deserve it. Till next time. Peace</p>
+        </div>
         <hr />
-        <p><a href="https://taylorbrazelton.com">Return to the homepage &#10558;</a></p>
+        <p>Posted on 2021-06-22</p>
     </body>
 </html>

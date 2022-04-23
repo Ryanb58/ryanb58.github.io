@@ -8,6 +8,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/typebase.css">
+
+    <link rel="stylesheet" href="/3rdparty/highlight/styles/dark.min.css">
+    <script src="/3rdparty/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
     <script>
@@ -30,8 +36,8 @@
 </ul></nav>
 
         <h1>AWS Vault and MFA Setup on my Mac</h1>
-        <p><i>Posted on 2020-07-21</i></p>
-        <p>Recently, I decided to secure my local machine by downloading and using AWS Vault. To my surprise, setting up MFA with Vault required a step or two more that I wasn't expecting. Here are my findings/steps. </p>
+        <div class="post-body">
+            <p>Recently, I decided to secure my local machine by downloading and using AWS Vault. To my surprise, setting up MFA with Vault required a step or two more that I wasn't expecting. Here are my findings/steps. </p>
 <p>First, I used homebrew to install aws-vault.</p>
 <pre><code>brew cask install aws-vault
 </code></pre>
@@ -54,7 +60,8 @@ mfa_serial=arn:aws:iam::XXXXXXXXXX:mfa/taylor
 </code></pre>
 <p>And when I performed my s3 listing again, it worked.</p>
 <p>Originally Posted on <a href="https://dev.to/mrbrazel/aws-vault-and-mfa-setup-on-my-mac-37dk">dev.to</a></p>
+        </div>
         <hr />
-        <p><a href="https://taylorbrazelton.com">Return to the homepage &#10558;</a></p>
+        <p>Posted on 2020-07-21</p>
     </body>
 </html>

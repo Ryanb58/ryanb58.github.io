@@ -69,3 +69,25 @@ td, th {
   border-bottom-color: rgb(225, 225, 225);
   padding: 1.2rem 1.5rem;
 }
+
+/* Post Specific Styling */
+
+/* Headings */
+.post-body h1 {
+  font-size: 2rem;
+}
+.post-body h2 {
+  font-size: 1.85rem;
+}
+.post-body h3 {
+  font-size: 1.75rem;
+}
+.post-body h4 {
+  font-size: 1.5rem;
+}
+.post-body h5 {
+  font-size: 1.25rem;
+}
+.post-body h6 {
+  font-size: 1rem;
+}
