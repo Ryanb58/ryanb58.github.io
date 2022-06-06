@@ -38,21 +38,22 @@
         <h1>Bye Bye Semantic Versioning, Say Hello To GitDate</h1>
         <div class="post-body">
             <h2>Quick Rant About Semantic Versioning</h2>
-<p>There is inherit information loss when a developer implements Semantic Versioning.</p>
-<p>Taken back a little by that statement? Well lets ask if it's true?</p>
+<p>There is inherit information loss when a developer implements Semantic Versioning.<br />
+Taken back a little by that statement? Well, let's ask if it's true?</p>
 <ul>
-<li>When was the last time you were able to easily tell someone the difference between version 1.2.1 and 1.2.3? </li>
-<li>Can you tell me when version 1.2.1 was released? Was it yesterday? Last year? 10 years ago?</li>
+<li>When was the last time you could tell someone the difference between version 1.2.1 and 1.2.3 quickly?</li>
+<li>Can you tell me when version 1.2.1 was released? Was it yesterday? Last year? Ten years ago?</li>
 <li>What is your company/team's meaning behind a major, minor, and patch increment?</li>
 <li>Who decides when a new major version is released? Is it a person? Maybe it's based on the size of an architectural change?</li>
 <li>What happens to the version where the manager or developer forgot to put together a change log?</li>
 </ul>
-<p>Every developer I've come across so far, knows about Semantic Versioning, but rarely do they have insight into the process at their companies. When I proceed to ask about the changes between version 1.2.1 and 1.2.3, I see them launch off on a new crusade, looking for their change logs.</p>
+<p>Every developer I've come across so far knows about Semantic Versioning, but rarely do they have insight into the process at their companies. When I ask about the changes between version 1.2.1 and 1.2.3, I see them launch off on a new crusade, looking for their change logs.</p>
 <p>This has been going on for years, and I think it's time for a new solution.</p>
-<p>Over the past 5 years I have been implementing what some might consider is heresy, but I see as the future of versioning. </p>
-<h2>Introducing, <strong>GitDate</strong> Versioning</h2>
+<p>Over the past five years, I have been implementing what some might consider is heresy, but I see it as the future of versioning.</p>
+<h2>Introducing, GitDate Versioning</h2>
 <p>The formula is simple:</p>
-<p><code>year.month.day.git-short-code</code></p>
+<pre><code>year.month.day.git-short-code
+</code></pre>
 <p>Here are some examples:</p>
 <ul>
 <li>2021.03.22.d31d336</li>
@@ -63,10 +64,10 @@
 </ul>
 <h4>Pros:</h4>
 <ul>
-<li>Can obviously tell the date the version was created.</li>
-<li>You can look up changes easily by using git compare.</li>
-<li>Your infrastructure team gains visibility into when the software was last released.</li>
-<li>If the release process doesn't create a git tag, you can still clone a copy the code for a specific version.</li>
+<li>Can tell the date the version was created.</li>
+<li>You can look up changes quickly by using git compare.</li>
+<li>Your infrastructure team gained visibility into when the software was last released.</li>
+<li>If the release process doesn't create a git tag, you can still clone a copy of the code for a specific version.</li>
 <li>The format can easily be extended.</li>
 <li>Customers now have visibility into the last time their software was updated.</li>
 </ul>
@@ -75,7 +76,7 @@
 <li>Multiple builds on the same day? You'd been access to the git repo to figure out which came first.</li>
 <li>Customers now have visibility into the last time their software was updated.</li>
 </ul>
-<p>I'm sure people have opinions on this subject, but sadly my blog does not support comments. And I'm not sure it ever will.</p>
+<p>If you have an opinion or suggestion, please leave it in the comments below.</p>
 <p>Enjoy!</p>
         </div>
         <hr />
