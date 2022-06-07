@@ -38,7 +38,7 @@ Here are some examples:
 
 - 2021.03.22.d31d336
 - 2021.03.31.44cf59b1
-- 2021.03.31.44cf59b1
+- 2021.03.31.21df22d1
 - 2021.05.25.5a2ac478
 - 2022.02.14.2c52a964
 
@@ -51,7 +51,7 @@ Here are some examples:
 - Customers now have visibility into the last time their software was updated.
 
 #### Possible Cons:
-- Multiple builds on the same day? You'd been access to the git repo to figure out which came first.
+- Multiple builds on the same day? You would need access to the git repo to figure out which came first.
 - Customers now have visibility into the last time their software was updated.
 
 If you have an opinion or suggestion, please leave it in the comments below.
