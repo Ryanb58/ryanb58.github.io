@@ -11,8 +11,8 @@ published = true
 
 ## Quick Rant About Semantic Versioning
 
-There is inherit information loss when a developer implements Semantic Versioning.
-Taken back a little by that statement? Well, let's ask if it's true?
+There is inherent information loss when a developer implements Semantic Versioning.
+Taken aback a little by that statement? Well, let's ask if it's true?
 
 - When was the last time you could tell someone the difference between version 1.2.1 and 1.2.3 quickly?
 - Can you tell me when version 1.2.1 was released? Was it yesterday? Last year? Ten years ago?
@@ -24,7 +24,7 @@ Every developer I've come across so far knows about Semantic Versioning, but rar
 
 This has been going on for years, and I think it's time for a new solution.
 
-Over the past five years, I have been implementing what some might consider is heresy, but I see it as the future of versioning.
+Over the past five years, I have been implementing what some might consider heresy, but I see it as the future of versioning.
 
 ## Introducing, GitDate Versioning
 
