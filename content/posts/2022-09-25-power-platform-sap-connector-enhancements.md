@@ -12,7 +12,7 @@ tags = [
 published = true
 +++++
 
-    Disclosure, I am on the team that helped build the following...
+    Disclosure, I am on the team that helped build the following.
 
 Last weeek, at the power platform conference, Charles Lamanna, Stephen Siciliano, and Jon Gilman showed off some impressive  Power Platform + SAP integrations.
 
