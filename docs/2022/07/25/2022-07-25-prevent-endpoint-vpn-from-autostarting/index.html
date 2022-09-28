@@ -37,7 +37,17 @@
 
         <h1>Autostart Dark Pattern - Endpoint Security VPN for Mac</h1>
         <div class="post-body">
-            <p>Ethically, every program that has autostart capabilities should have an <strong>easy to access</strong> setting that allows its users to prevent that behavior. Sadly this isn't the case with all software. </p>
+            <h2>UPDATE: 2022/09/28</h2>
+<p>Recently the app began to autostart again. After some researching, I found a <a href="https://superuser.com/a/1370652">stackoverflow comment</a> about another settings file, a setting called <code>KeepAlive</code>, and some more <strong>autostart</strong> files. The command below allows you to turn off the extra settings.</p>
+<pre><code>sudo plutil -replace KeepAlive -bool NO /Library/LaunchAgents/com.checkpoint.eps.gui.plist
+sudo plutil -replace RunAtLoad -bool NO /Library/LaunchDaemons/com.checkpoint.epc.service.plist
+sudo plutil -replace KeepAlive -bool NO /Library/LaunchDaemons/com.checkpoint.epc.service.plist
+</code></pre>
+<p>Then delete the checkpoint security "autostart" files for your user.</p>
+<pre><code>sudo rm -f /Users/${USER}/Library/LaunchAgents/net.pulsesecure.*
+</code></pre>
+<h2>Original Post:</h2>
+<p>Ethically, every program that has autostart capabilities should have an <strong>easy to access</strong> setting that allows its users to prevent that behavior. Sadly this isn't the case with all software. </p>
 <p>For example, I have been working with a client in my 9to5 that uses a software called "Endpoint Security VPN" by Checkpoint which does not provide autostart as an easily configurable setting. Luckily I have a easy solution.</p>
 <p>First open up your terminal.</p>
 <p>Copy &amp; Paste the following command into your terminal to change it's hidden "autostart" setting. </p>
@@ -46,7 +56,8 @@
 <p>Kill the program so the changes take affect.</p>
 <pre><code>pkill -f &quot;Endpoint Security VPN&quot;
 </code></pre>
-<p>Enjoy your reduced boot time! </p>
+<p>Enjoy your reduced boot time! <br />
+make </p>
         </div>
         <hr />
         <p>Posted on 2022-07-25</p>
