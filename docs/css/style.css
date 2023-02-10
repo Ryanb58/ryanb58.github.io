@@ -91,3 +91,8 @@ td, th {
 .post-body h6 {
   font-size: 1rem;
 }
+
+img {
+  max-width: 100%;
+  height: auto;
+}

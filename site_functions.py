@@ -11,7 +11,6 @@ import markdown
 import toml
 
 
-
 def load_config(config_filename):
 
     with open(config_filename, "r") as config_file:
