@@ -27,6 +27,10 @@ build: ## Build the website
 	venv/bin/python build.py
 
 
+.PHONY: dev
+dev: ## Build the website
+	venv/bin/python autobuild.py
+
 .PHONY: run
 run: ## Run an HTTP server
 	python -m http.server --directory docs

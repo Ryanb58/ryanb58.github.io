@@ -1,4 +1,4 @@
-from livereload import Server, shell
+from livereload import Server
 
 from site_functions import load_config
 from site_functions import load_content_items
@@ -12,6 +12,16 @@ def rerender_site():
     output_folder = config.get("outputFolder", "public")
     render_site(config, content, environment, output_folder)
 
+theme_to_watch = load_config("config.toml").get("theme")
 server = Server()
-server.watch('content', rerender_site)
-server.serve(root='docs', port=8000, host='localhost')
+server.watch("content/**/*.md", rerender_site)
+server.watch("themes/{}".format(theme_to_watch), rerender_site)
+server.setHeader('Access-Control-Allow-Origin', '*')
+server.setHeader('Access-Control-Allow-Methods', '*')
+server.serve(
+    root='docs', 
+    port=8000,
+    liveport=8001, 
+    host='localhost',
+    restart_delay=5
+)

@@ -8,7 +8,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/typebase.css">
+    <!-- <link rel="stylesheet" href="/css/typebase.css"> -->
+    <link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
+
 
     <link rel="stylesheet" href="/3rdparty/highlight/styles/dark.min.css">
     <script src="/3rdparty/highlight/highlight.min.js"></script>
@@ -23,6 +25,7 @@
 
     gtag('config', 'G-LD3MQXQGQ2');
     </script>
+    <script src="/livereload.js"></script>
 </head>
 
     <body>
@@ -35,7 +38,7 @@
     
 </ul></nav>
 
-        <h1>The Bad Multi-Tenant SAAS Pattern</h1>
+        <h2>The Bad Multi-Tenant SAAS Pattern</h2>
         <div class="post-body">
             <p>Note: This article assumes PostgreSQL.</p>
 <p>Multi-tenant web apps are currently all the rage. Just take a look at the top tech stocks for July of 2020. Adobe, Salesforce, Microsoft... most if not all of them provide some sort of software as a service. SAAS has taken the web by storm, but there is one specific hidden pattern that is being taught that I MUST ADDRESS.</p>

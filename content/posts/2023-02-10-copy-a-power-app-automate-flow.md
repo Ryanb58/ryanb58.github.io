@@ -13,14 +13,14 @@ tags = [
 published = true
 +++++
 
-1) Open your Flow's Details page.
-2) Select the "Save As" button.
+1. Open your Flow's Details page.
+2. Select the "Save As" button.
 ![Pasted image 20230210094428](/images/2023/Pasted image 20230210094428.png)
-3) Choose a new name and click "Save"
+3. Choose a new name and click "Save"
 ![Pasted image 20230210094520](/images/2023/Pasted image 20230210094520.png)
-4) Enjoy
+4. Enjoy
 
-Working in a Solution?
+### Working in a Solution?
 
 Currently it seems that making a copy of a flow does not automatically place it into the solution your source flow was in. Thus you will probably have to add it manually.
 

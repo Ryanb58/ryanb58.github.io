@@ -8,7 +8,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/typebase.css">
+    <!-- <link rel="stylesheet" href="/css/typebase.css"> -->
+    <link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
+
 
     <link rel="stylesheet" href="/3rdparty/highlight/styles/dark.min.css">
     <script src="/3rdparty/highlight/highlight.min.js"></script>
@@ -23,6 +25,7 @@
 
     gtag('config', 'G-LD3MQXQGQ2');
     </script>
+    <script src="/livereload.js"></script>
 </head>
 
     <body>
@@ -35,7 +38,7 @@
     
 </ul></nav>
 
-        <h1>AWS Vault and MFA Setup on my Mac</h1>
+        <h2>AWS Vault and MFA Setup on my Mac</h2>
         <div class="post-body">
             <p>Recently, I decided to secure my local machine by downloading and using AWS Vault. To my surprise, setting up MFA with Vault required a step or two more that I wasn't expecting. Here are my findings/steps. </p>
 <p>First, I used homebrew to install aws-vault.</p>

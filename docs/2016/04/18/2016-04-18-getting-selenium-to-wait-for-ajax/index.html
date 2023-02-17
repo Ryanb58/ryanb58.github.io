@@ -8,7 +8,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/typebase.css">
+    <!-- <link rel="stylesheet" href="/css/typebase.css"> -->
+    <link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
+
 
     <link rel="stylesheet" href="/3rdparty/highlight/styles/dark.min.css">
     <script src="/3rdparty/highlight/highlight.min.js"></script>
@@ -23,6 +25,7 @@
 
     gtag('config', 'G-LD3MQXQGQ2');
     </script>
+    <script src="/livereload.js"></script>
 </head>
 
     <body>
@@ -35,7 +38,7 @@
     
 </ul></nav>
 
-        <h1>Getting Selenium To Wait For Ajax</h1>
+        <h2>Getting Selenium To Wait For Ajax</h2>
         <div class="post-body">
             <p>Recently, my buddy <a href="http://davidgalitsky.com/">David</a> and I were getting frustrated with some selenium tests. The issue being that we run into several cases where Ajax calls are still being ran while selenium is trying to move on to the next line of code.</p>
 <p>Finally, we figured out the solution below. Basically, what it does is return a Boolean based on the amount of active jQuery Ajax calls that are going on right now. When the boolean is True the WebDriverWait function allows us to move along in our code. It is a simple, but necessary evil to get selenium tests to work as expected.</p>
