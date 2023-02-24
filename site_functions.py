@@ -9,6 +9,7 @@ import inflect
 import jinja2
 import markdown
 import toml
+from shutil import copytree, ignore_patterns
 
 
 def load_config(config_filename):
@@ -80,6 +81,8 @@ def load_templates(template_directory):
 
 
 def render_site(config, content, environment, output_directory):
+
+    # Rewrite the output directory to include the static prefix.
     def render_type(content_type):  # <-- new inner function
         # Post pages
         template = environment.get_template(f"{content_type}.html")
@@ -91,23 +94,40 @@ def render_site(config, content, environment, output_directory):
 
     if os.path.exists(output_directory):
         shutil.rmtree(output_directory)
-    os.mkdir(output_directory)
+    os.makedirs(output_directory + "/static", exist_ok=True)
 
     for content_type in config["types"]:  # <-- new for loop
         render_type(content_type)
 
+    # CNAME Record:
+    with open(f"{output_directory}/CNAME", "w") as file:
+        file.write("taylorbrazelton.com")
+    
     # Homepage
     index_template = environment.get_template("index.html")
     with open(f"{output_directory}/index.html", "w") as file:
         file.write(index_template.render(config=config, content=content))
 
     # Static files from theme
-    distutils.dir_util.copy_tree(
-        "themes/{}/static".format(config.get("theme")), output_directory
+    copytree(
+        "themes/{}/static".format(config.get("theme")), 
+        f"{output_directory}/static", 
+        dirs_exist_ok=True, 
+        ignore=ignore_patterns('*.pyc', '*.txt', '.DStore')
     )
+
+    # distutils.dir_util.copy_tree(
+    #     "themes/{}/static".format(config.get("theme")), f"{output_directory}/static"
+    # )
 
     # Static files from content
     if os.path.exists("content/static"):
-        distutils.dir_util.copy_tree(
-            "content/static".format(config.get("theme")), f"{output_directory}"
+        copytree(
+            "content/static",
+            f"{output_directory}/static", 
+            dirs_exist_ok=True, 
+            ignore=ignore_patterns('*.pyc', '*.txt', '.DStore')
         )
+        # distutils.dir_util.copy_tree(
+        #     "content/static", f"{output_directory}/static"
+        # )
