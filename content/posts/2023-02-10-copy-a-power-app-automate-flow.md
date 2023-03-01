@@ -13,6 +13,15 @@ tags = [
 published = true
 +++++
 
+**Update (03/01/2023)**
+
+- One of my coworkers said that the app is automatically adding newly copied flows into the solution.
+- Updated article with a new introduction paragraph.
+
+**Article**
+
+I'm currently creating a few flows that are about 80% similar but have a few actions that is VERY custom. To keep my process of creation quick I wanted to make a copy of my original flow to help give me a jump start on the other flows. Below are the steps I found to make a copy of an existing flow.
+
 1. Open your Flow's Details page.
 2. Select the "Save As" button.
 ![Pasted image 20230210094428](/static/images/2023/Pasted image 20230210094428.png)
@@ -29,3 +38,5 @@ You can do this by opening up the solution explorer(Home>Solutions) and using th
 ![Pasted image 20230210094840](/static/images/2023/Pasted image 20230210094840.png)
 
 Still have questions? Feel free to reach out to me on [Twitter](https://twitter.com/Ryanb58).
+
+ 
