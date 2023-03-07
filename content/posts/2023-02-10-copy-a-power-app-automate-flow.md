@@ -15,12 +15,12 @@ published = true
 
 **Update (03/01/2023)**
 
-- One of my coworkers said that the app is automatically adding newly copied flows into the solution.
+- One of my coworkers said that the app automatically added the newly copied flows into the solution.
 - Updated article with a new introduction paragraph.
 
 **Article**
 
-I'm currently creating a few flows that are about 80% similar but have a few actions that is VERY custom. To keep my process of creation quick I wanted to make a copy of my original flow to help give me a jump start on the other flows. Below are the steps I found to make a copy of an existing flow.
+I'm currently creating a few flows that are about 80% similar but have a few actions that are VERY custom. To keep my process of creation quick I wanted to make a copy of my original flow to help give me a jump start on the other flows. Below are the steps I found to make a copy of an existing flow.
 
 1. Open your Flow's Details page.
 2. Select the "Save As" button.
@@ -31,9 +31,9 @@ I'm currently creating a few flows that are about 80% similar but have a few act
 
 ### Working in a Solution?
 
-Currently it seems that making a copy of a flow does not automatically place it into the solution your source flow was in. Thus you will probably have to add it manually.
+Currently making a copy of a flow does not automatically place it into the solution your source flow was in. Thus, you will have to add it manually.
 
-You can do this by opening up the solution explorer(Home>Solutions) and using the context menu to add the flow to your existing solution.
+You can do this by opening up the solution explorer (Home>Solutions) and using the context menu to add the flow to your existing solution.
 
 ![Pasted image 20230210094840](/static/images/2023/Pasted image 20230210094840.png)
 
