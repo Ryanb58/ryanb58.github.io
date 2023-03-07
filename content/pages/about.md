@@ -15,7 +15,7 @@ Other than work, I enjoy traveling, reading, and coffee.
  - Work towards building more useful tools
  - Start my own SAAS
 
-At work, building things feels easy. It's when I begin working on my own ideas at home that I tend to fade. Therefore, I want to attempt this `build in public` mentality that seems to be sweeping the internet.
+At work, building things feels easy. It's when I begin working on my own ideas at home that I tend to fade. Therefore, I want to attempt this `build in public` mentality that is sweeping the internet.
 
 #### Social Media Links:
 
