@@ -7,37 +7,43 @@ tags = [
 published = true
 +++++
 
+**Update (03/07/2023)**
+
+- Fixed spelling and grammar mistakes.
+
+**Article**
+
 Today I was focused on defining the standards for pagination on a new product and decided to dialog with a coworker. Below is the idea I threw out:
 
 > Any list of items I return from the API will be in this format:
-```Javascript
+```JavaScript
 {
   results: [],
   next: null,
 }
 ```
 >
-> The only thing that would identify the result as a part of pagination.. would be the value of the “next” key. If it is `null` then there would be NO more items beyond the ones I have already returned. IFF there are more items.. I would return something like.. next: 2 Thus identifying that there is a page=2 of items more for the client. And depending on page=2's results… it’s next field would identify if there is a page=3 more of results.. etc..
+> The only thing that would identify the result as a part of pagination… would be the value of the “next” key. If it is `null` then there would be NO more items beyond the ones I have already returned. IFF there are more items… I would return something like… next: 2 Thus identifying that there is a page=2 of items more for the client. And depending on page=2's results… it’s next field would identify if there were a page=3 more of results… etc.
 >
-> What do you think? I feel like I am at a point that making these pagination standards will be critical for the future of other api endpoints..
+> What do you think? I feel like I am at a point that making these pagination standards will be critical for the future of other API endpoints.
 
-This sparked my coworker to respond:
+This sparked my coworker's response:
 
 > I really like the standard of using `total`, `limit`, and `skip`.
 > With only using `next` you don’t know how many items or pages there are.
 > Using total, limit, and skip really lends itself to handling pagination on the client — where the user can pick how many results to display per page.
 
-Talk about good points. However, their exists similarities between our designs.
-If I was to go implement either of these, they would both end up being an implementation of the offset method. Whether the offsets where to be statically stored on the server or defined by the frontend was the only difference.
-Therefore, both of these ideas are implementation preferences defining how the offsets should be handled and NOT differences in the underlying concept of how we would load the data.
+Talk about good points. However, there exists similarities between our designs.
+If I was to go implement either of these, they would both end up being an implementation of the offset method. Whether the offsets were to be statically stored on the server or defined by the front end was the only difference.
+Therefore, both ideas are implementation preferences defining how the offsets should be handled and NOT differences in the underlying concept of how we would load the data.
 
-This flipped a switch in my brain that reminded me of an issue I faced at an previous job. One day we had customers start to call-in and complain about the time it took to load files(listings) beyond the 10th page. The offset method was used to display the metadata to the user and this ended up being a side effect.
+This flipped a switch in my brain that reminded me of an issue I faced at a previous job. One day we had customers start to call-in and complain about the time it took to load files(listings) beyond the 10th page. The offset method was used to display the metadata to the user, and this ended up being a side effect.
 
 Taking all this into account I thought there had to be a better way.
 
 ## What is Offset Pagination?
 
-Perhaps you have seen SQL Query similar to this before:
+Perhaps you have seen SQL Query like this before:
 
 ```SQL
 SELECT id, firstname, lastname, created, updated
@@ -46,7 +52,7 @@ ORDER BY id
 LIMIT 0, 10
 ```
 
-The query above grabs the first 10 records. Similarly, to get the 10 records on page 4 we would execute the following:
+The query above grabs the first ten records. Similarly, to get the ten records on page 4 we would execute the following:
 
 ```SQL
 SELECT id, firstname, lastname, created, updated
@@ -59,19 +65,19 @@ LIMIT 30, 10
 
  - The higher the offset the [slower the query](https://stackoverflow.com/a/4502426). [Source 2](https://explainextended.com/2009/10/23/mysql-order-by-limit-performance-late-row-lookups/)
 
- - One must calculate the amount of pages based off the total amount of records.
+ - One must calculate the number of pages based off the total number of records.
 
  - Must scan an index to count the number of rows.
 
  - [Complicated solutions to speed up results on pages farther back.](http://www.4guysfromrolla.com/webtech/042606-1.shtml)
 
- - Even with an index, we scan the index, to a sort on the data, then select the items we want to return. The first two steps are obviously a waste as we will be manipulating data that is not relevant to the results we want to return.
+ - Even with an index, we scan the index, sort the data, then select the items we want to return. The first two steps are obviously a waste as we will be manipulating data that is not relevant to the results we want to return.
 
  There MUST be a better way! And there is. Introducing seek pagination.
 
 ## Seek/Keyset Pagination
 
-The seek method is based on filtering out the data from the previous pages. We do this by having the client send the ID of the last record listed. We take that ID and place it in the WHERE clause providing us with only relevant data. Obviously this implementation requires your data to be [deterministically sortable](http://www.unicode.org/notes/tn9/tn9-1.html).
+The seek method is based on filtering out the data from the previous pages. We do this by having the client send the ID of the last record listed. We take that ID and place it in the WHERE clause providing us with only relevant data. Obviously, this implementation requires your data to be [deterministically sortable](http://www.unicode.org/notes/tn9/tn9-1.html).
 
   "Don't touch what you don't need" - [Youtube](https://youtu.be/GzMaN-IX7wQ?t=655)
 
@@ -85,7 +91,7 @@ ORDER BY id DESC
 LIMIT 10;
 ```
 
-Therefore from a REST perspective the results would appear as so:
+Therefore, from a REST perspective the results would appear as so:
 
 ```Javascript
 {
