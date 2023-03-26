@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+    <title>Log Rotation For Docker Containers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!-- <link rel="stylesheet" href="/css/typebase.css"> -->
+    <link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="/static/3rdparty/highlight/styles/dark.min.css">
+    <script src="/static/3rdparty/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-LD3MQXQGQ2');
+    </script>
+    <script src="/livereload.js"></script>
+</head>
+
+    <body>
+        <nav><ul>
+    <li><a href="/">Home</a></li>
+    
+        <li><a href="/about/">About</a></li>
+    
+        <li><a href="/projects/">Projects</a></li>
+    
+        <li><a href="/tools/">Tools</a></li>
+    
+</ul></nav>
+
+        <h2>Log Rotation For Docker Containers</h2>
+        <div class="post-body">
+            <p>One of the twelve pillars of a well behaved application is "Logs". However, having an infinitely expanding file on your server isn't ideal. So let's rotate it.</p>
+<p>Logging parameters.</p>
+<p>Docker allows you to configure two parameters. <code>max-size</code> and <code>max-file</code>. </p>
+<p><code>max-size</code> specifies how big a single file can be. So one container can have a log size as big as X megabytes.</p>
+<p><code>max-file</code> is the maximum number of log files persisted at any given time. </p>
+<p>To change these we simply have to create or edit a daemon settings file.</p>
+<pre><code>sudo vim /etc/docker/daemon.json
+</code></pre>
+<p>and update it's contents to match the following.</p>
+<pre><code class="language-json">{
+    &quot;log-opts&quot;: {
+        &quot;max-size&quot;: &quot;128m&quot;,
+        &quot;max-file&quot;: &quot;128&quot;
+    }
+}
+</code></pre>
+<p>The combination above allows for up to 128 128MB files at once for a total of 16.38400 gigabytes of used storage at max capacity.</p>
+<p>For the change to take effect you'll also need to restart the daemon &amp; all of your containers.</p>
+<pre><code>sudo service docker restart
+</code></pre>
+<pre><code>Pro Tip: Use fluentd &amp; splunk to transform and aggregate your logs to a centralized location.
+</code></pre>
+<p>Sources:<br />
+<a href="https://12factor.net/">12 Factor</a><br />
+<a href="https://docs.docker.com/config/containers/logging/configure/">Docker Documentation</a></p>
+        </div>
+        <hr />
+        <p>Posted on 2023-03-26</p>
+    </body>
+</html>
