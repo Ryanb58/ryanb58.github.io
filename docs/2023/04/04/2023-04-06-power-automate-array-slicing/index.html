@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+    <title>Power Automate Array Slicing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!-- <link rel="stylesheet" href="/css/typebase.css"> -->
+    <link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="/static/3rdparty/highlight/styles/dark.min.css">
+    <script src="/static/3rdparty/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-LD3MQXQGQ2');
+    </script>
+    <script src="/livereload.js"></script>
+</head>
+
+    <body>
+        <nav><ul>
+    <li><a href="/">Home</a></li>
+    
+        <li><a href="/about/">About</a></li>
+    
+        <li><a href="/projects/">Projects</a></li>
+    
+        <li><a href="/tools/">Tools</a></li>
+    
+</ul></nav>
+
+        <h2>Power Automate Array Slicing</h2>
+        <div class="post-body">
+            <p>Recently, I built a power automate flow where I needed a subset of an array. Here are the key takeaways from my experience.</p>
+<p>Array slicing is the process of extracting a specific subset of an existing array. Let's say we have the following array of strings:</p>
+<pre><code class="language-python">array_of_fruit = [&quot;oranges&quot;, &quot;apples&quot;, &quot;pears&quot;, &quot;pineapples&quot;, &quot;melon&quot;]
+</code></pre>
+<p>If we want to extract only "apples" and "pears" from the array, then the resulting slice of the array would be:</p>
+<pre><code class="language-python">favorite_fruits = [&quot;apples&quot;, &quot;oranges&quot;]
+</code></pre>
+<p>In Python, we can easily achieve this by using indexing:</p>
+<pre><code class="language-python">favorite_fruits = array_of_fruit[1:2]
+</code></pre>
+<p>However, in Power Automate, we need to utilize Power FX code like so:</p>
+<pre><code>take(skip([array],start_count),amount_of_items)
+</code></pre>
+<p>In the above snippet, <code>start_count</code> is the index you want your subset to start, and <code>amount_of_items</code> is the number of items you want to extract from your array.</p>
+<p>For example, if we want to extract the same subset of the array as our Python example above, we can use the following Power FX code:</p>
+<pre><code>take(skip(variable('array_of_strings'),1),2)
+</code></pre>
+<p>Would return the same array as the Python variable <code>favorite_fruits</code>.</p>
+<p>Screenshot:</p>
+<p><img alt="Pasted image 20230406095505" src="/static/images/2023/Pasted image 20230406095505.png" /></p>
+<p>Sources:<br />
+<a href="https://powerusers.microsoft.com/t5/General-Power-Automate/How-to-Slice-an-Array/td-p/1594766">How to Slice an Array? - Power Platform Community (microsoft.com)</a></p>
+        </div>
+        <hr />
+        <p>Posted on 2023-04-04</p>
+    </body>
+</html>
