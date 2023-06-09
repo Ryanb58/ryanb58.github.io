@@ -2,22 +2,25 @@ title = "Projects"
 published = true
 +++++
 
-Welcome to my projects page! Here is a list of the things I've tried during my days. These mostly just cover my personal endeavors but every now and then I find a partner willing to dive headfirst into some crazy idea.
+Welcome to the showcase of my creative pursuits! This is a collection of my attempts to bring various ideas to life. While many of these are solo adventures, occasionally I find a collaborator who is just as enthusiastic about plunging into a wild concept.
 
 ### Current:
 
-[Spare Cloud](https://sparecloud.io)
-
- - A cloud backup service.
+TBD
 
 ### Graveyard:
 
-Tiny Tenant:
+Spare Cloud(https://sparecloud.io):
+
+ - A cloud backup service.
+ - Shutdown because of the lack of interest in the idea.
+
+Tiny Tenant(https://tinytenant.io):
 
  - Airbnb automated responses system using Natural Language Processing.
  - Shutdown because Airbnb’s locked down their APIs.
 
-Site Pixel:
+Site Pixel(https://sitepixel.io):
 
  - A widget you can copy & paste the code of into your website that helps you gather feedback from your customers.
  - Initial version had only five smiley faces. A more approachable version of an NPS tool.
