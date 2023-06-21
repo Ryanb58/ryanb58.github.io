@@ -1,0 +1,96 @@
+<!-- My attempt to recreate the compounding interest calculator offered on https://www.investor.gov/financial-tools-calculators/calculators/compound-interest-calculator -->
+
+<html>
+<head>
+    <title>Compounding Interest Calculator</title>
+</head>
+<body>
+    <form id="interestForm">
+        <label for="principal">Principal:</label><br>
+        <input type="number" id="principal" name="principal" value="1000"><br>
+        <label for="rate">Rate:</label><br>
+        <input type="number" step="0.01" id="rate" name="rate" value="0.05"><br>
+        <label for="contribution">Monthly Contribution:</label><br>
+        <input type="number" id="contribution" name="contribution" value="100"><br>
+        <label for="compounded">Times Compounded Per Year:</label><br>
+        <input type="number" id="compounded" name="compounded" value="12"><br>
+        <label for="years">Years:</label><br>
+        <input type="number" id="years" name="years" value="30"><br>
+        <input type="submit" value="Calculate">
+    </form>
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    function calculateCompoundingInterest(p, r, n, t, m) {
+        let ratePerPeriod = r / n;
+        let totalPeriods = n * t;
+    
+        // Calculate the future value of the principal
+        let a = p * Math.pow(1 + ratePerPeriod, totalPeriods);
+    
+        // Calculate the future value of the series of contributions
+        let futureValueOfSeries = m * ((Math.pow(1 + ratePerPeriod, totalPeriods) - 1) / ratePerPeriod);
+    
+        // The total amount is the sum of these two amounts
+        return a + futureValueOfSeries;
+    }
+    
+    let myChart;
+    
+    function drawChart(years, data) {
+        var ctx = document.getElementById('myChart').getContext('2d');
+        if(myChart) {
+            myChart.destroy(); // destroy previous chart if it exists
+        }
+        myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: years,
+                datasets: [{
+                    label: 'Compounding Interest',
+                    data: data,
+                    borderColor: 'rgba(75, 192, 192, 0.6)',
+                    fill: false
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                    title: {
+                        display: true,
+                        text: 'Years'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Amount in $'
+                    },
+                    beginAtZero: true
+                }
+                }
+            }
+        });
+    }
+    
+    document.getElementById('interestForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+    
+        let principal = Number(document.getElementById('principal').value);
+        let rate = Number(document.getElementById('rate').value) / 100; // convert rate to a decimal
+        let compounded = Number(document.getElementById('compounded').value);
+        let years = Array.from({length: Number(document.getElementById('years').value) + 1}, (_, i) => i);
+        let monthlyContribution = Number(document.getElementById('contribution').value);
+        
+        let data = years.map(t => calculateCompoundingInterest(principal, rate, compounded, t, monthlyContribution));
+    
+        drawChart(years, data);
+    });
+    
+    </script>
+</body>
+</html>
