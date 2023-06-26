@@ -12,13 +12,13 @@ TBD
 
 Spare Cloud(https://sparecloud.io):
 
- - A cloud backup service.
- - Shutdown because of the lack of interest in the idea.
+ - A cloud storage backup service.
+ - Shutdown because of the lack of audience interest in the idea.
 
 Tiny Tenant(https://tinytenant.io):
 
  - Airbnb automated responses system using Natural Language Processing.
- - Shutdown because Airbnb’s locked down their APIs.
+ - Shutdown because Airbnb locked down their API.
 
 Site Pixel(https://sitepixel.io):
 
