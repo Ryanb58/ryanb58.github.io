@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+    <title>Github Action To Auto Increment a Power Platform Solution's Version</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!-- <link rel="stylesheet" href="/css/typebase.css"> -->
+    <link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="/static/3rdparty/highlight/styles/dark.min.css">
+    <script src="/static/3rdparty/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script defer type="text/javascript" src="https://api.pirsch.io/pirsch-extended.js"
+    id="pirschextendedjs"
+    data-code="RYys8Gv7BBXOVN1yCX9qtVpduGH52QKc"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-LD3MQXQGQ2');
+    </script>
+    <script src="/livereload.js"></script>
+</head>
+
+    <body>
+        <nav><ul>
+    <li><a href="/">Home</a></li>
+    
+        <li><a href="/about/">About</a></li>
+    
+        <li><a href="/projects/">Projects</a></li>
+    
+        <li><a href="/tools/">Tools</a></li>
+    
+</ul></nav>
+
+        <h2>Github Action To Auto Increment a Power Platform Solution's Version</h2>
+        <div class="post-body">
+            <p>Recently, I've been working with a no-code team to help them build and distribute Power Plaform solutions. You can check out our work <a href="https://github.com/microsoft/Templates-for-Power-Platform">here</a>.</p>
+<p>As I was working towards a build &amp; deploy pipeline, I found that I needed to add auto-versioning to the it. So within my GitHub action I added the following to update the solution online before exporting it and placing it in long term storage.</p>
+<pre><code>on:
+  workflow_dispatch:
+    inputs:
+      solution_name:
+        description: &quot;Name of the Solution in Dataverse environment&quot;
+        required: true
+      version_part_to_update:
+        type: choice
+        description: &quot;Pick what part of the version you'd like to be updated. major.minor.build.revision&quot;
+        required: true
+        default: 'revision'
+        options:
+        - major
+        - minor
+        - build
+        - revision
+
+jobs:
+
+    - id: solution_versioning
+      name: Get current version number
+      run: |
+        $output = pac solution list
+        echo $output
+        $lines = $output -split &quot;`n&quot;
+        $versionLine = $lines | Where-Object { $_ -match &quot;${{ github.event.inputs.solution_name }}&quot; }
+        $version = ($versionLine -split &quot;\s+&quot;)[3]
+        echo &quot;::set-output name=current_version::$version&quot;
+        # Split the version into its components
+        $versionParts = $version.Split('.')
+        # Define an environment variable for the version part to increment
+        $versionPartToIncrement = &quot;${{ github.event.inputs.version_part_to_update }}&quot;
+        switch ($versionPartToIncrement) {
+            &quot;major&quot; { $versionParts[0] = [int]$versionParts[0] + 1 }
+            &quot;minor&quot; { $versionParts[1] = [int]$versionParts[1] + 1 }
+            &quot;build&quot; { $versionParts[2] = [int]$versionParts[2] + 1 }
+            &quot;revision&quot; { $versionParts[3] = [int]$versionParts[3] + 1 }
+            default { throw &quot;Invalid version part to increment: $versionPartToIncrement&quot; }
+        }
+        # Reconstruct the version
+        $newVersion = &quot;{0}.{1}.{2}.{3}&quot; -f $versionParts[0], $versionParts[1], $versionParts[2], $versionParts[3]
+        echo &quot;::set-output name=new_version::$newVersion&quot;
+        $newVersionWithUnderscores = &quot;{0}_{1}_{2}_{3}&quot; -f $versionParts[0], $versionParts[1], $versionParts[2], $versionParts[3]
+        echo &quot;::set-output name=new_version_with_underscores::$newVersionWithUnderscores&quot;        
+
+    - name: Increment the online version
+      run: pac solution online-version --solution-name &quot;${{ github.event.inputs.solution_name }}&quot; --solution-version ${{ steps.solution_versioning.outputs.new_version }}
+
+
+</code></pre>
+<p>Hopefully this can help others. Enjoy!</p>
+        </div>
+        <hr />
+        <p>Posted on 2023-07-07</p>
+    </body>
+</html>
