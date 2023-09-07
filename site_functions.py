@@ -4,12 +4,37 @@ import os
 import pathlib
 import re
 import shutil
+from datetime import datetime
 
 import inflect
 import jinja2
 import markdown
 import toml
 from shutil import copytree, ignore_patterns
+from feedgenerator import Rss201rev2Feed
+
+from html.parser import HTMLParser
+
+class MyHTMLParser(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.text = []
+
+    def handle_data(self, data):
+        self.text.append(data)
+
+    def get_text(self):
+        return ''.join(self.text).lstrip()
+
+def remove_html_tags(text):
+    parser = MyHTMLParser()
+    parser.feed(text)
+    return parser.get_text()
+
+# # Test the function
+# html_text = "<p>This is <em>an example</em> string.</p>"
+# result = remove_html_tags(html_text)
+# print(result)  # Output: "This is an example string."
 
 
 def load_config(config_filename):
@@ -36,6 +61,7 @@ def load_content_items(config, content_directory):
                 )
 
             item = toml.loads(frontmatter)
+            item["content_stripped_of_html"] = remove_html_tags(content)
             item["content"] = markdown.markdown(content, extensions=['nl2br','tables', 'fenced_code', 'pymdownx.magiclink'])
             item["slug"] = os.path.splitext(os.path.basename(file.name))[0]
             if config[content_type]["dateInURL"]:
@@ -75,6 +101,38 @@ def load_content_items(config, content_directory):
     return content_types
 
 
+def generate_rss_feed(content):
+    """Using the data passed in, generate an RSS feed."""
+
+    def truncate_at_word(input_string, max_length):
+        if len(input_string) <= max_length:
+            return input_string
+        else:
+            truncated = input_string[:max_length]
+            return truncated[:truncated.rfind(' ')]
+
+    # Initialize the feed
+    feed = Rss201rev2Feed(
+        title="Taylor Brazelton's Blog",
+        link="https://taylorbrazelton.com",
+        description="Updates and posts from Taylor Brazelton",
+        language="en",
+    )
+    blog_posts = content["posts"]
+    # Populate the feed with items (blog posts)
+    for post in blog_posts:
+        feed.add_item(
+            title=post['title'],
+            link=f"https://taylorbrazelton.com{post['url']}",
+            description=truncate_at_word(post['content_stripped_of_html'], 128),
+            pubdate=post['date']
+        )
+
+    # Generate RSS feed as a string
+    rss_output = feed.writeString('utf-8')
+    return rss_output
+
+
 def load_templates(template_directory):
     file_system_loader = jinja2.FileSystemLoader(template_directory)
     return jinja2.Environment(loader=file_system_loader)
@@ -102,7 +160,13 @@ def render_site(config, content, environment, output_directory):
     # CNAME Record:
     with open(f"{output_directory}/CNAME", "w") as file:
         file.write("taylorbrazelton.com")
-    
+
+    # RSS & Atom Feeds
+    os.makedirs(output_directory + "/feed", exist_ok=True)
+    with open(output_directory + "/feed/rss.xml", 'w', encoding='utf-8') as f:
+        rss_output = generate_rss_feed(content)
+        f.write(rss_output)
+
     # Homepage
     index_template = environment.get_template("index.html")
     with open(f"{output_directory}/index.html", "w") as file:
