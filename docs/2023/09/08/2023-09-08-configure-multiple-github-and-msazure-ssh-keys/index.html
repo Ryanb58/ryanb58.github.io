@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+    <title>How to Configure Multiple SSH Keys for GitHub and Azure DevOps Repos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!-- <link rel="stylesheet" href="/css/typebase.css"> -->
+    <link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="/static/3rdparty/highlight/styles/dark.min.css">
+    <script src="/static/3rdparty/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script defer type="text/javascript" src="https://api.pirsch.io/pirsch-extended.js"
+    id="pirschextendedjs"
+    data-code="RYys8Gv7BBXOVN1yCX9qtVpduGH52QKc"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-LD3MQXQGQ2');
+    </script>
+    <script src="/livereload.js"></script>
+</head>
+
+    <body>
+        <nav><ul>
+    <li><a href="/">Home</a></li>
+    
+        <li><a href="/about/">About</a></li>
+    
+        <li><a href="/projects/">Projects</a></li>
+    
+        <li><a href="/tools/">Tools</a></li>
+    
+</ul></nav>
+
+        <h2>How to Configure Multiple SSH Keys for GitHub and Azure DevOps Repos</h2>
+        <div class="post-body">
+            <p>Recently, I've encountered situations where I need to work with multiple git repositories from different sources. This often includes interfacing with repositories on both GitHub and Azure DevOps. Without the proper setup, I encounter generic errors in git, especially when trying to clone new repositories.</p>
+<p>I primarily use SSH keys to manage authentication with these services. To streamline the process, it's useful to configure the <code>~/.ssh/config</code> file to point each host to the appropriate key. Below is an example that you can use for your own configuration.</p>
+<pre><code class="language-shell">Host github.com
+    AddKeysToAgent yes
+    UseKeychain yes # mac only
+    IdentityFile ~/.ssh/github
+    HostName github.com
+
+Host bitbucket.org
+    AddKeysToAgent yes
+    UseKeychain yes # mac only
+    IdentityFile ~/.ssh/bitbucket
+    HostName bitbucket.org
+
+Host vs-ssh.visualstudio.com
+    AddKeysToAgent yes
+    UseKeychain yes # mac only
+    IdentityFile ~/.ssh/your-azure-devops
+    HostName vs-ssh.visualstudio.com
+    IdentitiesOnly yes
+    PubkeyAcceptedAlgorithms +ssh-rsa
+    HostkeyAlgorithms +ssh-rsa
+    Host ssh.dev.azure.com
+
+HostName ssh.dev.azure.com
+    User git
+    AddKeysToAgent yes
+    UseKeychain yes # mac only
+    IdentityFile ~/.ssh/your-azure-devops
+    IdentitiesOnly yes
+    PubkeyAcceptedAlgorithms +ssh-rsa
+    HostkeyAlgorithms +ssh-rsa
+</code></pre>
+<p>Enjoy!</p>
+        </div>
+        <hr />
+        <p>Posted on 2023-09-08</p>
+    </body>
+</html>
