@@ -15,6 +15,7 @@ from feedgenerator import Rss201rev2Feed
 
 from html.parser import HTMLParser
 
+
 class MyHTMLParser(HTMLParser):
     def __init__(self):
         super().__init__()
@@ -24,12 +25,14 @@ class MyHTMLParser(HTMLParser):
         self.text.append(data)
 
     def get_text(self):
-        return ''.join(self.text).lstrip()
+        return "".join(self.text).lstrip()
+
 
 def remove_html_tags(text):
     parser = MyHTMLParser()
     parser.feed(text)
     return parser.get_text()
+
 
 # # Test the function
 # html_text = "<p>This is <em>an example</em> string.</p>"
@@ -62,7 +65,10 @@ def load_content_items(config, content_directory):
 
             item = toml.loads(frontmatter)
             item["content_stripped_of_html"] = remove_html_tags(content)
-            item["content"] = markdown.markdown(content, extensions=['nl2br','tables', 'fenced_code', 'pymdownx.magiclink'])
+            item["content"] = markdown.markdown(
+                content,
+                extensions=["nl2br", "tables", "fenced_code", "pymdownx.magiclink", "md_mermaid"],
+            )
             item["slug"] = os.path.splitext(os.path.basename(file.name))[0]
             if config[content_type]["dateInURL"]:
                 item[
@@ -91,6 +97,7 @@ def load_content_items(config, content_directory):
 
     # Group posts by year, so we can display them easier on the FE.
     from itertools import groupby
+
     # sort posts by date descending first
     # should be done with database query, but here's how otherwise
     posts = content_types["posts"]
@@ -109,7 +116,7 @@ def generate_rss_feed(content):
             return input_string
         else:
             truncated = input_string[:max_length]
-            return truncated[:truncated.rfind(' ')]
+            return truncated[: truncated.rfind(" ")]
 
     # Initialize the feed
     feed = Rss201rev2Feed(
@@ -122,14 +129,14 @@ def generate_rss_feed(content):
     # Populate the feed with items (blog posts)
     for post in blog_posts:
         feed.add_item(
-            title=post['title'],
+            title=post["title"],
             link=f"https://taylorbrazelton.com{post['url']}",
-            description=truncate_at_word(post['content_stripped_of_html'], 128),
-            pubdate=post['date']
+            description=truncate_at_word(post["content_stripped_of_html"], 128),
+            pubdate=post["date"],
         )
 
     # Generate RSS feed as a string
-    rss_output = feed.writeString('utf-8')
+    rss_output = feed.writeString("utf-8")
     return rss_output
 
 
@@ -163,7 +170,7 @@ def render_site(config, content, environment, output_directory):
 
     # RSS & Atom Feeds
     os.makedirs(output_directory + "/feed", exist_ok=True)
-    with open(output_directory + "/feed/rss.xml", 'w', encoding='utf-8') as f:
+    with open(output_directory + "/feed/rss.xml", "w", encoding="utf-8") as f:
         rss_output = generate_rss_feed(content)
         f.write(rss_output)
 
@@ -174,10 +181,10 @@ def render_site(config, content, environment, output_directory):
 
     # Static files from theme
     copytree(
-        "themes/{}/static".format(config.get("theme")), 
-        f"{output_directory}/static", 
-        dirs_exist_ok=True, 
-        ignore=ignore_patterns('*.pyc', '*.txt', '.DStore')
+        "themes/{}/static".format(config.get("theme")),
+        f"{output_directory}/static",
+        dirs_exist_ok=True,
+        ignore=ignore_patterns("*.pyc", "*.txt", ".DStore"),
     )
 
     # distutils.dir_util.copy_tree(
@@ -188,9 +195,9 @@ def render_site(config, content, environment, output_directory):
     if os.path.exists("content/static"):
         copytree(
             "content/static",
-            f"{output_directory}/static", 
-            dirs_exist_ok=True, 
-            ignore=ignore_patterns('*.pyc', '*.txt', '.DStore')
+            f"{output_directory}/static",
+            dirs_exist_ok=True,
+            ignore=ignore_patterns("*.pyc", "*.txt", ".DStore"),
         )
         # distutils.dir_util.copy_tree(
         #     "content/static", f"{output_directory}/static"

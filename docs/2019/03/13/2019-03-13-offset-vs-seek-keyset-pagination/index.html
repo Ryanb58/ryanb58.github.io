@@ -29,7 +29,12 @@
 
     gtag('config', 'G-LD3MQXQGQ2');
     </script>
-    <script src="/livereload.js"></script>
+    <!-- <script src="/livereload.js"></script> -->
+
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    </script>
+
 </head>
 
     <body>
@@ -61,14 +66,14 @@
 }
 </code></pre>
 <blockquote>
-<p>The only thing that would identify the result as a part of pagination… would be the value of the “next” key. If it is <code>null</code> then there would be NO more items beyond the ones I have already returned. IFF there are more items… I would return something like… next: 2 Thus identifying that there is a page=2 of items more for the client. And depending on page=2's results… it’s next field would identify if there were a page=3 more of results… etc.</p>
+<p>The only thing that would identify the result as a part of pagination would be the value of the next key. If it is <code>null</code> then there would be NO more items beyond the ones I have already returned. IFF there are more items I would return something like next: 2 Thus identifying that there is a page=2 of items more for the client. And depending on page=2's results its next field would identify if there were a page=3 more of results etc.</p>
 <p>What do you think? I feel like I am at a point that making these pagination standards will be critical for the future of other API endpoints.</p>
 </blockquote>
 <p>This sparked my coworker's response:</p>
 <blockquote>
 <p>I really like the standard of using <code>total</code>, <code>limit</code>, and <code>skip</code>.<br />
-With only using <code>next</code> you don’t know how many items or pages there are.<br />
-Using total, limit, and skip really lends itself to handling pagination on the client — where the user can pick how many results to display per page.</p>
+With only using <code>next</code> you dont know how many items or pages there are.<br />
+Using total, limit, and skip really lends itself to handling pagination on the client  where the user can pick how many results to display per page.</p>
 </blockquote>
 <p>Talk about good points. However, there exists similarities between our designs.<br />
 If I was to go implement either of these, they would both end up being an implementation of the offset method. Whether the offsets were to be statically stored on the server or defined by the front end was the only difference.<br />

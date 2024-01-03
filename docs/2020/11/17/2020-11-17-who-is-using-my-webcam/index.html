@@ -29,7 +29,12 @@
 
     gtag('config', 'G-LD3MQXQGQ2');
     </script>
-    <script src="/livereload.js"></script>
+    <!-- <script src="/livereload.js"></script> -->
+
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    </script>
+
 </head>
 
     <body>
@@ -55,7 +60,7 @@
 <pre><code>lsof | grep VDC
 </code></pre>
 <p>For me the VDC command was the on that finally worked. Example Output:</p>
-<pre><code>~/ » lsof | grep VDC                                                                                                                                       1 ↵ tbrazelton@drpepper
+<pre><code>~/  lsof | grep VDC                                                                                                                                       1  tbrazelton@drpepper
 
 Google      343 tbrazelton  txt       REG                1,5       424176 1152921500312556127 /System/Library/Frameworks/CoreMediaIO.framework/Versions/A/Resources/VDC.plugin/Contents/MacOS/VDC
 Slack       355 tbrazelton  txt       REG                1,5       424176 1152921500312556127 /System/Library/Frameworks/CoreMediaIO.framework/Versions/A/Resources/VDC.plugin/Contents/MacOS/VDC

@@ -29,7 +29,12 @@
 
     gtag('config', 'G-LD3MQXQGQ2');
     </script>
-    <script src="/livereload.js"></script>
+    <!-- <script src="/livereload.js"></script> -->
+
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    </script>
+
 </head>
 
     <body>
@@ -46,7 +51,7 @@
 
         <h2>Docker Image Size Reduction</h2>
         <div class="post-body">
-            <p>Recently I needed to dockerize an application for a virtual onprem. However, at the end of my project I ended up with a docker image that was 8.4 GB. This is HUGE in terms of size for a container. Thus, I went on a short journey to minimize the image using the following techniques.</p>
+            <p>Recently I needed to dockerize an application for a virtual onprem. However, at the end of my project I ended up with a docker image that was 8.4GB. This is HUGE in terms of size for a container. Thus, I went on a short journey to minimize the image using the following techniques.</p>
 <p>1) Prevent APT from installing recommended packages by adding the following parameter to every apt-get install command: <code>--no-install-recommends</code>.</p>
 <p>2) Added a <code>.dockerignore</code> file. This allows one to define a list of folders/file globs to ignore when building your Dockerfile.</p>
 <p>3) Reduced the amount of layers by merging related commands.</p>

@@ -3,6 +3,7 @@ from site_functions import load_content_items
 from site_functions import load_templates
 from site_functions import render_site
 
+
 def main():
     config = load_config("config.toml")
     content = load_content_items(config, "content")
