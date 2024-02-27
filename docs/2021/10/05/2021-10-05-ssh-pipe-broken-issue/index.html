@@ -53,8 +53,7 @@
         <div class="post-body">
             <h2>Problem:</h2>
 <p>My laptop struggles at keeping an SSH connection alive with its default settings. See my pipe break below.</p>
-<pre><code>ubuntu@ip-10-106-2-194:~$ client_loop: send disconnect: Broken pipe
-</code></pre>
+<pre class="highlight"><code>ubuntu@ip-10-106-2-194:~$ client_loop: send disconnect: Broken pipe</code></pre>
 <p>This is very annoying, especially if you are attempting something that requires long intervals of inactivity between commands.</p>
 <h2>Solution:</h2>
 <p>Glancing through the SSH documentation, I found two settings that looked to be of importance. </p>
@@ -63,17 +62,15 @@
 <li>ClientAliveInterval</li>
 </ul>
 <p>They appear to be intervals that can be set on the server or client that send a keep alive request through the connection.</p>
-<p>By setting the <code>ServerAliveInterval</code> on my local machine I found my SSH connections to persist without intervention. </p>
+<p>By setting the <code class="highlight">ServerAliveInterval</code> on my local machine I found my SSH connections to persist without intervention. </p>
 <p>File: ~/.ssh/config:</p>
-<pre><code>ServerAliveInterval 120
-</code></pre>
-<p>I also went ahead and put the <code>ClientAliveInterval</code> setting into my personal AWS boxes.</p>
-<p>File: /etc/ssh/sshd_config</p>
-<pre><code>ClientAliveInterval 120
-</code></pre>
+<pre class="highlight"><code>ServerAliveInterval 120</code></pre>
+<p>I also went ahead and put the <code class="highlight">ClientAliveInterval</code> setting into my personal AWS boxes.</p>
+<p>File: /etc/ssh/sshd_config
+<pre class="highlight"><code>ClientAliveInterval 120</code></pre></p>
 <p>Enjoy!</p>
 <h4>Sources:</h4>
-<p><a href="https://man.openbsd.org/ssh_config#ServerAliveInterval">https://man.openbsd.org/ssh_config#ServerAliveInterval</a><br />
+<p><a href="https://man.openbsd.org/ssh_config#ServerAliveInterval">https://man.openbsd.org/ssh_config#ServerAliveInterval</a>
 <a href="https://man.openbsd.org/sshd_config#ClientAliveInterval">https://man.openbsd.org/sshd_config#ClientAliveInterval</a></p>
         </div>
         <hr />

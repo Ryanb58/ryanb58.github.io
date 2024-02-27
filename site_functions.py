@@ -12,8 +12,55 @@ import markdown
 import toml
 from shutil import copytree, ignore_patterns
 from feedgenerator import Rss201rev2Feed
+from pymdownx import emoji
 
 from html.parser import HTMLParser
+
+markdown_extensions = [
+    'markdown.extensions.tables',
+    'pymdownx.magiclink',
+    'pymdownx.betterem',
+    'pymdownx.tilde',
+    'pymdownx.emoji',
+    'pymdownx.tasklist',
+    'pymdownx.superfences',
+    'pymdownx.saneheaders',
+    'pymdownx.highlight',
+    'pymdownx.inlinehilite',
+    "md_mermaid"
+]
+
+markdown_extension_configs = {
+    "pymdownx.magiclink": {
+        "repo_url_shortener": True,
+        "repo_url_shorthand": True,
+        "provider": "github",
+        "user": "facelessuser",
+        "repo": "pymdown-extensions"
+    },
+    "pymdownx.tilde": {
+        "subscript": False
+    },
+    "pymdownx.emoji": {
+        "emoji_index": emoji.gemoji,
+        "emoji_generator": emoji.to_png,
+        "alt": "short",
+        "options": {
+            "attributes": {
+                "align": "absmiddle",
+                "height": "20px",
+                "width": "20px"
+            },
+            "image_path": "https://github.githubassets.com/images/icons/emoji/unicode/",
+            "non_standard_image_path": "https://github.githubassets.com/images/icons/emoji/"
+        }
+    },
+    "pymdownx.highlight": {
+        "css_class": "highlight",
+        "guess_lang": True,
+        "use_pygments": False
+    }
+}
 
 
 class MyHTMLParser(HTMLParser):
@@ -67,7 +114,8 @@ def load_content_items(config, content_directory):
             item["content_stripped_of_html"] = remove_html_tags(content)
             item["content"] = markdown.markdown(
                 content,
-                extensions=["nl2br", "tables", "fenced_code", "pymdownx.magiclink", "md_mermaid"],
+                extensions=markdown_extensions,
+                extension_configs=markdown_extension_configs
             )
             item["slug"] = os.path.splitext(os.path.basename(file.name))[0]
             if config[content_type]["dateInURL"]:

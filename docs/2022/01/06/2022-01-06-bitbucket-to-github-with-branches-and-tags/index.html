@@ -52,21 +52,16 @@
         <h2>Bitbucket to GitHub with Branches and Tags</h2>
         <div class="post-body">
             <p>1) Create a new folder for the fresh repo clones. Navigate inside.</p>
-<pre><code>mkdir temp/
-cd temp/
-</code></pre>
-<p>2) Clone the repo using the following command.</p>
-<pre><code>git clone --mirror git@bitbucket.com:org/name.git
-</code></pre>
-<p>3) Navigate into the locally cloned repo.</p>
-<pre><code>cd name.git/
-</code></pre>
-<p>4) Set the new remote</p>
-<pre><code>git remote set-url --push origin git@github.com:org/name.git
-</code></pre>
-<p>5) Push the contents of the repo to the new remote.</p>
-<pre><code>git push --mirror
-</code></pre>
+<pre class="highlight"><code>mkdir temp/
+cd temp/</code></pre>
+<p>2) Clone the repo using the following command.
+<pre class="highlight"><code>git clone --mirror git@bitbucket.com:org/name.git</code></pre></p>
+<p>3) Navigate into the locally cloned repo.
+<pre class="highlight"><code>cd name.git/</code></pre></p>
+<p>4) Set the new remote
+<pre class="highlight"><code>git remote set-url --push origin git@github.com:org/name.git</code></pre></p>
+<p>5) Push the contents of the repo to the new remote.
+<pre class="highlight"><code>git push --mirror</code></pre></p>
 <p>Enjoy!</p>
         </div>
         <hr />

@@ -54,18 +54,16 @@
             <p>Recently, I needed to compare two DLLs with the same name to see if they were the same. However, my existing Unix knowledge was useless as I do not have the Ubuntu subsystem installed.</p>
 <p>So I did what any engineer in my position would do, I asked my more experienced peers. </p>
 <p>A Principal Engineer @ work gave me some guidance. They introduced me to a PowerShell utility named <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-filehash?view=powershell-7.3">Get-FileHash</a> which was exactly what I was looking for.</p>
-<p>In my scenario a user had a version of a .DLL installed on their machine of which I needed to ensure was a specific version. Knowing about <code>Get-FileHash</code> allows me to ask the customer to perform the following command and message us the results.</p>
-<pre><code>PS &gt; Get-FileHash .\sapnco.dll
+<p>In my scenario a user had a version of a .DLL installed on their machine of which I needed to ensure was a specific version. Knowing about <code class="highlight">Get-FileHash</code> allows me to ask the customer to perform the following command and message us the results.</p>
+<pre class="highlight"><code>PS &gt; Get-FileHash .\sapnco.dll
 
 Algorithm       Hash                                                                   Path
 ---------       ----                                                                   ----
-SHA256          E79E3BC34494C5F9102FBFA61AED2B2177A58CB0DE16B812AD0AAF9B6BA3261F       C:\...\sapnco.dll
-</code></pre>
+SHA256          E79E3BC34494C5F9102FBFA61AED2B2177A58CB0DE16B812AD0AAF9B6BA3261F       C:\...\sapnco.dll</code></pre>
 <p>Then I went ahead and performed the command on my own machine and verified the hashes matched.</p>
 <h4>Extra TidBit - Checksum On Linux</h4>
-<pre><code>ubuntu@ip-x-x-x-x:~/app$ sha1sum docker-compose.yml
-2571e3153b90517693c2dfc5668746296023ccda  docker-compose.yml
-</code></pre>
+<pre class="highlight"><code>ubuntu@ip-x-x-x-x:~/app$ sha1sum docker-compose.yml
+2571e3153b90517693c2dfc5668746296023ccda  docker-compose.yml</code></pre>
 <p>Enjoy!</p>
         </div>
         <hr />

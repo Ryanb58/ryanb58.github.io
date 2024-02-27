@@ -54,25 +54,21 @@
             <p>Sometimes when working with databases you need a backup. One you can switch to quickly in case things go wrong. I find this particularly helpful when testing out data migrations.</p>
 <p>Here are a few SQL commands I use to accomplish this.</p>
 <h2>Look at Database Size</h2>
-<pre><code>SELECT pg_size_pretty(pg_database_size('sitepixel'));
-</code></pre>
+<pre class="highlight"><code>SELECT pg_size_pretty(pg_database_size('sitepixel'));</code></pre>
 <h2>Copy A Database</h2>
-<pre><code>CREATE DATABASE sitepixel_backup1
-WITH TEMPLATE sitepixel;
-</code></pre>
+<pre class="highlight"><code>CREATE DATABASE sitepixel_backup1
+WITH TEMPLATE sitepixel;</code></pre>
 <h2>View Active Connections</h2>
-<pre><code>SELECT pid, usename, client_addr
+<pre class="highlight"><code>SELECT pid, usename, client_addr
 FROM pg_stat_activity
-WHERE datname ='sitepixel';
-</code></pre>
+WHERE datname ='sitepixel';</code></pre>
 <h2>Terminate Active Connections</h2>
-<pre><code>SELECT
+<pre class="highlight"><code>SELECT
    pg_terminate_backend(pg_stat_activity.pid)
 FROM pg_stat_activity
 WHERE
    pg_stat_activity.datname = 'sitepixel'
-AND pid &lt;&gt; pg_backend_pid()
-</code></pre>
+AND pid &lt;&gt; pg_backend_pid()</code></pre>
         </div>
         <hr />
         <p>Posted on 2022-03-09</p>

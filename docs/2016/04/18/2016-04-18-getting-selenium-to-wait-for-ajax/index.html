@@ -53,9 +53,8 @@
         <div class="post-body">
             <p>Recently, my buddy <a href="http://davidgalitsky.com/">David</a> and I were getting frustrated with some selenium tests. The issue being that we run into several cases where Ajax calls are still being ran while selenium is trying to move on to the next line of code.</p>
 <p>Finally, we figured out the solution below. Basically, what it does is return a Boolean based on the amount of active jQuery Ajax calls that are going on right now. When the boolean is True the WebDriverWait function allows us to move along in our code. It is a simple, but necessary evil to get selenium tests to work as expected.</p>
-<pre><code>from selenium.webdriver.support.ui import WebDriverWait
-WebDriverWait(self.driver, 5).until(lambda x: self.driver.execute_script(&quot;return $.active == 0&quot;))&lt;/pre&gt;
-</code></pre>
+<pre class="highlight"><code>from selenium.webdriver.support.ui import WebDriverWait
+WebDriverWait(self.driver, 5).until(lambda x: self.driver.execute_script("return $.active == 0"))&lt;/pre&gt;</code></pre>
 <p>** Note requires jQuery</p>
         </div>
         <hr />

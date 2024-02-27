@@ -56,16 +56,15 @@
 <h3>Solution:</h3>
 <p>Load the QuerySet object, force Django to evaluate it into memory, then call the delete query on the actual database. Last but not least, return the data that was evaluated into memory.</p>
 <h4>Code:</h4>
-<pre><code># List forces evaluation of query set so data is now in memory.
+<pre class="highlight"><code># List forces evaluation of query set so data is now in memory.
 tasks = list(Task.objects.all())
 
 # Have Django delete the successful tasks from the database,
 # but not from memory.
-Task.objects.all().filter(status=&quot;Successful&quot;).delete()
+Task.objects.all().filter(status="Successful").delete()
 
 # Return the tasks in memory.
-return tasks
-</code></pre>
+return tasks</code></pre>
 <p>Enjoy!</p>
         </div>
         <hr />

@@ -52,8 +52,8 @@
         <h2>How to Configure Multiple SSH Keys for GitHub and Azure DevOps Repos</h2>
         <div class="post-body">
             <p>Recently, I've encountered situations where I need to work with multiple git repositories from different sources. This often includes interfacing with repositories on both GitHub and Azure DevOps. Without the proper setup, I encounter generic errors in git, especially when trying to clone new repositories.</p>
-<p>I primarily use SSH keys to manage authentication with these services. To streamline the process, it's useful to configure the <code>~/.ssh/config</code> file to point each host to the appropriate key. Below is an example that you can use for your own configuration.</p>
-<pre><code class="language-shell">Host github.com
+<p>I primarily use SSH keys to manage authentication with these services. To streamline the process, it's useful to configure the <code class="highlight">~/.ssh/config</code> file to point each host to the appropriate key. Below is an example that you can use for your own configuration.</p>
+<pre class="highlight"><code class="language-shell">Host github.com
     AddKeysToAgent yes
     UseKeychain yes # mac only
     IdentityFile ~/.ssh/github
@@ -82,8 +82,7 @@ HostName ssh.dev.azure.com
     IdentityFile ~/.ssh/your-azure-devops
     IdentitiesOnly yes
     PubkeyAcceptedAlgorithms +ssh-rsa
-    HostkeyAlgorithms +ssh-rsa
-</code></pre>
+    HostkeyAlgorithms +ssh-rsa</code></pre>
 <p>Enjoy!</p>
         </div>
         <hr />

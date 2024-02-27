@@ -52,13 +52,15 @@
         <h2>How to Encrypt an Existing RDS Instance at REST</h2>
         <div class="post-body">
             <p>Make sure that anything connected to your database is using an DNS entry to connect. If they connect directly to the AWS Endpoint, then you will have to manually update your application to connect to a "new" endpoint after it is created.</p>
-<p>1) Create a snapshot of the database.<br />
-2) Clone the snapshot and enable "encryption".<br />
-3) Restore the snapshot to an instance of similar configuration. Make sure you check your VPC, subnets, security groups, Parameter group, and Option groups.<br />
-4) Update the DNS entry to point to the new instance.<br />
-5) Stop the unencrypted instance.<br />
-6) Verify the application still works.<br />
-7) Delete the stopped unencrypted instances.</p>
+<ol>
+<li>Create a snapshot of the database.</li>
+<li>Clone the snapshot and enable "encryption".</li>
+<li>Restore the snapshot to an instance of similar configuration. Make sure you check your VPC, subnets, security groups, Parameter group, and Option groups.</li>
+<li>Update the DNS entry to point to the new instance.</li>
+<li>Stop the unencrypted instance.</li>
+<li>Verify the application still works.</li>
+<li>Delete the stopped unencrypted instances.</li>
+</ol>
 <p>Enjoy!</p>
         </div>
         <hr />

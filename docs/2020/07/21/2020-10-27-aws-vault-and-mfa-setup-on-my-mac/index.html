@@ -53,25 +53,19 @@
         <div class="post-body">
             <p>Recently, I decided to secure my local machine by downloading and using AWS Vault. To my surprise, setting up MFA with Vault required a step or two more that I wasn't expecting. Here are my findings/steps. </p>
 <p>First, I used homebrew to install aws-vault.</p>
-<pre><code>brew cask install aws-vault
-</code></pre>
+<pre class="highlight"><code>brew cask install aws-vault</code></pre>
 <p>Then I added my profile and followed the instructions which had me provide my Access ID and Secret.</p>
-<pre><code>aws-vault add taylor
-</code></pre>
+<pre class="highlight"><code>aws-vault add taylor</code></pre>
 <p>Then I tried to list out the S3 buckets via:</p>
-<pre><code>aws-vault exec taylor -- aws s3 ls
-</code></pre>
+<pre class="highlight"><code>aws-vault exec taylor -- aws s3 ls</code></pre>
 <p>This resulted in the following error.</p>
-<pre><code>An error occurred (AccessDenied) when calling the ListBuckets operation: Access Denied
-</code></pre>
+<pre class="highlight"><code>An error occurred (AccessDenied) when calling the ListBuckets operation: Access Denied</code></pre>
 <p>So I opened up my AWS config file in Visual Studio Code.</p>
-<pre><code>code ~/.aws/config
-</code></pre>
-<p>Doing so lead me to see that my profile didn't have a <code>mfa_serial</code> variable defined. I found my key in IAM under my own user's Security Credentials tab and added it to the file.</p>
-<p>Now, my config file had the following in it: </p>
-<pre><code>[profile taylor]
-mfa_serial=arn:aws:iam::XXXXXXXXXX:mfa/taylor
-</code></pre>
+<pre class="highlight"><code>code ~/.aws/config</code></pre>
+<p>Doing so lead me to see that my profile didn't have a <code class="highlight">mfa_serial</code> variable defined. I found my key in IAM under my own user's Security Credentials tab and added it to the file.</p>
+<p>Now, my config file had the following in it: 
+<pre class="highlight"><code>[profile taylor]
+mfa_serial=arn:aws:iam::XXXXXXXXXX:mfa/taylor</code></pre></p>
 <p>And when I performed my s3 listing again, it worked.</p>
 <p>Originally Posted on <a href="https://dev.to/mrbrazel/aws-vault-and-mfa-setup-on-my-mac-37dk">dev.to</a></p>
         </div>
