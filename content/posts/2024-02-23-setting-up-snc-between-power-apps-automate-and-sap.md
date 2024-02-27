@@ -235,7 +235,9 @@ C:\sap\libs\sapcryptolib\sapgenpse.exe import_p12 -p SAPSNCSKERB.pse C:\Users\tb
 
 ## Testing Communication
 
-Create a new instant flow in Power Automate. Add an SAP ERP Call Function action to the designer and modify your SAP Connection string to include the following.
+Create a new instant flow in Power Automate. Add an SAP ERP Call Function action to the designer and modify your SAP System string to include the following substituting my system info with your own.
+
+You can find the `SncMyName` of your system under t-code `STRUST` > `SNC SAPCryptolib` (Noted as the subject of your own certificate).
 
 ```json
 {  

@@ -215,7 +215,8 @@ snc/data_protection/max: 3</code></pre></li>
 <li>Trust has now been established between your SAP box and the OPDG box!</li>
 </ol>
 <h2>Testing Communication</h2>
-<p>Create a new instant flow in Power Automate. Add an SAP ERP Call Function action to the designer and modify your SAP Connection string to include the following.</p>
+<p>Create a new instant flow in Power Automate. Add an SAP ERP Call Function action to the designer and modify your SAP System string to include the following substituting my system info with your own.</p>
+<p>You can find the <code class="highlight">SncMyName</code> of your system under t-code <code class="highlight">STRUST</code> &gt; <code class="highlight">SNC SAPCryptolib</code> (Noted as the subject of your own certificate).</p>
 <pre class="highlight"><code class="language-json">{  
     "AppServerHost": "xxx",  
     "Client": "xx",  
