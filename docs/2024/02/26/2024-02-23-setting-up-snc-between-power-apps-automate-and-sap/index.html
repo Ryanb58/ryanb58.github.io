@@ -3,10 +3,7 @@
     
     <head>
     <title>Setting Up SNC between Power Apps/Automate and SAP</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="/static/css/style.css">
     <!-- <link rel="stylesheet" href="/css/typebase.css"> -->
     <link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
@@ -43,13 +40,13 @@
     
         <li><a href="/about/">About</a></li>
     
-        <li><a href="/projects/">Projects</a></li>
+        <li><a href="/creations/">Creations</a></li>
     
         <li><a href="/tools/">Tools</a></li>
     
 </ul></nav>
 
-        <h2>Setting Up SNC between Power Apps/Automate and SAP</h2>
+        <h1>Setting Up SNC between Power Apps/Automate and SAP</h1>
         <div class="post-body">
             <p>My team and I spend our 9 to 5 working on the <a href="https://learn.microsoft.com/en-us/connectors/saperp/">SAP ERP Connector</a> for Power Apps/Automate. A key focus of our work is ensuring secure, encrypted transit when connecting to SAP, particularly for production systems. This vital security measure is designed to protect your data from interception or exposure during transit and to guard against man-in-the-middle attacks.</p>
 <p>While securing connections to SAP, we shift from the typical TLS (Transport Layer Security) to <strong>public key encryption</strong>, known as <a href="https://help.sap.com/doc/saphelp_nw74/7.4.16/en-us/e6/56f466e99a11d1a5b00000e835363f/content.htm?no_cache=true">Secure Network Communications (SNC)</a>. This approach mirrors the standard practice of verifying website security  like checking for the lock icon in a browser's URL bar  but with a focus tailored for SAP's unique requirements.</p>

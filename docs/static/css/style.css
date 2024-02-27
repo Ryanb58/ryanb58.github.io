@@ -1,27 +1,26 @@
+/* Base Styles */
 html {
   border-top: 5px solid #27a822;
 }
 
 body {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   margin: 0 auto;
   max-width: 40em;
-  line-height: 1.25em;
   font-size: 14pt;
-  line-height: 16pt;
+  line-height: 1.6;
+  /* Improved line height for readability */
   text-rendering: optimizeLegibility;
 }
 
+/* Post Title */
 .post-title {
   margin-bottom: 10px;
+  line-height: 1.2;
+  font-size: 14pt;
 }
 
-/* nav ul
-{
-    list-style-type: none;
-    text-align: right;
-} */
-
+/* Navigation */
 nav ul {
   list-style-type: none;
   margin: 0;
@@ -46,46 +45,70 @@ nav li a:hover {
   background-color: #111111;
 }
 
+/* List Styles in Posts */
+.posts ul,
+.posts ol {
+  font-size: 12pt;
+  /* Normal font size for lists */
+}
 
-.posts ul li, .posts ol li {
+.posts ul li,
+.posts ol li {
   padding-left: 0.7em;
   border-left: 4px solid #27a822;
   margin-top: 0.5em;
   margin-bottom: 0.8em;
   list-style: none;
+  /* Normal bullets or numbers */
 }
 
-/* TABLE STYLING */
-td, th {
+/* Table Styling */
+td,
+th {
   border-bottom: 0.1rem solid #e1e1e1;
-  border-bottom-width: 0.1rem;
-  border-bottom-style: solid;
-  border-bottom-color: rgb(225, 225, 225);
   padding: 1.2rem 1.5rem;
 }
 
-/* Post Specific Styling */
-
-/* Headings */
-/* .post-body h1 {
-  font-size: 2rem;
-}
-.post-body h2 {
-  font-size: 1.85rem;
-}
-.post-body h3 {
-  font-size: 1.75rem;
-}
-.post-body h4 {
-  font-size: 1.5rem;
-}
-.post-body h5 {
-  font-size: 1.25rem;
-}
+/* Headings within Post Body */
+.post-body h1,
+.post-body h2,
+.post-body h3,
+.post-body h4,
+.post-body h5,
 .post-body h6 {
-  font-size: 1rem;
-} */
+  margin-top: 1.2em;
+  margin-bottom: 0.8em;
+  line-height: 1.3;
+  color: #1a1a1a;
+  /* Darker shade for emphasis */
+}
 
+.post-body h1 {
+  font-size: 2em;
+}
+
+/* Smaller sizes for headings */
+.post-body h2 {
+  font-size: 1.75em;
+}
+
+.post-body h3 {
+  font-size: 1.5em;
+}
+
+.post-body h4 {
+  font-size: 1.25em;
+}
+
+.post-body h5 {
+  font-size: 1.1em;
+}
+
+.post-body h6 {
+  font-size: 1em;
+}
+
+/* Image Styling */
 img {
   max-width: 100%;
   height: auto;

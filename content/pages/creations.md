@@ -1,14 +1,17 @@
-title = "Projects"
+title = "Creations"
 published = true
 +++++
 
-Welcome to the showcase of my creative pursuits! This is a collection of my attempts to bring various ideas to life. While many of these are solo adventures, occasionally I find a collaborator who is just as enthusiastic about plunging into a wild concept.
+Welcome to my creative portfolio, featuring an array of projects I've developed or am in the process of building. Here, you'll find a diverse range of concepts and creations that I've endeavored to turn into reality. Although I often embark on these journeys independently, sometimes I'm fortunate to team up with fellow enthusiasts who share my passion for an idea.
 
-### Current:
+### Active:
 
-TBD
+[Track Your STR](https://trackyourstr.com):
 
-### Graveyard:
+ - Assist users in tracking material participation hours for Short-Term Rental (STR) properties, a requirement by the IRS to achieve real estate professional status.
+ - This tracking allows users to categorize their rental income as active, enabling deductions from their regular income for tax purposes.
+
+### Retired:
 
 Spare Cloud(https://sparecloud.io):
 
