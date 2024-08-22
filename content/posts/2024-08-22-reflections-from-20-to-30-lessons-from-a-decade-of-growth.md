@@ -55,6 +55,7 @@ published = true
 - Keep a second brain. Currently, I use obsidian to store notes and day to day journey activies.
 - Physical work is a great type of therapy.
 - Craft and tell good stories.
+- A rising tide lifts all boats.
 
 Buh-bye to my Twenties, and Hello to my Thirties!
 
