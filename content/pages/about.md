@@ -4,11 +4,17 @@ published = true
 
 Hi! I'm Taylor. Welcome to my small corner of the internet.
 
-I am passionate about building web applications.
+Building high-quality software is a passion of mine.
 
-I've worked on low-level file systems, web apps to help people manage communities, mobile apps, and mostly enjoy working on backend code using python. Recently I've found myself working with new AI models.
+Interested in how businesses work.
 
-Other than work, I enjoy traveling, reading, movies, and coffee.
+Run at least one half marathon a year.
+
+Fueled by copious amounts of coffee.
+
+Traveler of the ~~USA~~World(starting summer 2024)
+
+Believier that learning shouldn't stop when your education does.
 
 #### Social Media Links:
 
@@ -18,11 +24,10 @@ Other than work, I enjoy traveling, reading, movies, and coffee.
 
 [LinkedIn](https://www.linkedin.com/in/taylorbrazelton/)
 
-
 #### Support Me & My Work:
 
 [Buy Me A Coffee](https://www.buymeacoffee.com/mrbrazel)
 
 #### Disclaimer
 
-My opinions are my own
+My opinions are my own.
