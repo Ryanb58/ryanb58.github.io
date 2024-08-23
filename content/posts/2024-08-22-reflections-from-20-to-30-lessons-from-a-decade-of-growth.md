@@ -56,7 +56,8 @@ published = true
 - Physical work is a great type of therapy.
 - Craft and tell good stories.
 - A rising tide lifts all boats.
+- Slow is smooth and smooth is fast.
 
-Buh-bye to my Twenties, and Hello to my Thirties!
+Farewell to my twenties, and a warm welcome to my thirties! Here’s to embracing new adventures and growth in this exciting new chapter!
 
 - Taylor Brazelton
