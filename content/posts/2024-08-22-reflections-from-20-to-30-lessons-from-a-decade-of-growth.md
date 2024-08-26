@@ -46,7 +46,7 @@ published = true
 - Learn to say “Yes” to opportunities that push you out of your comfort zone.
 - Traveling the world isn’t as scary as it seems — it’s incredibly fun.
 - Enjoy the Journey because the destination isn't always that interesting.
-- Take care of your teeth.
+- [Take care of your teeth.](https://ofwhiskeyandwords.com/wear-sunscreen-by-mary-schmich/)
 - Spend time thinking about your career, not just what you need to accomplish today.
 - Life style changes are more important than diets when adjust ones body composition.
 - Best part(code) is no part(code).
