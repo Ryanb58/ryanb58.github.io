@@ -27,10 +27,10 @@ published = true
 ### False Beliefs I Once Held:
 - You should have everything figured out.
 - Success follows a linear path.
-- You’ll stop making mistakes.
+- You'll stop making mistakes.
 - Money solves all problems.
 - Confidence comes from having all the answers.
-- “Fake it till you make it” is a reliable strategy.
+- "Fake it till you make it" is a reliable strategy.
 - Saying “No” is bad and can close doors.
 
 ### Life Lessons I Learned Along the Way:
@@ -39,7 +39,7 @@ published = true
 - Being nice costs nothing and often pays off in unexpected ways.
 - Helping others achieve their goals is as rewarding as fulfilling your own.
 - Rules are often created without foresight; following them blindly is a mistake.
-- Software isn’t always the solution, but it can be a powerful tool.
+- Software isn't always the solution, but it can be a powerful tool.
 - Ideas are plentiful; the ones who execute them are rare.
 - Perfection is the enemy of progress.
 - IMHO quality beats quantity.
