@@ -11,6 +11,14 @@ Welcome to my creative portfolio, featuring an array of projects I've developed 
  - Assist users in tracking material participation hours for Short-Term Rental (STR) properties, a requirement by the IRS to achieve real estate professional status.
  - This tracking allows users to categorize their rental income as active, enabling deductions from their regular income for tax purposes.
 
+[Cheaper Abroad](https://cheaperabroad.io):
+
+ - Monitor luxury product prices globally. By factoring in currency exchange rates, this tool helps you discover where and what luxury items offer the best value for purchase.
+
+[ERP Jobs](https://erpjobs.io)
+
+ - A job board tailored for professionals specializing in ERP systems.
+
 ### Retired:
 
 Spare Cloud(https://sparecloud.io):
