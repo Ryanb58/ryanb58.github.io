@@ -17,7 +17,7 @@ published = true
 - Worked through four internships.
 - Participated in 4+ hackathons.
 - Graduated from Purdue with a B.S. in Computer Science.
-- Lead a team of 3 to write a Database backed file system using Material Paths.
+- Lead a team of 3 to build and implement a Database backed file system using Material Paths.
 - Became a Senior Software Engineer.
 - Endured healthy stints at 3 startups.
 - Latest startup was acquired by Microsoft.
@@ -27,28 +27,28 @@ published = true
 ### False Beliefs I Once Held:
 - You should have everything figured out.
 - Success follows a linear path.
-- You’ll stop making mistakes eventually.
+- You’ll stop making mistakes.
 - Money solves all problems.
 - Confidence comes from having all the answers.
 - “Fake it till you make it” is a reliable strategy.
 - Saying “No” is bad and can close doors.
 
-### Things I Learned Along the Way:
+### Life Lessons I Learned Along the Way:
 - Big software rewrites are usually a waste of energy, time, and money.
 - Solving business problems should take priority over pursuing technical perfection.
 - Being nice costs nothing and often pays off in unexpected ways.
-- Helping others achieve their goals can be just as rewarding as fulfilling your own.
+- Helping others achieve their goals is as rewarding as fulfilling your own.
 - Rules are often created without foresight; following them blindly is a mistake.
 - Software isn’t always the solution, but it can be a powerful tool.
 - Ideas are plentiful; the ones who execute them are rare.
 - Perfection is the enemy of progress.
-- Quality beats quantity. IMHO.
+- IMHO quality beats quantity.
 - Learn to say “Yes” to opportunities that push you out of your comfort zone.
 - Traveling the world isn’t as scary as it seems — it’s incredibly fun.
 - Enjoy the Journey because the destination isn't always that interesting.
 - Take care of your teeth.
 - Spend time thinking about your career, not just what you need to accomplish today.
-- Life style changes are more important than diets when trying to loose or gain weight.
+- Life style changes are more important than diets when adjust ones body composition.
 - Best part(code) is no part(code).
 - Setting ambitious goals is a good idea.
 - [Write](https://paulgraham.com/writing44.html)
@@ -57,7 +57,8 @@ published = true
 - Craft and tell good stories.
 - A rising tide lifts all boats.
 - Slow is smooth and smooth is fast.
+- Confidence - Is self-trust in your skills, choices, and values. An inner knowing of your strengths and weaknesses while intentionally thinking positively about oneself.
 
-Farewell to my twenties, and a warm welcome to my thirties! Here’s to embracing new adventures and growth in this exciting new chapter!
+Farewell to my twenties, and a warm welcome to my thirties!
 
 - Taylor Brazelton
