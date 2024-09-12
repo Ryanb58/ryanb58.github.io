@@ -3,71 +3,113 @@
     
     <head>
     <title>Bitbucket to GitHub with Branches and Tags</title>
+    <meta charset="UTF-8" />
 
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/style.css" />
     <!-- <link rel="stylesheet" href="/css/typebase.css"> -->
-    <link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
+    <link
+        href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css"
+        rel="stylesheet"
+    />
 
-
-    <link rel="stylesheet" href="/static/3rdparty/highlight/styles/dark.min.css">
+    <link
+        rel="stylesheet"
+        href="/static/3rdparty/highlight/styles/dark.min.css"
+    />
     <script src="/static/3rdparty/highlight/highlight.min.js"></script>
-    <script>hljs.highlightAll();</script>
+    <script>
+        hljs.highlightAll();
+    </script>
 
-    <script defer type="text/javascript" src="https://api.pirsch.io/pirsch-extended.js"
-    id="pirschextendedjs"
-    data-code="RYys8Gv7BBXOVN1yCX9qtVpduGH52QKc"></script>
+    <script
+        defer
+        type="text/javascript"
+        src="https://api.pirsch.io/pirsch-extended.js"
+        id="pirschextendedjs"
+        data-code="RYys8Gv7BBXOVN1yCX9qtVpduGH52QKc"
+    ></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
+    <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"
+    ></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
 
-    gtag('config', 'G-LD3MQXQGQ2');
+        gtag("config", "G-LD3MQXQGQ2");
     </script>
     <!-- <script src="/livereload.js"></script> -->
 
     <script type="module">
-        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+        mermaid.initialize({ startOnLoad: true });
     </script>
 
     <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        (function (c, l, a, r, i, t, y) {
+            c[a] =
+                c[a] ||
+                function () {
+                    (c[a].q = c[a].q || []).push(arguments);
+                };
+            t = l.createElement(r);
+            t.async = 1;
+            t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t, y);
         })(window, document, "clarity", "script", "molkkkznzg");
     </script>
-
 </head>
 
     <body>
-        <nav><ul>
-    <li><a href="/">Home</a></li>
-    
+        <nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        
         <li><a href="/about/">About</a></li>
-    
+        
         <li><a href="/creations/">Creations</a></li>
-    
+        
         <li><a href="/tools/">Tools</a></li>
-    
-</ul></nav>
+        
+    </ul>
+</nav>
 
         <h1>Bitbucket to GitHub with Branches and Tags</h1>
         <div class="post-body">
-            <p>1) Create a new folder for the fresh repo clones. Navigate inside.</p>
-<pre class="highlight"><code>mkdir temp/
-cd temp/</code></pre>
-<p>2) Clone the repo using the following command.
-<pre class="highlight"><code>git clone --mirror git@bitbucket.com:org/name.git</code></pre></p>
-<p>3) Navigate into the locally cloned repo.
-<pre class="highlight"><code>cd name.git/</code></pre></p>
-<p>4) Set the new remote
-<pre class="highlight"><code>git remote set-url --push origin git@github.com:org/name.git</code></pre></p>
-<p>5) Push the contents of the repo to the new remote.
-<pre class="highlight"><code>git push --mirror</code></pre></p>
+            <ol>
+<li>Create a new folder for the fresh repo clones. Navigate inside.</li>
+</ol>
+<pre><code>mkdir temp/
+cd temp/
+</code></pre>
+<ol start="2">
+<li>Clone the repo using the following command.</li>
+</ol>
+<pre><code>git clone --mirror git@bitbucket.com:org/name.git
+</code></pre>
+<ol start="3">
+<li>Navigate into the locally cloned repo.</li>
+</ol>
+<pre><code>cd name.git/
+</code></pre>
+<ol start="4">
+<li>Set the new remote</li>
+</ol>
+<pre><code>git remote set-url --push origin git@github.com:org/name.git
+</code></pre>
+<ol start="5">
+<li>Push the contents of the repo to the new remote.</li>
+</ol>
+<pre><code>git push --mirror
+</code></pre>
 <p>Enjoy!</p>
+
         </div>
         <hr />
         <p>Posted on 2022-01-06</p>

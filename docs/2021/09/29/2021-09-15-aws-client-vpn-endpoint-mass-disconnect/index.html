@@ -3,56 +3,82 @@
     
     <head>
     <title>AWS Client VPN Endpoint Mass Disconnect</title>
+    <meta charset="UTF-8" />
 
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/style.css" />
     <!-- <link rel="stylesheet" href="/css/typebase.css"> -->
-    <link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
+    <link
+        href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css"
+        rel="stylesheet"
+    />
 
-
-    <link rel="stylesheet" href="/static/3rdparty/highlight/styles/dark.min.css">
+    <link
+        rel="stylesheet"
+        href="/static/3rdparty/highlight/styles/dark.min.css"
+    />
     <script src="/static/3rdparty/highlight/highlight.min.js"></script>
-    <script>hljs.highlightAll();</script>
+    <script>
+        hljs.highlightAll();
+    </script>
 
-    <script defer type="text/javascript" src="https://api.pirsch.io/pirsch-extended.js"
-    id="pirschextendedjs"
-    data-code="RYys8Gv7BBXOVN1yCX9qtVpduGH52QKc"></script>
+    <script
+        defer
+        type="text/javascript"
+        src="https://api.pirsch.io/pirsch-extended.js"
+        id="pirschextendedjs"
+        data-code="RYys8Gv7BBXOVN1yCX9qtVpduGH52QKc"
+    ></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
+    <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"
+    ></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
 
-    gtag('config', 'G-LD3MQXQGQ2');
+        gtag("config", "G-LD3MQXQGQ2");
     </script>
     <!-- <script src="/livereload.js"></script> -->
 
     <script type="module">
-        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+        mermaid.initialize({ startOnLoad: true });
     </script>
 
     <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        (function (c, l, a, r, i, t, y) {
+            c[a] =
+                c[a] ||
+                function () {
+                    (c[a].q = c[a].q || []).push(arguments);
+                };
+            t = l.createElement(r);
+            t.async = 1;
+            t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t, y);
         })(window, document, "clarity", "script", "molkkkznzg");
     </script>
-
 </head>
 
     <body>
-        <nav><ul>
-    <li><a href="/">Home</a></li>
-    
+        <nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        
         <li><a href="/about/">About</a></li>
-    
+        
         <li><a href="/creations/">Creations</a></li>
-    
+        
         <li><a href="/tools/">Tools</a></li>
-    
-</ul></nav>
+        
+    </ul>
+</nav>
 
         <h1>AWS Client VPN Endpoint Mass Disconnect</h1>
         <div class="post-body">
@@ -60,10 +86,11 @@
 <p>A scary thing happened recently. Everyone at work lost access to our companies VPN. All of our applications run within an internal network hosted on AWS and most of my coworkers need to connect in order to do their jobs. Sadly, this VPN was setup by a previous employee who didn't document anything.</p>
 <h3>Solving It:</h3>
 <p>Immediately I checked my own connection TunnelBlick and found the following exception:</p>
-<pre class="highlight"><code>2021-09-15 14:25:13.798239 VERIFY OK: depth=0, CN=aws-client-vpn-clear.clearui.com
+<pre><code>2021-09-15 14:25:13.798239 VERIFY OK: depth=0, CN=aws-client-vpn-clear.clearui.com
 2021-09-15 14:26:13.435099 TLS Error: TLS key negotiation failed to occur within 60 seconds (check your network connectivity)
 2021-09-15 14:26:13.435885 TLS Error: TLS handshake failed
-2021-09-15 14:26:13.436066 SIGUSR1[soft,tls-error] received, process restarting</code></pre>
+2021-09-15 14:26:13.436066 SIGUSR1[soft,tls-error] received, process restarting
+</code></pre>
 <p>Looks like there was an issue with the handshake for our TLS encryption... or so I thought. Ends up this is a side effect of our Certificate Revocation List expiring!</p>
 <h3>What is a Certificate Revocation List(CRL)?</h3>
 <p>A CRL is a list of certificates that are revoked before their expiration date.</p>
@@ -71,14 +98,13 @@
 <h3>How to Issue a new CRL!</h3>
 <ol>
 <li>Clone the following tool: <a href="https://github.com/OpenVPN/easy-rsa/">Easy-RSA</a>.</li>
-<li>Navigate into the repo and into its <code class="highlight">easyrsa3</code> sub folder.</li>
-<li>
-<p>Generate a new CRL.
-<pre class="highlight"><code>./easyrsa gen-crl</code></pre></p>
-</li>
-<li>
-<p>Navigate to VPC &gt; Client VPN Endpoint.</p>
-</li>
+<li>Navigate into the repo and into its <code>easyrsa3</code> sub folder.</li>
+<li>Generate a new CRL.</li>
+</ol>
+<pre><code>./easyrsa gen-crl
+</code></pre>
+<ol start="4">
+<li>Navigate to VPC &gt; Client VPN Endpoint.</li>
 <li>Select the endpoint that stopped working.</li>
 <li>Choose Actions &gt; Import Client Certificate CRL.</li>
 <li>Copy over your CRL file you generated in step 3 and submit.</li>
@@ -87,6 +113,7 @@
 <p>Enjoy!</p>
 <p>Update: Looks like AWS already has this process documented:
 <a href="https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/cvpn-working-certificates.html">https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/cvpn-working-certificates.html</a></p>
+
         </div>
         <hr />
         <p>Posted on 2021-09-29</p>

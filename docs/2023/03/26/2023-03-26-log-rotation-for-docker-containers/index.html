@@ -3,81 +3,111 @@
     
     <head>
     <title>Log Rotation For Docker Containers</title>
+    <meta charset="UTF-8" />
 
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/style.css" />
     <!-- <link rel="stylesheet" href="/css/typebase.css"> -->
-    <link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
+    <link
+        href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css"
+        rel="stylesheet"
+    />
 
-
-    <link rel="stylesheet" href="/static/3rdparty/highlight/styles/dark.min.css">
+    <link
+        rel="stylesheet"
+        href="/static/3rdparty/highlight/styles/dark.min.css"
+    />
     <script src="/static/3rdparty/highlight/highlight.min.js"></script>
-    <script>hljs.highlightAll();</script>
+    <script>
+        hljs.highlightAll();
+    </script>
 
-    <script defer type="text/javascript" src="https://api.pirsch.io/pirsch-extended.js"
-    id="pirschextendedjs"
-    data-code="RYys8Gv7BBXOVN1yCX9qtVpduGH52QKc"></script>
+    <script
+        defer
+        type="text/javascript"
+        src="https://api.pirsch.io/pirsch-extended.js"
+        id="pirschextendedjs"
+        data-code="RYys8Gv7BBXOVN1yCX9qtVpduGH52QKc"
+    ></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
+    <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"
+    ></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
 
-    gtag('config', 'G-LD3MQXQGQ2');
+        gtag("config", "G-LD3MQXQGQ2");
     </script>
     <!-- <script src="/livereload.js"></script> -->
 
     <script type="module">
-        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+        mermaid.initialize({ startOnLoad: true });
     </script>
 
     <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        (function (c, l, a, r, i, t, y) {
+            c[a] =
+                c[a] ||
+                function () {
+                    (c[a].q = c[a].q || []).push(arguments);
+                };
+            t = l.createElement(r);
+            t.async = 1;
+            t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t, y);
         })(window, document, "clarity", "script", "molkkkznzg");
     </script>
-
 </head>
 
     <body>
-        <nav><ul>
-    <li><a href="/">Home</a></li>
-    
+        <nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        
         <li><a href="/about/">About</a></li>
-    
+        
         <li><a href="/creations/">Creations</a></li>
-    
+        
         <li><a href="/tools/">Tools</a></li>
-    
-</ul></nav>
+        
+    </ul>
+</nav>
 
         <h1>Log Rotation For Docker Containers</h1>
         <div class="post-body">
             <p>One of the twelve pillars of a well behaved application is "Logs". However, having an infinitely expanding file on your server isn't ideal. So let's rotate it.</p>
 <p>Logging parameters.</p>
-<p>Docker allows you to configure two parameters. <code class="highlight">max-size</code> and <code class="highlight">max-file</code>. </p>
-<p><code class="highlight">max-size</code> specifies how big a single file can be. So one container can have a log size as big as X megabytes.</p>
-<p><code class="highlight">max-file</code> is the maximum number of log files persisted at any given time. </p>
+<p>Docker allows you to configure two parameters. <code>max-size</code> and <code>max-file</code>.</p>
+<p><code>max-size</code> specifies how big a single file can be. So one container can have a log size as big as X megabytes.</p>
+<p><code>max-file</code> is the maximum number of log files persisted at any given time.</p>
 <p>To change these we simply have to create or edit a daemon settings file.</p>
-<pre class="highlight"><code>sudo vim /etc/docker/daemon.json</code></pre>
+<pre><code>sudo vim /etc/docker/daemon.json
+</code></pre>
 <p>and update it's contents to match the following.</p>
-<pre class="highlight"><code class="language-json">{
-    "log-opts": {
-        "max-size": "128m",
-        "max-file": "128"
-    }
-}</code></pre>
+<pre><code class="language-json">{
+	"log-opts": {
+		"max-size": "128m",
+		"max-file": "128"
+	}
+}
+</code></pre>
 <p>The combination above allows for up to 128 128MB files at once for a total of 16.38400 gigabytes of used storage at max capacity.</p>
 <p>For the change to take effect you'll also need to restart the daemon &amp; all of your containers.</p>
-<pre class="highlight"><code>sudo service docker restart</code></pre>
-<pre class="highlight"><code>Pro Tip: Use fluentd &amp; splunk to transform and aggregate your logs to a centralized location.
+<pre><code>sudo service docker restart
+</code></pre>
+<pre><code>Pro Tip: Use fluentd &amp; splunk to transform and aggregate your logs to a centralized location.
 </code></pre>
 <p>Sources:
 <a href="https://12factor.net/">12 Factor</a>
 <a href="https://docs.docker.com/config/containers/logging/configure/">Docker Documentation</a></p>
+
         </div>
         <hr />
         <p>Posted on 2023-03-26</p>

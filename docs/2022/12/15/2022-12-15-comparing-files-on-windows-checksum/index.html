@@ -3,73 +3,102 @@
     
     <head>
     <title>Comparing Files(Checksum) On Windows</title>
+    <meta charset="UTF-8" />
 
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/style.css" />
     <!-- <link rel="stylesheet" href="/css/typebase.css"> -->
-    <link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
+    <link
+        href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css"
+        rel="stylesheet"
+    />
 
-
-    <link rel="stylesheet" href="/static/3rdparty/highlight/styles/dark.min.css">
+    <link
+        rel="stylesheet"
+        href="/static/3rdparty/highlight/styles/dark.min.css"
+    />
     <script src="/static/3rdparty/highlight/highlight.min.js"></script>
-    <script>hljs.highlightAll();</script>
+    <script>
+        hljs.highlightAll();
+    </script>
 
-    <script defer type="text/javascript" src="https://api.pirsch.io/pirsch-extended.js"
-    id="pirschextendedjs"
-    data-code="RYys8Gv7BBXOVN1yCX9qtVpduGH52QKc"></script>
+    <script
+        defer
+        type="text/javascript"
+        src="https://api.pirsch.io/pirsch-extended.js"
+        id="pirschextendedjs"
+        data-code="RYys8Gv7BBXOVN1yCX9qtVpduGH52QKc"
+    ></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
+    <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"
+    ></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
 
-    gtag('config', 'G-LD3MQXQGQ2');
+        gtag("config", "G-LD3MQXQGQ2");
     </script>
     <!-- <script src="/livereload.js"></script> -->
 
     <script type="module">
-        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+        mermaid.initialize({ startOnLoad: true });
     </script>
 
     <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        (function (c, l, a, r, i, t, y) {
+            c[a] =
+                c[a] ||
+                function () {
+                    (c[a].q = c[a].q || []).push(arguments);
+                };
+            t = l.createElement(r);
+            t.async = 1;
+            t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t, y);
         })(window, document, "clarity", "script", "molkkkznzg");
     </script>
-
 </head>
 
     <body>
-        <nav><ul>
-    <li><a href="/">Home</a></li>
-    
+        <nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        
         <li><a href="/about/">About</a></li>
-    
+        
         <li><a href="/creations/">Creations</a></li>
-    
+        
         <li><a href="/tools/">Tools</a></li>
-    
-</ul></nav>
+        
+    </ul>
+</nav>
 
         <h1>Comparing Files(Checksum) On Windows</h1>
         <div class="post-body">
             <p>Recently, I needed to compare two DLLs with the same name to see if they were the same. However, my existing Unix knowledge was useless as I do not have the Ubuntu subsystem installed.</p>
-<p>So I did what any engineer in my position would do, I asked my more experienced peers. </p>
+<p>So I did what any engineer in my position would do, I asked my more experienced peers.</p>
 <p>A Principal Engineer @ work gave me some guidance. They introduced me to a PowerShell utility named <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-filehash?view=powershell-7.3">Get-FileHash</a> which was exactly what I was looking for.</p>
-<p>In my scenario a user had a version of a .DLL installed on their machine of which I needed to ensure was a specific version. Knowing about <code class="highlight">Get-FileHash</code> allows me to ask the customer to perform the following command and message us the results.</p>
-<pre class="highlight"><code>PS &gt; Get-FileHash .\sapnco.dll
+<p>In my scenario a user had a version of a .DLL installed on their machine of which I needed to ensure was a specific version. Knowing about <code>Get-FileHash</code> allows me to ask the customer to perform the following command and message us the results.</p>
+<pre><code>PS &gt; Get-FileHash .\sapnco.dll
 
 Algorithm       Hash                                                                   Path
 ---------       ----                                                                   ----
-SHA256          E79E3BC34494C5F9102FBFA61AED2B2177A58CB0DE16B812AD0AAF9B6BA3261F       C:\...\sapnco.dll</code></pre>
+SHA256          E79E3BC34494C5F9102FBFA61AED2B2177A58CB0DE16B812AD0AAF9B6BA3261F       C:\...\sapnco.dll
+</code></pre>
 <p>Then I went ahead and performed the command on my own machine and verified the hashes matched.</p>
 <h4>Extra TidBit - Checksum On Linux</h4>
-<pre class="highlight"><code>ubuntu@ip-x-x-x-x:~/app$ sha1sum docker-compose.yml
-2571e3153b90517693c2dfc5668746296023ccda  docker-compose.yml</code></pre>
+<pre><code>ubuntu@ip-x-x-x-x:~/app$ sha1sum docker-compose.yml
+2571e3153b90517693c2dfc5668746296023ccda  docker-compose.yml
+</code></pre>
 <p>Enjoy!</p>
+
         </div>
         <hr />
         <p>Posted on 2022-12-15</p>

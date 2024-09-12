@@ -2,7 +2,7 @@
 <html>
     
     <head>
-    <title>Getting Started with Pelican</title>
+    <title>Ultimate Guide: How to Set Up a Windows PC from Scratch in 2024 (Step-by-Step)</title>
     <meta charset="UTF-8" />
 
     <link rel="stylesheet" href="/static/css/style.css" />
@@ -80,34 +80,75 @@
     </ul>
 </nav>
 
-        <h1>Getting Started with Pelican</h1>
+        <h1>Ultimate Guide: How to Set Up a Windows PC from Scratch in 2024 (Step-by-Step)</h1>
         <div class="post-body">
-            <p>I am new to pelican, so in reality this is just the steps I used to setup my pelican blog. Feel free to experiment and do things differently.</p>
-<h3>Create your virtual environment.</h3>
-<p>Anytime you are using python, you should always utilize a virtual environment. In this tutorial we will use virtualenv. This will prevent us from junking up our global install of python.</p>
-<p>For first timers I suggest visiting the hitchhiker's guide to python, as they have a very <a href="http://docs.python-guide.org/en/latest/dev/virtualenvs/">comprehensive tutorial</a> on getting started with virtual environments.</p>
-<h3>Install Pelican</h3>
-<p>Verify that your virtual environment is active so that we can start to install packages. Here we will install pelican and it's helper package Markdown.</p>
-<pre><code>pip install pelican Markdown
-</code></pre>
-<h3>Pelican Quick Start</h3>
-<p>Now it's time to setup the site. Run the quick-start command and enter in details such as the site name and description.</p>
-<pre><code>pelican-quickstart
-</code></pre>
-<p><em>Note:</em> Make sure you decided on a catchy name!</p>
-<h3>Pick a Theme</h3>
-<p>Pelican comes with a default theme, which I personally dislike. It just doesn't capture my personality very well. Luckily there is a site called <a href="https://github.com/getpelican/pelican-themes">pelican themes</a> that will give us a good selection of 3rd party themes we can use on our site.</p>
-<p>I personally really like the flex theme. Clone the theme of your choice and prep for your first blog post. Make sure you setup your <code>pelicanconf.py</code> file as deemed via the README in the themes repo.</p>
-<h3>Create your first post</h3>
-<p>Write your first post in markdown and place it inside the <code>content</code> folder.</p>
-<h3>Compile your blog.</h3>
-<p>Time to have pelican generate your static HTML blog for you! Just run the command below.</p>
-<pre><code>pelican
-</code></pre>
-<p>Simply upload your <code>output</code> folder and enjoy!</p>
+            <p>Over the past 3 years, I've used Windows for various things.</p>
+<p>With that in mind, I have a common setup I perform when spinning up a new instance.</p>
+<ol>
+<li>
+<p>Winget</p>
+<ul>
+<li><a href="https://github.com/microsoft/winget-cli">GitHub - microsoft/winget-cli</a></li>
+<li>WinGet is the Windows Package Manager for the CLI(command line interface).</li>
+</ul>
+</li>
+<li>
+<p><a href="https://github.com/microsoft/terminal">Windows Terminal</a></p>
+<ul>
+<li>Enhance my terminal experience and allow me to use tabs.</li>
+</ul>
+</li>
+<li>
+<p><a href="https://github.com/chrisant996/clink">Clink</a></p>
+<ul>
+<li><code>winget install clink</code></li>
+<li>Makes the command prompt bearable.</li>
+</ul>
+</li>
+<li>
+<p><a href="https://github.com/jesseduffield/lazygit">LazyGit</a></p>
+<ul>
+<li><code>winget install -e --id=JesseDuffield.lazygit</code></li>
+<li>When I am annoying at my command line.</li>
+</ul>
+</li>
+<li>
+<p>Visual Studio Code</p>
+<ul>
+<li><code>winget install -e --id Microsoft.VisualStudioCode</code></li>
+</ul>
+</li>
+<li>
+<p>Microsoft Power Toys</p>
+<ul>
+<li><code>winget install --scope machine Microsoft.PowerToys -s winget</code></li>
+</ul>
+</li>
+<li>
+<p>RDP Clip Restart Shortcut</p>
+<ol>
+<li>Right-click on an empty area of your desktop.</li>
+<li>Select New &gt; Shortcut from the context menu.</li>
+<li>In the "Create Shortcut" window, enter the following command:</li>
+</ol>
+<p><code>cmd /c taskkill /F /IM rdpclip.exe &amp; start rdpclip.exe</code></p>
+<ol start="4">
+<li>Click "Next".</li>
+<li>Give your shortcut a name, such as "Restart RDPClip".</li>
+<li>Click "Finish".</li>
+<li>This will create a shortcut on your desktop. When you double-click this shortcut, it will:
+<ol>
+<li>Force-close the existing rdpclip.exe process</li>
+<li>Start a new instance of rdpclip.exe</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p>Enjoy!</p>
 
         </div>
         <hr />
-        <p>Posted on 2016-06-27</p>
+        <p>Posted on 2024-09-12</p>
     </body>
 </html>

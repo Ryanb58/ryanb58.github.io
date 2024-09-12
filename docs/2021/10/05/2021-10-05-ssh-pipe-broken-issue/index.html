@@ -3,80 +3,110 @@
     
     <head>
     <title>SSH Broken Pipe Issue</title>
+    <meta charset="UTF-8" />
 
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/style.css" />
     <!-- <link rel="stylesheet" href="/css/typebase.css"> -->
-    <link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
+    <link
+        href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css"
+        rel="stylesheet"
+    />
 
-
-    <link rel="stylesheet" href="/static/3rdparty/highlight/styles/dark.min.css">
+    <link
+        rel="stylesheet"
+        href="/static/3rdparty/highlight/styles/dark.min.css"
+    />
     <script src="/static/3rdparty/highlight/highlight.min.js"></script>
-    <script>hljs.highlightAll();</script>
+    <script>
+        hljs.highlightAll();
+    </script>
 
-    <script defer type="text/javascript" src="https://api.pirsch.io/pirsch-extended.js"
-    id="pirschextendedjs"
-    data-code="RYys8Gv7BBXOVN1yCX9qtVpduGH52QKc"></script>
+    <script
+        defer
+        type="text/javascript"
+        src="https://api.pirsch.io/pirsch-extended.js"
+        id="pirschextendedjs"
+        data-code="RYys8Gv7BBXOVN1yCX9qtVpduGH52QKc"
+    ></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
+    <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"
+    ></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
 
-    gtag('config', 'G-LD3MQXQGQ2');
+        gtag("config", "G-LD3MQXQGQ2");
     </script>
     <!-- <script src="/livereload.js"></script> -->
 
     <script type="module">
-        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+        mermaid.initialize({ startOnLoad: true });
     </script>
 
     <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        (function (c, l, a, r, i, t, y) {
+            c[a] =
+                c[a] ||
+                function () {
+                    (c[a].q = c[a].q || []).push(arguments);
+                };
+            t = l.createElement(r);
+            t.async = 1;
+            t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t, y);
         })(window, document, "clarity", "script", "molkkkznzg");
     </script>
-
 </head>
 
     <body>
-        <nav><ul>
-    <li><a href="/">Home</a></li>
-    
+        <nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        
         <li><a href="/about/">About</a></li>
-    
+        
         <li><a href="/creations/">Creations</a></li>
-    
+        
         <li><a href="/tools/">Tools</a></li>
-    
-</ul></nav>
+        
+    </ul>
+</nav>
 
         <h1>SSH Broken Pipe Issue</h1>
         <div class="post-body">
             <h2>Problem:</h2>
 <p>My laptop struggles at keeping an SSH connection alive with its default settings. See my pipe break below.</p>
-<pre class="highlight"><code>ubuntu@ip-10-106-2-194:~$ client_loop: send disconnect: Broken pipe</code></pre>
+<pre><code>ubuntu@ip-10-106-2-194:~$ client_loop: send disconnect: Broken pipe
+</code></pre>
 <p>This is very annoying, especially if you are attempting something that requires long intervals of inactivity between commands.</p>
 <h2>Solution:</h2>
-<p>Glancing through the SSH documentation, I found two settings that looked to be of importance. </p>
+<p>Glancing through the SSH documentation, I found two settings that looked to be of importance.</p>
 <ul>
 <li>ServerAliveInterval</li>
 <li>ClientAliveInterval</li>
 </ul>
 <p>They appear to be intervals that can be set on the server or client that send a keep alive request through the connection.</p>
-<p>By setting the <code class="highlight">ServerAliveInterval</code> on my local machine I found my SSH connections to persist without intervention. </p>
+<p>By setting the <code>ServerAliveInterval</code> on my local machine I found my SSH connections to persist without intervention.</p>
 <p>File: ~/.ssh/config:</p>
-<pre class="highlight"><code>ServerAliveInterval 120</code></pre>
-<p>I also went ahead and put the <code class="highlight">ClientAliveInterval</code> setting into my personal AWS boxes.</p>
-<p>File: /etc/ssh/sshd_config
-<pre class="highlight"><code>ClientAliveInterval 120</code></pre></p>
+<pre><code>ServerAliveInterval 120
+</code></pre>
+<p>I also went ahead and put the <code>ClientAliveInterval</code> setting into my personal AWS boxes.</p>
+<p>File: /etc/ssh/sshd_config</p>
+<pre><code>ClientAliveInterval 120
+</code></pre>
 <p>Enjoy!</p>
 <h4>Sources:</h4>
 <p><a href="https://man.openbsd.org/ssh_config#ServerAliveInterval">https://man.openbsd.org/ssh_config#ServerAliveInterval</a>
 <a href="https://man.openbsd.org/sshd_config#ClientAliveInterval">https://man.openbsd.org/sshd_config#ClientAliveInterval</a></p>
+
         </div>
         <hr />
         <p>Posted on 2021-10-05</p>

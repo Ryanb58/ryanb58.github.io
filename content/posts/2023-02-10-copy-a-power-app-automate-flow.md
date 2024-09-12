@@ -24,9 +24,9 @@ I'm currently creating a few flows that are about 80% similar but have a few act
 
 1. Open your Flow's Details page.
 2. Select the "Save As" button.
-![Pasted image 20230210094428](/static/images/2023/Pasted image 20230210094428.png)
+![Pasted image 20230210094428](</static/images/2023/Pasted image 20230210094428.png>)
 3. Choose a new name and click "Save"
-![Pasted image 20230210094520](/static/images/2023/Pasted image 20230210094520.png)
+![Pasted image 20230210094520](</static/images/2023/Pasted image 20230210094520.png>)
 4. Enjoy
 
 ### Working in a Solution?
@@ -35,8 +35,6 @@ Currently making a copy of a flow does not automatically place it into the solut
 
 You can do this by opening up the solution explorer (Home>Solutions) and using the context menu to add the flow to your existing solution.
 
-![Pasted image 20230210094840](/static/images/2023/Pasted image 20230210094840.png)
+![Pasted image 20230210094840](</static/images/2023/Pasted image 20230210094840.png>)
 
 Still have questions? Feel free to reach out to me on [Twitter](https://twitter.com/Ryanb58).
-
- 

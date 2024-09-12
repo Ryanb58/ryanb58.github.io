@@ -3,56 +3,82 @@
     
     <head>
     <title>Django Migrations Downgrade in Docker Swarm</title>
+    <meta charset="UTF-8" />
 
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/style.css" />
     <!-- <link rel="stylesheet" href="/css/typebase.css"> -->
-    <link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
+    <link
+        href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css"
+        rel="stylesheet"
+    />
 
-
-    <link rel="stylesheet" href="/static/3rdparty/highlight/styles/dark.min.css">
+    <link
+        rel="stylesheet"
+        href="/static/3rdparty/highlight/styles/dark.min.css"
+    />
     <script src="/static/3rdparty/highlight/highlight.min.js"></script>
-    <script>hljs.highlightAll();</script>
+    <script>
+        hljs.highlightAll();
+    </script>
 
-    <script defer type="text/javascript" src="https://api.pirsch.io/pirsch-extended.js"
-    id="pirschextendedjs"
-    data-code="RYys8Gv7BBXOVN1yCX9qtVpduGH52QKc"></script>
+    <script
+        defer
+        type="text/javascript"
+        src="https://api.pirsch.io/pirsch-extended.js"
+        id="pirschextendedjs"
+        data-code="RYys8Gv7BBXOVN1yCX9qtVpduGH52QKc"
+    ></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
+    <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"
+    ></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
 
-    gtag('config', 'G-LD3MQXQGQ2');
+        gtag("config", "G-LD3MQXQGQ2");
     </script>
     <!-- <script src="/livereload.js"></script> -->
 
     <script type="module">
-        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+        mermaid.initialize({ startOnLoad: true });
     </script>
 
     <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        (function (c, l, a, r, i, t, y) {
+            c[a] =
+                c[a] ||
+                function () {
+                    (c[a].q = c[a].q || []).push(arguments);
+                };
+            t = l.createElement(r);
+            t.async = 1;
+            t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t, y);
         })(window, document, "clarity", "script", "molkkkznzg");
     </script>
-
 </head>
 
     <body>
-        <nav><ul>
-    <li><a href="/">Home</a></li>
-    
+        <nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        
         <li><a href="/about/">About</a></li>
-    
+        
         <li><a href="/creations/">Creations</a></li>
-    
+        
         <li><a href="/tools/">Tools</a></li>
-    
-</ul></nav>
+        
+    </ul>
+</nav>
 
         <h1>Django Migrations Downgrade in Docker Swarm</h1>
         <div class="post-body">
@@ -72,24 +98,48 @@ about the migrations that existed in the newer version that does not in it's
 own. Thus resulting in an inconsistant database state with the version of
 application deployed.</p>
 <p>My current solution to this issue is to run the migration downgrade for each
-app in our django project manually inside of the existing application container
-. To do this I start out with a diff of the code between the old version and
+app in our django project manually inside of the existing application container</p>
+<ul>
+<li>To do this I start out with a diff of the code between the old version and
 the new version. I look for any added migrations and run the command below to
 have django south run through the downgrade methods until it reaches the
-latest migration in the old code. Then I perform the old migration method.</p>
+latest migration in the old code. Then I perform the old migration method.</li>
+</ul>
 <p>Here is a step by step list of the process.</p>
-<p>1) Diff of code.</p>
-<p>2) Write down oldest added migration number and app name</p>
-<p>3) Exec into the application docker container.</p>
-<p>4) Migrate backwards :</p>
-<pre class="highlight"><code>./manage.py migrate appname 0000</code></pre>
-<p>5) Exit out of container.</p>
-<p>6) Scale the swarm down to 0 nodes.</p>
-<p>7) Change tag number.</p>
-<p>8) Scale the containers back up.</p>
+<ol>
+<li>
+<p>Diff of code.</p>
+</li>
+<li>
+<p>Write down oldest added migration number and app name</p>
+</li>
+<li>
+<p>Exec into the application docker container.</p>
+</li>
+<li>
+<p>Migrate backwards :</p>
+</li>
+</ol>
+<pre><code>./manage.py migrate appname 0000
+</code></pre>
+<ol start="5">
+<li>
+<p>Exit out of container.</p>
+</li>
+<li>
+<p>Scale the swarm down to 0 nodes.</p>
+</li>
+<li>
+<p>Change tag number.</p>
+</li>
+<li>
+<p>Scale the containers back up.</p>
+</li>
+</ol>
 <p>Do you have any suggestions or any improvements to this process? Comment below
 and link me to other articles you've read about this process. The more we know
 together the better our overall solutions can be.</p>
+
         </div>
         <hr />
         <p>Posted on 2018-03-02</p>

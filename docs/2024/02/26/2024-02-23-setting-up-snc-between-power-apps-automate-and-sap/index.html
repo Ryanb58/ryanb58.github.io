@@ -3,74 +3,98 @@
     
     <head>
     <title>Setting Up SNC between Power Apps/Automate and SAP</title>
+    <meta charset="UTF-8" />
 
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/style.css" />
     <!-- <link rel="stylesheet" href="/css/typebase.css"> -->
-    <link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
+    <link
+        href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css"
+        rel="stylesheet"
+    />
 
-
-    <link rel="stylesheet" href="/static/3rdparty/highlight/styles/dark.min.css">
+    <link
+        rel="stylesheet"
+        href="/static/3rdparty/highlight/styles/dark.min.css"
+    />
     <script src="/static/3rdparty/highlight/highlight.min.js"></script>
-    <script>hljs.highlightAll();</script>
+    <script>
+        hljs.highlightAll();
+    </script>
 
-    <script defer type="text/javascript" src="https://api.pirsch.io/pirsch-extended.js"
-    id="pirschextendedjs"
-    data-code="RYys8Gv7BBXOVN1yCX9qtVpduGH52QKc"></script>
+    <script
+        defer
+        type="text/javascript"
+        src="https://api.pirsch.io/pirsch-extended.js"
+        id="pirschextendedjs"
+        data-code="RYys8Gv7BBXOVN1yCX9qtVpduGH52QKc"
+    ></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
+    <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"
+    ></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
 
-    gtag('config', 'G-LD3MQXQGQ2');
+        gtag("config", "G-LD3MQXQGQ2");
     </script>
     <!-- <script src="/livereload.js"></script> -->
 
     <script type="module">
-        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+        mermaid.initialize({ startOnLoad: true });
     </script>
 
     <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        (function (c, l, a, r, i, t, y) {
+            c[a] =
+                c[a] ||
+                function () {
+                    (c[a].q = c[a].q || []).push(arguments);
+                };
+            t = l.createElement(r);
+            t.async = 1;
+            t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t, y);
         })(window, document, "clarity", "script", "molkkkznzg");
     </script>
-
 </head>
 
     <body>
-        <nav><ul>
-    <li><a href="/">Home</a></li>
-    
+        <nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        
         <li><a href="/about/">About</a></li>
-    
+        
         <li><a href="/creations/">Creations</a></li>
-    
+        
         <li><a href="/tools/">Tools</a></li>
-    
-</ul></nav>
+        
+    </ul>
+</nav>
 
         <h1>Setting Up SNC between Power Apps/Automate and SAP</h1>
         <div class="post-body">
             <p>My team and I spend our 9 to 5 working on the <a href="https://learn.microsoft.com/en-us/connectors/saperp/">SAP ERP Connector</a> for Power Apps/Automate. A key focus of our work is ensuring secure, encrypted transit when connecting to SAP, particularly for production systems. This vital security measure is designed to protect your data from interception or exposure during transit and to guard against man-in-the-middle attacks.</p>
-<p>While securing connections to SAP, we shift from the typical TLS (Transport Layer Security) to <strong>public key encryption</strong>, known as <a href="https://help.sap.com/doc/saphelp_nw74/7.4.16/en-us/e6/56f466e99a11d1a5b00000e835363f/content.htm?no_cache=true">Secure Network Communications (SNC)</a>. This approach mirrors the standard practice of verifying website security  like checking for the lock icon in a browser's URL bar  but with a focus tailored for SAP's unique requirements.</p>
+<p>While securing connections to SAP, we shift from the typical TLS (Transport Layer Security) to <strong>public key encryption</strong>, known as <a href="https://help.sap.com/doc/saphelp_nw74/7.4.16/en-us/e6/56f466e99a11d1a5b00000e835363f/content.htm?no_cache=true">Secure Network Communications (SNC)</a>. This approach mirrors the standard practice of verifying website security – like checking for the lock icon in a browser's URL bar – but with a focus tailored for SAP's unique requirements.</p>
 <p>For more insights, updates, and discussions on this and related topics, feel free to connect with me on X (formerly Twitter) at <a href="https://x.com/Ryanb58">@Ryanb58</a>. Now, let's examine a data flow diagram from Power App/Flow to SAP:</p>
-<div class="mermaid">
-flowchart TD
-classDef defaultStyle fill:#fff,stroke:#333,stroke-width:1px;
-PowerPlatform[Power App/Flow]
-CBA[Connectors API]
-PowerPlatform --> |Secure| CBA
-CBA -->|Secure| AzureRelay
-AzureRelay --> |Secure| OPDG[On-Premises Data Gateway]
-OPDG -->|Clear Text| SAP
-class PowerPlatform,CBA,AzureRelay,OPDG,SAP defaultStyle;
+<div class="mermaid">flowchart TD
+  classDef defaultStyle fill:#fff,stroke:#333,stroke-width:1px;
+  PowerPlatform[Power App/Flow]
+  CBA[Connectors API]
+  PowerPlatform --> |Secure| CBA
+  CBA -->|Secure| AzureRelay
+  AzureRelay --> |Secure| OPDG[On-Premises Data Gateway]
+  OPDG -->|Clear Text| SAP
+  class PowerPlatform,CBA,AzureRelay,OPDG,SAP defaultStyle;
 </div>
-
 <p>Notice how, in the diagram, the connection between the On-Premises Data Gateway (OPDG) and SAP is unencrypted. Although this might not pose a significant risk if both systems are securely isolated within your local network, adopting SNC offers a straightforward solution to enhance your data's security. SNC ensures that your sensitive information remains out of reach from unauthorized access and simplifies the technical process.</p>
 <p>As we delve into the technical steps, feel free to adapt parts of this tutorial as needed. Remember, not all steps may apply to every scenario, so some improvisation might be necessary.</p>
 <h1>Setting Up SNC between SAP and OPDG</h1>
@@ -78,111 +102,134 @@ class PowerPlatform,CBA,AzureRelay,OPDG,SAP defaultStyle;
 <ul>
 <li>S-User Account on SAP's website(Helpful when resolving error messages and downloading required resources)</li>
 <li>Windows Machine with the latest <a href="https://aka.ms/opdg">OPDG Installed</a></li>
-<li>SAP Instance<ul>
+<li>SAP Instance
+<ul>
 <li>Ability to Restart</li>
 <li>Administrator Account</li>
 </ul>
 </li>
 <li>SAP GUI with login</li>
-<li>OpenSSL<ul>
-<li>If you have <code class="highlight">Git for Windows</code> installed, then you can access the <code class="highlight">openssl</code> command by opening up <code class="highlight">Git Bash</code>.</li>
-<li>If you are without, do not fear, you can use <a href="https://github.com/microsoft/winget-cli">winget</a> to install a distribution of it built by FireDaemon. <code class="highlight">winget install --id FireDaemon.OpenSSL</code></li>
+<li>OpenSSL
+<ul>
+<li>If you have <code>Git for Windows</code> installed, then you can access the <code>openssl</code> command by opening up <code>Git Bash</code>.</li>
+<li>If you are without, do not fear, you can use <a href="https://github.com/microsoft/winget-cli">winget</a> to install a distribution of it built by FireDaemon. <code>winget install --id FireDaemon.OpenSSL</code></li>
 </ul>
 </li>
 </ul>
 <h2>SAP Common Crypto</h2>
-<p>SAP Common Crypto is a distribution from SAP that allows the OPDG to talk to SAP in an encrypted way. It will come as a <code class="highlight">.SAR</code> file type, so we will need it and a way to extract the data from it.</p>
+<p>SAP Common Crypto is a distribution from SAP that allows the OPDG to talk to SAP in an encrypted way. It will come as a <code>.SAR</code> file type, so we will need it and a way to extract the data from it.</p>
 <h3>Download SAPCAR</h3>
 <ol>
-<li>Go to the <a href="https://me.sap.com/softwarecenter">SAP Software Center</a>.</li>
-<li>Type <code class="highlight">SAPCAR</code> into the <code class="highlight">Search for Software Downloads</code> search box.</li>
-<li>Click on the top result(non archived).</li>
-<li>From there, select the latest version. At the time of this writing I selected <code class="highlight">SAPCAR 7.53</code>.</li>
 <li>
-<p>Select the operating system type in the dropdown located above the search results.
-  <img alt="Pasted image 20240223151606.png" src="/static/images/2024/Pasted image 20240223151606.png" /></p>
+<p>Go to the <a href="https://me.sap.com/softwarecenter">SAP Software Center</a>.</p>
 </li>
 <li>
-<p>Click on the result to download the .EXE file. I placed mine in <code class="highlight">C:\sap\SAR</code></p>
+<p>Type <code>SAPCAR</code> into the <code>Search for Software Downloads</code> search box.</p>
+</li>
+<li>
+<p>Click on the top result(non archived).</p>
+</li>
+<li>
+<p>From there, select the latest version. At the time of this writing I selected <code>SAPCAR 7.53</code>.</p>
+</li>
+<li>
+<p>Select the operating system type in the dropdown located above the search results.
+<img src="/static/images/2024/Pasted image 20240223151606.png" alt="Pasted image 20240223151606.png" /></p>
+</li>
+<li>
+<p>Click on the result to download the .EXE file. I placed mine in <code>C:\sap\SAR</code></p>
 </li>
 </ol>
 <h3>Download SAP Common Crypto</h3>
 <ol>
 <li>Go back to the <a href="https://me.sap.com/softwarecenter">SAP Software Center</a>.</li>
-<li>Type <code class="highlight">COMMONCRYPTOLIB</code> into the <code class="highlight">Search for Software Downloads</code> search box.</li>
-<li>Select the <code class="highlight">COMMONCRYPTOLIB 8</code> result.</li>
+<li>Type <code>COMMONCRYPTOLIB</code> into the <code>Search for Software Downloads</code> search box.</li>
+<li>Select the <code>COMMONCRYPTOLIB 8</code> result.</li>
 <li>Select the operating system type in the dropdown located above the search results.
-   <img alt="Pasted image 20240223150340.png" src="/static/images/2024/Pasted image 20240223150340.png" /></li>
-<li>Click on the title of the listing with the most recent <code class="highlight">Release Date</code> to download the .SAR file.</li>
+<img src="/static/images/2024/Pasted image 20240223150340.png" alt="Pasted image 20240223150340.png" /></li>
+<li>Click on the title of the listing with the most recent <code>Release Date</code> to download the .SAR file.</li>
 </ol>
 <h3>Extract SAP Common Crypto</h3>
 <ol>
-<li>Open a PowerShell window to <code class="highlight">C:\sap\SAR</code>.</li>
-<li>Extract SAP Common Crypto using the command below.
-  <pre class="highlight"><code class="language-powershell">.\SAPCAR_1200-70007719.EXE -xvf .\SAPCRYPTOLIBP_8553-20011729.SAR -R .\..\libs\sapcryptolib</code></pre></li>
-<li>This will extract the files to <code class="highlight">C:\sap\libs\sapcryptolib</code>.</li>
-<li>You should see <code class="highlight">sapgenpse.exe</code> in the folder. This is an important program we will use later on.</li>
+<li>Open a PowerShell window to <code>C:\sap\SAR</code>.</li>
+<li>Extract SAP Common Crypto using the command below.</li>
+</ol>
+<pre><code class="language-powershell">.\SAPCAR_1200-70007719.EXE -xvf .\SAPCRYPTOLIBP_8553-20011729.SAR -R .\..\libs\sapcryptolib
+</code></pre>
+<ol>
+<li>This will extract the files to <code>C:\sap\libs\sapcryptolib</code>.</li>
+<li>You should see <code>sapgenpse.exe</code> in the folder. This is an important program we will use later on.</li>
 </ol>
 <h2>Setting up SECUDIR environment variable on the OPDG</h2>
-<p>We will start by creating this named folder. The name in itself does not matter, but for this tutorial we will use <code class="highlight">sapsecudir</code> and we will put it in the root directory.</p>
-<pre class="highlight"><code class="language-powershell">C:\&gt; mkdir sapsecudir
-C:\&gt; cd .\sapsecudir</code></pre>
-<p>Define an environment variable called <code class="highlight">SECUDIR</code> and point it at that directory. </p>
-<p>First we backup our existing <code class="highlight">PATH</code> environment variable into a file.</p>
-<pre class="highlight"><code class="language-powershell">C:\sapsecudir&gt; $env:path &gt;&gt; ("env-PATH_" + (Get-Date -Format "yyyy-MM-dd_HH-mm-ss") + ".out")</code></pre>
-<p>And permanently add <code class="highlight">SECUDIR</code> to our machine. This variable will persist between restarts.</p>
-<pre class="highlight"><code class="language-powershell">[Environment]::SetEnvironmentVariable("SECUDIR", "C:\sapsecudir", "Machine") # Sets the variable permentaly on the system.
-$env:SECUDIR = "C:\sapsecudir" # Updates the current powershell session as there currently does not exist a function to reload.</code></pre>
+<p>We will start by creating this named folder. The name in itself does not matter, but for this tutorial we will use <code>sapsecudir</code> and we will put it in the root directory.</p>
+<pre><code class="language-powershell">C:\&gt; mkdir sapsecudir
+C:\&gt; cd .\sapsecudir
+</code></pre>
+<p>Define an environment variable called <code>SECUDIR</code> and point it at that directory.</p>
+<p>First we backup our existing <code>PATH</code> environment variable into a file.</p>
+<pre><code class="language-powershell">C:\sapsecudir&gt; $env:path &gt;&gt; ("env-PATH_" + (Get-Date -Format "yyyy-MM-dd_HH-mm-ss") + ".out")
+</code></pre>
+<p>And permanently add <code>SECUDIR</code> to our machine. This variable will persist between restarts.</p>
+<pre><code class="language-powershell">[Environment]::SetEnvironmentVariable("SECUDIR", "C:\sapsecudir", "Machine") # Sets the variable permentaly on the system.
+$env:SECUDIR = "C:\sapsecudir" # Updates the current powershell session as there currently does not exist a function to reload.
+</code></pre>
 <p>Then restart your On-Premises Data Gateway for the changes to take effect.</p>
 <h2>Generating Certificates</h2>
-<p>Some of you might already have a PKI setup. In this tutorial, I do not have one, so I will create one on the fly that can be expanded to X.509 user authentication later on. </p>
+<p>Some of you might already have a PKI setup. In this tutorial, I do not have one, so I will create one on the fly that can be expanded to X.509 user authentication later on.</p>
 <p>Below is a visual to help with understanding of what certificate will do what and how it can be expanded to issue user certs in the future. In this tutorial we will focus on implementing the blue boxes.</p>
 <p>This section is not recommended for production systems, however is a good way to get a demo up and running quickly.</p>
-<div class="mermaid">
-flowchart TD
-classDef defaultStyle fill:#fff,stroke:#333,stroke-width:1px;
-RootCA["Root CA [O=Contoso, CN=Root CA]"] --> SNCCert["Encryption Cert [O=Contoso, CN=SNC]"]
-RootCA --> UsersCert["Signing Cert [O=Contoso, CN=Users]"]
-%% Each User ID in SAP maps to Intermediate Cert CN=users
-UsersCert --> U1[UserID: testuser01]
-UsersCert --> U2[UserID testuser02]
-UsersCert --> U3[UserID testuser03]
-%% Add more user IDs as needed
+<div class="mermaid">flowchart TD
+  classDef defaultStyle fill:#fff,stroke:#333,stroke-width:1px;
+  RootCA["Root CA [O=Contoso, CN=Root CA]"] --> SNCCert["Encryption Cert [O=Contoso, CN=SNC]"]
+  RootCA --> UsersCert["Signing Cert [O=Contoso, CN=Users]"]
+  %% Each User ID in SAP maps to Intermediate Cert CN=users
+  UsersCert --> U1[UserID: testuser01]
+  UsersCert --> U2[UserID testuser02]
+  UsersCert --> U3[UserID testuser03]
+  %% Add more user IDs as needed
 
-class UsersCert,U1,U2,U3 defaultStyle;
-style RootCA fill:#8df,stroke:#333,stroke-width:2px
-style SNCCert fill:#8df,stroke:#333,stroke-width:2px
+  class UsersCert,U1,U2,U3 defaultStyle;
+  style RootCA fill:#8df,stroke:#333,stroke-width:2px
+  style SNCCert fill:#8df,stroke:#333,stroke-width:2px
 </div>
-
 <p>Now we are ready to create the folder structure for our certificates. Navigate to a secure place on your disk that'll you'll keep around, as we will be generating sensitive data here.</p>
-<pre class="highlight"><code class="language-powershell">mkdir rootCA sncCert intermediateUsersCert userCerts
+<pre><code class="language-powershell">mkdir rootCA sncCert intermediateUsersCert userCerts
 echo 1000 &gt; serial
-touch index.txt</code></pre>
+touch index.txt
+</code></pre>
 <p>Generate a Root CA(Certificate Authority)</p>
-<pre class="highlight"><code class="language-powershell">openssl genpkey -algorithm RSA -out rootCA/ca.key.pem -pkeyopt rsa_keygen_bits:2048
+<pre><code class="language-powershell">openssl genpkey -algorithm RSA -out rootCA/ca.key.pem -pkeyopt rsa_keygen_bits:2048
 
-openssl req -x509 -new -key rootCA/ca.key.pem -days 7305 -sha256 -extensions v3_ca -out rootCA/ca.cert.pem -subj "/O=Contoso/CN=Root CA"</code></pre>
+openssl req -x509 -new -key rootCA/ca.key.pem -days 7305 -sha256 -extensions v3_ca -out rootCA/ca.cert.pem -subj "/O=Contoso/CN=Root CA"
+</code></pre>
 <p>Generate the SNC certificate.</p>
-<pre class="highlight"><code class="language-powershell">openssl genrsa -out sncCert/snc.key.pem 2048
+<pre><code class="language-powershell">openssl genrsa -out sncCert/snc.key.pem 2048
 
-openssl req -key sncCert/snc.key.pem -new -sha256 -out sncCert/snc.csr.pem -subj "/O=Contoso/CN=SNC"</code></pre>
+openssl req -key sncCert/snc.key.pem -new -sha256 -out sncCert/snc.csr.pem -subj "/O=Contoso/CN=SNC"
+</code></pre>
 <p>Sign the SNC cert with the RootCA cert.</p>
-<pre class="highlight"><code class="language-powershell">openssl x509 -req -in sncCert/snc.csr.pem -days 3650 -CA rootCA/ca.cert.pem -CAkey rootCA/ca.key.pem -CAcreateserial -out sncCert/snc.cert.pem</code></pre>
+<pre><code class="language-powershell">openssl x509 -req -in sncCert/snc.csr.pem -days 3650 -CA rootCA/ca.cert.pem -CAkey rootCA/ca.key.pem -CAcreateserial -out sncCert/snc.cert.pem
+</code></pre>
 <p>Verify the SNC certificate.</p>
-<pre class="highlight"><code class="language-powershell">openssl x509 -in sncCert\snc.cert.pem -text</code></pre>
+<pre><code class="language-powershell">openssl x509 -in sncCert\snc.cert.pem -text
+</code></pre>
 <h2>Placing the SNC Certificate into a PSE for the OPDG</h2>
 <p>Add the SNC cert to an SSL container p12.</p>
-<pre class="highlight"><code class="language-powershell">openssl pkcs12 -export -out snc.p12 -inkey sncCert\snc.key.pem -in sncCert\snc.cert.pem -certfile rootCA\ca.cert.pem</code></pre>
+<pre><code class="language-powershell">openssl pkcs12 -export -out snc.p12 -inkey sncCert\snc.key.pem -in sncCert\snc.cert.pem -certfile rootCA\ca.cert.pem
+</code></pre>
 <p>Create the .PSE!</p>
-<pre class="highlight"><code class="language-powershell">C:\sap\libs\sapcryptolib\sapgenpse.exe import_p12 -p SAPSNCSKERB.pse C:\Users\tbrazelton\Documents\sap-kerb\04\snc.p12</code></pre>
+<pre><code class="language-powershell">C:\sap\libs\sapcryptolib\sapgenpse.exe import_p12 -p SAPSNCSKERB.pse C:\Users\tbrazelton\Documents\sap-kerb\04\snc.p12
+</code></pre>
 <h2>Configuring SAP for SNC</h2>
 <ol>
 <li>Log into the SAP GUI.</li>
-<li>Go to t-code <code class="highlight">RZ10</code>.</li>
-<li>Ensure the following properties are set. <ol>
+<li>Go to t-code <code>RZ10</code>.</li>
+<li>Ensure the following properties are set.
+<ol>
 <li>Talk to your SAP basis About these changes.</li>
-<li>Change <code class="highlight">snc/identity/as</code> ONLY if needed. (usually this is not needed). But
- <pre class="highlight"><code class="language-config">snc/accept_insecure_cpic: 1
+<li>Change <code>snc/identity/as</code> ONLY if needed. (usually this is not needed). But</li>
+</ol>
+<pre><code class="language-config">snc/accept_insecure_cpic: 1
 snc/accept_insecure_gui: 1
 snc/accept_insecure_rfc: 1
 snc/enable: 1
@@ -191,8 +238,8 @@ snc/extid_login_rfc: 1
 snc/gssapi_lib: $(SAPCRYPTOLIB)
 snc/identity/as: p:CN=ID3, O=Contoso
 snc/permit_insecure_start: 1
-snc/data_protection/max: 3</code></pre></li>
-</ol>
+snc/data_protection/max: 3
+</code></pre>
 </li>
 <li>Save the profile parameters and restart your SAP instance.</li>
 </ol>
@@ -200,48 +247,52 @@ snc/data_protection/max: 3</code></pre></li>
 <h3>Adding Our OPDG's SNC Public Cert to SAP</h3>
 <ol>
 <li>Log into SAP GUI</li>
-<li>Go to t-code <code class="highlight">STRUST</code></li>
-<li>If the <code class="highlight">SNC SAPCryptolib</code> has a red <code class="highlight">X</code> next to it, we will need to right click on it and select <code class="highlight">Create</code>. This will create an PSE on the SAP system to store certificates.</li>
-<li>Double click the <code class="highlight">SNC SAPCryptolib</code> folder. Then double click on the Subject of your Own Certificate in the top right panel.</li>
-<li>Select the <code class="highlight">Import Certificate</code> button at the bottom of the page and select your <code class="highlight">sncCert\snc.cert.pem</code> file.</li>
-<li>Click the <code class="highlight">Add to Certificate List</code> button.<ol>
-<li>If the <code class="highlight">Add to Certificate List</code> button is grayed out, make sure you select the <code class="highlight">Change</code> button as pictured below.</li>
+<li>Go to t-code <code>STRUST</code></li>
+<li>If the <code>SNC SAPCryptolib</code> has a red <code>X</code> next to it, we will need to right click on it and select <code>Create</code>. This will create an PSE on the SAP system to store certificates.</li>
+<li>Double click the <code>SNC SAPCryptolib</code> folder. Then double click on the Subject of your Own Certificate in the top right panel.</li>
+<li>Select the <code>Import Certificate</code> button at the bottom of the page and select your <code>sncCert\snc.cert.pem</code> file.</li>
+<li>Click the <code>Add to Certificate List</code> button.
+<ol>
+<li>If the <code>Add to Certificate List</code> button is grayed out, make sure you select the <code>Change</code> button as pictured below.</li>
 </ol>
 </li>
 </ol>
-<p><img alt="Pasted image 20240207113302.png" src="/static/images/2024/Pasted image 20240207113302.png" /></p>
+<p><img src="/static/images/2024/Pasted image 20240207113302.png" alt="Pasted image 20240207113302.png" /></p>
 <h3>Adding Our SAP Boxes SNC Public Cert to OPDG</h3>
 <ol>
 <li>Similar to the steps above, Log into the SAP GUI</li>
-<li>Go to t-code <code class="highlight">STRUST</code></li>
-<li>Double click the <code class="highlight">SNC SAPCryptolib</code> folder. Then double click on the Subject of your Own Certificate in the top right panel.</li>
+<li>Go to t-code <code>STRUST</code></li>
+<li>Double click the <code>SNC SAPCryptolib</code> folder. Then double click on the Subject of your Own Certificate in the top right panel.</li>
 <li>Scroll down the page and export the public cert.
-   <img alt="Pasted image 20240223162554.png" src="/static/images/2024/Pasted image 20240223162554.png" /></li>
+<img src="/static/images/2024/Pasted image 20240223162554.png" alt="Pasted image 20240223162554.png" /></li>
 <li>Move the public cert to your OPDG box(I placed mine in C:\sap\contoso-public-key.crt).</li>
 <li>Use the following command to import it into your OPDG's PSE.
-   <pre class="highlight"><code class="language-powershell">C:\sap\libs\sapcryptolib\sapgenpse.exe maintain_pk -p SAPSNCSKERB.pse -v -a  C:\sap\contoso-public-key.crt</code></pre></li>
+<pre><code class="language-powershell">C:\sap\libs\sapcryptolib\sapgenpse.exe maintain_pk -p SAPSNCSKERB.pse -v -a  C:\sap\contoso-public-key.crt
+</code></pre>
+</li>
 <li>Trust has now been established between your SAP box and the OPDG box!</li>
 </ol>
 <h2>Testing Communication</h2>
 <p>Create a new instant flow in Power Automate. Add an SAP ERP Call Function action to the designer and modify your SAP System string to include the following substituting my system info with your own.</p>
-<p>You can find the <code class="highlight">SncMyName</code> of your system under t-code <code class="highlight">STRUST</code> &gt; <code class="highlight">SNC SAPCryptolib</code> (Noted as the subject of your own certificate).</p>
-<pre class="highlight"><code class="language-json">{  
-    "AppServerHost": "xxx",  
-    "Client": "xx",  
-    "SystemNumber": "xx",  
-    "LogonType": "ApplicationServer",  
-    "SncMyName": "p:CN=SNC, O=Contoso",  
-    "SncLibraryPath": "C:\\sap\\libs\\sapcryptolib\\sapcrypto.dll",  
-    "SncPartnerName": "p:CN=ID3, O=Contoso",  
-    "SncQop": "Default",  
-    "UseSnc": "true",  
-    "SncSso": "Off"  
-}</code></pre>
-<p>Then test it out with the "STFC_CONNECTION" RFC function. </p>
-<p><img alt="Pasted image 20240223164854.png" src="/static/images/2024/Pasted image 20240223164854.png" /></p>
+<p>You can find the <code>SncMyName</code> of your system under t-code <code>STRUST</code> &gt; <code>SNC SAPCryptolib</code> (Noted as the subject of your own certificate).</p>
+<pre><code class="language-json">{
+    "AppServerHost": "xxx",
+    "Client": "xx",
+    "SystemNumber": "xx",
+    "LogonType": "ApplicationServer",
+    "SncMyName": "p:CN=SNC, O=Contoso",
+    "SncLibraryPath": "C:\\sap\\libs\\sapcryptolib\\sapcrypto.dll",
+    "SncPartnerName": "p:CN=ID3, O=Contoso",
+    "SncQop": "Default",
+    "UseSnc": "true",
+    "SncSso": "Off"
+}
+</code></pre>
+<p>Then test it out with the "STFC_CONNECTION" RFC function.</p>
+<p><img src="/static/images/2024/Pasted image 20240223164854.png" alt="Pasted image 20240223164854.png" /></p>
 <p>Enjoy your fully encrypted connection!</p>
 <p>If you have any questions, improvements, or general comments, please feel free to ping me on <a href="https://x.com/ryanb58">X(formally Twitter)</a>.</p>
-<script>mermaid.initialize({startOnLoad:true});</script>
+
         </div>
         <hr />
         <p>Posted on 2024-02-26</p>

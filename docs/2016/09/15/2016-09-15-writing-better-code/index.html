@@ -3,79 +3,105 @@
     
     <head>
     <title>Writing Better Code</title>
+    <meta charset="UTF-8" />
 
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/style.css" />
     <!-- <link rel="stylesheet" href="/css/typebase.css"> -->
-    <link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
+    <link
+        href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css"
+        rel="stylesheet"
+    />
 
-
-    <link rel="stylesheet" href="/static/3rdparty/highlight/styles/dark.min.css">
+    <link
+        rel="stylesheet"
+        href="/static/3rdparty/highlight/styles/dark.min.css"
+    />
     <script src="/static/3rdparty/highlight/highlight.min.js"></script>
-    <script>hljs.highlightAll();</script>
+    <script>
+        hljs.highlightAll();
+    </script>
 
-    <script defer type="text/javascript" src="https://api.pirsch.io/pirsch-extended.js"
-    id="pirschextendedjs"
-    data-code="RYys8Gv7BBXOVN1yCX9qtVpduGH52QKc"></script>
+    <script
+        defer
+        type="text/javascript"
+        src="https://api.pirsch.io/pirsch-extended.js"
+        id="pirschextendedjs"
+        data-code="RYys8Gv7BBXOVN1yCX9qtVpduGH52QKc"
+    ></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
+    <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"
+    ></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
 
-    gtag('config', 'G-LD3MQXQGQ2');
+        gtag("config", "G-LD3MQXQGQ2");
     </script>
     <!-- <script src="/livereload.js"></script> -->
 
     <script type="module">
-        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+        mermaid.initialize({ startOnLoad: true });
     </script>
 
     <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        (function (c, l, a, r, i, t, y) {
+            c[a] =
+                c[a] ||
+                function () {
+                    (c[a].q = c[a].q || []).push(arguments);
+                };
+            t = l.createElement(r);
+            t.async = 1;
+            t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t, y);
         })(window, document, "clarity", "script", "molkkkznzg");
     </script>
-
 </head>
 
     <body>
-        <nav><ul>
-    <li><a href="/">Home</a></li>
-    
+        <nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        
         <li><a href="/about/">About</a></li>
-    
+        
         <li><a href="/creations/">Creations</a></li>
-    
+        
         <li><a href="/tools/">Tools</a></li>
-    
-</ul></nav>
+        
+    </ul>
+</nav>
 
         <h1>Writing Better Code</h1>
         <div class="post-body">
-            <p>As a software engineer/artist I could spend copious amounts of time refactoring. 
+            <p>As a software engineer/artist I could spend copious amounts of time refactoring.
 However, at some point products have to be shipped. You can't just keep
- pushing deadlines back further and further. Instead I utilize the tips below
- to provide functional code that is also clean.</p>
+pushing deadlines back further and further. Instead I utilize the tips below
+to provide functional code that is also clean.</p>
 <h2>The DRY Principle.</h2>
-<p>DRY stands for "don't repeat yourself" and you shouldn't. If you do, STOP! 
-Repeating yourself will never be a good practice. 
+<p>DRY stands for "don't repeat yourself" and you shouldn't. If you do, STOP!
+Repeating yourself will never be a good practice.
 The programming gods invented functions for a reason. Start now by splitting up
-your big <code class="highlight">main()</code> function.</p>
+your big <code>main()</code> function.</p>
 <h2>Design Patterns</h2>
 <p>What you might not of know is that there are three major categories of
 design patterns; creational, structural, and behavioral. Each category having a
-plethora of tools to help solve everyday software problems. </p>
+plethora of tools to help solve everyday software problems.</p>
 <h2>Understand The Computer</h2>
 <p>Knowing that the windows registry exists and how to edit it is not "understanding"
-the inner workings of a computer. Understanding a computer means having knowledge 
+the inner workings of a computer. Understanding a computer means having knowledge
 about things such as the data path on the CPU and different levels of cache.</p>
-<p>If you don't understand how a CPU does computations such 
+<p>If you don't understand how a CPU does computations such
 as multiplication down at a binary level, how are you suppose to think in terms
-of performance? When your application is eating up precious cycles for useless 
+of performance? When your application is eating up precious cycles for useless
 tasks, being able to optimize the program and utilizing your compilers internals
 to elevate things to a kernel level commands can become of utmost importance.</p>
 <h2>Tools</h2>
@@ -83,12 +109,12 @@ to elevate things to a kernel level commands can become of utmost importance.</p
 of their trade. Currently I use VS Code + a Vim Shortcut plugins. I then utilize
 flake8 to keep my code style up to par and PyLint to ensure no bugs exist in my
 code.</p>
-<p>I'm not saying switch to my tools, I'm saying start diving deep into how they work. 
+<p>I'm not saying switch to my tools, I'm saying start diving deep into how they work.
 Ask yourself, are there any menu's or options you haven't explored before? Mess
 around with them until you figure out. Can you use a tool in a way it wasn't meant to?
 Try it. Don't settle, expand it and put it into your pipeline.</p>
 <h2>Readability</h2>
-<p>This one is very important. Instead of writing a list comprehension that goes way past 
+<p>This one is very important. Instead of writing a list comprehension that goes way past
 the end of the 79 character PEP8 line length, use multiple lines. Name variables
 appropriately and keep packages clean. All things that you should be actively striving for
 when writing code or refactoring.</p>
@@ -96,20 +122,21 @@ when writing code or refactoring.</p>
 <p>Open source or not you should strive to get someone to review your code. This helps
 promote a more open environment and prevents bugs from making it into production code.</p>
 <h2>Testing</h2>
-<p>I could talk for hours on this one. Testing is essential. 
+<p>I could talk for hours on this one. Testing is essential.
 Start out with unit tests and verify small components of the system. Once
-you get a hold of how to do that, start adding integration tests for business 
+you get a hold of how to do that, start adding integration tests for business
 essential parts of your application.</p>
 <p>Have a ton of services? Test the main functionality of these programs by running
 smoke tests. Smoke tests are very light weight scripts that verify the conditions
-of your system. A good example of smoke tests is ensuring your FTP server is 
+of your system. A good example of smoke tests is ensuring your FTP server is
 online and that the user can login.</p>
 <h2>Conclusion</h2>
 <p>Wrapping things up, you should always strive for clean and readable code. I hope
 that some of the items I've listed above can enable you and your team to create
- amazing and beautiful products for people all over the world.</p>
+amazing and beautiful products for people all over the world.</p>
 <p>Please feel free to share this post and comment anything I left out or might be
 able to improve on for my own sake.</p>
+
         </div>
         <hr />
         <p>Posted on 2016-09-15</p>

@@ -62,7 +62,7 @@ SAP Common Crypto is a distribution from SAP that allows the OPDG to talk to SAP
 3. Click on the top result(non archived).
 4. From there, select the latest version. At the time of this writing I selected `SAPCAR 7.53`.
 5. Select the operating system type in the dropdown located above the search results.
-  ![Pasted image 20240223151606.png](/static/images/2024/Pasted image 20240223151606.png)
+  ![Pasted image 20240223151606.png](</static/images/2024/Pasted image 20240223151606.png>)
 
 6. Click on the result to download the .EXE file. I placed mine in `C:\sap\SAR`
 
@@ -72,7 +72,7 @@ SAP Common Crypto is a distribution from SAP that allows the OPDG to talk to SAP
 2. Type `COMMONCRYPTOLIB` into the `Search for Software Downloads` search box.
 3. Select the `COMMONCRYPTOLIB 8` result.
 4. Select the operating system type in the dropdown located above the search results.
-   ![Pasted image 20240223150340.png](/static/images/2024/Pasted image 20240223150340.png)
+   ![Pasted image 20240223150340.png](</static/images/2024/Pasted image 20240223150340.png>)
 5. Click on the title of the listing with the most recent `Release Date` to download the .SAR file.
 
 ### Extract SAP Common Crypto
@@ -94,7 +94,7 @@ C:\> mkdir sapsecudir
 C:\> cd .\sapsecudir
 ```
 
-Define an environment variable called `SECUDIR` and point it at that directory. 
+Define an environment variable called `SECUDIR` and point it at that directory.
 
 First we backup our existing `PATH` environment variable into a file.
 
@@ -113,7 +113,7 @@ Then restart your On-Premises Data Gateway for the changes to take effect.
 
 ## Generating Certificates
 
-Some of you might already have a PKI setup. In this tutorial, I do not have one, so I will create one on the fly that can be expanded to X.509 user authentication later on. 
+Some of you might already have a PKI setup. In this tutorial, I do not have one, so I will create one on the fly that can be expanded to X.509 user authentication later on.
 
 Below is a visual to help with understanding of what certificate will do what and how it can be expanded to issue user certs in the future. In this tutorial we will focus on implementing the blue boxes.
 
@@ -189,7 +189,7 @@ C:\sap\libs\sapcryptolib\sapgenpse.exe import_p12 -p SAPSNCSKERB.pse C:\Users\tb
 
 1. Log into the SAP GUI.
 1. Go to t-code `RZ10`.
-1. Ensure the following properties are set. 
+1. Ensure the following properties are set.
 	1. Talk to your SAP basis About these changes.
 	1. Change `snc/identity/as` ONLY if needed. (usually this is not needed). But
      ```config
@@ -216,16 +216,16 @@ C:\sap\libs\sapcryptolib\sapgenpse.exe import_p12 -p SAPSNCSKERB.pse C:\Users\tb
 1. Select the `Import Certificate` button at the bottom of the page and select your `sncCert\snc.cert.pem` file.
 1. Click the `Add to Certificate List` button.
 	1. If the `Add to Certificate List` button is grayed out, make sure you select the `Change` button as pictured below.
-    
-  ![Pasted image 20240207113302.png](/static/images/2024/Pasted image 20240207113302.png)
 
-	
+  ![Pasted image 20240207113302.png](</static/images/2024/Pasted image 20240207113302.png>)
+
+
 ### Adding Our SAP Boxes SNC Public Cert to OPDG
 1. Similar to the steps above, Log into the SAP GUI
 1. Go to t-code `STRUST`
 1. Double click the `SNC SAPCryptolib` folder. Then double click on the Subject of your Own Certificate in the top right panel.
 1. Scroll down the page and export the public cert.
-   ![Pasted image 20240223162554.png](/static/images/2024/Pasted image 20240223162554.png)
+   ![Pasted image 20240223162554.png](</static/images/2024/Pasted image 20240223162554.png>)
 1. Move the public cert to your OPDG box(I placed mine in C:\sap\contoso-public-key.crt).
 1. Use the following command to import it into your OPDG's PSE.
    ```powershell
@@ -240,23 +240,23 @@ Create a new instant flow in Power Automate. Add an SAP ERP Call Function action
 You can find the `SncMyName` of your system under t-code `STRUST` > `SNC SAPCryptolib` (Noted as the subject of your own certificate).
 
 ```json
-{  
-    "AppServerHost": "xxx",  
-    "Client": "xx",  
-    "SystemNumber": "xx",  
-    "LogonType": "ApplicationServer",  
-    "SncMyName": "p:CN=SNC, O=Contoso",  
-    "SncLibraryPath": "C:\\sap\\libs\\sapcryptolib\\sapcrypto.dll",  
-    "SncPartnerName": "p:CN=ID3, O=Contoso",  
-    "SncQop": "Default",  
-    "UseSnc": "true",  
-    "SncSso": "Off"  
+{
+    "AppServerHost": "xxx",
+    "Client": "xx",
+    "SystemNumber": "xx",
+    "LogonType": "ApplicationServer",
+    "SncMyName": "p:CN=SNC, O=Contoso",
+    "SncLibraryPath": "C:\\sap\\libs\\sapcryptolib\\sapcrypto.dll",
+    "SncPartnerName": "p:CN=ID3, O=Contoso",
+    "SncQop": "Default",
+    "UseSnc": "true",
+    "SncSso": "Off"
 }
 ```
 
-Then test it out with the "STFC_CONNECTION" RFC function. 
+Then test it out with the "STFC_CONNECTION" RFC function.
 
-![Pasted image 20240223164854.png](/static/images/2024/Pasted image 20240223164854.png)
+![Pasted image 20240223164854.png](</static/images/2024/Pasted image 20240223164854.png>)
 
 Enjoy your fully encrypted connection!
 

@@ -3,63 +3,89 @@
     
     <head>
     <title>The Obsolete Windows GAC</title>
+    <meta charset="UTF-8" />
 
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/style.css" />
     <!-- <link rel="stylesheet" href="/css/typebase.css"> -->
-    <link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
+    <link
+        href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css"
+        rel="stylesheet"
+    />
 
-
-    <link rel="stylesheet" href="/static/3rdparty/highlight/styles/dark.min.css">
+    <link
+        rel="stylesheet"
+        href="/static/3rdparty/highlight/styles/dark.min.css"
+    />
     <script src="/static/3rdparty/highlight/highlight.min.js"></script>
-    <script>hljs.highlightAll();</script>
+    <script>
+        hljs.highlightAll();
+    </script>
 
-    <script defer type="text/javascript" src="https://api.pirsch.io/pirsch-extended.js"
-    id="pirschextendedjs"
-    data-code="RYys8Gv7BBXOVN1yCX9qtVpduGH52QKc"></script>
+    <script
+        defer
+        type="text/javascript"
+        src="https://api.pirsch.io/pirsch-extended.js"
+        id="pirschextendedjs"
+        data-code="RYys8Gv7BBXOVN1yCX9qtVpduGH52QKc"
+    ></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"></script>
+    <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-LD3MQXQGQ2"
+    ></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
 
-    gtag('config', 'G-LD3MQXQGQ2');
+        gtag("config", "G-LD3MQXQGQ2");
     </script>
     <!-- <script src="/livereload.js"></script> -->
 
     <script type="module">
-        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+        mermaid.initialize({ startOnLoad: true });
     </script>
 
     <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        (function (c, l, a, r, i, t, y) {
+            c[a] =
+                c[a] ||
+                function () {
+                    (c[a].q = c[a].q || []).push(arguments);
+                };
+            t = l.createElement(r);
+            t.async = 1;
+            t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t, y);
         })(window, document, "clarity", "script", "molkkkznzg");
     </script>
-
 </head>
 
     <body>
-        <nav><ul>
-    <li><a href="/">Home</a></li>
-    
+        <nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        
         <li><a href="/about/">About</a></li>
-    
+        
         <li><a href="/creations/">Creations</a></li>
-    
+        
         <li><a href="/tools/">Tools</a></li>
-    
-</ul></nav>
+        
+    </ul>
+</nav>
 
         <h1>The Obsolete Windows GAC</h1>
         <div class="post-body">
             <p>While debugging an issue a customer reported issue, I became well acquainted with the Global Assembly Cache otherwise known as the GAC. In this post, I'll share my findings.</p>
 <p>The GAC is a place where code is shared amongst multiple programs is stored &amp; run. Quite an interesting concept and as the name implies it is a cache.</p>
 <p>A key benefit of it being a cache is that only one instance of the code is ever loaded into memory. Therefore, if you have multiple programs using the same DLL, you don't have to worry about multiple instances of that DLL existing in memory at the same time. Keeping your RAM clean of non-duplicated code.</p>
-<p>Another benefit to the GAC is the ability to have multiple versions of an assembly. When a library is updated, both versions 1.0 and 1.5 can sit alongside one another and your apps don't break. Programs that were referencing 1.0 can continue to do so, and newly added programs will reference the latest version 1.5. </p>
+<p>Another benefit to the GAC is the ability to have multiple versions of an assembly. When a library is updated, both versions 1.0 and 1.5 can sit alongside one another and your apps don't break. Programs that were referencing 1.0 can continue to do so, and newly added programs will reference the latest version 1.5.</p>
 <p>So why is the GAC obsolete?</p>
 <ol>
 <li>The concept was removed from .NET 5 and later.</li>
@@ -69,10 +95,11 @@
 </ol>
 <p>For more information about the Windows Global Assembly Cache, please check out the sources linked below.</p>
 <h4>Sources:</h4>
-<p><a href="https://learn.microsoft.com/en-us/dotnet/framework/app-domains/gac">https://learn.microsoft.com/en-us/dotnet/framework/app-domains/gac</a>
-<a href="https://learn.microsoft.com/en-us/dotnet/core/compatibility/core-libraries/5.0/global-assembly-cache-apis-obsolete">https://learn.microsoft.com/en-us/dotnet/core/compatibility/core-libraries/5.0/global-assembly-cache-apis-obsolete</a>
-<a href="https://stackoverflow.com/questions/538710/why-should-i-not-use-the-gac">https://stackoverflow.com/questions/538710/why-should-i-not-use-the-gac</a>
-<a href="http://sellsbrothers.com/12503">http://sellsbrothers.com/12503</a></p>
+<p>https://learn.microsoft.com/en-us/dotnet/framework/app-domains/gac
+https://learn.microsoft.com/en-us/dotnet/core/compatibility/core-libraries/5.0/global-assembly-cache-apis-obsolete
+https://stackoverflow.com/questions/538710/why-should-i-not-use-the-gac
+http://sellsbrothers.com/12503</p>
+
         </div>
         <hr />
         <p>Posted on 2022-12-07</p>

@@ -50,7 +50,7 @@ Would return the same array as the Python variable `favorite_fruits`.
 
 Screenshot:
 
-![Pasted image 20230406095505](/static/images/2023/Pasted image 20230406095505.png)
+![Pasted image 20230406095505](</static/images/2023/Pasted image 20230406095505.png>)
 
 
 Sources:
