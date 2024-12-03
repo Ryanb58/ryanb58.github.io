@@ -3,7 +3,7 @@ A Simple Website Builder
 
 This is a website generator with support for pages, blog posts, and tag listings.
 
-You write your content in markdown files and tag them with headers. 
+You write your content in markdown files and tag them with headers.
 
 Configuration options are located in the `config.yml` file.
 
@@ -20,3 +20,11 @@ Configuration options are located in the `config.yml` file.
 
 #### Sources:
 https://dev.to/ritza/create-a-static-site-generator-with-python-and-replit-4bh6
+
+## Using `uv`.
+
+```
+uv sync
+uv run build.py
+uv run python -m http.server -d docs/
+```

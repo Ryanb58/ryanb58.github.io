@@ -1,0 +1,14 @@
+[project]
+name = "ryanb58-github-io"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "feedgenerator>=2.1.0",
+    "inflect>=7.4.0",
+    "jinja2>=3.1.4",
+    "mistletoe>=1.4.0",
+    "pymdown-extensions>=10.12",
+    "toml>=0.10.2",
+]

@@ -1,4 +1,3 @@
-import distutils.dir_util
 import glob
 import os
 import pathlib
@@ -8,28 +7,30 @@ from datetime import datetime
 
 import inflect
 import jinja2
+
 # import markdown
 import toml
 from shutil import copytree, ignore_patterns
 from feedgenerator import Rss201rev2Feed
 from pymdownx import emoji
+
 # import mistune
 # from mistune import HTMLRenderer
 import mistletoe
 from html.parser import HTMLParser
 
 markdown_extensions = [
-    'markdown.extensions.tables',
-    'pymdownx.magiclink',
-    'pymdownx.betterem',
-    'pymdownx.tilde',
-    'pymdownx.emoji',
-    'pymdownx.tasklist',
-    'pymdownx.superfences',
-    'pymdownx.saneheaders',
-    'pymdownx.highlight',
-    'pymdownx.inlinehilite',
-    "md_mermaid"
+    "markdown.extensions.tables",
+    "pymdownx.magiclink",
+    "pymdownx.betterem",
+    "pymdownx.tilde",
+    "pymdownx.emoji",
+    "pymdownx.tasklist",
+    "pymdownx.superfences",
+    "pymdownx.saneheaders",
+    "pymdownx.highlight",
+    "pymdownx.inlinehilite",
+    "md_mermaid",
 ]
 
 markdown_extension_configs = {
@@ -38,30 +39,24 @@ markdown_extension_configs = {
         "repo_url_shorthand": True,
         "provider": "github",
         "user": "facelessuser",
-        "repo": "pymdown-extensions"
+        "repo": "pymdown-extensions",
     },
-    "pymdownx.tilde": {
-        "subscript": False
-    },
+    "pymdownx.tilde": {"subscript": False},
     "pymdownx.emoji": {
         "emoji_index": emoji.gemoji,
         "emoji_generator": emoji.to_png,
         "alt": "short",
         "options": {
-            "attributes": {
-                "align": "absmiddle",
-                "height": "20px",
-                "width": "20px"
-            },
+            "attributes": {"align": "absmiddle", "height": "20px", "width": "20px"},
             "image_path": "https://github.githubassets.com/images/icons/emoji/unicode/",
-            "non_standard_image_path": "https://github.githubassets.com/images/icons/emoji/"
-        }
+            "non_standard_image_path": "https://github.githubassets.com/images/icons/emoji/",
+        },
     },
     "pymdownx.highlight": {
         "css_class": "highlight",
         "guess_lang": True,
-        "use_pygments": False
-    }
+        "use_pygments": False,
+    },
 }
 
 
@@ -90,7 +85,6 @@ def remove_html_tags(text):
 
 
 def load_config(config_filename):
-
     with open(config_filename, "r") as config_file:
         config = toml.loads(config_file.read())
 
@@ -100,26 +94,29 @@ def load_config(config_filename):
 
     return config
 
+
 import re
 from mistletoe import block_token
 from mistletoe.html_renderer import HTMLRenderer
 
+
 class MermaidBlock(block_token.BlockCode):
     def __init__(self, match):
         super().__init__(match)
-        self.language = 'mermaid'
+        self.language = "mermaid"
+
 
 class MermaidRenderer(HTMLRenderer):
     def render_block_code(self, token):
-        if token.language == 'mermaid':
+        if token.language == "mermaid":
             return f'<div class="mermaid">{token.content}</div>'
         return super().render_block_code(token)
 
+
 def parse_mermaid(content):
-    block_token.BlockCode.pattern = re.compile(
-        r'( {0,3})(```|~~~)(\w+)?\n([\s\S]+?)\2'
-    )
+    block_token.BlockCode.pattern = re.compile(r"( {0,3})(```|~~~)(\w+)?\n([\s\S]+?)\2")
     return content
+
 
 def load_content_items(config, content_directory):
     def load_content_type(content_type):
@@ -127,7 +124,7 @@ def load_content_items(config, content_directory):
         for fn in glob.glob(
             f"{content_directory}/{config[content_type]['plural']}/*.md"
         ):
-            with open(fn, "r", encoding='utf-8') as file:
+            with open(fn, "r", encoding="utf-8") as file:
                 frontmatter, content = re.split(
                     "^\+\+\+\+\+$", file.read(), 1, re.MULTILINE
                 )
@@ -140,14 +137,12 @@ def load_content_items(config, content_directory):
             #     extension_configs=markdown_extension_configs
             # )
             # markdown = mistune.create_markdown(renderer=CustomHTMLRenderer(), plugins=['strikethrough', 'url', 'table'])
-            item["content"] = mistletoe.markdown(
-                content, MermaidRenderer
-            )
+            item["content"] = mistletoe.markdown(content, MermaidRenderer)
             item["slug"] = os.path.splitext(os.path.basename(file.name))[0]
             if config[content_type]["dateInURL"]:
-                item[
-                    "url"
-                ] = f"/{item['date'].year}/{item['date'].month:0>2}/{item['date'].day:0>2}/{item['slug']}/"
+                item["url"] = (
+                    f"/{item['date'].year}/{item['date'].month:0>2}/{item['date'].day:0>2}/{item['slug']}/"
+                )
             else:
                 item["url"] = f"/{item['slug']}/"
 
@@ -220,7 +215,6 @@ def load_templates(template_directory):
 
 
 def render_site(config, content, environment, output_directory):
-
     # Rewrite the output directory to include the static prefix.
     def render_type(content_type):  # <-- new inner function
         # Post pages
