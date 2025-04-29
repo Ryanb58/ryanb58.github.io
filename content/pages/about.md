@@ -2,32 +2,23 @@ title = "About"
 published = true
 +++++
 
-Hi! I'm Taylor. Welcome to my small corner of the internet.
+Welcome to my digital space!
 
-Building high-quality software is a passion of mine.
+I'm **Taylor**, a dedicated software engineer with a passion for building innovative, high-quality solutions that solve real-world problems.
 
-Interested in how businesses work.
+- **Business Enthusiast**: I love diving into the mechanics of how businesses operate and thrive.
+- **Avid Runner**: You can find me hitting the pavement, training for my annual half marathon.
+- **Coffee Aficionado**: Fueled by a good brew, always ready to tackle the next challenge.
+- **Global Explorer**: A curious traveler, constantly chasing new cultures and experiences.
+- **Lifelong Learner**: I believe growth never stops—learning is a journey without a finish line.
 
-Run at least one half marathon a year.
+If my work inspires or helps you, I’d love for you to connect with me on social media!
 
-Fueled by copious amounts of coffee.
+## Connect With Me
 
-Traveler of the ~~USA~~World(starting summer 2024)
+- [X](https://x.com/Ryanb58)
+- [LinkedIn](https://www.linkedin.com/in/taylorbrazelton/)
 
-Believier that learning shouldn't stop when your education does.
+## Disclaimer
 
-#### Social Media Links:
-
-[Twitter](https://twitter.com/Ryanb58)
-
-[Indie Hackers](https://www.indiehackers.com/mrbrazel)
-
-[LinkedIn](https://www.linkedin.com/in/taylorbrazelton/)
-
-#### Support Me & My Work:
-
-[Buy Me A Coffee](https://www.buymeacoffee.com/mrbrazel)
-
-#### Disclaimer
-
-My opinions are my own.
+All opinions expressed here are my own.

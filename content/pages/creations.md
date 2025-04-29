@@ -2,9 +2,22 @@ title = "Creations"
 published = true
 +++++
 
-Welcome to my creative portfolio, featuring an array of projects I've developed or am in the process of building. Here, you'll find a diverse range of concepts and creations that I've endeavored to turn into reality. Although I often embark on these journeys independently, sometimes I'm fortunate to team up with fellow enthusiasts who share my passion for an idea.
+Explore my collection of projects, showcasing ideas I've brought to life or am currently developing. From solo endeavors to collaborations with like-minded creators, this portfolio highlights my passion for turning concepts into reality.
 
 ### Active:
+
+[WorkSwarm](https://workswarm.io)
+
+ - My vision for how work will be done in the future. Each person will orchestrate a team of agents to do "work". Each one specializing in an individual skill set.
+
+[SAP Bit](https://sapbit.io)
+
+ - A community built SAP documentation site. 
+ - Originally built to separate all of the SAP notes I've collected over the last few years and aggregate them into once place.
+
+[ERP Jobs](https://erpjobs.io)
+
+ - A job board tailored for professionals specializing in ERP systems.
 
 [Track Your STR](https://trackyourstr.com):
 
@@ -15,9 +28,6 @@ Welcome to my creative portfolio, featuring an array of projects I've developed 
 
  - Monitor luxury product prices globally. By factoring in currency exchange rates, this tool helps you discover where and what luxury items offer the best value for purchase.
 
-[ERP Jobs](https://erpjobs.io)
-
- - A job board tailored for professionals specializing in ERP systems.
 
 ### Retired:
 
