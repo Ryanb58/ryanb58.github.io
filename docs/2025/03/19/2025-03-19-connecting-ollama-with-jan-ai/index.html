@@ -2,7 +2,7 @@
 <html>
     
     <head>
-    <title>Bitbucket to GitHub with Branches and Tags</title>
+    <title>How to connect Jan.ai to Ollama(non-.cpp)</title>
     <meta charset="UTF-8" />
 
     <link rel="stylesheet" href="/static/css/style.css" />
@@ -58,38 +58,27 @@
     </ul>
 </nav>
 
-        <h1>Bitbucket to GitHub with Branches and Tags</h1>
+        <h1>How to connect Jan.ai to Ollama(non-.cpp)</h1>
         <div class="post-body">
-            <ol>
-<li>Create a new folder for the fresh repo clones. Navigate inside.</li>
+            <p>Running LLMs locally is great for privacy and olline access.</p>
+<p>My current setup is to use Jan.ai and Ollama. However, instructions on this setup seem to elude others, so I figure I'd share how I did it.</p>
+<p>Since Jan.AI works with OpenAI compatible APIs. You can hook them up by creating a new Engine.</p>
+<ol>
+<li>Open Jan</li>
+<li>Click the settings icon in the lower left corner.</li>
+<li>Under "General" select the "Engines" tab.</li>
+<li>Select "Install Engine" and fill out the following details, leaving any extra fields blank.
+Engine Name: Ollama
+Chat Completions URL: http://localhost:11434/v1/chat/completions
+Model List URL: http://localhost:11434/v1/models
+API Key: ollama</li>
+<li>Click "Install"</li>
 </ol>
-<pre><code>mkdir temp/
-cd temp/
-</code></pre>
-<ol start="2">
-<li>Clone the repo using the following command.</li>
-</ol>
-<pre><code>git clone --mirror git@bitbucket.com:org/name.git
-</code></pre>
-<ol start="3">
-<li>Navigate into the locally cloned repo.</li>
-</ol>
-<pre><code>cd name.git/
-</code></pre>
-<ol start="4">
-<li>Set the new remote</li>
-</ol>
-<pre><code>git remote set-url --push origin git@github.com:org/name.git
-</code></pre>
-<ol start="5">
-<li>Push the contents of the repo to the new remote.</li>
-</ol>
-<pre><code>git push --mirror
-</code></pre>
+<p>Now when you create a new thread, you should be able to select "Ollama" from the cloud tab, and then select the pre-downloaded model from the list.</p>
 <p>Enjoy!</p>
 
         </div>
         <hr />
-        <p>Posted on 2022-01-06</p>
+        <p>Posted on 2025-03-19</p>
     </body>
 </html>

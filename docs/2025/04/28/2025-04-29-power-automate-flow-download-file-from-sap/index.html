@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+    <title>Power Automate Flow - Download File From SAP</title>
+    <meta charset="UTF-8" />
+
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <!-- <link rel="stylesheet" href="/css/typebase.css"> -->
+    <link
+        href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css"
+        rel="stylesheet"
+    />
+
+    <link
+        rel="stylesheet"
+        href="/static/3rdparty/highlight/styles/dark.min.css"
+    />
+    <script src="/static/3rdparty/highlight/highlight.min.js"></script>
+    <script>
+        hljs.highlightAll();
+    </script>
+
+    <script defer src="https://umami.taylorbrazelton.com/script.js" data-website-id="bae6a05d-d545-4d68-9810-f6e03a2965e0"></script>
+
+    <script type="module">
+        import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+
+    <script type="text/javascript">
+        (function (c, l, a, r, i, t, y) {
+            c[a] =
+                c[a] ||
+                function () {
+                    (c[a].q = c[a].q || []).push(arguments);
+                };
+            t = l.createElement(r);
+            t.async = 1;
+            t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "molkkkznzg");
+    </script>
+</head>
+
+    <body>
+        <nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        
+        <li><a href="/about/">About</a></li>
+        
+        <li><a href="/creations/">Creations</a></li>
+        
+        <li><a href="/tools/">Tools</a></li>
+        
+    </ul>
+</nav>
+
+        <h1>Power Automate Flow - Download File From SAP</h1>
+        <div class="post-body">
+            <p>With the low-key launch of the "Reconstruct Attachments" action inside of the SAP ERP Connector for Power Automate, you can download files from SAP.</p>
+<p>Below we will construct a flow that enables this process. The resulting file will land inside of sharepoint.</p>
+<h2>Prerequisites</h2>
+<ul>
+<li>Sharepoint</li>
+<li>Power Automate License</li>
+<li>Valid SAP credentials</li>
+<li>Proper Permissions</li>
+<li>Previously setup a successful connection between Power Automate &amp; SAP</li>
+</ul>
+<h2>Flow Construction</h2>
+<p>Replace the placeholder <code>XXX</code> with your specific configuration and items as needed.</p>
+<h3>Manual Trigger</h3>
+<p>As-Is</p>
+<h3>Initialize Variable</h3>
+<pre><code class="language-json">{
+  "type": "InitializeVariable",
+  "inputs": {
+    "variables": [
+      {
+        "name": "Document",
+        "type": "string",
+        "value": "300001000701152024"
+      }
+    ]
+  }
+  ...
+}
+</code></pre>
+<h3>Call SAP Function</h3>
+<p>RFC: BDS_BUSINESSDOCUMENT_QUERY_D</p>
+<p>Use the latest version of this. At the time of this writing, it is version 3.</p>
+<pre><code class="language-json">{
+  "type": "OpenApiConnection",
+  "inputs": {
+    "parameters": {
+      "x-ms-sap-system": "{\"AppServerHost\":\"XXX\",\"Client\":\"XXX\",\"SystemNumber\":\"XX\",\"LogonType\":\"ApplicationServer\"}",
+      "rfcName": "BDS_BUSINESSDOCUMENT_QUERY_D",
+      "rfcGroupFilter": "*",
+      "autoCommit": false,
+      "rfcInputs/CLASSNAME": "BKPF",
+      "rfcInputs/CLASSTYPE": "BO",
+      "rfcInputs/OBJECT_KEY": "@variables('Document')"
+    },
+    ...
+}
+</code></pre>
+<h3>Call SAP Function</h3>
+<p>RFC: BDS_DOCUMENT_GET_TABLE</p>
+<pre><code class="language-json">{
+  "type": "OpenApiConnection",
+  "inputs": {
+    "parameters": {
+      "x-ms-sap-system": "{\"AppServerHost\":\"XXX\",\"Client\":\"XXX\",\"SystemNumber\":\"XX\",\"LogonType\":\"ApplicationServer\"}",
+      "rfcName": "BDS_DOCUMENT_GET_TABLE",
+      "rfcGroupFilter": "*",
+      "autoCommit": false,
+      "rfcInputs/DOC_ID": "@body('BDS_BUSINESSDOCUMENT_QUERY_D')['CONNECTIONS'][0]['DOC_ID']",
+      "rfcInputs/BINARY_FLAG": "X"
+    },
+    "host": {
+      "apiId": "/providers/Microsoft.PowerApps/apis/shared_saperp",
+      "connection": "shared_saperp",
+      "operationId": "CallRfcJsonV3"
+    }
+  },
+  ...
+}
+</code></pre>
+<h3>Create Array</h3>
+<pre><code class="language-json">{
+  "type": "Select",
+  "inputs": {
+    "from": "@outputs('BDS_DOCUMENT_GET_TABLE')?['body/CONTENT']",
+    "select": "@item()?['LINE']"
+  },
+  ...
+}
+</code></pre>
+<h3>Reconstruct Attachment</h3>
+<pre><code class="language-json">{
+  "type": "OpenApiConnection",
+  "inputs": {
+    "parameters": {
+      "payload": "@body('Create_Base64_Array')"
+    },
+    "host": {
+      "apiId": "/providers/Microsoft.PowerApps/apis/shared_saperp",
+      "connection": "shared_saperp",
+      "operationId": "AttachmentReconstruct"
+    }
+  },
+  ...
+}
+</code></pre>
+<h3>Create File - Sharepoint</h3>
+<pre><code class="language-json">{
+  "type": "OpenApiConnection",
+  "inputs": {
+    "parameters": {
+      "dataset": "https://microsoft.sharepoint.com/teams/XXX",
+      "folderPath": "/Shared Documents",
+      "name": "@concat(guid(), '.xls')",
+      "body": "@base64ToBinary(body('Reconstructs_attachments_from_base64_encoded_parts')?['data'])"
+    },
+    "host": {
+      "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+      "connection": "shared_sharepointonline",
+      "operationId": "CreateFile"
+    }
+  },
+  "runAfter": {
+    "Reconstructs_attachments_from_base64_encoded_parts": [
+      "Succeeded"
+    ]
+  },
+  "runtimeConfiguration": {
+    "contentTransfer": {
+      "transferMode": "Chunked"
+    }
+  }
+}
+</code></pre>
+<p>After running the flow, you'll find your file within your sharepoint directory.</p>
+<p>Successful Flow Run:</p>
+<p><img src="/static/images/2025/Screenshot 2025-04-29 at 9.27.56 AM.jpg" alt="FileDownloadFromSAP Success Screenshot" /></p>
+
+        </div>
+        <hr />
+        <p>Posted on 2025-04-28</p>
+    </body>
+</html>
