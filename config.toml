@@ -1,4 +1,5 @@
-theme = "my-custom-theme"
+theme = "personal-blog-theme"
+
 title = "Taylor Brazelton"
 baseURL = "https://taylorbrazelton.com"
 outputFolder = "docs"
