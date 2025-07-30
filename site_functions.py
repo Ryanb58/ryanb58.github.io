@@ -126,7 +126,7 @@ def load_content_items(config, content_directory):
         ):
             with open(fn, "r", encoding="utf-8") as file:
                 frontmatter, content = re.split(
-                    "^\+\+\+\+\+$", file.read(), 1, re.MULTILINE
+                    r"^\+\+\+\+\+$", file.read(), 1, re.MULTILINE
                 )
 
             item = toml.loads(frontmatter)
@@ -209,6 +209,56 @@ def generate_rss_feed(content):
     return rss_output
 
 
+def generate_sitemap(config, content):
+    """Generate XML sitemap for the site"""
+    base_url = config.get("baseURL", "https://taylorbrazelton.com")
+    
+    sitemap_entries = []
+    
+    # Add homepage
+    sitemap_entries.append({
+        'url': base_url,
+        'lastmod': datetime.now().strftime('%Y-%m-%d'),
+        'changefreq': 'weekly',
+        'priority': '1.0'
+    })
+    
+    # Add pages
+    for page in content["pages"]:
+        sitemap_entries.append({
+            'url': f"{base_url}{page['url']}",
+            'lastmod': datetime.now().strftime('%Y-%m-%d'),
+            'changefreq': 'monthly',
+            'priority': '0.8'
+        })
+    
+    # Add posts
+    for post in content["posts"]:
+        sitemap_entries.append({
+            'url': f"{base_url}{post['url']}",
+            'lastmod': post['date'].strftime('%Y-%m-%d'),
+            'changefreq': 'yearly',
+            'priority': '0.6'
+        })
+    
+    # Generate XML
+    xml_content = '''<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+'''
+    
+    for entry in sitemap_entries:
+        xml_content += f'''    <url>
+        <loc>{entry['url']}</loc>
+        <lastmod>{entry['lastmod']}</lastmod>
+        <changefreq>{entry['changefreq']}</changefreq>
+        <priority>{entry['priority']}</priority>
+    </url>
+'''
+    
+    xml_content += '</urlset>'
+    return xml_content
+
+
 def load_templates(template_directory):
     file_system_loader = jinja2.FileSystemLoader(template_directory)
     return jinja2.Environment(loader=file_system_loader)
@@ -241,6 +291,11 @@ def render_site(config, content, environment, output_directory):
     with open(output_directory + "/feed/rss.xml", "w", encoding="utf-8") as f:
         rss_output = generate_rss_feed(content)
         f.write(rss_output)
+
+    # Generate sitemap.xml
+    with open(output_directory + "/sitemap.xml", "w", encoding="utf-8") as f:
+        sitemap_output = generate_sitemap(config, content)
+        f.write(sitemap_output)
 
     # Homepage
     index_template = environment.get_template("index.html")

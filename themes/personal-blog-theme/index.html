@@ -3,14 +3,20 @@
     {% import "macros.html" as macros %} {{ macros.head(config.title) }}
     <body>
         {{ macros.navigation(content.pages) }}
+        
+        <header style="text-align: center; margin: 2em 0;">
+            <h1>{{ config.title }}</h1>
+            <p style="font-size: 1.1em; color: #666;">Software Engineer • Entrepreneur • Dog Dad</p>
+        </header>
+        
         <div class="posts">
             {% for date, group in content.posts_grouped_by_year %}
             <h2>{{ date }}</h2>
             <ul>
                 {% for post in group %}
                 <li class="post-title">
-                    <a href="{{ post.url }}">{{ post.title }}</a> ({{
-                    post.date.strftime('%Y-%m-%d') }})
+                    <a href="{{ post.url }}">{{ post.title }}</a>
+                    <span style="color: #888; font-size: 0.9em;">({{ post.date.strftime('%b %d') }})</span>
                 </li>
                 {% endfor %}
             </ul>
