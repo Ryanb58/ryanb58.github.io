@@ -6,9 +6,10 @@ Explore my collection of projects, showcasing ideas I've brought to life or am c
 
 ### Active:
 
-[WorkSwarm](https://workswarm.io)
+[Stack Site](https://stacksite.io)
 
- - My vision for how work will be done in the future. Each person will orchestrate a team of agents to do "work". Each one specializing in an individual skill set.
+ - Originally created to help businesses schedule social media content in advance, Stack Site has evolved into an automated platform that supplements traditional social media agencies. 
+ - It enables consistent posting at peak engagement times, recycles high-performing content to boost growth, and ensures reliable visibility to keep businesses top of mind with users in their target audience and service areas.
 
 [SAP Bit](https://sapbit.io)
 
@@ -19,17 +20,23 @@ Explore my collection of projects, showcasing ideas I've brought to life or am c
 
  - A job board tailored for professionals specializing in ERP systems.
 
+### Retired:
+
+[WorkSwarm](https://workswarm.io)
+
+ - My vision for how work will be done in the future. Each person will orchestrate a team of agents to do "work". Each one specializing in an individual skill set.
+ - Shutdown to narrow my focus on current projects.
+
 [Track Your STR](https://trackyourstr.com):
 
  - Assist users in tracking material participation hours for Short-Term Rental (STR) properties, a requirement by the IRS to achieve real estate professional status.
  - This tracking allows users to categorize their rental income as active, enabling deductions from their regular income for tax purposes.
+ - Shutdown to narrow my focus on current projects.
 
 [Cheaper Abroad](https://cheaperabroad.io):
 
  - Monitor luxury product prices globally. By factoring in currency exchange rates, this tool helps you discover where and what luxury items offer the best value for purchase.
-
-
-### Retired:
+ - Shutdown to narrow my focus on current projects.
 
 Spare Cloud(https://sparecloud.io):
 
