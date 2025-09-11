@@ -227,10 +227,30 @@ favorite languages.</p>
 </ul>
 
             </article>
-            <div class="mt-12 flex items-center justify-between border-t border-neutral-200 dark:border-neutral-800 pt-6 text-sm">
-                <a href="/" class="text-neutral-500 hover:text-brand dark:text-neutral-400">← Back home</a>
-                <a href="#" class="text-neutral-500 hover:text-brand dark:text-neutral-400" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Top ↑</a>
-            </div>
+            <nav class="mt-12 border-t border-neutral-200 dark:border-neutral-800 pt-6">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
+                    <div class="flex flex-col items-start">
+                        
+                        <a href="/2018/03/02/2018-03-02-django-migrations-downgrade-in-docker-swarm/" class="group block p-3 rounded-md border border-neutral-200 dark:border-neutral-800 hover:border-brand focus:outline-none focus:ring-2 focus:ring-brand/40 transition bg-transparent">
+                            <span class="block text-xs uppercase tracking-wide text-neutral-500 dark:text-neutral-400">Newer</span>
+                            <span class="block font-medium text-neutral-800 dark:text-neutral-200 group-hover:text-brand">Django Migrations Downgrade in Docker Swarm</span>
+                        </a>
+                        
+                    </div>
+                    <div class="flex flex-col items-center justify-center">
+                        <a href="/" class="text-neutral-500 hover:text-brand dark:text-neutral-400">← Home</a>
+                        <a href="#" class="mt-2 text-neutral-500 hover:text-brand dark:text-neutral-400" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Top ↑</a>
+                    </div>
+                    <div class="flex flex-col items-end">
+                        
+                        <a href="/2016/12/09/2016-12-09-top-python-tools-and-packages/" class="group block p-3 rounded-md border border-neutral-200 dark:border-neutral-800 hover:border-brand focus:outline-none focus:ring-2 focus:ring-brand/40 transition text-right bg-transparent">
+                            <span class="block text-xs uppercase tracking-wide text-neutral-500 dark:text-neutral-400">Older</span>
+                            <span class="block font-medium text-neutral-800 dark:text-neutral-200 group-hover:text-brand">Top 2016 Python Tools And Packages</span>
+                        </a>
+                        
+                    </div>
+                </div>
+            </nav>
         </main>
 
         <!-- Floating Back to Top Button -->

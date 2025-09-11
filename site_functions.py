@@ -158,6 +158,22 @@ def load_content_items(config, content_directory):
             reverse=config[content_type]["sortReverse"],
         )
 
+        # For posts, add adjacency references for newer/older navigation
+        if content_type == "post" and items:
+            for idx, post in enumerate(items):
+                # Newer post: previous in the sorted (desc) list
+                if idx > 0:
+                    post["newer_post"] = {
+                        "title": items[idx - 1]["title"],
+                        "url": items[idx - 1]["url"],
+                    }
+                # Older post: next in the sorted (desc) list
+                if idx < len(items) - 1:
+                    post["older_post"] = {
+                        "title": items[idx + 1]["title"],
+                        "url": items[idx + 1]["url"],
+                    }
+
         return items
 
     content_types = {}
