@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+    <title>Your First 10 Users > Your First 10 Features: Hard Truths About SaaS MVPs</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Taylor Brazelton's personal blog - Software engineer sharing insights on Python, AWS, DevOps, and business." />
+    <meta name="author" content="Taylor Brazelton" />
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Your First 10 Users > Your First 10 Features: Hard Truths About SaaS MVPs" />
+    <meta property="og:description" content="Software engineer sharing insights on Python, AWS, DevOps, and business." />
+    <meta property="og:url" content="https://taylorbrazelton.com" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:creator" content="@Ryanb58" />
+    
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" title="Taylor Brazelton RSS Feed" href="/feed/rss.xml" />
+    
+    <!-- Emoji Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👀</text></svg>">
+
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <!-- <link rel="stylesheet" href="/css/typebase.css"> -->
+    <link
+        href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css"
+        rel="stylesheet"
+    />
+
+    <link
+        rel="stylesheet"
+        href="/static/3rdparty/highlight/styles/dark.min.css"
+    />
+    <script src="/static/3rdparty/highlight/highlight.min.js"></script>
+    <script>
+        hljs.highlightAll();
+    </script>
+
+    <script defer src="https://umami.taylorbrazelton.com/script.js" data-website-id="bae6a05d-d545-4d68-9810-f6e03a2965e0"></script>
+
+    <script type="module">
+        import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+
+    <script type="text/javascript">
+        (function (c, l, a, r, i, t, y) {
+            c[a] =
+                c[a] ||
+                function () {
+                    (c[a].q = c[a].q || []).push(arguments);
+                };
+            t = l.createElement(r);
+            t.async = 1;
+            t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "molkkkznzg");
+    </script>
+</head>
+
+    <body>
+        <nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        
+        <li><a href="/about/">About</a></li>
+        
+        <li><a href="/creations/">Creations</a></li>
+        
+        <li><a href="/tools/">Tools</a></li>
+        
+        <li><a href="/feed/rss.xml" target="_blank">RSS</a></li>
+    </ul>
+</nav>
+
+        <h1>Your First 10 Users > Your First 10 Features: Hard Truths About SaaS MVPs</h1>
+        <div class="post-body">
+            <p>Bootstrapping a SaaS MVP isn’t just a coding sprint—it’s a mental grind.</p>
+<p>As a Senior Software Engineer at Microsoft (after Clear Software’s acquisition) and through side projects like <strong>Spare Cloud</strong> and <strong>SitePixel</strong>, I’ve stumbled plenty. Each project left me with hard-learned lessons about what <em>not</em> to do.</p>
+<p>Here are six mental hurdles I hit—and how I overcame them.</p>
+<hr />
+<h2>1. Ship first. Polish later.</h2>
+<p>At Clear Software, I wasted days building AS400 integration… only for it to get scrapped when we doubled down on SAP customers. In my side projects, I burned hours polishing UIs for features that never shipped.</p>
+<p><strong>The problem:</strong> perfectionism kills progress.</p>
+<p><strong>The fix:</strong> I now use a <strong>Kanban board</strong> for side projects where I ruthlessly focus on the <em>smallest possible amount of functionality</em> needed to solve the problem. At Clear Software, we nailed one SAP integration first before expanding.</p>
+<hr />
+<h2>2. Chasing Non-Business Tasks</h2>
+<p>I once spent days hunting down and setting up analytics tools for a project with zero users because I wanted the best setup. At Clear Software, I tinkered with logging systems instead of helping my team better optimize our products and delivery for customers.</p>
+<p><strong>The problem:</strong> users don’t care about your tech stack or tools.</p>
+<p><strong>The fix:</strong> focus on tasks that directly provide value.</p>
+<ul>
+<li>Focus on adding a super simple logging mechanism, or use provided tools, like Cloudwatch in AWS.</li>
+<li>Run weekly 15-minute reviews: “Does this task help me provide users real value or move toward revenue?”</li>
+</ul>
+<p>If not, it goes in the “Later” pile.</p>
+<hr />
+<h2>3. Thinking a Product Is a Business</h2>
+<p>My Spare Cloud backup service had a slick UI and backend. I thought I was golden. But with no users and no revenue, it was just… code.</p>
+<p>Even at Microsoft, acquisitions like Clear Software only mattered because there was a business model attached.</p>
+<p><strong>The fix:</strong> plan business <em>with</em> product.</p>
+<ul>
+<li>Define your customer.</li>
+<li>Test pricing early.</li>
+<li>Put your product into the hands of users—even those outside your initial target audience.</li>
+</ul>
+<p>At Clear Software, we moved quickly to get our product in front of more people. That accelerated our learning and made our product more useful. Sometimes it was evolving how we used our own product, not just manipulating the codebase.</p>
+<hr />
+<h2>4. Validate or fail fast.</h2>
+<p>I used to keep ideas secret, worried about people stealing them. A few project's flopped because I never validated with real people.</p>
+<p><strong>The problem:</strong> ideas in your head don’t count.</p>
+<p><strong>The fix:</strong> share early, validate often.</p>
+<ul>
+<li>Sometimes I get feedback through social channels online—feedback saved me weeks of wasted coding.</li>
+<li>More often, I validated by asking my stakeholders directly.</li>
+<li>Shy? Start with a simple Google Form.</li>
+</ul>
+<hr />
+<h2>5. Your first 10 users matter more than your first 10 features.</h2>
+<p>I thought good products sold themselves. Wrong. Most of my side projects fizzled because I had no outreach or distribution plan. At Clear Software, sales and marketing turned our tech into an actual business.</p>
+<p><strong>The fix:</strong> treat distribution like coding.</p>
+<ul>
+<li>Schedule weekly progress check-ins with peers or mentors to hold yourself accountable.</li>
+<li>Send cold emails weekly.</li>
+<li>Spin up a simple landing page so people have somewhere to go.</li>
+</ul>
+<p>Your first 10 users matter more than your first 10 features.</p>
+<hr />
+<h2>6. Overvaluing My Engineering Effort.</h2>
+<p>SitePixel, my feedback widget, had two paying customers. Someone once offered me $5,000 to buy it. I refused, thinking the engineering effort I’d poured in made it worth more. I eventually lost both customers, shut it down, and pocketed less than $5k.</p>
+<p><strong>The problem:</strong> I confused my effort with actual value.</p>
+<p><strong>The fix:</strong></p>
+<ul>
+<li>Understand what value really means (to you <em>and</em> to others).</li>
+<li>Accept that value looks different depending on perspective—your hours coding don’t automatically translate to customer or market value.</li>
+<li>Negotiate with a clear head, not with your ego.</li>
+</ul>
+<hr />
+<h2>Keep Building</h2>
+<p>Bootstrapping is a head game. To survive it:</p>
+<ul>
+<li>Avoid perfectionism.</li>
+<li>Focus on real user value.</li>
+<li>Plan beyond just code.</li>
+<li>Validate ideas early.</li>
+<li>Prioritize distribution.</li>
+<li>Understand and negotiate value clearly.</li>
+</ul>
+<p>Between Clear Software, Microsoft, Spare Cloud, and SitePixel, I learned these lessons the hard way. You don’t have to.</p>
+<p>👉 What’s your biggest MVP hurdle? Drop a comment or ping me on <a href="https://x.com/Ryanb58">X</a>.</p>
+<hr />
+<h2>🚀 Join My Next Startup Launch</h2>
+<p>I’m currently building <strong><a href="https://stacksite.io">StackSite</a></strong> — a platform designed for businesses where social media isn’t the core product, but staying present online still matters.</p>
+<p>If that sounds like you, <a href="https://stacksite.io">join the launch list here</a> to get early access and behind-the-scenes updates.</p>
+
+        </div>
+        <hr />
+        <p>Posted on 2025-09-10</p>
+        
+        <!-- Back to top button -->
+        <button id="backToTop" style="
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #27a822;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+        " title="Back to top">↑</button>
+        
+        <script>
+            // Back to top functionality
+            const backToTopButton = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.style.display = 'block';
+                } else {
+                    backToTopButton.style.display = 'none';
+                }
+            });
+            
+            backToTopButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        </script>
+        
+        <footer style="margin-top: 3em; padding: 2em 0; border-top: 1px solid #eee; text-align: center; color: #666;">
+    <p>
+        © 2025 Taylor Brazelton | 
+        <a href="https://x.com/Ryanb58" target="_blank">Twitter</a> | 
+        <a href="https://www.linkedin.com/in/taylorbrazelton/" target="_blank">LinkedIn</a> | 
+        <a href="https://github.com/Ryanb58" target="_blank">GitHub</a>
+    </p>
+</footer>
+
+    </body>
+</html>

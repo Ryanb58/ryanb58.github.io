@@ -2,27 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://taylorbrazelton.com</loc>
-        <lastmod>2025-08-26</lastmod>
+        <lastmod>2025-09-10</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://taylorbrazelton.com/about/</loc>
-        <lastmod>2025-08-26</lastmod>
+        <lastmod>2025-09-10</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://taylorbrazelton.com/creations/</loc>
-        <lastmod>2025-08-26</lastmod>
+        <lastmod>2025-09-10</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://taylorbrazelton.com/tools/</loc>
-        <lastmod>2025-08-26</lastmod>
+        <lastmod>2025-09-10</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://taylorbrazelton.com/2025/09/10/2025-09-10-your-first-10-users-greater-than-your-first-10-features-hard-truths-about-saas-mvps/</loc>
+        <lastmod>2025-09-10</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.6</priority>
     </url>
     <url>
         <loc>https://taylorbrazelton.com/2025/04/28/2025-04-29-power-automate-flow-download-file-from-sap/</loc>
