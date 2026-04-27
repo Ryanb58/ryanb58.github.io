@@ -1,12 +1,12 @@
-title = "Revenue vs Profit"
-date = 2021-10-14T17:47:00+02:00
-tags = [
-    "finance",
-    "revenue",
-    "profit"
-]
-published = true
-+++++
+---
+title: Revenue vs Profit
+date: 2021-10-14 17:47:00+02:00
+tags:
+- finance
+- revenue
+- profit
+published: true
+---
 
 Recently, I've noticed an uptick in the usage of the words **Revenue** and **Profit** in my vicinity. Whereas this isn't a bad thing, I think the meaning of each gets skewed in some conversations. Therefore, now seems like a good time to quickly review each of their definitions.
 

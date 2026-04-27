@@ -1,15 +1,15 @@
-title = "How to Paste and Match Style Text Into Teams"
-date = 2021-11-04T17:47:00+02:00
-tags = [
-    "paste",
-    "match",
-    "copy",
-    "mac",
-    "teams",
-    "apple"
-]
-published = true
-+++++
+---
+title: How to Paste and Match Style Text Into Teams
+date: 2021-11-04 17:47:00+02:00
+tags:
+- paste
+- match
+- copy
+- mac
+- teams
+- apple
+published: true
+---
 
 A few months ago my team switched from Slack to Microsoft Teams. While most things work as expected, one that comes off a bit clunky is pasting text. Here are a few shortcuts to help make life more comfortable.
 

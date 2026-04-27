@@ -1,13 +1,13 @@
-title = "Moving Away From Legacy Code"
-date = 2018-02-15T17:47:00+02:00
-tags = [
-    "legacy",
-    "code",
-    "plan",
-    "strategy"
-]
-published = true
-+++++
+---
+title: Moving Away From Legacy Code
+date: 2018-02-15 17:47:00+02:00
+tags:
+- legacy
+- code
+- plan
+- strategy
+published: true
+---
 
 ##### 1) Chunk Your App Into Pieces
 

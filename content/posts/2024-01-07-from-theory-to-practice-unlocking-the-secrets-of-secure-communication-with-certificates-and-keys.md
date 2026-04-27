@@ -1,21 +1,22 @@
-title = "From Theory to Practice: Unlocking the Secrets of Secure Communication with Certificates and Keys"
-date = 2024-01-07T11:10:00+02:00
-tags = [
-    "key",
-    "cert",
-    "symmetric",
-	"asymmetric",
-	"encryption",
-	"public",
-	"private",
-	"rsa",
-	"sha256",
-    "introduction",
-    "intro",
-    "security"
-]
-published = true
-+++++
+---
+title: 'From Theory to Practice: Unlocking the Secrets of Secure Communication with
+  Certificates and Keys'
+date: 2024-01-07 11:10:00+02:00
+tags:
+- key
+- cert
+- symmetric
+- asymmetric
+- encryption
+- public
+- private
+- rsa
+- sha256
+- introduction
+- intro
+- security
+published: true
+---
 
 In this post, we'll explore the practical use of Certificates and Keys in secure communication, an essential skill for anyone on the tech journey, regardless of how they've learned. Be it through a coding bootcamp, self-study, or a formal Computer Science degree, mastering Certificates and Keys is an inevitable and crucial milestone. This post was inspired by my own recent realization of a gap between theoretical knowledge and practical application in this area. Driven to bridge this gap for myself and others, I've put together this guide to demystify the real-world use of Certificates and Keys, helping those who might be facing similar challenges.
 

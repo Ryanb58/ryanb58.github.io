@@ -1,13 +1,13 @@
-title = "AWS Vault and MFA Setup on my Mac"
-date = 2020-07-21T17:47:00+02:00
-tags = [
-    "mfa",
-    "aws",
-    "vault",
-    "mac"
-]
-published = true
-+++++
+---
+title: AWS Vault and MFA Setup on my Mac
+date: 2020-07-21 17:47:00+02:00
+tags:
+- mfa
+- aws
+- vault
+- mac
+published: true
+---
 
 Recently, I decided to secure my local machine by downloading and using AWS Vault. To my surprise, setting up MFA with Vault required a step or two more that I wasn't expecting. Here are my findings/steps. 
 

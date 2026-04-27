@@ -1,16 +1,17 @@
-title = "Self Hosting Is Back In Style"
-date = 2024-12-02T22:13:00+02:00
-tags = [
-  "self",
-  "hosting",
-  "coolify",
-  "tools",
-  "aws",
-  "azure",
-  "cloud"
-]
-published = true
-+++++
+---
+title: Self Hosting Is Back In Style
+date: 2024-12-02 22:13:00+02:00
+tags:
+- self
+- hosting
+- coolify
+- tools
+- aws
+- azure
+- cloud
+published: true
+---
+
 I'm back to self hosting a few services across Digital Ocean & Hetzner.
 
 Previously, I self-hosted on a local Synology box, but it was underpowered and exposed my home internet IP to the world.

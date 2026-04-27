@@ -1,19 +1,18 @@
-title = "AWS Client VPN Endpoint Mass Disconnect"
-date = 2021-09-29T17:47:00+02:00
-tags = [
-    "aws",
-    "disconnect",
-    "vpn",
-    "endpoint",
-    "aws",
-    "certificate",
-    "revocation",
-    "list",
-    "crl"
-]
-published = true
-+++++
-
+---
+title: AWS Client VPN Endpoint Mass Disconnect
+date: 2021-09-29 17:47:00+02:00
+tags:
+- aws
+- disconnect
+- vpn
+- endpoint
+- aws
+- certificate
+- revocation
+- list
+- crl
+published: true
+---
 
 ### Problem:
 

@@ -1,12 +1,12 @@
-title = "An Example of a Failure that Caused Personal Growth"
-date = 2021-11-29T17:47:00+02:00
-tags = [
-    "personal",
-    "failure",
-    "history"
-]
-published = false
-+++++
+---
+title: An Example of a Failure that Caused Personal Growth
+date: 2021-11-29 17:47:00+02:00
+tags:
+- personal
+- failure
+- history
+published: false
+---
 
 ​​Today, I will share one of my failures that pushed me to grow as a professional.
 

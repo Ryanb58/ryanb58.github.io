@@ -1,13 +1,13 @@
-title = "Minimum Requirements for a SAAS Platform"
-date = 2020-07-21T17:47:00+02:00
-tags = [
-    "requirements",
-    "saas",
-    "minimum",
-    "checklist"
-]
-published = true
-+++++
+---
+title: Minimum Requirements for a SAAS Platform
+date: 2020-07-21 17:47:00+02:00
+tags:
+- requirements
+- saas
+- minimum
+- checklist
+published: true
+---
 
 Below is a list of minimum requirements I believe are vital to the success of a SAAS platform(Note that this isn't the word product)
 

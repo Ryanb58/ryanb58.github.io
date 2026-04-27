@@ -1,13 +1,13 @@
-title = "Bye Bye Semantic Versioning, Say Hello To GitDate"
-date = 2022-06-06T17:47:00+02:00
-tags = [
-    "my",
-    "versioning",
-    "system",
-    "gitdate"
-]
-published = true
-+++++
+---
+title: Bye Bye Semantic Versioning, Say Hello To GitDate
+date: 2022-06-06 17:47:00+02:00
+tags:
+- my
+- versioning
+- system
+- gitdate
+published: true
+---
 
 ## Quick Rant About Semantic Versioning
 

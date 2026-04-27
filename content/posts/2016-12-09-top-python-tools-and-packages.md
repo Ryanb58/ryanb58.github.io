@@ -1,13 +1,13 @@
-title = "Top 2016 Python Tools And Packages"
-date = 2016-12-09T17:47:00+02:00
-tags = [
-    "python",
-    "packages",
-    "favorite",
-    "2016"
-]
-published = true
-+++++
+---
+title: Top 2016 Python Tools And Packages
+date: 2016-12-09 17:47:00+02:00
+tags:
+- python
+- packages
+- favorite
+- '2016'
+published: true
+---
 
 This isn't nessesarly a good representation of the best python tools or packages, but the top I have used over the past year.
 

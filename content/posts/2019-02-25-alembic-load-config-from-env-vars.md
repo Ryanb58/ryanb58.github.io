@@ -1,12 +1,12 @@
-title = "Alembic Load Config From Env Vars"
-date = 2019-02-25T17:47:00+02:00
-tags = [
-    "alembic",
-    "variables",
-    "environment"
-]
-published = true
-+++++
+---
+title: Alembic Load Config From Env Vars
+date: 2019-02-25 17:47:00+02:00
+tags:
+- alembic
+- variables
+- environment
+published: true
+---
 
 Today, while trying to integrate the python library [Alembic](https://pypi.org/project/alembic/) into a micro-service, I ran into the issue of needing to load the database connection string from a few environmental variables. Needless to say I went ahead and did some googling and compiled this solution:
 

@@ -1,21 +1,21 @@
-title = "Power Automate Flow - Download File From SAP"
-date = 2025-04-28T18:23:00+02:00
-tags = [
-  "power automate",
-  "automation",
-  "sap integration",
-  "flow",
-  "microsoft power platform",
-  "data extraction",
-  "workflow",
-  "cloud flows",
-  "connectors",
-  "process automation",
-  "business process",
-  "rpa",
-]
-published = true
-+++++
+---
+title: Power Automate Flow - Download File From SAP
+date: 2025-04-28 18:23:00+02:00
+tags:
+- power automate
+- automation
+- sap integration
+- flow
+- microsoft power platform
+- data extraction
+- workflow
+- cloud flows
+- connectors
+- process automation
+- business process
+- rpa
+published: true
+---
 
 With the low-key launch of the "Reconstruct Attachments" action inside of the SAP ERP Connector for Power Automate, you can download files from SAP. 
 

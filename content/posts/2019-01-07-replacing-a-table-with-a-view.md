@@ -1,12 +1,12 @@
-title = "Replace a Table With View"
-date = 2019-01-07T17:47:00+02:00
-tags = [
-    "sql",
-    "mysql",
-    "database"
-]
-published = true
-+++++
+---
+title: Replace a Table With View
+date: 2019-01-07 17:47:00+02:00
+tags:
+- sql
+- mysql
+- database
+published: true
+---
 
 This weekend while on dev support, an issue came to our attention that
 customers were still able to see `soft deleted` data in some parts of the app.

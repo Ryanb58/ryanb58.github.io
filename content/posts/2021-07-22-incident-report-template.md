@@ -1,13 +1,13 @@
-title = "A Simple Incident Report Template For Startups"
-date = 2021-07-22T17:47:00+02:00
-tags = [
-    "incident",
-    "report",
-    "template",
-    "startups"
-]
-published = true
-+++++
+---
+title: A Simple Incident Report Template For Startups
+date: 2021-07-22 17:47:00+02:00
+tags:
+- incident
+- report
+- template
+- startups
+published: true
+---
 
 Everyone should have a way to log incidents and track customer experience flaws. Below is a template I have implemented at a few start ups. Enjoy!
 

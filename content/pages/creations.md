@@ -1,6 +1,7 @@
-title = "Creations"
-published = true
-+++++
+---
+title: Creations
+published: true
+---
 
 Explore my collection of projects, showcasing ideas I've brought to life or am currently developing. From solo endeavors to collaborations with like-minded creators, this portfolio highlights my passion for turning concepts into reality.
 

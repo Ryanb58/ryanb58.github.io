@@ -1,16 +1,16 @@
-title = "Power Platforms SAP Connector Enhancements"
-date = 2022-09-25T17:47:00+02:00
-tags = [
-    "microsoft",
-    "power",
-    "platform",
-    "apps",
-    "automate",
-    "sap",
-    "erp"
-]
-published = true
-+++++
+---
+title: Power Platforms SAP Connector Enhancements
+date: 2022-09-25 17:47:00+02:00
+tags:
+- microsoft
+- power
+- platform
+- apps
+- automate
+- sap
+- erp
+published: true
+---
 
     Disclosure, I am on the team that helped build the following.
 

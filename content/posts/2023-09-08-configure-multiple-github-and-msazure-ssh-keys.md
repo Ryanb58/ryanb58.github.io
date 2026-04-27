@@ -1,18 +1,18 @@
-title = "How to Configure Multiple SSH Keys for GitHub and Azure DevOps Repos"
-date = 2023-09-08T06:47:00+02:00
-tags = [
-    "github",
-    "msazure",
-    "azure",
-	"devops",
-	"ssh",
-	"keys",
-	"authentication",
-	"multiple",
-	"manage"
-]
-published = true
-+++++
+---
+title: How to Configure Multiple SSH Keys for GitHub and Azure DevOps Repos
+date: 2023-09-08 06:47:00+02:00
+tags:
+- github
+- msazure
+- azure
+- devops
+- ssh
+- keys
+- authentication
+- multiple
+- manage
+published: true
+---
 
 Recently, I've encountered situations where I need to work with multiple git repositories from different sources. This often includes interfacing with repositories on both GitHub and Azure DevOps. Without the proper setup, I encounter generic errors in git, especially when trying to clone new repositories.
 

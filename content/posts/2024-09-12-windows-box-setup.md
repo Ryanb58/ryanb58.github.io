@@ -1,19 +1,19 @@
-title = "Ultimate Guide: How to Set Up a Windows PC from Scratch in 2024 (Step-by-Step)"
-date = 2024-09-12T18:13:00+02:00
-tags = [
-  "windows",
-  "configuration",
-  "vm",
-  "setup",
-  "build",
-  "winget",
-  "rdpclip",
-  "pc",
-  "clean install",
-  "productivity",
-]
-published = true
-+++++
+---
+title: 'Ultimate Guide: How to Set Up a Windows PC from Scratch in 2024 (Step-by-Step)'
+date: 2024-09-12 18:13:00+02:00
+tags:
+- windows
+- configuration
+- vm
+- setup
+- build
+- winget
+- rdpclip
+- pc
+- clean install
+- productivity
+published: true
+---
 
 Over the past 3 years, I've used Windows for various things.
 

@@ -1,13 +1,13 @@
-title = "How To Return An Evaluated Instance Of A QuerySet After You Called Delete"
-date = 2016-03-09T17:47:00+02:00
-tags = [
-    "django",
-    "evaluate",
-    "solution",
-    "memory"
-]
-published = true
-+++++
+---
+title: How To Return An Evaluated Instance Of A QuerySet After You Called Delete
+date: 2016-03-09 17:47:00+02:00
+tags:
+- django
+- evaluate
+- solution
+- memory
+published: true
+---
 
 ### Problem:
 

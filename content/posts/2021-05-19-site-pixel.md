@@ -1,12 +1,12 @@
-title = "Site Pixel"
-date = 2021-05-19T17:47:00+02:00
-tags = [
-    "sitepixel",
-    "project",
-    "product"
-]
-published = true
-+++++
+---
+title: Site Pixel
+date: 2021-05-19 17:47:00+02:00
+tags:
+- sitepixel
+- project
+- product
+published: true
+---
 
 For a few years now, I've wanted a tool that collects feedback from my users. I've thought about using existing products like Drift or Intercom, but they don't really match my use case. I want to understand what my users are thinking and feeling. Thus, I have been working on building out an web app called [Site Pixel](https://sitepixel.io).
 

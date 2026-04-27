@@ -1,17 +1,18 @@
-title = "Fixing 'error MSB8020: The build tools for Visual Studio 2019 (Platform Toolset = 'v142') cannot be found. '"
-date = 2024-02-26T18:13:00+02:00
-tags = [
-  "visual",
-  "studio",
-  "2022",
-  "2019",
-  "error",
-  "MSB8020",
-  "build",
-  "tools"
-]
-published = true
-+++++
+---
+title: 'Fixing ''error MSB8020: The build tools for Visual Studio 2019 (Platform Toolset
+  = ''v142'') cannot be found. '''
+date: 2024-02-26 18:13:00+02:00
+tags:
+- visual
+- studio
+- '2022'
+- '2019'
+- error
+- MSB8020
+- build
+- tools
+published: true
+---
 
 Today, I encountered an error while building a console app, which halted the process:
 

@@ -1,15 +1,15 @@
-title = "Quick Postgres Database Backup"
-date = 2022-03-09T17:47:00+02:00
-tags = [
-    "aws",
-    "postgres",
-    "sql",
-    "database",
-    "clone",
-    "backup"
-]
-published = true
-+++++
+---
+title: Quick Postgres Database Backup
+date: 2022-03-09 17:47:00+02:00
+tags:
+- aws
+- postgres
+- sql
+- database
+- clone
+- backup
+published: true
+---
 
 Sometimes when working with databases you need a backup. One you can switch to quickly in case things go wrong. I find this particularly helpful when testing out data migrations.
 

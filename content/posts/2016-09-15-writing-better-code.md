@@ -1,13 +1,13 @@
-title = "Writing Better Code"
-date = 2016-09-15T17:47:00+02:00
-tags = [
-    "writing",
-    "code",
-    "refactoring",
-    "python"
-]
-published = true
-+++++
+---
+title: Writing Better Code
+date: 2016-09-15 17:47:00+02:00
+tags:
+- writing
+- code
+- refactoring
+- python
+published: true
+---
 
 As a software engineer/artist I could spend copious amounts of time refactoring. 
 However, at some point products have to be shipped. You can't just keep

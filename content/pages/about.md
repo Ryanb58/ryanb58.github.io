@@ -1,6 +1,7 @@
-title = "About"
-published = true
-+++++
+---
+title: About
+published: true
+---
 
 Welcome to my digital space!
 

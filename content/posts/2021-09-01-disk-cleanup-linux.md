@@ -1,13 +1,13 @@
-title = "Disk Space Clean Up on Linux"
-date = 2021-09-01T17:47:00+02:00
-tags = [
-    "disk",
-    "cleanup",
-    "linux",
-    "freespace"
-]
-published = true
-+++++
+---
+title: Disk Space Clean Up on Linux
+date: 2021-09-01 17:47:00+02:00
+tags:
+- disk
+- cleanup
+- linux
+- freespace
+published: true
+---
 
 Every now and then one of my legacy sites goes down due to having a full disk. This kind of stinks and I should automate a solution. But until then, I figure I'd document all the ways I've gone about "cleaning" them up.
 

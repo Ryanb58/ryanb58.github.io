@@ -10,6 +10,7 @@ import jinja2
 
 # import markdown
 import toml
+import yaml
 from shutil import copytree, ignore_patterns
 from feedgenerator import Rss201rev2Feed
 from pymdownx import emoji
@@ -125,11 +126,18 @@ def load_content_items(config, content_directory):
             f"{content_directory}/{config[content_type]['plural']}/*.md"
         ):
             with open(fn, "r", encoding="utf-8") as file:
+                raw = file.read()
+                if not raw.startswith("---"):
+                    raise ValueError(
+                        f"{fn}: expected YAML frontmatter starting with '---'"
+                    )
+                # Strip leading delimiter, then split on the closing one.
+                _, rest = raw.split("---", 1)
                 frontmatter, content = re.split(
-                    r"^\+\+\+\+\+$", file.read(), 1, re.MULTILINE
+                    r"^---\s*$", rest, 1, re.MULTILINE
                 )
 
-            item = toml.loads(frontmatter)
+            item = yaml.safe_load(frontmatter) or {}
             item["content_stripped_of_html"] = remove_html_tags(content)
             # item["content"] = markdown.markdown(
             #     content,

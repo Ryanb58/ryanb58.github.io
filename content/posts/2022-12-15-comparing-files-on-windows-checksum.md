@@ -1,17 +1,17 @@
-title = "Comparing Files(Checksum) On Windows"
-date = 2022-12-15T06:47:00+02:00
-tags = [
-    "microsoft",
-    "windows",
-    "checksum",
-    "compare",
-    "files",
-    "hash",
-    "powershell",
-    "linux"
-]
-published = true
-+++++
+---
+title: Comparing Files(Checksum) On Windows
+date: 2022-12-15 06:47:00+02:00
+tags:
+- microsoft
+- windows
+- checksum
+- compare
+- files
+- hash
+- powershell
+- linux
+published: true
+---
 
 Recently, I needed to compare two DLLs with the same name to see if they were the same. However, my existing Unix knowledge was useless as I do not have the Ubuntu subsystem installed.
 

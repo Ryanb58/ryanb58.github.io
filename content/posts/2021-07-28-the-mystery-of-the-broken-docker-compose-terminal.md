@@ -1,14 +1,14 @@
-title = "The Mystery Of The Broken Docker Compose Terminal"
-date = 2021-07-28T17:47:00+02:00
-tags = [
-    "incident",
-    "terminal",
-    "prompt",
-    "docker",
-    "compose"
-]
-published = true
-+++++
+---
+title: The Mystery Of The Broken Docker Compose Terminal
+date: 2021-07-28 17:47:00+02:00
+tags:
+- incident
+- terminal
+- prompt
+- docker
+- compose
+published: true
+---
 
 I have been highly annoyed over the last few weeks with my docker containers terminal prompts. It would mess up every time I'd try to use tab complete, up/down arrows, or copy/paste. The screen would display weird characters and sometimes just not respond.
 

@@ -1,12 +1,12 @@
-title = "Invalidate AWS CloudFront Cache"
-date = 2019-01-28T17:47:00+02:00
-tags = [
-    "aws",
-    "cloudfront",
-    "cache"
-]
-published = true
-+++++
+---
+title: Invalidate AWS CloudFront Cache
+date: 2019-01-28 17:47:00+02:00
+tags:
+- aws
+- cloudfront
+- cache
+published: true
+---
 
 Today, I needed to invalidate a specific Distribution's cache on AWS CloudFront. This resulted in me searching through the AWS cli tool's docs. Luckily I was able to uncover a command to accomplish such a task.
 

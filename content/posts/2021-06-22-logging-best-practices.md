@@ -1,15 +1,15 @@
-title = "Logging Best Practices"
-date = 2021-06-22T00:00:00+02:00
-tags = [
-    "logging",
-    "elk",
-    "python",
-    "django",
-    "logs",
-    "log"
-]
-published = true
-+++++
+---
+title: Logging Best Practices
+date: 2021-06-22 00:00:00+02:00
+tags:
+- logging
+- elk
+- python
+- django
+- logs
+- log
+published: true
+---
 
 Here are just a few bullet points I've gathered over my career about logging.
 

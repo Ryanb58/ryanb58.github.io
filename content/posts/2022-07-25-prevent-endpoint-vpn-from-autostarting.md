@@ -1,18 +1,18 @@
-title = "Autostart Dark Pattern - Endpoint Security VPN for Mac"
-date = 2022-07-25T17:47:00+02:00
-updated = 2022-09-28T17:47:00+02:00
-tags = [
-    "mac",
-    "annoyance",
-    "autostart",
-    "startup",
-    "prevent",
-    "endpoint",
-    "security",
-    "vpn"
-]
-published = true
-+++++
+---
+title: Autostart Dark Pattern - Endpoint Security VPN for Mac
+date: 2022-07-25 17:47:00+02:00
+updated: 2022-09-28 17:47:00+02:00
+tags:
+- mac
+- annoyance
+- autostart
+- startup
+- prevent
+- endpoint
+- security
+- vpn
+published: true
+---
 
 ## UPDATE: 2022/09/28
 

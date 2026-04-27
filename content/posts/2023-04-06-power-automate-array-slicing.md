@@ -1,16 +1,16 @@
-title = "Power Automate Array Slicing"
-date = 2023-04-04T06:47:00+02:00
-tags = [
-    "power",
-    "automate",
-    "array",
-    "slicing",
-    "subset",
-    "python",
-    "powerfx"
-]
-published = true
-+++++
+---
+title: Power Automate Array Slicing
+date: 2023-04-04 06:47:00+02:00
+tags:
+- power
+- automate
+- array
+- slicing
+- subset
+- python
+- powerfx
+published: true
+---
 
 Recently, I built a power automate flow where I needed a subset of an array. Here are the key takeaways from my experience.
 

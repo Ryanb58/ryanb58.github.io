@@ -1,14 +1,14 @@
-title = "Raspberry Pi Arcade Emulator Price Out"
-date = 2016-07-28T17:47:00+02:00
-tags = [
-    "raspberry",
-    "pi",
-    "arcade",
-    "emulator",
-    "pricing"
-]
-published = true
-+++++
+---
+title: Raspberry Pi Arcade Emulator Price Out
+date: 2016-07-28 17:47:00+02:00
+tags:
+- raspberry
+- pi
+- arcade
+- emulator
+- pricing
+published: true
+---
 
 ## Update #1:
 

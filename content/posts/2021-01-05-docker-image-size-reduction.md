@@ -1,13 +1,13 @@
-title = "Docker Image Size Reduction"
-date = 2021-01-05T17:47:00+02:00
-tags = [
-    "docker",
-    "image",
-    "size",
-    "reduction"
-]
-published = true
-+++++
+---
+title: Docker Image Size Reduction
+date: 2021-01-05 17:47:00+02:00
+tags:
+- docker
+- image
+- size
+- reduction
+published: true
+---
 
 Recently I needed to dockerize an application for a virtual onprem. However, at the end of my project I ended up with a docker image that was 8.4 GB. This is HUGE in terms of size for a container. Thus, I went on a short journey to minimize the image using the following techniques.
 

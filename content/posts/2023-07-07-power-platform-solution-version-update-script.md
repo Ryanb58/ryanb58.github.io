@@ -1,20 +1,20 @@
-title = "Github Action To Auto Increment a Power Platform Solution's Version"
-date = 2023-07-07T06:47:00+02:00
-tags = [
-    "power",
-    "platform",
-    "apps",
-    "automate",
-    "solution",
-    "version",
-    "update",
-    "script",
-    "pac",
-    "cli",
-    "microsoft"
-]
-published = true
-+++++
+---
+title: Github Action To Auto Increment a Power Platform Solution's Version
+date: 2023-07-07 06:47:00+02:00
+tags:
+- power
+- platform
+- apps
+- automate
+- solution
+- version
+- update
+- script
+- pac
+- cli
+- microsoft
+published: true
+---
 
 Recently, I've been working with a no-code team to help them build and distribute Power Plaform solutions. You can check out our work [here](https://github.com/microsoft/Templates-for-Power-Platform).
 

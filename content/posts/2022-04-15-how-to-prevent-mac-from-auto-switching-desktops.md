@@ -1,13 +1,13 @@
-title = "How To Prevent Mac From Auto Switching Desktops"
-date = 2022-04-15T17:47:00+02:00
-tags = [
-    "mac",
-    "annoyance",
-    "bug",
-    "fix"
-]
-published = true
-+++++
+---
+title: How To Prevent Mac From Auto Switching Desktops
+date: 2022-04-15 17:47:00+02:00
+tags:
+- mac
+- annoyance
+- bug
+- fix
+published: true
+---
 
 During my time using a mac, I have run into an annoying issue where the Desktop switcher seem to want me to organize things by application instead of by project. This would lead to frustrations such as when selecting a new desktop, it auto-switching back to the desktop I was previously on.
 

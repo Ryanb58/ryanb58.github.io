@@ -1,13 +1,13 @@
-title = "Most Important SCP Commands"
-date = 2021-09-21T17:47:00+02:00
-tags = [
-    "network",
-    "transfer",
-    "linux",
-    "scp"
-]
-published = true
-+++++
+---
+title: Most Important SCP Commands
+date: 2021-09-21 17:47:00+02:00
+tags:
+- network
+- transfer
+- linux
+- scp
+published: true
+---
 
 SCP is a command that allows you to copy files and directories securely between two hosts. 
 

@@ -1,13 +1,13 @@
-title = "Getting Started with Pelican"
-date = 2016-06-27T17:47:00+02:00
-tags = [
-    "pelican",
-    "python",
-    "getting",
-    "started"
-]
-published = true
-+++++
+---
+title: Getting Started with Pelican
+date: 2016-06-27 17:47:00+02:00
+tags:
+- pelican
+- python
+- getting
+- started
+published: true
+---
 
 I am new to pelican, so in reality this is just the steps I used to setup my pelican blog. Feel free to experiment and do things differently.
 

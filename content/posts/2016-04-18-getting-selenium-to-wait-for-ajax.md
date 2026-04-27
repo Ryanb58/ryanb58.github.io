@@ -1,13 +1,13 @@
-title = "Getting Selenium To Wait For Ajax"
-date = 2016-04-18T17:47:00+02:00
-tags = [
-    "ajax",
-    "selenium",
-    "splinter",
-    "success"
-]
-published = true
-+++++
+---
+title: Getting Selenium To Wait For Ajax
+date: 2016-04-18 17:47:00+02:00
+tags:
+- ajax
+- selenium
+- splinter
+- success
+published: true
+---
 
 Recently, my buddy [David](http://davidgalitsky.com/) and I were getting frustrated with some selenium tests. The issue being that we run into several cases where Ajax calls are still being ran while selenium is trying to move on to the next line of code.
 

@@ -1,19 +1,20 @@
-title = "LLM Keywords for Humans"
-date = 2025-02-11T18:23:00+02:00
-tags = [
-  "llm",
-  "keywords",
-  "humans",
-  "context",
-  "window",
-  "parameters",
-  "deepseek",
-  "openai",
-  "llama",
-  "model"
-]
-published = true
-+++++
+---
+title: LLM Keywords for Humans
+date: 2025-02-11 18:23:00+02:00
+tags:
+- llm
+- keywords
+- humans
+- context
+- window
+- parameters
+- deepseek
+- openai
+- llama
+- model
+published: true
+---
+
 With everyone discussing the world’s best AI models, it’s important to humanize the language we use to describe them. Understanding these key terms will help make conversations about large language models (LLMs) more accessible.
 
 **Model Family**

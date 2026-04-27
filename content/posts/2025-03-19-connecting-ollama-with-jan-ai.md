@@ -1,21 +1,21 @@
-title = "How to connect Jan.ai to Ollama(non-.cpp)"
-date = 2025-03-19T18:23:00+02:00
-tags = [
-  "llm",
-  "keywords",
-  "humans",
-  "context",
-  "window",
-  "parameters",
-  "deepseek",
-  "openai",
-  "llama",
-  "model",
-  "jan",
-  "ollama",
-]
-published = true
-+++++
+---
+title: How to connect Jan.ai to Ollama(non-.cpp)
+date: 2025-03-19 18:23:00+02:00
+tags:
+- llm
+- keywords
+- humans
+- context
+- window
+- parameters
+- deepseek
+- openai
+- llama
+- model
+- jan
+- ollama
+published: true
+---
 
 Running LLMs locally is great for privacy and olline access. 
 

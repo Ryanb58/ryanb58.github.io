@@ -1,18 +1,18 @@
-title = "Death To The `Sent a GIF` Link In Microsoft Teams"
-date = 2022-10-31T06:47:00+02:00
-tags = [
-    "microsoft",
-    "teams",
-    "gif",
-    "issue",
-    "error",
-    "embed",
-    "embedded",
-    "jif",
-    "sent"
-]
-published = true
-+++++
+---
+title: Death To The `Sent a GIF` Link In Microsoft Teams
+date: 2022-10-31 06:47:00+02:00
+tags:
+- microsoft
+- teams
+- gif
+- issue
+- error
+- embed
+- embedded
+- jif
+- sent
+published: true
+---
 
 Emoji's and GIFs are essential for people trying to express their emotions & feelings over chat. Doing so allows them to build happier relationships and reduce anxiety amongst team members.
 

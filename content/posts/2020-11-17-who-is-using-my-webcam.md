@@ -1,14 +1,14 @@
-title = "Who Is using My Webcam?"
-date = 2020-11-17T00:00:00+02:00
-tags = [
-    "webcam",
-    "using",
-    "mac",
-    "apple",
-    "privacy"
-]
-published = true
-+++++
+---
+title: Who Is using My Webcam?
+date: 2020-11-17 00:00:00+02:00
+tags:
+- webcam
+- using
+- mac
+- apple
+- privacy
+published: true
+---
 
 Recently I've noticed a green dot next to my webcam staying on beyond my Google Hangout/Zoom meetings. This is obviously a problem so I've set out to find the solution.
 

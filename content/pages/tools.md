@@ -1,6 +1,7 @@
-title = "Tools"
-published = true
-+++++
+---
+title: Tools
+published: true
+---
 
 Enjoy these few tools that I build for my own use or others. Most of these run in browser using javascript.
 

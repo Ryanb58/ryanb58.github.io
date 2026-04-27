@@ -1,19 +1,19 @@
-title = "Setting Up SNC between Power Apps/Automate and SAP"
-date = 2024-02-26T18:13:00+02:00
-tags = [
-  "sap",
-  "snc",
-  "power",
-	"apps",
-	"automate",
-	"platform",
-	"encryption",
-	"secure",
-  "x509",
-  "X.509"
-]
-published = true
-+++++
+---
+title: Setting Up SNC between Power Apps/Automate and SAP
+date: 2024-02-26 18:13:00+02:00
+tags:
+- sap
+- snc
+- power
+- apps
+- automate
+- platform
+- encryption
+- secure
+- x509
+- X.509
+published: true
+---
 
 My team and I spend our 9 to 5 working on the [SAP ERP Connector](https://learn.microsoft.com/en-us/connectors/saperp/) for Power Apps/Automate. A key focus of our work is ensuring secure, encrypted transit when connecting to SAP, particularly for production systems. This vital security measure is designed to protect your data from interception or exposure during transit and to guard against man-in-the-middle attacks.
 

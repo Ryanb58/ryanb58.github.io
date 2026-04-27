@@ -1,11 +1,11 @@
-title = "Offset vs Seek/Keyset Pagination"
-date = 2019-03-13T17:47:00+02:00
-tags = [
-    "sql",
-    "pagination"
-]
-published = true
-+++++
+---
+title: Offset vs Seek/Keyset Pagination
+date: 2019-03-13 17:47:00+02:00
+tags:
+- sql
+- pagination
+published: true
+---
 
 **Update (03/07/2023)**
 

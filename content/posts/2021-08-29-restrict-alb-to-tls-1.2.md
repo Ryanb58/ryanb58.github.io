@@ -1,13 +1,13 @@
-title = "How to Restrict an AWS Application Load Balancer to TLS 1.2"
-date = 2021-08-28T17:47:00+02:00
-tags = [
-    "aws",
-    "alb",
-    "tls",
-    "encryption"
-]
-published = true
-+++++
+---
+title: How to Restrict an AWS Application Load Balancer to TLS 1.2
+date: 2021-08-28 17:47:00+02:00
+tags:
+- aws
+- alb
+- tls
+- encryption
+published: true
+---
 
 This weekend, I restricted the use of TLS to 1.2 and higher. Figure I'd document it a bit here.
 

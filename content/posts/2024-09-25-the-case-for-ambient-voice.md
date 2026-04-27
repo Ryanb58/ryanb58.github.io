@@ -1,16 +1,16 @@
-title = "The Case for Ambient Voice"
-date = 2024-09-25T18:13:00+02:00
-tags = [
-  "microsoft",
-  "teams",
-  "voice",
-  "chat",
-  "missing",
-  "feature",
-  "discord"
-]
-published = true
-+++++
+---
+title: The Case for Ambient Voice
+date: 2024-09-25 18:13:00+02:00
+tags:
+- microsoft
+- teams
+- voice
+- chat
+- missing
+- feature
+- discord
+published: true
+---
 
 It’s funny how small things can make such a big difference.
 

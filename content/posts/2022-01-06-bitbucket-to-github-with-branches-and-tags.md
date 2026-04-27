@@ -1,15 +1,15 @@
-title = "Bitbucket to GitHub with Branches and Tags"
-date = 2022-01-06T17:47:00+02:00
-tags = [
-    "Github",
-    "Bitbucket",
-    "branch",
-    "tag",
-    "move",
-    "migration"
-]
-published = false
-+++++
+---
+title: Bitbucket to GitHub with Branches and Tags
+date: 2022-01-06 17:47:00+02:00
+tags:
+- Github
+- Bitbucket
+- branch
+- tag
+- move
+- migration
+published: false
+---
 
 1) Create a new folder for the fresh repo clones. Navigate inside.
 

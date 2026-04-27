@@ -1,13 +1,13 @@
-title = "How to Encrypt an Existing RDS Instance at REST"
-date = 2021-08-28T17:47:00+02:00
-tags = [
-    "aws",
-    "rds",
-    "encryption",
-    "unencrypted"
-]
-published = true
-+++++
+---
+title: How to Encrypt an Existing RDS Instance at REST
+date: 2021-08-28 17:47:00+02:00
+tags:
+- aws
+- rds
+- encryption
+- unencrypted
+published: true
+---
 
 Make sure that anything connected to your database is using an DNS entry to connect. If they connect directly to the AWS Endpoint, then you will have to manually update your application to connect to a "new" endpoint after it is created.
 

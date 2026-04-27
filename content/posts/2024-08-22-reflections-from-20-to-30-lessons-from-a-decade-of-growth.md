@@ -1,17 +1,17 @@
-title = "Reflections from 20 to 30: Lessons from a Decade of Growth"
-date = 2024-08-22T18:13:00+02:00
-tags = [
-  "personal",
-  "blog",
-  "decade",
-  "of",
-  "growth",
-  "30",
-  "years",
-  "old"
-]
-published = true
-+++++
+---
+title: 'Reflections from 20 to 30: Lessons from a Decade of Growth'
+date: 2024-08-22 18:13:00+02:00
+tags:
+- personal
+- blog
+- decade
+- of
+- growth
+- '30'
+- years
+- old
+published: true
+---
 
 ### My Journey in a Nutshell:
 - Worked through four internships.

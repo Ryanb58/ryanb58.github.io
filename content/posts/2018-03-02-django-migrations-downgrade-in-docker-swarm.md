@@ -1,16 +1,15 @@
-
-title = "Django Migrations Downgrade in Docker Swarm"
-date = 2018-03-02T17:47:00+02:00
-tags = [
-    "docker",
-    "django",
-    "python",
-    "downgrade",
-    "swarm",
-    "orchestration"
-]
-published = true
-+++++
+---
+title: Django Migrations Downgrade in Docker Swarm
+date: 2018-03-02 17:47:00+02:00
+tags:
+- docker
+- django
+- python
+- downgrade
+- swarm
+- orchestration
+published: true
+---
 
 Edge cases are a big problem in software engineering, one that I recently ran
 into while on a beta box was errors being thrown after a downgrade.

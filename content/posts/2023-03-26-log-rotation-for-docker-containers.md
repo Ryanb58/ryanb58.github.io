@@ -1,16 +1,16 @@
-title = "Log Rotation For Docker Containers"
-date = 2023-03-26T06:47:00+02:00
-tags = [
-    "docker",
-    "container",
-    "log",
-    "rotation",
-    "logging",
-    "fluentd",
-    "splunk"
-]
-published = true
-+++++
+---
+title: Log Rotation For Docker Containers
+date: 2023-03-26 06:47:00+02:00
+tags:
+- docker
+- container
+- log
+- rotation
+- logging
+- fluentd
+- splunk
+published: true
+---
 
 One of the twelve pillars of a well behaved application is "Logs". However, having an infinitely expanding file on your server isn't ideal. So let's rotate it.
 

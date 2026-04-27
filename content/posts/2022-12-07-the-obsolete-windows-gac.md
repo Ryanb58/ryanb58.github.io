@@ -1,19 +1,19 @@
-title = "The Obsolete Windows GAC"
-date = 2022-12-07T06:47:00+02:00
-tags = [
-    "microsoft",
-    "windows",
-    "GAC",
-    ".net",
-    "shared",
-    "code",
-    "libraries",
-    "global",
-    "assembly",
-    "cache"
-]
-published = true
-+++++
+---
+title: The Obsolete Windows GAC
+date: 2022-12-07 06:47:00+02:00
+tags:
+- microsoft
+- windows
+- GAC
+- .net
+- shared
+- code
+- libraries
+- global
+- assembly
+- cache
+published: true
+---
 
 While debugging an issue a customer reported issue, I became well acquainted with the Global Assembly Cache otherwise known as the GAC. In this post, I'll share my findings.
 

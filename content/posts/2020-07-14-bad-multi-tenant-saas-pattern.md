@@ -1,12 +1,12 @@
-title = "The Bad Multi-Tenant SAAS Pattern"
-date = 2020-07-14T17:47:00+02:00
-tags = [
-    "saas",
-    "multitenant",
-    "pattern"
-]
-published = true
-+++++
+---
+title: The Bad Multi-Tenant SAAS Pattern
+date: 2020-07-14 17:47:00+02:00
+tags:
+- saas
+- multitenant
+- pattern
+published: true
+---
 
 Note: This article assumes PostgreSQL.
 

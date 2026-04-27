@@ -1,13 +1,13 @@
-title = "SSH Broken Pipe Issue"
-date = 2021-10-05T17:47:00+02:00
-tags = [
-    "ssh",
-    "disconnect",
-    "broken",
-    "pipe"
-]
-published = true
-+++++
+---
+title: SSH Broken Pipe Issue
+date: 2021-10-05 17:47:00+02:00
+tags:
+- ssh
+- disconnect
+- broken
+- pipe
+published: true
+---
 
 ## Problem:
 

@@ -1,17 +1,17 @@
-title = "How To Copy a Power App/Automate Flow"
-date = 2023-02-10T06:47:00+02:00
-tags = [
-    "power",
-    "app",
-    "automate",
-    "copy",
-    "clone",
-    "workflow",
-    "flow",
-    "automation"
-]
-published = true
-+++++
+---
+title: How To Copy a Power App/Automate Flow
+date: 2023-02-10 06:47:00+02:00
+tags:
+- power
+- app
+- automate
+- copy
+- clone
+- workflow
+- flow
+- automation
+published: true
+---
 
 **Update (03/01/2023)**
 

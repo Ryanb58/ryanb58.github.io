@@ -1,13 +1,13 @@
-title = "Github Blogging"
-date = 2016-06-23T17:47:00+02:00
-tags = [
-    "github",
-    "blog",
-    "techfyi",
-    "first"
-]
-published = true
-+++++
+---
+title: Github Blogging
+date: 2016-06-23 17:47:00+02:00
+tags:
+- github
+- blog
+- techfyi
+- first
+published: true
+---
 
 Hello internet!
 

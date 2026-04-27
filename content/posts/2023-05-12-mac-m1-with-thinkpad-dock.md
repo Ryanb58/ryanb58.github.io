@@ -1,17 +1,17 @@
-title = "M1 MacBook Pro Thinkpad Dock Fix"
-date = 2023-05-12T06:47:00+02:00
-tags = [
-    "mac",
-    "book",
-    "apple",
-    "thinkpad",
-    "doc",
-    "monitor",
-    "displays",
-    "external"
-]
-published = true
-+++++
+---
+title: M1 MacBook Pro Thinkpad Dock Fix
+date: 2023-05-12 06:47:00+02:00
+tags:
+- mac
+- book
+- apple
+- thinkpad
+- doc
+- monitor
+- displays
+- external
+published: true
+---
 
 At work, I've been procrastinating on figuring out how to connect my Macbook to the Dell monitors my workplace provides. Sure, having two large 27" displays would help me out, but would it really increase productivity? Well, as long as I'm getting my work done and helping others do more with less, who really cares, right?
 

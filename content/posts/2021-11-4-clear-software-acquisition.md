@@ -1,12 +1,12 @@
-title = "Clear Software Acquisition"
-date = 2021-11-04T17:47:00+02:00
-tags = [
-    "acquisition",
-    "company",
-    "sap"
-]
-published = true
-+++++
+---
+title: Clear Software Acquisition
+date: 2021-11-04 17:47:00+02:00
+tags:
+- acquisition
+- company
+- sap
+published: true
+---
 
 October 20th, 2021 was the official date the company I worked full time at was acquired by Microsoft. 
 
