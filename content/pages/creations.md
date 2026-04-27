@@ -1,11 +1,18 @@
 ---
 title: Creations
 published: true
+external_links: true
 ---
 
 Explore my collection of projects, showcasing ideas I've brought to life or am currently developing. From solo endeavors to collaborations with like-minded creators, this portfolio highlights my passion for turning concepts into reality.
 
 ### Active:
+
+[Lazy Weather](/lazyweather/)
+
+ - A free clone of a weather app that charges $40/year.
+ - Built with free APIs and open source libraries.
+ - Open source on [GitHub](https://github.com/ryanb58/lazyweather).
 
 [Stack Site](https://stacksite.io)
 

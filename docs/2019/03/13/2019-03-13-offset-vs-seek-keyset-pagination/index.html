@@ -229,7 +229,7 @@ LIMIT 30, 10
 <h2>Problems with Offset Pagination:</h2>
 <ul>
 <li>
-<p>The higher the offset the <a href="https://stackoverflow.com/a/4502426">slower the query</a>. <a href="https://explainextended.com/2009/10/23/mysql-order-by-limit-performance-late-row-lookups/">Source 2</a></p>
+<p>The higher the offset the <a href="https://stackoverflow.com/a/4502426" target="_blank" rel="noopener noreferrer">slower the query</a>. <a href="https://explainextended.com/2009/10/23/mysql-order-by-limit-performance-late-row-lookups/" target="_blank" rel="noopener noreferrer">Source 2</a></p>
 </li>
 <li>
 <p>One must calculate the number of pages based off the total number of records.</p>
@@ -238,7 +238,7 @@ LIMIT 30, 10
 <p>Must scan an index to count the number of rows.</p>
 </li>
 <li>
-<p><a href="http://www.4guysfromrolla.com/webtech/042606-1.shtml">Complicated solutions to speed up results on pages farther back.</a></p>
+<p><a href="http://www.4guysfromrolla.com/webtech/042606-1.shtml" target="_blank" rel="noopener noreferrer">Complicated solutions to speed up results on pages farther back.</a></p>
 </li>
 <li>
 <p>Even with an index, we scan the index, sort the data, then select the items we want to return. The first two steps are obviously a waste as we will be manipulating data that is not relevant to the results we want to return.</p>
@@ -246,8 +246,8 @@ LIMIT 30, 10
 </ul>
 <p>There MUST be a better way! And there is. Introducing seek pagination.</p>
 <h2>Seek/Keyset Pagination</h2>
-<p>The seek method is based on filtering out the data from the previous pages. We do this by having the client send the ID of the last record listed. We take that ID and place it in the WHERE clause providing us with only relevant data. Obviously, this implementation requires your data to be <a href="http://www.unicode.org/notes/tn9/tn9-1.html">deterministically sortable</a>.</p>
-<p>"Don't touch what you don't need" - <a href="https://youtu.be/GzMaN-IX7wQ?t=655">Youtube</a></p>
+<p>The seek method is based on filtering out the data from the previous pages. We do this by having the client send the ID of the last record listed. We take that ID and place it in the WHERE clause providing us with only relevant data. Obviously, this implementation requires your data to be <a href="http://www.unicode.org/notes/tn9/tn9-1.html" target="_blank" rel="noopener noreferrer">deterministically sortable</a>.</p>
+<p>"Don't touch what you don't need" - <a href="https://youtu.be/GzMaN-IX7wQ?t=655" target="_blank" rel="noopener noreferrer">Youtube</a></p>
 <p>An example SQL statement follows:</p>
 <pre><code class="language-SQL">SELECT id, firstname, lastname
 FROM contacts
@@ -333,7 +333,7 @@ LIMIT 10;
             backToTopButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
         </script>
         <footer class="mt-24 border-t border-neutral-200 dark:border-neutral-800 py-10 text-center text-sm text-neutral-500 dark:text-neutral-400">
-    <p class="mb-2">© 2025 Taylor Brazelton</p>
+    <p class="mb-2">© 2026 Taylor Brazelton</p>
     <p class="space-x-4">
         <a href="https://x.com/Ryanb58" target="_blank" class="hover:text-brand-dark dark:hover:text-brand">Twitter</a>
         <a href="https://www.linkedin.com/in/taylorbrazelton/" target="_blank" class="hover:text-brand-dark dark:hover:text-brand">LinkedIn</a>

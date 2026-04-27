@@ -1,4 +1,5 @@
 import glob
+import html
 import os
 import pathlib
 import re
@@ -113,6 +114,15 @@ class MermaidRenderer(HTMLRenderer):
             return f'<div class="mermaid">{token.content}</div>'
         return super().render_block_code(token)
 
+    def render_link(self, token):
+        target = self.escape_url(token.target)
+        title = ' title="{}"'.format(html.escape(token.title)) if token.title else ""
+        inner = self.render_inner(token)
+        # External = absolute URL not pointing at our own domain.
+        is_external = bool(re.match(r"^(https?:)?//", token.target)) and "taylorbrazelton.com" not in token.target
+        attrs = ' target="_blank" rel="noopener noreferrer"' if is_external else ""
+        return f'<a href="{target}"{title}{attrs}>{inner}</a>'
+
 
 def parse_mermaid(content):
     block_token.BlockCode.pattern = re.compile(r"( {0,3})(```|~~~)(\w+)?\n([\s\S]+?)\2")
@@ -146,6 +156,12 @@ def load_content_items(config, content_directory):
             # )
             # markdown = mistune.create_markdown(renderer=CustomHTMLRenderer(), plugins=['strikethrough', 'url', 'table'])
             item["content"] = mistletoe.markdown(content, MermaidRenderer)
+            if item.get("external_links"):
+                item["content"] = re.sub(
+                    r'<a (?![^>]*\btarget=)([^>]*)>',
+                    r'<a \1 target="_blank" rel="noopener noreferrer">',
+                    item["content"],
+                )
             item["slug"] = os.path.splitext(os.path.basename(file.name))[0]
             if config[content_type]["dateInURL"]:
                 item["url"] = (

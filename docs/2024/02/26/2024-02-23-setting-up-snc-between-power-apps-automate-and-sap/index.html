@@ -184,9 +184,9 @@
                 <p class="mt-3 text-sm text-neutral-500 dark:text-neutral-400">Published 2024-02-26</p>
             </header>
             <article class="post-body prose prose-neutral dark:prose-invert max-w-none">
-                <p>My team and I spend our 9 to 5 working on the <a href="https://learn.microsoft.com/en-us/connectors/saperp/">SAP ERP Connector</a> for Power Apps/Automate. A key focus of our work is ensuring secure, encrypted transit when connecting to SAP, particularly for production systems. This vital security measure is designed to protect your data from interception or exposure during transit and to guard against man-in-the-middle attacks.</p>
-<p>While securing connections to SAP, we shift from the typical TLS (Transport Layer Security) to <strong>public key encryption</strong>, known as <a href="https://help.sap.com/doc/saphelp_nw74/7.4.16/en-us/e6/56f466e99a11d1a5b00000e835363f/content.htm?no_cache=true">Secure Network Communications (SNC)</a>. This approach mirrors the standard practice of verifying website security – like checking for the lock icon in a browser's URL bar – but with a focus tailored for SAP's unique requirements.</p>
-<p>For more insights, updates, and discussions on this and related topics, feel free to connect with me on X (formerly Twitter) at <a href="https://x.com/Ryanb58">@Ryanb58</a>. Now, let's examine a data flow diagram from Power App/Flow to SAP:</p>
+                <p>My team and I spend our 9 to 5 working on the <a href="https://learn.microsoft.com/en-us/connectors/saperp/" target="_blank" rel="noopener noreferrer">SAP ERP Connector</a> for Power Apps/Automate. A key focus of our work is ensuring secure, encrypted transit when connecting to SAP, particularly for production systems. This vital security measure is designed to protect your data from interception or exposure during transit and to guard against man-in-the-middle attacks.</p>
+<p>While securing connections to SAP, we shift from the typical TLS (Transport Layer Security) to <strong>public key encryption</strong>, known as <a href="https://help.sap.com/doc/saphelp_nw74/7.4.16/en-us/e6/56f466e99a11d1a5b00000e835363f/content.htm?no_cache=true" target="_blank" rel="noopener noreferrer">Secure Network Communications (SNC)</a>. This approach mirrors the standard practice of verifying website security – like checking for the lock icon in a browser's URL bar – but with a focus tailored for SAP's unique requirements.</p>
+<p>For more insights, updates, and discussions on this and related topics, feel free to connect with me on X (formerly Twitter) at <a href="https://x.com/Ryanb58" target="_blank" rel="noopener noreferrer">@Ryanb58</a>. Now, let's examine a data flow diagram from Power App/Flow to SAP:</p>
 <div class="mermaid">flowchart TD
   classDef defaultStyle fill:#fff,stroke:#333,stroke-width:1px;
   PowerPlatform[Power App/Flow]
@@ -203,7 +203,7 @@
 <h2>Pre-Requisite</h2>
 <ul>
 <li>S-User Account on SAP's website(Helpful when resolving error messages and downloading required resources)</li>
-<li>Windows Machine with the latest <a href="https://aka.ms/opdg">OPDG Installed</a></li>
+<li>Windows Machine with the latest <a href="https://aka.ms/opdg" target="_blank" rel="noopener noreferrer">OPDG Installed</a></li>
 <li>SAP Instance
 <ul>
 <li>Ability to Restart</li>
@@ -214,7 +214,7 @@
 <li>OpenSSL
 <ul>
 <li>If you have <code>Git for Windows</code> installed, then you can access the <code>openssl</code> command by opening up <code>Git Bash</code>.</li>
-<li>If you are without, do not fear, you can use <a href="https://github.com/microsoft/winget-cli">winget</a> to install a distribution of it built by FireDaemon. <code>winget install --id FireDaemon.OpenSSL</code></li>
+<li>If you are without, do not fear, you can use <a href="https://github.com/microsoft/winget-cli" target="_blank" rel="noopener noreferrer">winget</a> to install a distribution of it built by FireDaemon. <code>winget install --id FireDaemon.OpenSSL</code></li>
 </ul>
 </li>
 </ul>
@@ -223,7 +223,7 @@
 <h3>Download SAPCAR</h3>
 <ol>
 <li>
-<p>Go to the <a href="https://me.sap.com/softwarecenter">SAP Software Center</a>.</p>
+<p>Go to the <a href="https://me.sap.com/softwarecenter" target="_blank" rel="noopener noreferrer">SAP Software Center</a>.</p>
 </li>
 <li>
 <p>Type <code>SAPCAR</code> into the <code>Search for Software Downloads</code> search box.</p>
@@ -244,7 +244,7 @@
 </ol>
 <h3>Download SAP Common Crypto</h3>
 <ol>
-<li>Go back to the <a href="https://me.sap.com/softwarecenter">SAP Software Center</a>.</li>
+<li>Go back to the <a href="https://me.sap.com/softwarecenter" target="_blank" rel="noopener noreferrer">SAP Software Center</a>.</li>
 <li>Type <code>COMMONCRYPTOLIB</code> into the <code>Search for Software Downloads</code> search box.</li>
 <li>Select the <code>COMMONCRYPTOLIB 8</code> result.</li>
 <li>Select the operating system type in the dropdown located above the search results.
@@ -393,7 +393,7 @@ snc/data_protection/max: 3
 <p>Then test it out with the "STFC_CONNECTION" RFC function.</p>
 <p><img src="/static/images/2024/Pasted image 20240223164854.png" alt="Pasted image 20240223164854.png" /></p>
 <p>Enjoy your fully encrypted connection!</p>
-<p>If you have any questions, improvements, or general comments, please feel free to ping me on <a href="https://x.com/ryanb58">X(formally Twitter)</a>.</p>
+<p>If you have any questions, improvements, or general comments, please feel free to ping me on <a href="https://x.com/ryanb58" target="_blank" rel="noopener noreferrer">X(formally Twitter)</a>.</p>
 
             </article>
             <nav class="mt-12 border-t border-neutral-200 dark:border-neutral-800 pt-6">
@@ -437,7 +437,7 @@ snc/data_protection/max: 3
             backToTopButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
         </script>
         <footer class="mt-24 border-t border-neutral-200 dark:border-neutral-800 py-10 text-center text-sm text-neutral-500 dark:text-neutral-400">
-    <p class="mb-2">© 2025 Taylor Brazelton</p>
+    <p class="mb-2">© 2026 Taylor Brazelton</p>
     <p class="space-x-4">
         <a href="https://x.com/Ryanb58" target="_blank" class="hover:text-brand-dark dark:hover:text-brand">Twitter</a>
         <a href="https://www.linkedin.com/in/taylorbrazelton/" target="_blank" class="hover:text-brand-dark dark:hover:text-brand">LinkedIn</a>

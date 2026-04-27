@@ -185,7 +185,7 @@
             </header>
             <article class="post-body prose prose-neutral dark:prose-invert max-w-none">
                 <h2>UPDATE: 2022/09/28</h2>
-<p>Recently the app began to autostart again. After some researching, I found a <a href="https://superuser.com/a/1370652">stackoverflow comment</a> about another settings file, a setting called <code>KeepAlive</code>, and some more <strong>autostart</strong> files. The command below allows you to turn off the extra settings.</p>
+<p>Recently the app began to autostart again. After some researching, I found a <a href="https://superuser.com/a/1370652" target="_blank" rel="noopener noreferrer">stackoverflow comment</a> about another settings file, a setting called <code>KeepAlive</code>, and some more <strong>autostart</strong> files. The command below allows you to turn off the extra settings.</p>
 <pre><code>sudo plutil -replace KeepAlive -bool NO /Library/LaunchAgents/com.checkpoint.eps.gui.plist
 sudo plutil -replace RunAtLoad -bool NO /Library/LaunchDaemons/com.checkpoint.epc.service.plist
 sudo plutil -replace KeepAlive -bool NO /Library/LaunchDaemons/com.checkpoint.epc.service.plist
@@ -248,7 +248,7 @@ make</p>
             backToTopButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
         </script>
         <footer class="mt-24 border-t border-neutral-200 dark:border-neutral-800 py-10 text-center text-sm text-neutral-500 dark:text-neutral-400">
-    <p class="mb-2">© 2025 Taylor Brazelton</p>
+    <p class="mb-2">© 2026 Taylor Brazelton</p>
     <p class="space-x-4">
         <a href="https://x.com/Ryanb58" target="_blank" class="hover:text-brand-dark dark:hover:text-brand">Twitter</a>
         <a href="https://www.linkedin.com/in/taylorbrazelton/" target="_blank" class="hover:text-brand-dark dark:hover:text-brand">LinkedIn</a>
