@@ -8,7 +8,7 @@
                 <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-balance text-neutral-900 dark:text-neutral-100">{{ config.title }}</h1>
                 <p class="mt-4 text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed">Software Engineer • Entrepreneur • Dog Dad<br/>Writing about startups, products, and technology.</p>
                 <div class="mt-6 flex items-center gap-4 text-sm text-neutral-500 dark:text-neutral-400">
-                    <a href="/feed/rss.xml" class="hover:text-brand inline-flex items-center gap-1" title="RSS Feed">RSS</a>
+                    <a href="/feed/rss.xml" class="hover:text-brand-dark dark:hover:text-brand inline-flex items-center gap-1" title="RSS Feed">RSS</a>
                 </div>
             </header>
             <section class="space-y-14">
@@ -19,11 +19,11 @@
                         {% for post in group %}
                         <li>
                             <a href="{{ post.url }}" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">{{ post.date.strftime('%b %d') }}</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">{{ post.date.strftime('%b %d') }}</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     {{ post.title }}
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>

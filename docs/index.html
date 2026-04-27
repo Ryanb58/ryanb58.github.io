@@ -31,14 +31,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet" />
 
-    <!-- TailwindCSS (with typography plugin) -->
+    <!-- Apply dark class early to avoid FOUC. Must run before Tailwind so the darkMode:'class' config takes effect on first paint. -->
     <script>
-        // Correct pre-injection config for Tailwind CDN (must use window.tailwind)
-        window.tailwind = {
-            config: {
-                darkMode: 'class',
-                theme: {
-                    extend: {
+        (function() {
+            const storedTheme = localStorage.getItem('theme');
+            const wantsDark = storedTheme === 'dark' || (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            if (wantsDark) document.documentElement.classList.add('dark');
+        })();
+    </script>
+
+    <!-- TailwindCSS (with typography plugin). The Play CDN replaces window.tailwind on load,
+         so config must be assigned AFTER the script tag, not pre-injected. -->
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
                     fontFamily: {
                         sans: ["Inter", "ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica", "Arial", "sans-serif"],
                         serif: ["Source Serif 4", "Georgia", "ui-serif", "serif"],
@@ -52,7 +61,7 @@
                             css: {
                                 '--tw-prose-body': theme('colors.neutral.800'),
                                 '--tw-prose-headings': theme('colors.neutral.900'),
-                                '--tw-prose-links': theme('colors.brand.DEFAULT'),
+                                '--tw-prose-links': theme('colors.brand.dark'),
                                 '--tw-prose-links-hover': theme('colors.brand.dark'),
                                 '--tw-prose-code': theme('colors.neutral.800'),
                                 '--tw-prose-quotes': theme('colors.neutral.800'),
@@ -98,12 +107,10 @@
                             }
                         }
                     })
-                    }
                 }
             }
         };
     </script>
-    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
 
     <!-- Existing minimal custom styles (kept for legacy tweaks & border) -->
     <link rel="stylesheet" href="/static/css/style.css" />
@@ -125,29 +132,21 @@
         mermaid.initialize({ startOnLoad: true, theme: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default' });
     </script>
 
-    <!-- Dark mode persistence (runs early to avoid FOUC) -->
-    <script>
-        (function() {
-            const storedTheme = localStorage.getItem('theme');
-            const wantsDark = storedTheme === 'dark' || (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches);
-            if (wantsDark) document.documentElement.classList.add('dark');
-        })();
-    </script>
 </head>
 
     <body class="bg-neutral-50 dark:bg-neutral-950 text-neutral-800 dark:text-neutral-200 antialiased">
         <nav class="sticky top-0 z-40 border-b border-neutral-200/70 dark:border-neutral-800/80 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-neutral-950/60 bg-white/80 dark:bg-neutral-950/80">
     <div class="max-w-3xl mx-auto flex items-center gap-4 px-4 py-3 text-sm font-medium">
-        <a href="/" class="text-neutral-900 dark:text-neutral-100 hover:text-brand dark:hover:text-brand transition-colors">Home</a>
+        <a href="/" class="text-neutral-900 dark:text-neutral-100 hover:text-brand-dark dark:hover:text-brand transition-colors">Home</a>
         
-        <a href="/about/" class="text-neutral-600 dark:text-neutral-300 hover:text-brand dark:hover:text-brand transition-colors">About</a>
+        <a href="/about/" class="text-neutral-600 dark:text-neutral-300 hover:text-brand-dark dark:hover:text-brand transition-colors">About</a>
         
-        <a href="/creations/" class="text-neutral-600 dark:text-neutral-300 hover:text-brand dark:hover:text-brand transition-colors">Creations</a>
+        <a href="/creations/" class="text-neutral-600 dark:text-neutral-300 hover:text-brand-dark dark:hover:text-brand transition-colors">Creations</a>
         
-        <a href="/tools/" class="text-neutral-600 dark:text-neutral-300 hover:text-brand dark:hover:text-brand transition-colors">Tools</a>
+        <a href="/tools/" class="text-neutral-600 dark:text-neutral-300 hover:text-brand-dark dark:hover:text-brand transition-colors">Tools</a>
         
-        <a href="/feed/rss.xml" target="_blank" class="ml-auto text-neutral-500 dark:text-neutral-400 hover:text-brand" title="RSS Feed">RSS</a>
-        <button id="themeToggle" aria-label="Toggle theme" class="rounded-md border border-neutral-300 dark:border-neutral-700 p-1.5 text-neutral-600 dark:text-neutral-300 hover:text-brand hover:border-brand transition-colors">
+        <a href="/feed/rss.xml" target="_blank" class="ml-auto text-neutral-500 dark:text-neutral-400 hover:text-brand-dark dark:hover:text-brand" title="RSS Feed">RSS</a>
+        <button id="themeToggle" aria-label="Toggle theme" class="rounded-md border border-neutral-300 dark:border-neutral-700 p-1.5 text-neutral-600 dark:text-neutral-300 hover:text-brand-dark dark:hover:text-brand hover:border-brand transition-colors">
             <svg id="iconSun" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 hidden dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
             <svg id="iconMoon" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 0 1 11.21 3 7 7 0 1 0 21 12.79z"/></svg>
         </button>
@@ -183,7 +182,7 @@
                 <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-balance text-neutral-900 dark:text-neutral-100">Taylor Brazelton</h1>
                 <p class="mt-4 text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed">Software Engineer • Entrepreneur • Dog Dad<br/>Writing about startups, products, and technology.</p>
                 <div class="mt-6 flex items-center gap-4 text-sm text-neutral-500 dark:text-neutral-400">
-                    <a href="/feed/rss.xml" class="hover:text-brand inline-flex items-center gap-1" title="RSS Feed">RSS</a>
+                    <a href="/feed/rss.xml" class="hover:text-brand-dark dark:hover:text-brand inline-flex items-center gap-1" title="RSS Feed">RSS</a>
                 </div>
             </header>
             <section class="space-y-14">
@@ -194,44 +193,44 @@
                         
                         <li>
                             <a href="/2025/09/10/2025-09-10-your-first-10-users-greater-than-your-first-10-features-hard-truths-about-saas-mvps/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Sep 10</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Sep 10</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Your First 10 Users > Your First 10 Features: Hard Truths About SaaS MVPs
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2025/04/28/2025-04-29-power-automate-flow-download-file-from-sap/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Apr 28</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Apr 28</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Power Automate Flow - Download File From SAP
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2025/03/19/2025-03-19-connecting-ollama-with-jan-ai/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Mar 19</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Mar 19</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     How to connect Jan.ai to Ollama(non-.cpp)
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2025/02/11/2025-02-11-llm-keywords-for-humans/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Feb 11</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Feb 11</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     LLM Keywords for Humans
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
@@ -245,77 +244,77 @@
                         
                         <li>
                             <a href="/2024/12/02/2024-12-02-self-hosting-is-back-in-style/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Dec 02</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Dec 02</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Self Hosting Is Back In Style
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2024/09/25/2024-09-25-the-case-for-ambient-voice/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Sep 25</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Sep 25</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     The Case for Ambient Voice
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2024/09/12/2024-09-12-windows-box-setup/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Sep 12</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Sep 12</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Ultimate Guide: How to Set Up a Windows PC from Scratch in 2024 (Step-by-Step)
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2024/08/22/2024-08-22-reflections-from-20-to-30-lessons-from-a-decade-of-growth/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Aug 22</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Aug 22</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Reflections from 20 to 30: Lessons from a Decade of Growth
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2024/02/26/2024-03-05-error-msb8020-build-tools-for-visual-studio-2019-platform-toolset-v142-cannot-be-found/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Feb 26</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Feb 26</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Fixing 'error MSB8020: The build tools for Visual Studio 2019 (Platform Toolset = 'v142') cannot be found. '
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2024/02/26/2024-02-23-setting-up-snc-between-power-apps-automate-and-sap/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Feb 26</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Feb 26</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Setting Up SNC between Power Apps/Automate and SAP
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2024/01/07/2024-01-07-from-theory-to-practice-unlocking-the-secrets-of-secure-communication-with-certificates-and-keys/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Jan 07</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Jan 07</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     From Theory to Practice: Unlocking the Secrets of Secure Communication with Certificates and Keys
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
@@ -329,66 +328,66 @@
                         
                         <li>
                             <a href="/2023/09/08/2023-09-08-configure-multiple-github-and-msazure-ssh-keys/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Sep 08</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Sep 08</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     How to Configure Multiple SSH Keys for GitHub and Azure DevOps Repos
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2023/07/07/2023-07-07-power-platform-solution-version-update-script/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Jul 07</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Jul 07</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Github Action To Auto Increment a Power Platform Solution's Version
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2023/05/12/2023-05-12-mac-m1-with-thinkpad-dock/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">May 12</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">May 12</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     M1 MacBook Pro Thinkpad Dock Fix
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2023/04/04/2023-04-06-power-automate-array-slicing/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Apr 04</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Apr 04</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Power Automate Array Slicing
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2023/03/26/2023-03-26-log-rotation-for-docker-containers/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Mar 26</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Mar 26</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Log Rotation For Docker Containers
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2023/02/10/2023-02-10-copy-a-power-app-automate-flow/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Feb 10</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Feb 10</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     How To Copy a Power App/Automate Flow
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
@@ -402,88 +401,88 @@
                         
                         <li>
                             <a href="/2022/12/15/2022-12-15-comparing-files-on-windows-checksum/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Dec 15</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Dec 15</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Comparing Files(Checksum) On Windows
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2022/12/07/2022-12-07-the-obsolete-windows-gac/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Dec 07</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Dec 07</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     The Obsolete Windows GAC
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2022/10/31/2022-10-31-death-to-the-sent-a-gif-link-in-microsoft-teams/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Oct 31</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Oct 31</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Death To The `Sent a GIF` Link In Microsoft Teams
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2022/09/25/2022-09-25-power-platform-sap-connector-enhancements/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Sep 25</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Sep 25</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Power Platforms SAP Connector Enhancements
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2022/07/25/2022-07-25-prevent-endpoint-vpn-from-autostarting/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Jul 25</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Jul 25</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Autostart Dark Pattern - Endpoint Security VPN for Mac
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2022/06/06/2022-06-06-bye-bye-semantic-versioning-say-hello-to-gitdate/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Jun 06</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Jun 06</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Bye Bye Semantic Versioning, Say Hello To GitDate
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2022/04/15/2022-04-15-how-to-prevent-mac-from-auto-switching-desktops/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Apr 15</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Apr 15</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     How To Prevent Mac From Auto Switching Desktops
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2022/03/09/2022-03-09-postgres-database-clone/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Mar 09</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Mar 09</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Quick Postgres Database Backup
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
@@ -497,176 +496,176 @@
                         
                         <li>
                             <a href="/2021/11/04/2021-11-4-clear-software-acquisition/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Nov 04</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Nov 04</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Clear Software Acquisition
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2021/11/04/2021-12-06-paste-unformatted-text-into-teams/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Nov 04</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Nov 04</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     How to Paste and Match Style Text Into Teams
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2021/10/14/2021-10-14-revenue-vs-profit/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Oct 14</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Oct 14</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Revenue vs Profit
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2021/10/05/2021-10-05-ssh-pipe-broken-issue/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Oct 05</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Oct 05</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     SSH Broken Pipe Issue
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2021/09/29/2021-09-15-aws-client-vpn-endpoint-mass-disconnect/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Sep 29</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Sep 29</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     AWS Client VPN Endpoint Mass Disconnect
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2021/09/21/2021-09-21-three-most-important-scp-commands/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Sep 21</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Sep 21</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Most Important SCP Commands
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2021/09/01/2021-09-01-disk-cleanup-linux/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Sep 01</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Sep 01</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Disk Space Clean Up on Linux
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2021/08/28/2021-08-29-restrict-alb-to-tls-1.2/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Aug 28</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Aug 28</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     How to Restrict an AWS Application Load Balancer to TLS 1.2
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2021/08/28/2021-08-28-how-to-encrypt-an-existing-rds-instance-at-rest/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Aug 28</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Aug 28</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     How to Encrypt an Existing RDS Instance at REST
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2021/07/28/2021-07-28-the-mystery-of-the-broken-docker-compose-terminal/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Jul 28</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Jul 28</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     The Mystery Of The Broken Docker Compose Terminal
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2021/07/22/2021-07-22-incident-report-template/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Jul 22</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Jul 22</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     A Simple Incident Report Template For Startups
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2021/07/06/2021-07-06-til-uPnP/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Jul 06</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Jul 06</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     TIL About uPnP
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2021/06/22/2021-06-22-logging-best-practices/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Jun 22</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Jun 22</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Logging Best Practices
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2021/06/07/2021-06-07-chrome-invalid-ssl-bypass/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Jun 07</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Jun 07</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     How to bypass an Invalid Cert in Chrome - Your connection is not private
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2021/05/19/2021-05-19-site-pixel/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">May 19</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">May 19</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Site Pixel
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2021/01/05/2021-01-05-docker-image-size-reduction/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Jan 05</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Jan 05</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Docker Image Size Reduction
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
@@ -680,44 +679,44 @@
                         
                         <li>
                             <a href="/2020/11/17/2020-11-17-who-is-using-my-webcam/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Nov 17</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Nov 17</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Who Is using My Webcam?
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2020/07/21/2020-07-21-saas-platform-minimum-requirements/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Jul 21</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Jul 21</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Minimum Requirements for a SAAS Platform
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2020/07/21/2020-10-27-aws-vault-and-mfa-setup-on-my-mac/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Jul 21</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Jul 21</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     AWS Vault and MFA Setup on my Mac
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2020/07/14/2020-07-14-bad-multi-tenant-saas-pattern/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Jul 14</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Jul 14</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     The Bad Multi-Tenant SAAS Pattern
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
@@ -731,55 +730,55 @@
                         
                         <li>
                             <a href="/2019/03/13/2019-03-13-offset-vs-seek-keyset-pagination/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Mar 13</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Mar 13</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Offset vs Seek/Keyset Pagination
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2019/02/25/2019-02-25-alembic-load-config-from-env-vars/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Feb 25</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Feb 25</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Alembic Load Config From Env Vars
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2019/01/28/2019-01-28-invalidate-aws-cloudfront-cache/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Jan 28</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Jan 28</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Invalidate AWS CloudFront Cache
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2019/01/07/2019-01-07-replacing-a-table-with-a-view/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Jan 07</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Jan 07</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Replace a Table With View
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2019/01/06/2019-01-06-hello-world/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Jan 06</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Jan 06</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Hello World
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
@@ -793,22 +792,22 @@
                         
                         <li>
                             <a href="/2018/03/02/2018-03-02-django-migrations-downgrade-in-docker-swarm/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Mar 02</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Mar 02</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Django Migrations Downgrade in Docker Swarm
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2018/02/15/2018-02-15-moving-away-from-legacy-code/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Feb 15</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Feb 15</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Moving Away From Legacy Code
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
@@ -822,77 +821,77 @@
                         
                         <li>
                             <a href="/2016/12/09/2016-12-09-top-python-tools-and-packages/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Dec 09</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Dec 09</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Top 2016 Python Tools And Packages
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2016/09/15/2016-09-15-writing-better-code/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Sep 15</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Sep 15</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Writing Better Code
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2016/07/28/2016-07-28-raspberry-pi-arcade-emulator-price-out/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Jul 28</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Jul 28</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Raspberry Pi Arcade Emulator Price Out
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2016/06/27/2016-06-27-getting-started-with-pelican/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Jun 27</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Jun 27</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Getting Started with Pelican
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2016/06/23/2016-06-23-github-blogging/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Jun 23</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Jun 23</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Github Blogging
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2016/04/18/2016-04-18-getting-selenium-to-wait-for-ajax/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Apr 18</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Apr 18</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     Getting Selenium To Wait For Ajax
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
                         
                         <li>
                             <a href="/2016/03/09/2016-03-09-how-to-return-an-evaluated-instance-of-a-queryset-after-you-called-delete/" class="group relative flex items-start gap-4 rounded-lg border border-neutral-200/80 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-900/40 px-4 py-3 no-underline transition-all hover:border-brand hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 dark:hover:border-brand/70 dark:hover:bg-brand/10">
-                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand dark:group-hover:text-brand">Mar 09</span>
-                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand dark:group-hover:text-brand">
+                                <span class="mt-1 text-[11px] font-semibold tracking-wide text-neutral-500 dark:text-neutral-400 uppercase w-14 shrink-0 tabular-nums group-hover:text-brand-dark dark:group-hover:text-brand">Mar 09</span>
+                                <span class="flex-1 text-neutral-800 dark:text-neutral-200 font-medium leading-snug group-hover:text-brand-dark dark:group-hover:text-brand">
                                     How To Return An Evaluated Instance Of A QuerySet After You Called Delete
                                 </span>
-                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand dark:text-brand" aria-hidden="true">→</span>
+                                <span class="self-center opacity-0 group-hover:opacity-100 transition-opacity text-brand-dark dark:text-brand" aria-hidden="true">→</span>
                                 <span class="absolute inset-0 rounded-lg" aria-hidden="true"></span>
                             </a>
                         </li>
@@ -905,9 +904,9 @@
         <footer class="mt-24 border-t border-neutral-200 dark:border-neutral-800 py-10 text-center text-sm text-neutral-500 dark:text-neutral-400">
     <p class="mb-2">© 2025 Taylor Brazelton</p>
     <p class="space-x-4">
-        <a href="https://x.com/Ryanb58" target="_blank" class="hover:text-brand">Twitter</a>
-        <a href="https://www.linkedin.com/in/taylorbrazelton/" target="_blank" class="hover:text-brand">LinkedIn</a>
-        <a href="https://github.com/Ryanb58" target="_blank" class="hover:text-brand">GitHub</a>
+        <a href="https://x.com/Ryanb58" target="_blank" class="hover:text-brand-dark dark:hover:text-brand">Twitter</a>
+        <a href="https://www.linkedin.com/in/taylorbrazelton/" target="_blank" class="hover:text-brand-dark dark:hover:text-brand">LinkedIn</a>
+        <a href="https://github.com/Ryanb58" target="_blank" class="hover:text-brand-dark dark:hover:text-brand">GitHub</a>
     </p>
 </footer>
 

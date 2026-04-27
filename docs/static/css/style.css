@@ -12,3 +12,11 @@ html, body, nav, main, footer { transition: background-color .3s ease, color .3s
 
 /* Mermaid container spacing tweak */
 .mermaid { margin-top: 1.5rem; margin-bottom: 1.5rem; }
+
+/* Brand link colors inside prose. Higher specificity than Tailwind's .prose-neutral, which otherwise resets these to neutral-900. */
+article.prose {
+    --tw-prose-links: #1d7f1a;
+    --tw-prose-links-hover: #1d7f1a;
+    --tw-prose-invert-links: #27a822;
+    --tw-prose-invert-links-hover: #27a822;
+}

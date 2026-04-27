@@ -18,19 +18,19 @@
                         {% if this.newer_post %}
                         <a href="{{ this.newer_post.url }}" class="group block p-3 rounded-md border border-neutral-200 dark:border-neutral-800 hover:border-brand focus:outline-none focus:ring-2 focus:ring-brand/40 transition bg-transparent">
                             <span class="block text-xs uppercase tracking-wide text-neutral-500 dark:text-neutral-400">Newer</span>
-                            <span class="block font-medium text-neutral-800 dark:text-neutral-200 group-hover:text-brand">{{ this.newer_post.title }}</span>
+                            <span class="block font-medium text-neutral-800 dark:text-neutral-200 group-hover:text-brand-dark dark:group-hover:text-brand">{{ this.newer_post.title }}</span>
                         </a>
                         {% endif %}
                     </div>
                     <div class="flex flex-col items-center justify-center">
-                        <a href="/" class="text-neutral-500 hover:text-brand dark:text-neutral-400">← Home</a>
-                        <a href="#" class="mt-2 text-neutral-500 hover:text-brand dark:text-neutral-400" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Top ↑</a>
+                        <a href="/" class="text-neutral-500 hover:text-brand-dark dark:text-neutral-400 dark:hover:text-brand">← Home</a>
+                        <a href="#" class="mt-2 text-neutral-500 hover:text-brand-dark dark:text-neutral-400 dark:hover:text-brand" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Top ↑</a>
                     </div>
                     <div class="flex flex-col items-end">
                         {% if this.older_post %}
                         <a href="{{ this.older_post.url }}" class="group block p-3 rounded-md border border-neutral-200 dark:border-neutral-800 hover:border-brand focus:outline-none focus:ring-2 focus:ring-brand/40 transition text-right bg-transparent">
                             <span class="block text-xs uppercase tracking-wide text-neutral-500 dark:text-neutral-400">Older</span>
-                            <span class="block font-medium text-neutral-800 dark:text-neutral-200 group-hover:text-brand">{{ this.older_post.title }}</span>
+                            <span class="block font-medium text-neutral-800 dark:text-neutral-200 group-hover:text-brand-dark dark:group-hover:text-brand">{{ this.older_post.title }}</span>
                         </a>
                         {% endif %}
                     </div>
