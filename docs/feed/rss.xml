@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>Taylor Brazelton's Blog</title><link>https://taylorbrazelton.com</link><description>Updates and posts from Taylor Brazelton</description><language>en</language><lastBuildDate>Wed, 10 Sep 2025 19:23:00 -0700</lastBuildDate><item><title>Your First 10 Users &gt; Your First 10 Features: Hard Truths About SaaS MVPs</title><link>https://taylorbrazelton.com/2025/09/10/2025-09-10-your-first-10-users-greater-than-your-first-10-features-hard-truths-about-saas-mvps/</link><description>Bootstrapping a SaaS MVP isn’t just a coding sprint—it’s a mental grind.
+<rss version="2.0"><channel><title>Taylor Brazelton's Blog</title><link>https://taylorbrazelton.com</link><description>Updates and posts from Taylor Brazelton</description><language>en</language><lastBuildDate>Fri, 04 Sep 2026 09:04:00 -0700</lastBuildDate><item><title>Small PRs Are a Human Constraint: How Agents Are Changing Code Review</title><link>https://taylorbrazelton.com/2026/09/04/2026-09-04-small-prs/</link><description>Experienced engineers love to say:
+
+**“Keep your PRs small.”**
+
+But what does *small* actually mean?
+
+One function?
+
+One</description><pubDate>Fri, 04 Sep 2026 09:04:00 -0700</pubDate></item><item><title>Your First 10 Users &gt; Your First 10 Features: Hard Truths About SaaS MVPs</title><link>https://taylorbrazelton.com/2025/09/10/2025-09-10-your-first-10-users-greater-than-your-first-10-features-hard-truths-about-saas-mvps/</link><description>Bootstrapping a SaaS MVP isn’t just a coding sprint—it’s a mental grind.
 
 As a Senior Software Engineer at Microsoft (after</description><pubDate>Wed, 10 Sep 2025 19:23:00 -0700</pubDate></item><item><title>Power Automate Flow - Download File From SAP</title><link>https://taylorbrazelton.com/2025/04/28/2025-04-29-power-automate-flow-download-file-from-sap/</link><description>With the low-key launch of the "Reconstruct Attachments" action inside of the SAP ERP Connector for Power Automate, you can</description><pubDate>Mon, 28 Apr 2025 18:23:00 +0200</pubDate></item><item><title>How to connect Jan.ai to Ollama(non-.cpp)</title><link>https://taylorbrazelton.com/2025/03/19/2025-03-19-connecting-ollama-with-jan-ai/</link><description>Running LLMs locally is great for privacy and olline access. 
 
